@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Upload, Image as ImageIcon, Check, RefreshCw, Link as LinkIcon, Sparkles, User } from 'lucide-react';
 import { ProfileConfig } from '../../types';
+import defaultHeroCreatorImg from '../../assets/images/hero_tech_creator_1787669566326.jpg';
 
 interface PhotoSettingsModalProps {
   isOpen: boolean;
@@ -123,7 +124,7 @@ export const PhotoSettingsModal: React.FC<PhotoSettingsModalProps> = ({
               <div className="flex items-center gap-4 p-4 bg-stone-50 rounded-2xl border border-stone-200">
                 <div className="w-20 h-20 rounded-2xl overflow-hidden bg-stone-200 shrink-0 border-2 border-white shadow-md">
                   <img
-                    src={imageUrl || '/src/assets/images/hero_tech_creator_1787669566326.jpg'}
+                    src={imageUrl || defaultHeroCreatorImg}
                     alt="Preview"
                     className="w-full h-full object-cover object-top"
                     referrerPolicy="no-referrer"

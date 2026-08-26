@@ -3,40 +3,84 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>codertech — Software Developer, Tech Creator & Digital Products</title>
+    <title>Isaac (codertech) — Full-Stack Developer, Mobile Engineer & Tech Creator</title>
     
     <!-- Primary SEO Meta Tags -->
-    <meta name="title" content="codertech — Software Developer, Tech Creator & Digital Products" />
-    <meta name="description" content="Official website & portfolio of codertech (Isaac). Explore full-stack web applications, mobile apps, developer tutorials, tech blogs, and online monetization toolkits." />
-    <meta name="keywords" content="codertech, Isaac, software engineer, full-stack developer, React, TypeScript, Node.js, tech blog, developer portfolio, mobile apps, digital products, SaaS boilerplate" />
-    <meta name="author" content="codertech (Isaac)" />
-    <meta name="robots" content="index, follow" />
+    <meta name="title" content="Isaac (codertech) — Full-Stack Developer, Mobile Engineer & Tech Creator" />
+    <meta name="description" content="Official portfolio & technical blog of Isaac (codertech). Building production-ready React web apps, cross-platform mobile apps, cloud backends, and digital developer products." />
+    <meta name="keywords" content="codertech, Isaac, software engineer, full-stack developer, React developer, TypeScript, Node.js, mobile app developer, tech blog, developer portfolio, SaaS builder, developer monetization" />
+    <meta name="author" content="Isaac (codertech)" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#FFF8F3" />
+    <meta name="application-name" content="codertech" />
+    <meta name="apple-mobile-web-app-title" content="codertech" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="format-detection" content="telephone=no" />
+    
+    <!-- Canonical -->
     <link rel="canonical" href="https://codertech.dev" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://codertech.dev" />
-    <meta property="og:title" content="codertech — Software Developer, Tech Creator & Digital Products" />
-    <meta property="og:description" content="Explore full-stack web applications, mobile apps, developer tutorials, tech blogs, and online monetization toolkits built with modern TypeScript and React." />
+    <meta property="og:title" content="Isaac (codertech) — Full-Stack Developer, Mobile Engineer & Tech Creator" />
+    <meta property="og:description" content="Building fast, delightful digital experiences, full-stack web applications, mobile companion apps, and modern developer toolkits." />
     <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&auto=format&fit=crop&q=80" />
     <meta property="og:site_name" content="codertech" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="profile:first_name" content="Isaac" />
+    <meta property="profile:username" content="codertech" />
 
     <!-- Twitter / X Card -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://codertech.dev" />
-    <meta property="twitter:title" content="codertech — Software Developer, Tech Creator & Digital Products" />
-    <meta property="twitter:description" content="Explore full-stack web applications, mobile apps, developer tutorials, tech blogs, and online monetization toolkits." />
+    <meta property="twitter:title" content="Isaac (codertech) — Full-Stack Developer & Tech Creator" />
+    <meta property="twitter:description" content="Explore full-stack web apps, mobile apps, in-depth technical blogs, and online developer toolkits." />
     <meta property="twitter:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&auto=format&fit=crop&q=80" />
-    <meta property="twitter:creator" content="@codertech" />
 
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Schema.org JSON-LD Structured Data -->
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                warm: '#FFF8F3',
+                card: '#FFFDFB',
+                dark: '#2D3436',
+                coral: '#FF7675',
+                purple: '#6C5CE7',
+                purpleLight: '#8B7EFF',
+                teal: '#00B894',
+                orange: '#E17055',
+                blue: '#0984E3',
+                yellow: '#FDCB6E'
+              }
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+              display: ['"Outfit"', '"Plus Jakarta Sans"', 'sans-serif'],
+              serif: ['"DM Serif Display"', 'serif'],
+              mono: ['"Fira Code"', 'monospace']
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -44,31 +88,25 @@
         {
           "@type": "Person",
           "@id": "https://codertech.dev/#person",
-          "name": "Isaac (codertech)",
-          "jobTitle": "Full-Stack Software Developer & Tech Creator",
+          "name": "Isaac",
+          "alternateName": "codertech",
+          "jobTitle": "Full-Stack Software Engineer & Mobile Developer",
+          "description": "Software engineer and tech creator building high-performance web applications, mobile platforms, and developer monetization tools.",
           "url": "https://codertech.dev",
+          "email": "isaacapptech23developer@gmail.com",
           "sameAs": [
             "https://github.com",
             "https://twitter.com",
             "https://linkedin.com",
             "https://youtube.com"
-          ],
-          "knowsAbout": [
-            "TypeScript",
-            "React",
-            "Node.js",
-            "Tailwind CSS",
-            "Mobile App Development",
-            "Cloud & API Architecture",
-            "SaaS Monetization"
           ]
         },
         {
           "@type": "WebSite",
           "@id": "https://codertech.dev/#website",
           "url": "https://codertech.dev",
-          "name": "codertech",
-          "description": "Software Developer Portfolio, Tech Blog & Digital Products",
+          "name": "codertech — Isaac",
+          "description": "Portfolio, Technical Blog, and Developer Digital Products by Isaac",
           "publisher": {
             "@id": "https://codertech.dev/#person"
           }
@@ -78,8 +116,1321 @@
     </script>
   </head>
   <body class="bg-[#FFF8F3] text-stone-800 antialiased selection:bg-[#ff7675]/20 selection:text-[#e76f51] overflow-x-hidden min-h-screen">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Reading Progress Bar (Active on Blog Post Page) -->
+    <div id="reading-progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-[#FF7675] via-[#8B7EFF] to-[#6C5CE7] z-50 w-0"></div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
+
+    <!-- ========================================================================= -->
+    <!-- HEADER & NAVBAR -->
+    <!-- ========================================================================= -->
+    <header class="sticky top-0 z-40 bg-[#FFF8F3]/90 backdrop-blur-md border-b border-stone-200/60 transition-all duration-300">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#6C5CE7] to-[#A29BFE] text-white flex items-center justify-center font-bold text-sm shadow-md group-hover:scale-105 transition-transform">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="font-extrabold text-lg tracking-tight text-stone-900 font-serif flex items-center gap-1.5">
+              <span>codertech</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-[#FF7675] animate-pulse"></span>
+            </div>
+            <div class="text-[10px] text-stone-500 font-semibold tracking-wider uppercase font-mono">Isaac • Dev & Creator</div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-6 text-xs font-bold text-stone-600">
+          <a href="#home" class="nav-link hover:text-stone-900 transition flex items-center gap-1">Home</a>
+          <a href="#projects" class="nav-link hover:text-stone-900 transition">Projects</a>
+          <a href="#services" class="nav-link hover:text-stone-900 transition">Services</a>
+          <a href="#process" class="nav-link hover:text-stone-900 transition">Process</a>
+          <a href="#blog" class="nav-link hover:text-stone-900 transition">Blog</a>
+          <a href="#socials" class="nav-link hover:text-stone-900 transition">Socials</a>
+          <a href="#monetize" class="nav-link hover:text-stone-900 transition flex items-center gap-1 text-[#e17055]">
+            <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+            <span>Monetize</span>
+          </a>
+        </nav>
+
+        <!-- Right Action Controls -->
+        <div class="flex items-center gap-2.5">
+          <!-- Search Trigger (⌘K) -->
+          <button onclick="window.openSearchModal()" class="px-3 py-1.5 rounded-xl bg-white border border-stone-200 text-stone-500 hover:text-stone-900 hover:border-stone-300 text-xs font-semibold flex items-center gap-2 transition shadow-2xs" title="Search Everything (⌘K)">
+            <i data-lucide="search" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">Search</span>
+            <kbd class="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-stone-100 text-stone-500 rounded border border-stone-200 font-mono">⌘K</kbd>
+          </button>
+
+          <!-- Photo Settings Trigger -->
+          <button onclick="window.openPhotoSettingsModal()" class="p-2 rounded-xl bg-white border border-stone-200 text-stone-600 hover:text-stone-900 hover:border-stone-300 transition shadow-2xs" title="Customize Profile Photo">
+            <i data-lucide="image" class="w-4 h-4"></i>
+          </button>
+
+          <!-- Contact Modal Trigger -->
+          <button onclick="window.openContactModal()" class="hidden sm:flex px-4 py-2 bg-gradient-to-r from-[#FF7675] to-[#FF8E8D] hover:opacity-95 text-white rounded-xl text-xs font-bold transition items-center gap-1.5 shadow-sm shadow-rose-200">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i>
+            <span>Let's Talk</span>
+          </button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button onclick="window.toggleMobileNav()" class="md:hidden p-2 rounded-xl bg-white border border-stone-200 text-stone-700 hover:bg-stone-50">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-nav-drawer" class="hidden md:hidden border-t border-stone-200/80 bg-[#FFF8F3] px-4 py-4 space-y-3 shadow-lg">
+        <a href="#home" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Home</a>
+        <a href="#projects" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Projects</a>
+        <a href="#services" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Services</a>
+        <a href="#process" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Process</a>
+        <a href="#monetize" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-[#e17055] py-1.5">Monetization Hub ⚡</a>
+        <a href="#blog" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Tech Blog</a>
+        <a href="#socials" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Socials</a>
+        <a href="#faq" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">FAQ</a>
+        <div class="pt-2">
+          <button onclick="window.toggleMobileNav(); window.openContactModal();" class="w-full py-2.5 bg-gradient-to-r from-[#FF7675] to-[#FF8E8D] text-white rounded-xl text-xs font-bold shadow-sm">
+            Let's Talk
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ========================================================================= -->
+      <!-- VIEW 1: HOME PAGE (PORTFOLIO, PROJECTS, SERVICES, PROCESS, TESTIMONIALS, BLOG) -->
+      <!-- ========================================================================= -->
+      <div id="home-view" class="spa-view active">
+        
+        <!-- ========================================================================= -->
+        <!-- HERO SECTION -->
+        <!-- ========================================================================= -->
+        <section class="relative pt-10 pb-16 md:pt-16 md:pb-24 bg-gradient-to-b from-[#FFF8F3] via-[#FEF3EC] to-[#F5EEFB] overflow-hidden">
+          
+          <!-- Floating background decorative stars -->
+          <div class="absolute top-12 left-10 text-amber-300 text-2xl animate-float-slow select-none opacity-60">✨</div>
+          <div class="absolute top-28 right-12 text-[#FF7675] text-xl animate-soft-pulse select-none opacity-50">★</div>
+          <div class="absolute bottom-16 left-1/3 text-[#6C5CE7] text-lg select-none opacity-40">✦</div>
+
+          <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+              
+              <!-- Left Column: Bio & CTAs -->
+              <div class="lg:col-span-7 space-y-6 text-left">
+                
+                <!-- Pill Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFEAE6] border border-[#FFD2C9] text-[#E76F51] text-xs font-extrabold tracking-wide shadow-2xs">
+                  <span class="w-2 h-2 rounded-full bg-[#FF7675] animate-ping"></span>
+                  <span>FULL-STACK DEVELOPER & TECH CREATOR ❤️</span>
+                </div>
+
+                <!-- Main Headline with Handcrafted Accents -->
+                <div class="relative">
+                  <!-- Decorative Line Accents -->
+                  <div class="absolute -top-4 -left-3 flex gap-1 text-[#FF7675] opacity-60 select-none">
+                    <span class="inline-block transform -rotate-45 text-sm">/</span>
+                    <span class="inline-block text-sm">|</span>
+                    <span class="inline-block transform rotate-45 text-sm">\</span>
+                  </div>
+
+                  <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-stone-900 tracking-tight leading-[1.12] font-display">
+                    I build digital experiences & tech solutions <span class="text-[#8B7EFF] italic">people</span> <span class="text-[#FF7675] relative inline-block">love. <svg class="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8.5C25 2 75 14 98 4.5" stroke="#FF7675" stroke-width="3" stroke-linecap="round"/></svg></span>
+                  </h1>
+                </div>
+
+                <p class="text-base sm:text-lg text-stone-600 leading-relaxed max-w-xl">
+                  Hi! I'm <strong class="text-stone-900 font-bold">Isaac (codertech)</strong>, a software developer & tech creator turning ideas into clean, fast, and scalable digital solutions for web, mobile, and online monetization.
+                </p>
+
+                <!-- Action CTA Buttons -->
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                  <a href="#projects" class="px-6 py-3.5 bg-gradient-to-r from-[#FF7675] to-[#FF8E8D] hover:opacity-95 text-white rounded-2xl text-xs sm:text-sm font-bold shadow-md shadow-rose-200 transition flex items-center gap-2">
+                    <span>View My Work</span>
+                    <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-xs">→</span>
+                  </a>
+                  <button onclick="window.openContactModal()" class="px-6 py-3.5 bg-white hover:bg-stone-50 text-stone-800 rounded-2xl text-xs sm:text-sm font-bold border border-stone-200 shadow-2xs transition flex items-center gap-2">
+                    <span>About Me</span>
+                  </button>
+                  <a href="#blog" class="px-5 py-3.5 text-stone-600 hover:text-stone-900 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5">
+                    <i data-lucide="book-open" class="w-4 h-4 text-[#8B7EFF]"></i>
+                    <span>Read Blog</span>
+                  </a>
+                </div>
+
+                <!-- Tech Focus Pills -->
+                <div class="pt-4 flex flex-wrap items-center gap-2">
+                  <span class="text-xs font-bold text-stone-400 uppercase font-mono mr-1">Core Focus:</span>
+                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-stone-700 shadow-2xs">TypeScript</span>
+                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-stone-700 shadow-2xs">React 19</span>
+                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-stone-700 shadow-2xs">Next.js</span>
+                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-stone-700 shadow-2xs">Node / Express</span>
+                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-[#e17055] shadow-2xs">AI & Monetization</span>
+                </div>
+              </div>
+
+              <!-- Right Column: Interactive Illustration & Mascot Card -->
+              <div class="lg:col-span-5">
+                <div class="relative">
+                  
+                  <!-- Main Illustration Container with Soft Pastel Gradient -->
+                  <div class="relative bg-gradient-to-tr from-[#FFEADB] via-[#FCE4EC] to-[#EDE7F6] rounded-3xl p-6 sm:p-7 border border-white/60 shadow-xl overflow-hidden group">
+                    
+                    <!-- Top Floating Browser Window Widget -->
+                    <div class="flex items-center justify-between mb-4 bg-white/70 backdrop-blur-sm px-3.5 py-2 rounded-xl border border-white/80 shadow-2xs">
+                      <div class="flex items-center gap-1.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                      </div>
+                      <div class="text-[11px] font-mono font-bold text-stone-600 flex items-center gap-1">
+                        <i data-lucide="terminal" class="w-3 h-3 text-[#8B7EFF]"></i>
+                        <span>codertech.dev</span>
+                      </div>
+                      <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                    </div>
+
+                    <!-- Heart Badge Bubble -->
+                    <div class="absolute top-16 left-8 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1 text-xs font-bold text-stone-700 border border-stone-100 animate-float-slow z-20">
+                      <span class="text-rose-500">❤️</span>
+                    </div>
+
+                    <!-- Main Character Illustration / Image Area -->
+                    <div class="relative rounded-2xl overflow-hidden aspect-4/3 mb-4 shadow-sm border border-white">
+                      <img id="hero-main-illustration" class="w-full h-full object-cover dynamic-avatar-img transition-transform duration-500 group-hover:scale-105" src="assets/images/hero_tech_creator_1787669566326.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80'" alt="Isaac (codertech)" />
+                      
+                      <!-- Hover Overlay to Customize Photo -->
+                      <div class="absolute inset-0 bg-stone-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button onclick="window.openPhotoSettingsModal()" class="px-3.5 py-2 bg-white text-stone-900 rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5">
+                          <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+                          <span>Customize Photo</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Bottom Floating Pill Swatches & Coffee Mug Card -->
+                    <div class="flex items-center justify-between gap-2 pt-1">
+                      <div class="flex items-center gap-1.5">
+                        <span class="w-4 h-4 rounded-full bg-[#FF7675] shadow-2xs inline-block"></span>
+                        <span class="w-4 h-4 rounded-full bg-[#6C5CE7] shadow-2xs inline-block"></span>
+                        <span class="w-4 h-4 rounded-full bg-[#FFEAA7] shadow-2xs inline-block"></span>
+                        <span class="text-[11px] font-mono text-stone-500 font-bold ml-1">#codertech</span>
+                      </div>
+                      
+                      <!-- Mascot Coffee Mug Card -->
+                      <div class="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-stone-200/60 shadow-2xs flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center">
+                          <i data-lucide="coffee" class="w-4 h-4"></i>
+                        </div>
+                        <div class="text-left">
+                          <div class="text-[10px] font-bold text-stone-400 uppercase font-mono leading-none">BUILDING</div>
+                          <div class="text-xs font-extrabold text-stone-800 leading-tight">Clean Code ❤️</div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- FEATURED PROJECTS SECTION (PURPLE BACKGROUND WITH ORGANIC WAVE) -->
+        <!-- ========================================================================= -->
+        <section id="projects" class="relative bg-[#8B7EFF] text-white pt-16 pb-24 overflow-hidden">
+          
+          <!-- Top Wave Divider Joining Hero to Purple Section -->
+          <div class="absolute top-0 left-0 right-0 w-full overflow-hidden leading-none transform -translate-y-1">
+            <svg class="wave-svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M0,0 C150,90 350,-40 500,45 C650,130 900,10 1200,50 L1200,0 L0,0 Z" fill="#F5EEFB"></path>
+            </svg>
+          </div>
+
+          <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+            
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+              <div>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-xs font-extrabold font-mono tracking-wide mb-3">
+                  <span>Selected Work 🚀</span>
+                </span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight font-display flex items-center gap-2">
+                  <span>Featured Projects</span>
+                  <span class="text-amber-300 text-2xl">✨</span>
+                </h2>
+                <p class="text-sm text-purple-100 mt-2 max-w-xl leading-relaxed">
+                  Real-world software built for high throughput, pixel-perfect responsiveness, and smooth user retention.
+                </p>
+              </div>
+
+              <!-- Carousel Slider Prev/Next Controls -->
+              <div class="flex items-center gap-3">
+                <button onclick="window.slideProjectsPrev()" class="w-11 h-11 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur-sm transition border border-white/30" title="Previous Project">
+                  <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <button onclick="window.slideProjectsNext()" class="w-11 h-11 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur-sm transition border border-white/30" title="Next Project">
+                  <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Interactive Projects Showcase Cards Container -->
+            <div id="projects-carousel-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Rendered dynamically by js/app.js -->
+            </div>
+
+            <!-- Carousel Pagination Dots & Explore Full Directory Button -->
+            <div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/20">
+              <div id="projects-carousel-dots" class="flex items-center gap-2">
+                <!-- Dots rendered by js/app.js -->
+              </div>
+
+              <a href="#/projects" class="px-6 py-3 bg-white text-[#6C5CE7] hover:bg-purple-50 rounded-2xl text-xs sm:text-sm font-bold shadow-md transition flex items-center gap-2">
+                <span>Explore All Projects & Architecture Notes</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Bottom Wave Divider Leading Out of Purple Section -->
+          <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none transform translate-y-1">
+            <svg class="wave-svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M0,0 C300,90 600,-20 900,60 C1050,100 1150,40 1200,20 L1200,120 L0,120 Z" fill="#FFF8F3"></path>
+            </svg>
+          </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- PROCESS SECTION ("From idea to impact. 💡") -->
+        <!-- ========================================================================= -->
+        <section id="process" class="py-16 md:py-24 bg-[#FFF8F3] relative">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <div class="text-center max-w-2xl mx-auto mb-14">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold font-mono mb-3">
+                <span>My Process</span>
+              </span>
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight font-display">
+                From idea to impact. 💡
+              </h2>
+              <p class="text-sm text-stone-600 mt-2">
+                A transparent, predictable process with continuous delivery and weekly milestone builds.
+              </p>
+              
+              <!-- Doodle Arrow Accent -->
+              <div class="mt-2 text-rose-400 select-none text-xl font-mono">⤹ ⚙️ ⤸</div>
+            </div>
+
+            <!-- 4 Steps with Connecting Dotted Line on Desktop -->
+            <div class="relative">
+              <div class="hidden lg:block absolute top-1/2 left-12 right-12 h-0.5 border-t-2 border-dashed border-stone-300 -translate-y-6 z-0"></div>
+              
+              <div id="process-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+                <!-- Rendered by js/app.js -->
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SERVICES SECTION ("Services I can help you with 🚀") -->
+        <!-- ========================================================================= -->
+        <section id="services" class="py-16 md:py-24 bg-stone-100/40 border-t border-stone-200/60">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <div class="text-center max-w-2xl mx-auto mb-12">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-extrabold font-mono mb-3">
+                <span>What I Do</span>
+              </span>
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight font-display">
+                Services I can help you with 🚀
+              </h2>
+              <p class="text-sm text-stone-600 mt-2">
+                From zero-to-one product design to high-throughput cloud backends, I build software engineered for speed, conversion, and longevity.
+              </p>
+            </div>
+
+            <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <!-- Rendered by js/app.js -->
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- TESTIMONIALS SECTION ("What clients say") -->
+        <!-- ========================================================================= -->
+        <section class="py-16 md:py-24 bg-gradient-to-b from-[#FFF8F3] via-[#F4EFFB] to-[#FFF8F3] border-t border-stone-200/60">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+              <div>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-extrabold font-mono mb-3">
+                  <span>Kind Words ❤️</span>
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight font-display">
+                  What clients say
+                </h2>
+                <p class="text-sm text-stone-600 mt-2">
+                  Feedback from founders, product leaders, and fellow developers who have collaborated with codertech.
+                </p>
+              </div>
+
+              <!-- Carousel Controls -->
+              <div class="flex items-center gap-2">
+                <button onclick="window.slideTestimonialsPrev()" class="p-2.5 rounded-xl bg-white border border-stone-200 hover:bg-stone-50 text-stone-700 transition" title="Previous">
+                  <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                </button>
+                <button onclick="window.slideTestimonialsNext()" class="p-2.5 rounded-xl bg-white border border-stone-200 hover:bg-stone-50 text-stone-700 transition" title="Next">
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              
+              <!-- Left Column: 3D Coffee Mug Mascot in Blob Frame -->
+              <div class="lg:col-span-4 flex justify-center">
+                <div class="relative bg-gradient-to-tr from-[#FFEADB] via-[#FCE4EC] to-[#EDE7F6] p-6 rounded-3xl border border-stone-200/70 shadow-md text-center max-w-xs">
+                  <div class="w-44 h-44 mx-auto rounded-2xl overflow-hidden mb-3 shadow-sm border-2 border-white">
+                    <img src="assets/images/mascot_coffee_mug_1787669580415.jpg" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&auto=format&fit=crop&q=80'" class="w-full h-full object-cover" alt="codertech Coffee Mascot" />
+                  </div>
+                  <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full text-xs font-bold text-stone-700 shadow-2xs">
+                    <span>Fueled by Coffee & Clean Code ☕</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Testimonials Cards Grid -->
+              <div class="lg:col-span-8">
+                <div id="testimonials-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <!-- Rendered by js/app.js -->
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- SOCIAL MEDIA & COMMUNITY HUB -->
+        <!-- ========================================================================= -->
+        <section id="socials" class="py-16 md:py-24 bg-[#FFF8F3] border-t border-stone-200/60">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <div class="text-center max-w-2xl mx-auto mb-12">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold font-mono mb-3">
+                <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                <span>Community & Online Presence</span>
+              </span>
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight font-display">
+                Connect with codertech
+              </h2>
+              <p class="text-sm text-stone-600 mt-2">
+                Join our channels for live pair programming, code reviews, and monetization discussions.
+              </p>
+            </div>
+
+            <div id="social-links-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              <!-- Rendered by js/app.js -->
+            </div>
+
+            <!-- Fast Action Banner -->
+            <div class="p-6 bg-stone-900 text-white rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+              <div>
+                <h4 class="text-base font-bold font-display">Share codertech with other developers 🚀</h4>
+                <p class="text-xs text-stone-400">Help fellow creators discover tools, technical articles, and starter kits.</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="window.copyText(window.location.origin, 'Portfolio Link')" class="px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-white text-xs font-bold rounded-xl transition flex items-center gap-2 border border-stone-700">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  <span>Copy Link</span>
+                </button>
+                <button onclick="window.openContactModal()" class="px-4 py-2.5 bg-gradient-to-r from-[#FF7675] to-[#FF8E8D] hover:opacity-95 text-white text-xs font-bold rounded-xl transition flex items-center gap-2 shadow-sm">
+                  <span>Start Collaboration</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- CTA BANNER & QUICK QUESTIONS FAQ ACCORDION -->
+        <!-- ========================================================================= -->
+        <section id="faq" class="py-16 md:py-24 bg-stone-100/50 border-t border-stone-200/60">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <!-- Big Coral/Orange Banner -->
+            <div class="bg-gradient-to-r from-[#FF7675] via-[#FF807F] to-[#FF8E8D] rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden mb-16">
+              
+              <!-- Floating line accent -->
+              <div class="absolute -right-10 -bottom-10 opacity-20 text-white text-9xl font-serif select-none pointer-events-none">ct</div>
+
+              <div class="relative z-10 max-w-2xl space-y-4">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold font-mono">
+                  <span>READY TO COLLABORATE? 🚀</span>
+                </div>
+                <h3 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight leading-tight">
+                  Have a project in mind? Let's bring it to life!
+                </h3>
+                <p class="text-sm sm:text-base text-rose-50 leading-relaxed max-w-xl">
+                  Whether you need a full-stack MVP, a cross-platform mobile app, or guidance on launching your first software product, I'm here to help.
+                </p>
+                <div class="pt-3 flex flex-wrap items-center gap-3">
+                  <button onclick="window.openContactModal()" class="px-6 py-3.5 bg-white text-stone-900 hover:bg-stone-50 rounded-2xl text-xs sm:text-sm font-bold shadow-md transition flex items-center gap-2">
+                    <span>Send Me a Message</span>
+                    <span class="w-5 h-5 rounded-full bg-rose-100 text-[#FF7675] flex items-center justify-center text-xs">→</span>
+                  </button>
+                  <a href="mailto:isaacapptech23developer@gmail.com" class="px-6 py-3.5 bg-rose-700/30 hover:bg-rose-700/50 text-white rounded-2xl text-xs sm:text-sm font-bold border border-white/30 backdrop-blur-sm transition flex items-center gap-2">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    <span>Direct Email</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Questions FAQ Accordion with 3D Envelope Mascot on Left -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              
+              <!-- Left Column: Envelope Asset & FAQ Heading -->
+              <div class="lg:col-span-4 space-y-4">
+                <div class="bg-white p-6 rounded-3xl border border-stone-200/80 shadow-sm text-center">
+                  <div class="w-36 h-36 mx-auto rounded-2xl overflow-hidden mb-3 border-2 border-stone-100 shadow-2xs">
+                    <img src="assets/images/cute_envelope_heart_1787669669793.jpg" onerror="this.src='https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=400&auto=format&fit=crop&q=80'" class="w-full h-full object-cover" alt="Cute Envelope Mascot" />
+                  </div>
+                  <h4 class="text-base font-extrabold text-stone-900 font-display">Got Questions?</h4>
+                  <p class="text-xs text-stone-500 mt-1">Here are quick answers to common project & consulting queries.</p>
+                </div>
+              </div>
+
+              <!-- Right Column: Accordion Container -->
+              <div class="lg:col-span-8">
+                <div id="faq-accordion" class="space-y-3">
+                  <!-- Rendered by js/app.js -->
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- BLOG SECTION ("Thoughts, Tutorials & Monetization") -->
+        <!-- ========================================================================= -->
+        <section id="blog" class="py-16 md:py-24 bg-[#FFF8F3] border-t border-stone-200/60">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+              <div>
+                <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-extrabold font-mono mb-3">
+                  <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+                  <span>Tech Blogs & Growth Playbook</span>
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight font-display">
+                  Thoughts, Tutorials & Monetization
+                </h2>
+                <p class="text-sm text-stone-600 mt-2 max-w-xl leading-relaxed">
+                  Deep-dives on modern TypeScript architectures, developer monetization strategies, mobile performance, and AI tooling.
+                </p>
+              </div>
+
+              <!-- Blog Filter Pills -->
+              <div class="flex flex-wrap gap-2">
+                <button onclick="window.filterBlog('all')" data-category="all" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white shadow-sm transition">
+                  All Articles
+                </button>
+                <button onclick="window.filterBlog('Monetization')" data-category="Monetization" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
+                  Monetization
+                </button>
+                <button onclick="window.filterBlog('Full-Stack')" data-category="Full-Stack" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
+                  Full-Stack
+                </button>
+                <button onclick="window.filterBlog('AI & Tools')" data-category="AI & Tools" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
+                  AI & Tools
+                </button>
+                <button onclick="window.filterBlog('Tech Journey')" data-category="Tech Journey" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
+                  Career
+                </button>
+              </div>
+            </div>
+
+            <!-- Blog Grid Container -->
+            <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              <!-- Rendered by js/app.js -->
+            </div>
+
+            <!-- Explore All Articles Button -->
+            <div class="text-center pt-4">
+              <a href="#/blog" class="inline-flex items-center gap-2 px-6 py-3 bg-stone-900 hover:bg-stone-800 text-white rounded-2xl text-xs sm:text-sm font-bold shadow-md transition">
+                <span>Explore All Articles & Guides</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- MONETIZATION HUB & DEVELOPER STORE -->
+        <!-- ========================================================================= -->
+        <section id="monetize" class="py-16 md:py-24 bg-stone-100/50 border-t border-stone-200/60">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <div class="text-center max-w-2xl mx-auto mb-10">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-orange-100 text-[#e17055] text-xs font-extrabold font-mono mb-3">
+                <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                <span>Monetization & Developer Store</span>
+              </span>
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight font-display">
+                Digital Products & Services
+              </h2>
+              <p class="text-sm text-stone-600 mt-2">
+                Production boilerplates, proposal templates, and 1-on-1 strategy sessions to accelerate your engineering career.
+              </p>
+              
+              <!-- Tab Controls -->
+              <div class="inline-flex p-1.5 bg-white border border-stone-200 rounded-2xl shadow-2xs mt-6 gap-1.5">
+                <button onclick="window.switchMonetizationTab('store')" data-tab="store" class="monetization-tab-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-stone-900 text-white shadow-sm transition">
+                  Digital Products Store
+                </button>
+                <button onclick="window.switchMonetizationTab('calculator')" data-tab="calculator" class="monetization-tab-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
+                  Project Quote Estimator
+                </button>
+                <button onclick="window.switchMonetizationTab('metrics')" data-tab="metrics" class="monetization-tab-btn px-5 py-2.5 rounded-xl text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
+                  DevPulse Revenue Tracker
+                </button>
+              </div>
+            </div>
+
+            <!-- TAB 1: Digital Products Store -->
+            <div id="monetization-store-view" class="block">
+              <div id="monetization-products-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Rendered by js/app.js -->
+              </div>
+            </div>
+
+            <!-- TAB 2: Interactive Project Price Estimator -->
+            <div id="monetization-calc-view" class="hidden max-w-3xl mx-auto bg-[#FFFDFB] border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-sm">
+              <div class="flex items-center gap-3 mb-6 pb-4 border-b border-stone-100">
+                <div class="w-10 h-10 rounded-xl bg-orange-50 text-[#e17055] flex items-center justify-center">
+                  <i data-lucide="calculator" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-stone-900 font-display">Instant Project Scope & Budget Calculator</h3>
+                  <p class="text-xs text-stone-500">Configure your technical requirements to see an immediate estimated investment and delivery timeline.</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-2">Project Type</label>
+                  <select id="calc-project-type" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs font-semibold text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900">
+                    <option value="web">Full-Stack Web Application (React + Node)</option>
+                    <option value="mobile">Mobile Application (React Native / iOS & Android)</option>
+                    <option value="saas">Complete SaaS MVP with Subscriptions</option>
+                    <option value="backend">Cloud API & Database Architecture</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-2">Timeline Urgency</label>
+                  <select id="calc-urgency" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs font-semibold text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900">
+                    <option value="standard">Standard Sprint (Balanced Pace)</option>
+                    <option value="rush">Express Sprint (High Priority & Overtime)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Features Checklist -->
+              <div class="mb-6">
+                <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-3">Add-on Features & Integrations</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <label class="flex items-center gap-3 p-3 bg-stone-50 rounded-xl border border-stone-200/70 cursor-pointer hover:bg-stone-100/60 transition">
+                    <input type="checkbox" class="calc-feature-check rounded text-stone-900 focus:ring-0" data-price="350" data-weeks="0.5" checked />
+                    <div>
+                      <div class="text-xs font-bold text-stone-800">Auth & Role-Based Access Control</div>
+                      <div class="text-[11px] text-stone-500">JWT, OAuth, Magic Links (+$350)</div>
+                    </div>
+                  </label>
+
+                  <label class="flex items-center gap-3 p-3 bg-stone-50 rounded-xl border border-stone-200/70 cursor-pointer hover:bg-stone-100/60 transition">
+                    <input type="checkbox" class="calc-feature-check rounded text-stone-900 focus:ring-0" data-price="450" data-weeks="0.5" checked />
+                    <div>
+                      <div class="text-xs font-bold text-stone-800">Stripe Payments & Subscriptions</div>
+                      <div class="text-[11px] text-stone-500">Webhooks, Checkout, Invoicing (+$450)</div>
+                    </div>
+                  </label>
+
+                  <label class="flex items-center gap-3 p-3 bg-stone-50 rounded-xl border border-stone-200/70 cursor-pointer hover:bg-stone-100/60 transition">
+                    <input type="checkbox" class="calc-feature-check rounded text-stone-900 focus:ring-0" data-price="400" data-weeks="0.5" />
+                    <div>
+                      <div class="text-xs font-bold text-stone-800">Gemini AI / LLM Workflows</div>
+                      <div class="text-[11px] text-stone-500">Smart chat, summaries & generators (+$400)</div>
+                    </div>
+                  </label>
+
+                  <label class="flex items-center gap-3 p-3 bg-stone-50 rounded-xl border border-stone-200/70 cursor-pointer hover:bg-stone-100/60 transition">
+                    <input type="checkbox" class="calc-feature-check rounded text-stone-900 focus:ring-0" data-price="300" data-weeks="0.5" />
+                    <div>
+                      <div class="text-xs font-bold text-stone-800">Real-time WebSockets / Live Sync</div>
+                      <div class="text-[11px] text-stone-500">Live notifications & multi-user (+$300)</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Estimator Result Card -->
+              <div class="bg-stone-900 text-white rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div>
+                  <div class="text-xs text-stone-400 font-mono uppercase tracking-wider">Estimated Investment</div>
+                  <div id="calc-price-result" class="text-2xl sm:text-3xl font-extrabold text-white font-display mt-1">$2,000 – $2,800</div>
+                  <div class="text-xs text-stone-400 mt-1">Estimated Timeline: <span id="calc-timeline-result" class="text-amber-400 font-bold">2–4 Weeks</span></div>
+                </div>
+
+                <button id="calc-request-btn" onclick="window.requestEstimatedScope()" class="w-full sm:w-auto px-6 py-3 bg-[#e17055] hover:bg-[#d65d40] text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-sm">
+                  <span>Book This Project Scope</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- TAB 3: DevPulse Revenue Tracker Simulator -->
+            <div id="monetization-metrics-view" class="hidden max-w-4xl mx-auto bg-[#FFFDFB] border border-stone-200/90 rounded-3xl p-6 sm:p-8 shadow-sm">
+              <div class="flex items-center justify-between mb-6 pb-4 border-b border-stone-100">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-blue-50 text-[#0984e3] flex items-center justify-center">
+                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-bold text-stone-900 font-display">DevPulse: Diversified Developer Revenue Model</h3>
+                    <p class="text-xs text-stone-500">Simulating asymmetric upside across multiple software monetization streams.</p>
+                  </div>
+                </div>
+                <span class="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-xs font-extrabold font-mono">
+                  +$8,450 / mo avg
+                </span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
+                <div class="p-4 bg-stone-50 rounded-2xl border border-stone-200/60">
+                  <div class="text-xs text-stone-500 font-medium mb-1">Active Client Sprints</div>
+                  <div class="text-xl font-bold text-stone-900 font-display">$4,800</div>
+                  <div class="text-[11px] text-emerald-600 font-semibold mt-1">2 Clients • 57% of total</div>
+                </div>
+                <div class="p-4 bg-stone-50 rounded-2xl border border-stone-200/60">
+                  <div class="text-xs text-stone-500 font-medium mb-1">Digital Starter Kits</div>
+                  <div class="text-xl font-bold text-stone-900 font-display">$1,950</div>
+                  <div class="text-[11px] text-emerald-600 font-semibold mt-1">42 Sales • Passive</div>
+                </div>
+                <div class="p-4 bg-stone-50 rounded-2xl border border-stone-200/60">
+                  <div class="text-xs text-stone-500 font-medium mb-1">Micro-SaaS Subscriptions</div>
+                  <div class="text-xl font-bold text-stone-900 font-display">$1,100</div>
+                  <div class="text-[11px] text-emerald-600 font-semibold mt-1">38 MRR Subscribers</div>
+                </div>
+                <div class="p-4 bg-stone-50 rounded-2xl border border-stone-200/60">
+                  <div class="text-xs text-stone-500 font-medium mb-1">1-on-1 Mentorship</div>
+                  <div class="text-xl font-bold text-stone-900 font-display">$600</div>
+                  <div class="text-[11px] text-emerald-600 font-semibold mt-1">5 Sessions / month</div>
+                </div>
+              </div>
+
+              <div class="p-4 bg-amber-50/60 border border-amber-200/70 rounded-2xl flex items-start gap-3">
+                <i data-lucide="lightbulb" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5"></i>
+                <div class="text-xs text-stone-700 leading-relaxed">
+                  <strong>Key Takeaway:</strong> Having at least one passive digital product and one recurring subscription stabilizes cash flow while delivering client architecture sprints.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- VIEW 2: DEDICATED FULL-PAGE BLOG LIST (SPA ROUTE: #/blog) -->
+      <!-- ========================================================================= -->
+      <div id="blog-list-view" class="spa-view">
+        <section class="py-12 md:py-16">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <!-- Breadcrumbs / Back button -->
+            <div class="mb-8 flex items-center gap-2 text-xs font-semibold text-stone-500">
+              <a href="#home" class="hover:text-stone-900 flex items-center gap-1 transition">
+                <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                <span>Back to Portfolio</span>
+              </a>
+              <span>/</span>
+              <span class="text-stone-900 font-bold">Tech Blog & Articles</span>
+            </div>
+
+            <!-- Blog Header -->
+            <div class="max-w-3xl mb-10">
+              <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-extrabold font-mono inline-block mb-3">
+                TECH JOURNAL & PLAYBOOK ✍️
+              </span>
+              <h1 class="text-3xl sm:text-5xl font-extrabold text-stone-900 tracking-tight font-display mb-4">
+                Articles, Architecture & Developer Monetization
+              </h1>
+              <p class="text-base text-stone-600 leading-relaxed">
+                Practical engineering breakdowns, monetization playbooks, and TypeScript patterns for modern software builders.
+              </p>
+            </div>
+
+            <!-- Search & Filters Toolbar -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 bg-white p-3 rounded-2xl border border-stone-200 shadow-2xs">
+              <!-- Search bar -->
+              <div class="relative w-full sm:w-80">
+                <i data-lucide="search" class="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                <input type="text" id="blog-search-input" oninput="window.handleBlogSearchInput(this.value)" placeholder="Search articles or keywords..." class="w-full pl-10 pr-4 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs font-semibold text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900" />
+              </div>
+
+              <!-- Categories -->
+              <div class="flex flex-wrap items-center gap-1.5 w-full sm:w-auto">
+                <button onclick="window.filterBlogList('all')" data-blogcat="all" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-900 text-white transition">
+                  All
+                </button>
+                <button onclick="window.filterBlogList('Monetization')" data-blogcat="Monetization" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-100 text-stone-600 hover:bg-stone-200 transition">
+                  Monetization
+                </button>
+                <button onclick="window.filterBlogList('Full-Stack')" data-blogcat="Full-Stack" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-100 text-stone-600 hover:bg-stone-200 transition">
+                  Full-Stack
+                </button>
+                <button onclick="window.filterBlogList('AI & Tools')" data-blogcat="AI & Tools" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-100 text-stone-600 hover:bg-stone-200 transition">
+                  AI & Tools
+                </button>
+                <button onclick="window.filterBlogList('Tech Journey')" data-blogcat="Tech Journey" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-100 text-stone-600 hover:bg-stone-200 transition">
+                  Career
+                </button>
+              </div>
+            </div>
+
+            <!-- Full Blog Articles Grid -->
+            <div id="full-blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Rendered by js/app.js -->
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- VIEW 3: DEDICATED FULL-PAGE ARTICLE READER (SPA ROUTE: #/blog/:slug) -->
+      <!-- ========================================================================= -->
+      <div id="blog-post-view" class="spa-view">
+        <article class="py-12 md:py-16">
+          <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            
+            <!-- Breadcrumbs -->
+            <div class="mb-8 flex items-center gap-2 text-xs font-semibold text-stone-500">
+              <a href="#/blog" class="hover:text-stone-900 flex items-center gap-1 transition">
+                <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                <span>All Articles</span>
+              </a>
+              <span>/</span>
+              <span id="post-breadcrumb-category" class="text-stone-700">Category</span>
+            </div>
+
+            <!-- Category & Metadata Badge -->
+            <div class="flex items-center gap-3 text-xs text-stone-500 font-mono mb-4">
+              <span id="post-category-badge" class="px-3 py-1 bg-purple-50 text-purple-700 font-bold rounded-full">Category</span>
+              <span>•</span>
+              <span id="post-readtime">5 min read</span>
+              <span>•</span>
+              <span id="post-date">Aug 2026</span>
+            </div>
+
+            <!-- Article Title -->
+            <h1 id="post-title" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-stone-900 font-display tracking-tight leading-[1.18] mb-6">
+              Article Title
+            </h1>
+
+            <!-- Author & Action Bar -->
+            <div class="flex items-center justify-between py-4 border-y border-stone-200 mb-8">
+              <div class="flex items-center gap-3">
+                <img id="post-author-avatar" class="w-11 h-11 rounded-full object-cover border-2 border-stone-900 shadow-2xs" src="" alt="Author" />
+                <div>
+                  <div id="post-author-name" class="text-xs font-bold text-stone-900 font-display">Isaac (codertech)</div>
+                  <div id="post-author-role" class="text-[11px] text-stone-500">Full-Stack Developer & Creator</div>
+                </div>
+              </div>
+
+              <!-- Likes & Bookmarks -->
+              <div class="flex items-center gap-2">
+                <button id="post-like-btn" class="px-3.5 py-2 rounded-xl bg-white border border-stone-200 hover:border-stone-300 text-xs font-bold text-stone-700 flex items-center gap-1.5 shadow-2xs transition">
+                  <i data-lucide="heart" class="w-4 h-4 text-rose-500"></i>
+                  <span id="post-likes-count">148</span>
+                </button>
+                <button id="post-bookmark-btn" class="p-2 rounded-xl bg-white border border-stone-200 hover:border-stone-300 text-stone-700 shadow-2xs transition" title="Bookmark Article">
+                  <i data-lucide="bookmark" class="w-4 h-4"></i>
+                </button>
+                <button onclick="window.copyCurrentArticleLink()" class="p-2 rounded-xl bg-white border border-stone-200 hover:border-stone-300 text-stone-700 shadow-2xs transition" title="Copy Link">
+                  <i data-lucide="share-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Featured Cover Image -->
+            <div class="rounded-3xl overflow-hidden mb-8 shadow-md border border-stone-200 aspect-16/9">
+              <img id="post-cover-image" src="" alt="Cover" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Main Rendered Markdown Body -->
+            <div id="post-markdown-content" class="markdown-body text-base text-stone-700 leading-relaxed mb-12">
+              <!-- Rendered by js/app.js -->
+            </div>
+
+            <!-- Tags Bar -->
+            <div id="post-tags-container" class="flex flex-wrap gap-2 pb-8 border-b border-stone-200 mb-8">
+              <!-- Rendered by js/app.js -->
+            </div>
+
+            <!-- Author Bio Card -->
+            <div class="bg-[#FFFDFB] border border-stone-200 rounded-3xl p-6 sm:p-8 mb-12 shadow-sm flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+              <img class="dynamic-avatar-img w-20 h-20 rounded-2xl object-cover border-2 border-stone-900 shadow-sm shrink-0" src="" alt="Isaac (codertech)" />
+              <div class="space-y-2">
+                <h4 class="text-base font-extrabold text-stone-900 font-display">Written by Isaac (codertech)</h4>
+                <p class="text-xs text-stone-600 leading-relaxed">
+                  Full-stack software engineer & developer monetization mentor building high-performance web applications, mobile platforms, and indie dev toolkits.
+                </p>
+                <div class="pt-1 flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-stone-100 hover:bg-stone-200 rounded-lg text-xs font-bold text-stone-800 transition flex items-center gap-1.5">
+                    <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                    <span>GitHub</span>
+                  </a>
+                  <button onclick="window.openContactModal()" class="px-3 py-1.5 bg-stone-900 hover:bg-stone-800 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                    <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                    <span>Contact Isaac</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Comments & Discussion Section -->
+            <div class="pt-4">
+              <h3 class="text-xl font-extrabold text-stone-900 font-display mb-6">Discussion & Reader Insights</h3>
+              
+              <!-- Post Comment Form -->
+              <form onsubmit="window.handleArticleCommentSubmit(event)" class="bg-white p-4 rounded-2xl border border-stone-200 mb-6 shadow-2xs space-y-3">
+                <textarea id="post-comment-textarea" rows="3" required placeholder="Share your experience, ask a question, or leave feedback..." class="w-full p-3 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900 resize-none"></textarea>
+                <div class="flex justify-between items-center">
+                  <span class="text-[11px] text-stone-400">Join the discussion</span>
+                  <button type="submit" class="px-4 py-2 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition">
+                    Post Comment
+                  </button>
+                </div>
+              </form>
+
+              <!-- Comments List -->
+              <div id="post-comments-container" class="space-y-4">
+                <!-- Rendered by js/app.js -->
+              </div>
+            </div>
+
+          </div>
+        </article>
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- VIEW 4: DEDICATED FULL-PAGE PROJECTS SHOWCASE (SPA ROUTE: #/projects) -->
+      <!-- ========================================================================= -->
+      <div id="projects-list-view" class="spa-view">
+        <section class="py-12 md:py-16">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            
+            <!-- Breadcrumbs -->
+            <div class="mb-8 flex items-center gap-2 text-xs font-semibold text-stone-500">
+              <a href="#home" class="hover:text-stone-900 flex items-center gap-1 transition">
+                <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                <span>Back to Portfolio</span>
+              </a>
+              <span>/</span>
+              <span class="text-stone-900 font-bold">All Projects & Case Studies</span>
+            </div>
+
+            <!-- Header -->
+            <div class="max-w-3xl mb-10">
+              <span class="px-3 py-1 bg-rose-100 text-[#E76F51] rounded-full text-xs font-extrabold font-mono inline-block mb-3">
+                CASE STUDIES & ARCHITECTURE 🚀
+              </span>
+              <h1 class="text-3xl sm:text-5xl font-extrabold text-stone-900 tracking-tight font-display mb-4">
+                Production Works & Case Studies
+              </h1>
+              <p class="text-base text-stone-600 leading-relaxed">
+                Explore architectural details, benchmark metrics, live deployments, and source repositories.
+              </p>
+            </div>
+
+            <!-- Full Projects Directory Grid -->
+            <div id="full-projects-directory-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Rendered by js/app.js -->
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+    </main>
+
+    <!-- ========================================================================= -->
+    <!-- FOOTER (4-COLUMN RESPONSIVE LAYOUT) -->
+    <!-- ========================================================================= -->
+    <footer class="bg-[#FFF8F3] border-t border-stone-200/80 pt-16 pb-12">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-stone-200">
+          
+          <!-- Col 1: Brand & Bio -->
+          <div class="md:col-span-5 space-y-4">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#6C5CE7] to-[#A29BFE] text-white flex items-center justify-center font-bold text-sm shadow-md">
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="font-extrabold text-lg tracking-tight text-stone-900 font-serif">codertech</div>
+                <div class="text-[10px] text-stone-500 font-semibold tracking-wider uppercase font-mono">Isaac • Software Engineer</div>
+              </div>
+            </div>
+
+            <p class="text-xs text-stone-600 leading-relaxed max-w-sm">
+              Turning ideas into clean, fast, and scalable digital solutions for web, mobile, and developer monetization. Let's create something meaningful together.
+            </p>
+
+            <div class="flex items-center gap-3 text-stone-500">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-2 bg-white rounded-xl border border-stone-200 hover:text-stone-900 transition">
+                <i data-lucide="github" class="w-4 h-4"></i>
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="p-2 bg-white rounded-xl border border-stone-200 hover:text-stone-900 transition">
+                <i data-lucide="twitter" class="w-4 h-4"></i>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-2 bg-white rounded-xl border border-stone-200 hover:text-stone-900 transition">
+                <i data-lucide="linkedin" class="w-4 h-4"></i>
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="p-2 bg-white rounded-xl border border-stone-200 hover:text-stone-900 transition">
+                <i data-lucide="youtube" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 2: Navigation Links -->
+          <div class="md:col-span-2 space-y-3">
+            <div class="text-xs font-bold text-stone-400 uppercase font-mono tracking-wider">Explore</div>
+            <ul class="space-y-2 text-xs font-semibold text-stone-600">
+              <li><a href="#home" class="hover:text-stone-900 transition">Home</a></li>
+              <li><a href="#projects" class="hover:text-stone-900 transition">Projects</a></li>
+              <li><a href="#services" class="hover:text-stone-900 transition">Services</a></li>
+              <li><a href="#process" class="hover:text-stone-900 transition">Process</a></li>
+              <li><a href="#monetize" class="hover:text-stone-900 transition">Monetization</a></li>
+              <li><a href="#blog" class="hover:text-stone-900 transition">Tech Blog</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Resources & Presets -->
+          <div class="md:col-span-2 space-y-3">
+            <div class="text-xs font-bold text-stone-400 uppercase font-mono tracking-wider">Information</div>
+            <ul class="space-y-2 text-xs font-semibold text-stone-600">
+              <li><a href="#faq" class="hover:text-stone-900 transition">FAQ</a></li>
+              <li><a href="#socials" class="hover:text-stone-900 transition">Community Hub</a></li>
+              <li><button onclick="window.openSearchModal()" class="hover:text-stone-900 transition">Global Search</button></li>
+              <li><button onclick="window.openPhotoSettingsModal()" class="hover:text-stone-900 transition">Photo Settings</button></li>
+              <li><button onclick="window.openContactModal()" class="hover:text-stone-900 transition">Hire Isaac</button></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Quick Newsletter / Updates -->
+          <div class="md:col-span-3 space-y-3">
+            <div class="text-xs font-bold text-stone-400 uppercase font-mono tracking-wider">Stay Updated</div>
+            <p class="text-xs text-stone-600">Get notified when new articles, open source tools, or starter kits drop.</p>
+            <form onsubmit="window.handleNewsletterSubmit(event)" class="space-y-2">
+              <input type="email" id="footer-newsletter-email" required placeholder="your.email@dev.com" class="w-full px-3.5 py-2 bg-white border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900" />
+              <button type="submit" class="w-full py-2 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition">
+                Subscribe
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- Copyright & Platform Notes -->
+        <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+          <div>
+            © 2026 Isaac (codertech). All rights reserved.
+          </div>
+          <div class="text-[11px] font-mono text-stone-400">
+            Pure HTML5, CSS3 & JavaScript • Zero Build Dependency • Acode & Web Optimized
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <!-- ========================================================================= -->
+    <!-- ALL MODALS & OVERLAYS -->
+    <!-- ========================================================================= -->
+
+    <!-- 1. PROJECT CASE STUDY MODAL -->
+    <div id="project-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div class="modal-content bg-[#FFFDFB] rounded-3xl border border-stone-200 max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto">
+        <button onclick="window.closeModal()" class="modal-close-btn absolute top-5 right-5 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+
+        <span id="pm-tag" class="px-3 py-1 bg-stone-100 text-stone-800 text-xs font-bold rounded-full font-mono">TAG</span>
+        <h3 id="pm-title" class="text-2xl font-extrabold text-stone-900 font-display mt-3 mb-4">Project Title</h3>
+        
+        <p id="pm-full-desc" class="text-xs sm:text-sm text-stone-600 leading-relaxed mb-6">
+          Detailed case study text...
+        </p>
+
+        <!-- Metrics -->
+        <div id="pm-metrics" class="grid grid-cols-3 gap-2.5 mb-6"></div>
+
+        <!-- Highlights -->
+        <div class="mb-6">
+          <h4 class="text-xs font-bold text-stone-400 uppercase font-mono mb-3">Key Technical Highlights</h4>
+          <ul id="pm-highlights" class="space-y-2"></ul>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="mb-6">
+          <h4 class="text-xs font-bold text-stone-400 uppercase font-mono mb-2">Technologies Used</h4>
+          <div id="pm-tech-stack" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <!-- Action Links -->
+        <div class="pt-6 border-t border-stone-100 flex flex-wrap items-center justify-between gap-3">
+          <a id="pm-live-btn" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-2">
+            <span>Live Interactive Demo</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+          <a id="pm-code-btn" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-xs font-bold transition flex items-center gap-2">
+            <i data-lucide="github" class="w-4 h-4"></i>
+            <span>GitHub Repository</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. SERVICE INQUIRY MODAL -->
+    <div id="service-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div class="modal-content bg-[#FFFDFB] rounded-3xl border border-stone-200 max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto">
+        <button onclick="window.closeModal()" class="modal-close-btn absolute top-5 right-5 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+
+        <h3 id="sm-title" class="text-xl font-extrabold text-stone-900 font-display mb-2">Service Title</h3>
+        
+        <div class="flex items-center gap-3 mb-4">
+          <span id="sm-price" class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-extrabold rounded-full">$1,200</span>
+          <span class="text-xs text-stone-500">Timeline: <strong id="sm-timeline" class="text-stone-800">1-3 weeks</strong></span>
+        </div>
+
+        <p id="sm-desc" class="text-xs text-stone-600 leading-relaxed mb-4"></p>
+
+        <div class="p-3 bg-stone-50 rounded-xl border border-stone-200/60 mb-6">
+          <div class="text-[11px] font-bold text-stone-400 uppercase font-mono mb-1">Ideal For</div>
+          <div id="sm-ideal" class="text-xs text-stone-700 font-medium"></div>
+        </div>
+
+        <div class="mb-6">
+          <h4 class="text-xs font-bold text-stone-400 uppercase font-mono mb-2">Included Features</h4>
+          <ul id="sm-features" class="space-y-2"></ul>
+        </div>
+
+        <button id="sm-book-btn" class="w-full py-3 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+          <span>Continue to Project Inquiry</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- 3. CONTACT / PROPOSAL MODAL -->
+    <div id="contact-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div class="modal-content bg-[#FFFDFB] rounded-3xl border border-stone-200 max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto">
+        <button onclick="window.closeModal()" class="modal-close-btn absolute top-5 right-5 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-9 h-9 rounded-xl bg-rose-50 text-[#ff7675] flex items-center justify-center">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-extrabold text-stone-900 font-display">Work With Isaac</h3>
+            <p class="text-xs text-stone-500 font-mono">isaacapptech23developer@gmail.com</p>
+          </div>
+        </div>
+
+        <p class="text-xs text-stone-600 mb-6 leading-relaxed">
+          Send your project requirements or question and get a structured technical response within 24 hours.
+        </p>
+
+        <form onsubmit="window.handleContactSubmit(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1">Your Name</label>
+            <input type="text" id="contact-name" required placeholder="Alex Morgan" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1">Email Address</label>
+            <input type="email" id="contact-email" required placeholder="alex@company.com" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1">Subject / Project Type</label>
+            <input type="text" id="contact-subject" placeholder="New SaaS Platform / Web Development" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1">Project Details & Budget</label>
+            <textarea id="contact-message" rows="4" required placeholder="Tell me about your goals, target audience, timeline, and budget..." class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900 resize-none"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3 bg-gradient-to-r from-[#FF7675] to-[#FF8E8D] hover:opacity-95 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-sm">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>Send Direct Message</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 4. DIGITAL CHECKOUT MODAL SIMULATION -->
+    <div id="checkout-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div class="modal-content bg-[#FFFDFB] rounded-3xl border border-stone-200 max-w-md w-full p-6 sm:p-8 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto">
+        <button onclick="window.closeModal()" class="modal-close-btn absolute top-5 right-5 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+
+        <div class="flex items-center gap-2 text-xs font-bold text-[#e17055] font-mono mb-1">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>SECURE INSTANT FULFILLMENT</span>
+        </div>
+
+        <h3 id="cm-prod-title" class="text-xl font-bold text-stone-900 font-display mb-1">Product Title</h3>
+        
+        <div class="flex items-baseline gap-2 mb-6">
+          <span id="cm-prod-price" class="text-3xl font-extrabold text-stone-900 font-display">$49</span>
+          <span id="cm-prod-type" class="text-xs text-stone-500">Starter Kit</span>
+        </div>
+
+        <!-- Checkout Form -->
+        <form id="checkout-form" onsubmit="window.handleCheckoutSubmit(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1">Developer Email</label>
+            <input type="email" id="checkout-email" required placeholder="your.name@dev.com" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900" />
+          </div>
+
+          <div class="p-3 bg-stone-50 rounded-xl text-[11px] text-stone-500">
+            Delivery: <strong id="cm-prod-delivery" class="text-stone-800 font-semibold">Instant Access</strong>
+          </div>
+
+          <button type="submit" class="w-full py-3 bg-[#e17055] hover:bg-[#d65d40] text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-sm">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Simulate Instant Purchase</span>
+          </button>
+        </form>
+
+        <!-- License Key Display (Shown after submission) -->
+        <div id="cm-license-box" class="hidden text-center py-4 space-y-3">
+          <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto text-xl font-bold">✓</div>
+          <h4 class="text-base font-bold text-stone-900">Access Granted!</h4>
+          <p class="text-xs text-stone-600">Your simulated developer license key:</p>
+          <div class="p-3 bg-stone-900 text-emerald-400 font-mono text-xs rounded-xl font-bold tracking-wider" id="cm-license-key">
+            CT-9428-XA92
+          </div>
+          <button onclick="window.closeModal()" class="w-full py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-xs font-bold transition">
+            Close & Return
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. PHOTO SETTINGS MODAL -->
+    <div id="photo-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div class="modal-content bg-[#FFFDFB] rounded-3xl border border-stone-200 max-w-md w-full p-6 sm:p-8 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto">
+        <button onclick="window.closeModal()" class="modal-close-btn absolute top-5 right-5 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+
+        <h3 class="text-xl font-bold text-stone-900 font-display mb-1">Profile Photo Settings</h3>
+        <p class="text-xs text-stone-500 mb-6">Customize Isaac's profile picture or select from developer presets (saved in browser memory).</p>
+
+        <!-- Presets Grid -->
+        <div class="mb-4">
+          <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-2">Preset Avatars</label>
+          <div class="grid grid-cols-4 gap-2">
+            <button onclick="window.selectAvatarPreset('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80')" class="p-1 rounded-xl border border-stone-200 hover:border-stone-900 transition">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" class="w-full h-14 object-cover rounded-lg">
+            </button>
+            <button onclick="window.selectAvatarPreset('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80')" class="p-1 rounded-xl border border-stone-200 hover:border-stone-900 transition">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" class="w-full h-14 object-cover rounded-lg">
+            </button>
+            <button onclick="window.selectAvatarPreset('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80')" class="p-1 rounded-xl border border-stone-200 hover:border-stone-900 transition">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" class="w-full h-14 object-cover rounded-lg">
+            </button>
+            <button onclick="window.selectAvatarPreset('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80')" class="p-1 rounded-xl border border-stone-200 hover:border-stone-900 transition">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80" class="w-full h-14 object-cover rounded-lg">
+            </button>
+          </div>
+        </div>
+
+        <!-- Custom URL Input -->
+        <div class="mb-6">
+          <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1">Or Enter Custom Image URL</label>
+          <input type="url" id="photo-url-input" placeholder="https://example.com/my-photo.jpg" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900" />
+        </div>
+
+        <div class="flex gap-2">
+          <button onclick="window.saveCustomAvatar()" class="flex-1 py-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition">
+            Save Photo
+          </button>
+          <button onclick="window.resetDefaultAvatar()" class="px-4 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold transition">
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. GLOBAL SEARCH OVERLAY (⌘K) -->
+    <div id="search-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-start justify-center p-4 sm:p-6 overflow-y-auto">
+      <div class="modal-content bg-[#FFFDFB] rounded-3xl border border-stone-200 max-w-xl w-full p-4 sm:p-6 shadow-2xl relative my-12 overflow-hidden">
+        
+        <div class="flex items-center gap-3 pb-3 border-b border-stone-200">
+          <i data-lucide="search" class="w-5 h-5 text-stone-400"></i>
+          <input type="text" id="global-search-input" placeholder="Search projects, blog articles, services, or tech tags..." class="w-full text-sm font-semibold bg-transparent text-stone-900 placeholder-stone-400 focus:outline-none" />
+          <kbd class="px-2 py-0.5 text-[10px] bg-stone-100 text-stone-500 rounded border border-stone-200 font-mono">ESC</kbd>
+        </div>
+
+        <!-- Search Results List -->
+        <div id="search-results-list" class="max-h-96 overflow-y-auto py-2 space-y-1">
+          <!-- Rendered dynamically by js/app.js -->
+        </div>
+
+        <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-400 font-mono">
+          <span>Navigate with click or Enter</span>
+          <span>codertech Global Search</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SCRIPTS -->
+    <!-- ========================================================================= -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
-

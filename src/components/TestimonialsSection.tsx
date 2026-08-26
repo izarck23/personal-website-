@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Quote, ChevronLeft, ChevronRight, Star, Heart } from 'lucide-react';
+import { Quote, ChevronLeft, ChevronRight, Star, Heart, User } from 'lucide-react';
 import { Testimonial } from '../types';
+import mascotCoffeeMugImg from '../assets/images/mascot_coffee_mug_1787669580415.jpg';
 
 interface TestimonialsSectionProps {
   testimonials: Testimonial[];
@@ -10,6 +11,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
   testimonials,
 }) => {
   const [startIndex, setStartIndex] = useState(0);
+  const [mascotError, setMascotError] = useState(false);
 
   const nextTestimonials = () => {
     setStartIndex((prev) => (prev + 1 >= testimonials.length - 2 ? 0 : prev + 1));
@@ -40,14 +42,14 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
           <div className="flex items-center gap-2 mt-4 sm:mt-0">
             <button
               onClick={prevTestimonials}
-              className="w-9 h-9 rounded-full bg-white border border-stone-200 text-stone-700 hover:bg-stone-50 flex items-center justify-center shadow-xs active:scale-95 transition-all"
+              className="w-9 h-9 rounded-full bg-white border border-stone-200 text-stone-700 hover:bg-stone-50 flex items-center justify-center shadow-xs active:scale-95 transition-all cursor-pointer"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={nextTestimonials}
-              className="w-9 h-9 rounded-full bg-white border border-stone-200 text-stone-700 hover:bg-stone-50 flex items-center justify-center shadow-xs active:scale-95 transition-all"
+              className="w-9 h-9 rounded-full bg-white border border-stone-200 text-stone-700 hover:bg-stone-50 flex items-center justify-center shadow-xs active:scale-95 transition-all cursor-pointer"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-4 h-4" />
@@ -62,12 +64,22 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
           <div className="lg:col-span-3 flex justify-center">
             <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl bg-gradient-to-tr from-purple-100 via-rose-100 to-amber-100 p-2 shadow-card flex items-center justify-center animate-float">
               {/* Mascot Image */}
-              <img
-                src="/src/assets/images/mascot_coffee_mug_1787669580415.jpg"
-                alt="codertech mascot"
-                className="w-full h-full object-cover rounded-2xl"
-                referrerPolicy="no-referrer"
-              />
+              {!mascotError ? (
+                <img
+                  src={mascotCoffeeMugImg}
+                  alt="codertech mascot"
+                  className="w-full h-full object-cover rounded-2xl"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
+                  onError={() => setMascotError(true)}
+                />
+              ) : (
+                <div className="w-full h-full rounded-2xl bg-gradient-to-br from-[#6C5CE7] to-[#A29BFE] flex flex-col items-center justify-center text-white p-4 text-center">
+                  <span className="text-4xl mb-1">☕</span>
+                  <span className="font-bold text-xs">Code & Coffee</span>
+                </div>
+              )}
               {/* Heart Badge */}
               <div className="absolute -top-3 -left-3 bg-white p-2 rounded-full shadow-md text-rose-500 animate-pulse-subtle">
                 <Heart className="w-4 h-4 fill-current" />
@@ -77,7 +89,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
 
           {/* Right Column: Testimonial Cards */}
           <div className="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-5">
-            {visibleTestimonials.map((item, idx) => (
+            {visibleTestimonials.map((item) => (
               <div
                 key={item.id}
                 className="bg-white rounded-3xl p-6 shadow-soft hover:shadow-card hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between border border-stone-200/70 relative"
@@ -102,8 +114,15 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                   <img
                     src={item.avatarUrl}
                     alt={item.author}
-                    className="w-10 h-10 rounded-full object-cover border border-stone-200 shrink-0"
+                    className="w-10 h-10 rounded-full object-cover border border-stone-200 shrink-0 bg-stone-100"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
+                    onError={(e) => {
+                      // Fallback avatar on error
+                      const target = e.currentTarget;
+                      target.src = 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80';
+                    }}
                   />
                   <div className="overflow-hidden">
                     <h4 className="text-xs font-bold text-stone-900 truncate">

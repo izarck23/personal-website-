@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Clock, Heart, Bookmark, Share2, Copy, Check, MessageSquare, Send, ThumbsUp, User } from 'lucide-react';
 import { BlogPost, BlogComment } from '../../types';
+import { copyToClipboard } from '../../utils/safeClipboard';
 
 interface BlogModalProps {
   post: BlogPost | null;
@@ -20,6 +21,16 @@ export const BlogModal: React.FC<BlogModalProps> = ({ post, onClose }) => {
   const [newCommentName, setNewCommentName] = useState('');
   const [newCommentText, setNewCommentText] = useState('');
 
+  useEffect(() => {
+    if (post) {
+      setLikes(post.likesCount);
+      setHasLiked(false);
+      setHasBookmarked(false);
+      setCopiedLink(false);
+      setComments(post.comments || []);
+    }
+  }, [post?.id]);
+
   const handleLike = () => {
     if (hasLiked) {
       setLikes((prev) => prev - 1);
@@ -30,8 +41,8 @@ export const BlogModal: React.FC<BlogModalProps> = ({ post, onClose }) => {
     }
   };
 
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
+  const handleCopyLink = async () => {
+    await copyToClipboard(window.location.href);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
   };

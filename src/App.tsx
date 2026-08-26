@@ -208,6 +208,31 @@ export default function App() {
 
   const activePost = blogPostsData.find((p) => p.slug === activeBlogSlug) || blogPostsData[0];
 
+  // Dynamic SEO title & description synchronization
+  useEffect(() => {
+    let title = `${profile.creatorName} (${profile.brandName}) — Full-Stack Developer, Mobile Engineer & Tech Creator`;
+    let desc = `Official portfolio & technical blog of ${profile.creatorName} (${profile.brandName}). Building production-ready React web apps, cross-platform mobile apps, cloud backends, and digital developer products.`;
+
+    if (currentView === 'blog-list') {
+      title = `Engineering & Tech Blog — ${profile.creatorName} (${profile.brandName})`;
+      desc = `Read in-depth software engineering tutorials, SaaS architecture breakdowns, full-stack tips, and monetization insights by ${profile.creatorName}.`;
+    } else if (currentView === 'blog-post' && activePost) {
+      title = `${activePost.title} — ${profile.creatorName} (${profile.brandName})`;
+      desc = activePost.excerpt;
+    } else if (currentView === 'projects-list') {
+      title = `Featured Projects & Architecture — ${profile.creatorName} (${profile.brandName})`;
+      desc = `Explore featured full-stack web applications, mobile platforms, developer toolkits, and SaaS boilerplates built by ${profile.creatorName}.`;
+    }
+
+    document.title = title;
+
+    // Update meta description tag dynamically for SEO crawlers & previews
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', desc);
+    }
+  }, [currentView, activeBlogSlug, activePost, profile.creatorName, profile.brandName]);
+
   return (
     <div className="min-h-screen bg-[#FFF8F3] text-stone-800 selection:bg-[#ff7675]/20 selection:text-[#e76f51] relative flex flex-col justify-between">
       

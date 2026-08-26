@@ -52,6 +52,16 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({
   const [newCommentName, setNewCommentName] = useState('');
   const [newCommentText, setNewCommentText] = useState('');
 
+  // Reset and sync state when post changes
+  useEffect(() => {
+    setLikes(post.likesCount);
+    setHasLiked(false);
+    setHasBookmarked(false);
+    setComments(post.comments || []);
+    setCopiedLink(false);
+    setCopiedCodeSnippet(null);
+  }, [post.id]);
+
   // Scroll reading progress
   useEffect(() => {
     const handleScroll = () => {
@@ -97,12 +107,12 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({
   const handleShareTwitter = () => {
     const text = encodeURIComponent(`"${post.title}" by ${profile.brandName}`);
     const url = encodeURIComponent(window.location.href);
-    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank', 'noopener,noreferrer');
   };
 
   const handleShareLinkedIn = () => {
     const url = encodeURIComponent(window.location.href);
-    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'noopener,noreferrer');
   };
 
   const handleAddComment = (e: React.FormEvent) => {

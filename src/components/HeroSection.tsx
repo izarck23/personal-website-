@@ -147,6 +147,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   alt={`${profile.creatorName} - ${profile.brandName}`}
                   className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   referrerPolicy="no-referrer"
+                  decoding="async"
+                  fetchPriority="high"
                   onError={(e) => {
                     const target = e.currentTarget;
                     if (target.src !== defaultHeroCreatorImg) {

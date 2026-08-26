@@ -114,12 +114,18 @@ export const BlogSection: React.FC<BlogSectionProps> = ({ posts, onSelectPost, o
               >
                 <div>
                   {/* Post Cover Image */}
-                  <div className="relative h-48 w-full overflow-hidden">
+                  <div className="relative h-48 w-full overflow-hidden bg-stone-100">
                     <img
                       src={post.coverImage}
                       alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.src = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80';
+                      }}
                     />
                     {/* Category Badge */}
                     <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-[#6C5CE7] shadow-xs">

@@ -1,0 +1,9 @@
+# Robots.txt for codertech (Isaac) - Software Developer & Tech Creator
+# https://codertech.dev
+
+User-agent: *
+Allow: /
+
+# Direct search engines to the complete XML sitemap
+Sitemap: https://codertech.dev/sitemap.xml
+Host: https://codertech.dev

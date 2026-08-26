@@ -35,6 +35,16 @@ export const MonetizationHub: React.FC<MonetizationHubProps> = ({
   };
 
   const [checkoutSimulatedProduct, setCheckoutSimulatedProduct] = useState<MonetizationProduct | null>(null);
+  const [checkoutSuccess, setCheckoutSuccess] = useState(false);
+
+  const handleSimulatePurchase = () => {
+    setCheckoutSuccess(true);
+  };
+
+  const handleCloseCheckout = () => {
+    setCheckoutSimulatedProduct(null);
+    setCheckoutSuccess(false);
+  };
 
   return (
     <section id="monetize" className="py-24 bg-[#FFF8F3] relative overflow-hidden">
@@ -277,53 +287,82 @@ export const MonetizationHub: React.FC<MonetizationHubProps> = ({
       {checkoutSimulatedProduct && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-xs animate-fadeIn">
           <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-stone-200 animate-scaleUp">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-4">
-              <Download className="w-6 h-6" />
-            </div>
+            {checkoutSuccess ? (
+              <div className="text-center space-y-4 animate-fadeIn">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
+                  <ShieldCheck className="w-8 h-8" />
+                </div>
 
-            <h3 className="font-serif-display text-2xl font-bold text-center text-stone-900 mb-1">
-              {checkoutSimulatedProduct.title}
-            </h3>
-            <div className="text-center font-bold text-emerald-600 text-xl mb-4">
-              {checkoutSimulatedProduct.price}
-            </div>
+                <h3 className="font-serif-display text-2xl font-bold text-stone-900">
+                  Demo Order Complete! 🎉
+                </h3>
 
-            <p className="text-xs text-stone-600 text-center mb-6">
-              You are accessing the digital download package. In production, this connects to Stripe Checkout with instant license key fulfillment.
-            </p>
+                <p className="text-xs text-stone-600 leading-relaxed">
+                  You've simulated unlocking <span className="font-bold text-stone-900">{checkoutSimulatedProduct.title}</span>. In production, this instantly delivers your download link and webhook-generated GitHub repository invite.
+                </p>
 
-            <div className="bg-stone-50 rounded-2xl p-4 mb-6 text-xs space-y-2 border border-stone-100">
-              <div className="flex justify-between text-stone-600">
-                <span>Product Type:</span>
-                <span className="font-bold text-stone-800">{checkoutSimulatedProduct.type}</span>
+                <div className="p-3 bg-stone-50 rounded-xl border border-stone-200 text-[11px] text-stone-600 font-mono break-all text-left">
+                  <div className="text-[10px] uppercase font-bold text-stone-400 font-sans mb-1">Demo License Key</div>
+                  <code>CTECH-{checkoutSimulatedProduct.id.toUpperCase()}-{(Math.random() * 100000).toFixed(0)}</code>
+                </div>
+
+                <div className="pt-2 flex gap-3">
+                  <button
+                    onClick={handleCloseCheckout}
+                    className="w-full py-3 text-xs font-bold text-white bg-[#6C5CE7] hover:bg-[#5742DE] rounded-full shadow-md transition-all cursor-pointer"
+                  >
+                    Done Exploring
+                  </button>
+                </div>
               </div>
-              <div className="flex justify-between text-stone-600">
-                <span>Delivery:</span>
-                <span className="font-bold text-stone-800">{checkoutSimulatedProduct.deliveryTime}</span>
-              </div>
-              <div className="flex justify-between text-stone-600">
-                <span>License:</span>
-                <span className="font-bold text-stone-800">Commercial Single/Team</span>
-              </div>
-            </div>
+            ) : (
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-4">
+                  <Download className="w-6 h-6" />
+                </div>
 
-            <div className="flex gap-3">
-              <button
-                onClick={() => setCheckoutSimulatedProduct(null)}
-                className="flex-1 py-3 text-xs font-bold text-stone-600 bg-stone-100 hover:bg-stone-200 rounded-full transition-all"
-              >
-                Close
-              </button>
-              <button
-                onClick={() => {
-                  alert(`Thank you for testing! In a live app, this triggers Stripe checkout for ${checkoutSimulatedProduct.title}.`);
-                  setCheckoutSimulatedProduct(null);
-                }}
-                className="flex-1 py-3 text-xs font-bold text-white bg-[#6C5CE7] hover:bg-[#5742DE] rounded-full shadow-md transition-all"
-              >
-                Simulate Purchase
-              </button>
-            </div>
+                <h3 className="font-serif-display text-2xl font-bold text-center text-stone-900 mb-1">
+                  {checkoutSimulatedProduct.title}
+                </h3>
+                <div className="text-center font-bold text-emerald-600 text-xl mb-4">
+                  {checkoutSimulatedProduct.price}
+                </div>
+
+                <p className="text-xs text-stone-600 text-center mb-6">
+                  You are accessing the digital download package. In production, this connects to Stripe Checkout with instant license key fulfillment.
+                </p>
+
+                <div className="bg-stone-50 rounded-2xl p-4 mb-6 text-xs space-y-2 border border-stone-100">
+                  <div className="flex justify-between text-stone-600">
+                    <span>Product Type:</span>
+                    <span className="font-bold text-stone-800">{checkoutSimulatedProduct.type}</span>
+                  </div>
+                  <div className="flex justify-between text-stone-600">
+                    <span>Delivery:</span>
+                    <span className="font-bold text-stone-800">{checkoutSimulatedProduct.deliveryTime}</span>
+                  </div>
+                  <div className="flex justify-between text-stone-600">
+                    <span>License:</span>
+                    <span className="font-bold text-stone-800">Commercial Single/Team</span>
+                  </div>
+                </div>
+
+                <div className="flex gap-3">
+                  <button
+                    onClick={handleCloseCheckout}
+                    className="flex-1 py-3 text-xs font-bold text-stone-600 bg-stone-100 hover:bg-stone-200 rounded-full transition-all cursor-pointer"
+                  >
+                    Close
+                  </button>
+                  <button
+                    onClick={handleSimulatePurchase}
+                    className="flex-1 py-3 text-xs font-bold text-white bg-[#6C5CE7] hover:bg-[#5742DE] rounded-full shadow-md transition-all cursor-pointer"
+                  >
+                    Simulate Purchase
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
