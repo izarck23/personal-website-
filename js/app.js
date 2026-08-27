@@ -69,8 +69,31 @@
       initKeyboardShortcuts();
       initScrollProgress();
       refreshIcons();
+      checkInitialAuthGateway();
     } catch (err) {
       console.error('Error during app initialization:', err);
+    }
+  }
+
+  function checkInitialAuthGateway() {
+    const user = state.currentUser;
+    const isBypassed = sessionStorage.getItem('codertech_auth_bypassed');
+    const hash = window.location.hash || '';
+
+    // If navigated specifically to #/auth or #/auth/:tab
+    if (hash === '#/auth' || hash.startsWith('#/auth/')) {
+      const tab = hash.replace('#/auth/', '').replace('#/auth', '') || 'welcome';
+      showAuthGatewayScreen(tab === 'signup' ? 'signup' : (tab === 'verify' ? 'verify' : (tab === 'forgot' ? 'forgot' : (tab === 'signin' ? 'signin' : 'welcome'))));
+      window.openModal('auth-modal');
+      return;
+    }
+
+    // When the user opens the website, it starts with auth screens (welcome, create account, login or sign up)
+    if ((!user || !user.isLoggedIn) && !isBypassed) {
+      setTimeout(() => {
+        showAuthGatewayScreen('welcome');
+        window.openModal('auth-modal');
+      }, 120);
     }
   }
 
@@ -1669,7 +1692,7 @@
       if (user && user.isLoggedIn) {
         navContainer.innerHTML = `
           <div class="flex items-center gap-2">
-            <a href="#/profile" class="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white border border-stone-200 hover:border-purple-300 text-stone-800 text-xs font-bold transition shadow-2xs group">
+            <a href="profile.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-white border border-stone-200 hover:border-purple-300 text-stone-800 text-xs font-bold transition shadow-2xs group">
               <img src="${avatarUrl}" alt="${user.name}" class="w-5 h-5 rounded-full object-cover border border-purple-200 dynamic-user-avatar" />
               <span class="max-w-[80px] sm:max-w-[110px] truncate">${user.name}</span>
             </a>
@@ -1680,10 +1703,10 @@
         `;
       } else {
         navContainer.innerHTML = `
-          <button onclick="window.openAuthModal('signin')" class="px-3.5 py-1.5 rounded-xl bg-white border border-stone-200 text-stone-700 hover:text-stone-900 hover:border-stone-300 text-xs font-bold flex items-center gap-1.5 transition shadow-2xs">
+          <a href="auth.html" class="px-3.5 py-1.5 rounded-xl bg-white border border-stone-200 text-stone-700 hover:text-stone-900 hover:border-stone-300 text-xs font-bold flex items-center gap-1.5 transition shadow-2xs">
             <i data-lucide="user" class="w-3.5 h-3.5 text-[#6C5CE7]"></i>
             <span>Sign In</span>
-          </button>
+          </a>
         `;
       }
     }
@@ -1692,7 +1715,7 @@
       if (user && user.isLoggedIn) {
         mobileContainer.innerHTML = `
           <div class="flex items-center justify-between gap-3">
-            <a href="#/profile" onclick="window.toggleMobileNav()" class="flex items-center gap-2.5">
+            <a href="profile.html" onclick="window.toggleMobileNav()" class="flex items-center gap-2.5">
               <img src="${avatarUrl}" alt="${user.name}" class="w-8 h-8 rounded-full object-cover border border-purple-300 dynamic-user-avatar" />
               <div>
                 <div class="text-xs font-bold text-stone-900">${user.name}</div>
@@ -1709,12 +1732,12 @@
           <div class="flex items-center justify-between gap-2">
             <div class="text-xs font-bold text-stone-500 uppercase font-mono">Account</div>
             <div class="flex items-center gap-2">
-              <button onclick="window.toggleMobileNav(); window.openAuthModal('signin');" class="px-3 py-1 bg-white border border-stone-200 text-xs font-bold text-stone-800 rounded-lg shadow-2xs">
+              <a href="auth.html" onclick="window.toggleMobileNav();" class="px-3 py-1 bg-white border border-stone-200 text-xs font-bold text-stone-800 rounded-lg shadow-2xs">
                 Sign In
-              </button>
-              <button onclick="window.toggleMobileNav(); window.openAuthModal('signup');" class="px-3 py-1 bg-[#6C5CE7] text-xs font-bold text-white rounded-lg shadow-2xs">
+              </a>
+              <a href="auth.html#signup" onclick="window.toggleMobileNav();" class="px-3 py-1 bg-[#6C5CE7] text-xs font-bold text-white rounded-lg shadow-2xs">
                 Create Account
-              </button>
+              </a>
             </div>
           </div>
         `;
@@ -1793,6 +1816,224 @@
   }
   window.handleModalAuthSubmit = handleModalAuthSubmit;
 
+  // ============================================================================
+  // AUTHENTICATION GATEWAY & MULTI-SCREEN SUITE
+  // ============================================================================
+
+  function showAuthGatewayScreen(screenName) {
+    const screens = ['welcome', 'signin', 'signup', 'verify', 'forgot'];
+    screens.forEach(s => {
+      const panel = document.getElementById(`m-screen-${s}`);
+      if (panel) {
+        if (s === screenName) {
+          panel.classList.remove('hidden');
+        } else {
+          panel.classList.add('hidden');
+        }
+      }
+    });
+
+    if (screenName === 'verify') {
+      setTimeout(() => {
+        const firstOtp = document.getElementById('m-otp-1');
+        if (firstOtp) firstOtp.focus();
+      }, 100);
+      startGatewayOtpCountdown();
+    }
+
+    refreshIcons();
+  }
+  window.showAuthGatewayScreen = showAuthGatewayScreen;
+
+  function openAuthGateway(screenName = 'welcome') {
+    showAuthGatewayScreen(screenName);
+    window.openModal('auth-modal');
+  }
+  window.openAuthGateway = openAuthGateway;
+
+  function skipToPortfolio() {
+    try {
+      sessionStorage.setItem('codertech_auth_bypassed', 'true');
+    } catch (e) {}
+    window.closeModal();
+    showToast('Exploring codertech as Guest 🚀');
+  }
+  window.skipToPortfolio = skipToPortfolio;
+
+  function setModalAuthMode(mode) {
+    showAuthGatewayScreen(mode === 'signup' ? 'signup' : 'signin');
+  }
+  window.setModalAuthMode = setModalAuthMode;
+
+  function handleGatewaySignIn(e) {
+    e.preventDefault();
+    const email = document.getElementById('input-signin-email')?.value.trim() || 'isaacapptech23developer@gmail.com';
+    const name = email === 'isaacapptech23developer@gmail.com' ? 'Isaac' : (email.split('@')[0] || 'Developer');
+
+    state.currentUser = {
+      isLoggedIn: true,
+      name: name,
+      handle: `@${name.toLowerCase().replace(/\s+/g, '_')}`,
+      email: email,
+      role: 'Full-Stack Engineer & Kotlin Android Developer',
+      avatar: state.customAvatar || data.profile.avatar,
+      bio: 'Software engineer building modern native Kotlin Android apps and lightweight, ultra-fast web architectures.',
+      location: 'Global / Remote',
+      github: 'https://github.com',
+      twitter: 'https://twitter.com'
+    };
+
+    localStorage.setItem('codertech_user', JSON.stringify(state.currentUser));
+    try {
+      sessionStorage.setItem('codertech_auth_bypassed', 'true');
+    } catch (err) {}
+
+    window.closeModal();
+    updateNavbarAuthState();
+    renderUserProfileView();
+    showToast(`Welcome back, ${name}! ✨`);
+    window.location.hash = '#/profile';
+  }
+  window.handleGatewaySignIn = handleGatewaySignIn;
+
+  function handleGatewaySignUp(e) {
+    e.preventDefault();
+    const name = document.getElementById('input-signup-name')?.value.trim() || 'Isaac';
+    const email = document.getElementById('input-signup-email')?.value.trim() || 'isaacapptech23developer@gmail.com';
+
+    state.pendingUser = {
+      name,
+      email,
+      handle: `@${name.toLowerCase().replace(/\s+/g, '_')}`,
+      role: 'Full-Stack Engineer & Kotlin Developer',
+      avatar: state.customAvatar || data.profile.avatar,
+      bio: 'Software engineer building apps with Kotlin & Web tech.'
+    };
+
+    const emailDisplay = document.getElementById('gateway-verify-email-display');
+    if (emailDisplay) emailDisplay.textContent = email;
+
+    showAuthGatewayScreen('verify');
+    showToast(`OTP sent to ${email} (Demo: 2026)`, 'info');
+  }
+  window.handleGatewaySignUp = handleGatewaySignUp;
+
+  function fillDemoGatewayOtp() {
+    const o1 = document.getElementById('m-otp-1');
+    const o2 = document.getElementById('m-otp-2');
+    const o3 = document.getElementById('m-otp-3');
+    const o4 = document.getElementById('m-otp-4');
+    if (o1) o1.value = '2';
+    if (o2) o2.value = '0';
+    if (o3) o3.value = '2';
+    if (o4) o4.value = '6';
+    showToast('Auto-filled OTP: 2026', 'info');
+  }
+  window.fillDemoGatewayOtp = fillDemoGatewayOtp;
+
+  function startGatewayOtpCountdown() {
+    if (state.otpTimerInterval) clearInterval(state.otpTimerInterval);
+    state.otpTimeRemaining = 45;
+    const timerEl = document.getElementById('gateway-otp-countdown');
+    const resendBtn = document.getElementById('gateway-btn-resend-otp');
+
+    if (resendBtn) resendBtn.disabled = true;
+
+    state.otpTimerInterval = setInterval(() => {
+      state.otpTimeRemaining -= 1;
+      if (timerEl) timerEl.textContent = `(${state.otpTimeRemaining}s)`;
+
+      if (state.otpTimeRemaining <= 0) {
+        clearInterval(state.otpTimerInterval);
+        if (timerEl) timerEl.textContent = '';
+        if (resendBtn) resendBtn.disabled = false;
+      }
+    }, 1000);
+  }
+
+  function resendGatewayOtp() {
+    startGatewayOtpCountdown();
+    showToast('New 4-digit code sent (Demo: 2026)', 'info');
+  }
+  window.resendGatewayOtp = resendGatewayOtp;
+
+  function submitGatewayVerifyOtp() {
+    const user = state.pendingUser || {
+      name: 'Isaac',
+      email: 'isaacapptech23developer@gmail.com',
+      handle: '@isaac_codertech',
+      role: 'Full-Stack Engineer & Kotlin Android Developer',
+      avatar: state.customAvatar || data.profile.avatar,
+      bio: 'Software engineer building modern native Android apps and high-performance web systems.'
+    };
+
+    state.currentUser = {
+      ...user,
+      isLoggedIn: true,
+      location: 'Global / Remote',
+      github: 'https://github.com',
+      twitter: 'https://twitter.com'
+    };
+
+    localStorage.setItem('codertech_user', JSON.stringify(state.currentUser));
+    try {
+      sessionStorage.setItem('codertech_auth_bypassed', 'true');
+    } catch (err) {}
+
+    window.closeModal();
+    updateNavbarAuthState();
+    renderUserProfileView();
+    showToast(`Account verified! 🎉 Welcome to codertech, ${user.name}.`);
+    window.location.hash = '#/profile';
+  }
+  window.submitGatewayVerifyOtp = submitGatewayVerifyOtp;
+
+  function handleGatewayForgotSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('input-forgot-email')?.value.trim() || 'isaacapptech23developer@gmail.com';
+    const emailDisplay = document.getElementById('gateway-verify-email-display');
+    if (emailDisplay) emailDisplay.textContent = email;
+
+    showToast(`Password recovery OTP sent to ${email}`, 'info');
+    showAuthGatewayScreen('verify');
+  }
+  window.handleGatewayForgotSubmit = handleGatewayForgotSubmit;
+
+  function socialAuth(provider) {
+    const providerNames = {
+      Google: 'Isaac (Google User)',
+      GitHub: 'Isaac App Tech',
+      Apple: 'Isaac (Apple ID)',
+      Facebook: 'Isaac Developer'
+    };
+
+    state.currentUser = {
+      isLoggedIn: true,
+      name: providerNames[provider] || `${provider} User`,
+      handle: `@${(providerNames[provider] || provider).toLowerCase().replace(/\s+/g, '_')}`,
+      email: 'isaacapptech23developer@gmail.com',
+      role: 'Full-Stack Engineer & Kotlin Android Developer',
+      avatar: state.customAvatar || data.profile.avatar,
+      bio: `Logged in via ${provider} OAuth authentication.`,
+      location: 'Global / Remote',
+      github: 'https://github.com',
+      twitter: 'https://twitter.com'
+    };
+
+    localStorage.setItem('codertech_user', JSON.stringify(state.currentUser));
+    try {
+      sessionStorage.setItem('codertech_auth_bypassed', 'true');
+    } catch (err) {}
+
+    window.closeModal();
+    updateNavbarAuthState();
+    renderUserProfileView();
+    showToast(`Signed in with ${provider} successfully! 🚀`);
+    window.location.hash = '#/profile';
+  }
+  window.socialAuth = socialAuth;
+  window.handleSocialLogin = socialAuth;
+
   // Full Screen Auth Page View (#/auth)
   function switchAuthTab(tab) {
     const screens = ['signin', 'signup', 'verify', 'forgot'];
@@ -1849,7 +2090,7 @@
   function handleSignInSubmit(e) {
     e.preventDefault();
     const email = document.getElementById('signin-email')?.value.trim() || 'isaacapptech23developer@gmail.com';
-    const name = email === 'isaacapptech23developer@gmail.com' ? 'Isaac' : email.split('@')[0];
+    const name = email === 'isaacapptech23developer@gmail.com' ? 'Isaac' : (email.split('@')[0] || 'Developer');
 
     state.currentUser = {
       isLoggedIn: true,
@@ -1875,20 +2116,20 @@
   function fillDemoCredentials(type = 'isaac') {
     const emailInput = document.getElementById('signin-email');
     const passInput = document.getElementById('signin-password');
-    const modalEmail = document.getElementById('m-auth-email');
-    const modalPass = document.getElementById('m-auth-password');
+    const gatewayEmail = document.getElementById('input-signin-email');
+    const gatewayPass = document.getElementById('input-signin-password');
 
     if (type === 'isaac') {
       if (emailInput) emailInput.value = 'isaacapptech23developer@gmail.com';
       if (passInput) passInput.value = 'codertech2026';
-      if (modalEmail) modalEmail.value = 'isaacapptech23developer@gmail.com';
-      if (modalPass) modalPass.value = 'codertech2026';
+      if (gatewayEmail) gatewayEmail.value = 'isaacapptech23developer@gmail.com';
+      if (gatewayPass) gatewayPass.value = 'codertech2026';
       showToast('Loaded demo credentials: Isaac (Lead Dev)');
     } else {
       if (emailInput) emailInput.value = 'guest.developer@codertech.dev';
       if (passInput) passInput.value = 'demo12345';
-      if (modalEmail) modalEmail.value = 'guest.developer@codertech.dev';
-      if (modalPass) modalPass.value = 'demo12345';
+      if (gatewayEmail) gatewayEmail.value = 'guest.developer@codertech.dev';
+      if (gatewayPass) gatewayPass.value = 'demo12345';
       showToast('Loaded demo credentials: Guest Member');
     }
   }
@@ -1903,6 +2144,7 @@
     if (d2) d2.value = '0';
     if (d3) d3.value = '2';
     if (d4) d4.value = '6';
+    fillDemoGatewayOtp();
     showToast('Auto-filled OTP: 2026', 'info');
   }
   window.fillDemoOtp = fillDemoOtp;
@@ -1997,36 +2239,6 @@
   }
   window.handleForgotSubmit = handleForgotSubmit;
 
-  function handleSocialLogin(provider) {
-    const providerNames = {
-      Google: 'Isaac (Google User)',
-      GitHub: 'Isaac App Tech',
-      Apple: 'Isaac (Apple ID)',
-      Facebook: 'Isaac Developer'
-    };
-
-    state.currentUser = {
-      isLoggedIn: true,
-      name: providerNames[provider] || `${provider} User`,
-      handle: `@${(providerNames[provider] || provider).toLowerCase().replace(/\s+/g, '_')}`,
-      email: 'isaacapptech23developer@gmail.com',
-      role: 'Full-Stack Engineer & Kotlin Android Developer',
-      avatar: state.customAvatar || data.profile.avatar,
-      bio: `Logged in via ${provider} OAuth authentication.`,
-      location: 'Global / Remote',
-      github: 'https://github.com',
-      twitter: 'https://twitter.com'
-    };
-
-    localStorage.setItem('codertech_user', JSON.stringify(state.currentUser));
-    window.closeModal();
-    updateNavbarAuthState();
-    renderUserProfileView();
-    showToast(`Signed in with ${provider} successfully!`);
-    window.location.hash = '#/profile';
-  }
-  window.handleSocialLogin = handleSocialLogin;
-
   function showTermsModal() {
     window.openModal('terms-modal');
   }
@@ -2044,20 +2256,26 @@
   window.logoutUser = logoutUser;
 
   function initOtpInputListeners() {
-    const otpInputs = document.querySelectorAll('.otp-input-field');
-    otpInputs.forEach((input, index) => {
+    // Both full-page OTP and Gateway OTP inputs
+    const otpInputs = document.querySelectorAll('.otp-input-field, .gateway-otp-input');
+    otpInputs.forEach((input, index, allInputs) => {
       input.addEventListener('input', (e) => {
         if (e.target.value.length >= 1) {
           e.target.value = e.target.value.slice(-1);
-          if (index < otpInputs.length - 1) {
-            otpInputs[index + 1].focus();
+          // Look for next sibling input
+          const nextInput = input.nextElementSibling;
+          if (nextInput && nextInput.tagName === 'INPUT') {
+            nextInput.focus();
           }
         }
       });
 
       input.addEventListener('keydown', (e) => {
-        if (e.key === 'Backspace' && !e.target.value && index > 0) {
-          otpInputs[index - 1].focus();
+        if (e.key === 'Backspace' && !e.target.value) {
+          const prevInput = input.previousElementSibling;
+          if (prevInput && prevInput.tagName === 'INPUT') {
+            prevInput.focus();
+          }
         }
       });
     });

@@ -487,3 +487,133 @@ html.dark mark.search-highlight {
   width: 100%;
   height: auto;
 }
+
+/* ==========================================================================
+   AUTHENTICATION SCREENS STYLING (MATCHING MOBILE TEMPLATE)
+   ========================================================================== */
+
+/* Concentric wave lines background styling */
+.concentric-wave-bg {
+  background-color: #fce7f3;
+  background-image: 
+    radial-gradient(circle at 50% 15%, rgba(216, 180, 254, 0.8) 0%, rgba(254, 205, 211, 0.8) 40%, rgba(254, 215, 170, 0.7) 100%);
+}
+
+.wave-lines-overlay {
+  background-image: repeating-radial-gradient(
+    circle at 50% -20%,
+    transparent 0,
+    transparent 12px,
+    rgba(192, 132, 252, 0.22) 13px,
+    transparent 14px
+  );
+}
+
+/* Custom sunset button gradient */
+.btn-sunset-gradient {
+  background: linear-gradient(135deg, #fba1b7 0%, #d896ff 50%, #b886fc 100%);
+  box-shadow: 0 8px 20px -4px rgba(216, 150, 255, 0.5);
+  transition: all 0.2s ease;
+}
+
+.btn-sunset-gradient:hover {
+  background: linear-gradient(135deg, #fa90aa 0%, #cf84ff 50%, #ad76fc 100%);
+  box-shadow: 0 10px 24px -4px rgba(216, 150, 255, 0.65);
+  transform: translateY(-1px);
+}
+
+.btn-sunset-gradient:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+/* Social circular button styling */
+.social-circle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.social-circle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Screen transitions */
+.auth-screen-panel {
+  display: none !important;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.auth-screen-panel.active {
+  display: flex !important;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Curved Header Shape matching Profile Template */
+.curved-header-bg {
+  background-color: #2563EB;
+  position: relative;
+}
+
+.curved-header-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -28px;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background-color: #2563EB;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  z-index: 1;
+}
+
+/* Verified Green Badge */
+.verified-badge-bl {
+  position: absolute;
+  bottom: 4px;
+  left: 6px;
+  width: 26px;
+  height: 26px;
+  background-color: #22C55E;
+  border: 2.5px solid #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+/* Profile Menu Row Card */
+.profile-menu-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background-color: #FFFFFF;
+  border: 1px solid #F1F5F9;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.profile-menu-row:hover {
+  transform: translateY(-2px);
+  background-color: #F8FAFC;
+  border-color: #E2E8F0;
+  box-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.06);
+}
+

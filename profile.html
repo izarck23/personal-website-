@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>User Profile — codertech</title>
+    <meta name="description" content="View and manage your codertech profile, messages, settings, and developer toolkits." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'sans-serif'],
+              display: ['Outfit', 'Plus Jakarta Sans', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              profileBlue: '#2563EB',
+              profileBlueLight: '#EBF3FE',
+              verifiedGreen: '#22C55E'
+            }
+          }
+        }
+      };
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- App Stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      /* Curved Header Shape matching Profile Template */
+      .curved-header-bg {
+        background-color: #2563EB;
+        position: relative;
+      }
+      
+      .curved-header-bg::after {
+        content: '';
+        position: absolute;
+        bottom: -28px;
+        left: 0;
+        right: 0;
+        height: 56px;
+        background-color: #2563EB;
+        border-radius: 0 0 50% 50% / 0 0 100% 100%;
+        z-index: 1;
+      }
+
+      /* Verified Green Badge at bottom-left */
+      .verified-badge-bl {
+        position: absolute;
+        bottom: 4px;
+        left: 6px;
+        width: 26px;
+        height: 26px;
+        background-color: #22C55E;
+        border: 2.5px solid #FFFFFF;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFFFFF;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        z-index: 10;
+      }
+
+      /* Profile Menu Row Card */
+      .profile-menu-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        background-color: #FFFFFF;
+        border: 1px solid #F1F5F9;
+        border-radius: 20px;
+        box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .profile-menu-row:hover {
+        transform: translateY(-2px);
+        background-color: #F8FAFC;
+        border-color: #E2E8F0;
+        box-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.06);
+      }
+
+      /* Modal and Drawer backdrop */
+      .drawer-panel {
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .drawer-panel.open {
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body class="bg-stone-100 min-h-screen text-stone-900 antialiased font-sans flex flex-col justify-between selection:bg-blue-100">
+    
+    <!-- Top Global App Bar -->
+    <header class="w-full bg-white/80 backdrop-blur-md border-b border-stone-200/80 sticky top-0 z-40">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#2563EB] to-[#60A5FA] flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition">
+            <i data-lucide="user" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <span class="font-display font-extrabold text-lg text-stone-900 tracking-tight">codertech</span>
+            <span class="text-[10px] font-mono font-bold text-stone-400 block -mt-1">User Account</span>
+          </div>
+        </a>
+
+        <!-- Desktop Mode Switches -->
+        <div class="hidden md:flex items-center gap-2 p-1 bg-stone-100/90 rounded-2xl border border-stone-200/70 text-xs font-bold text-stone-600">
+          <button type="button" onclick="switchAvatarStyle('letter')" id="nav-btn-letter" class="px-3.5 py-1.5 rounded-xl transition hover:text-stone-900">
+            Initial Letter Avatar (A)
+          </button>
+          <button type="button" onclick="switchAvatarStyle('photo')" id="nav-btn-photo" class="px-3.5 py-1.5 rounded-xl transition bg-white text-stone-900 shadow-2xs font-bold">
+            Photo Avatar 📷
+          </button>
+          <button type="button" onclick="toggleDualComparison()" id="nav-btn-dual" class="px-3.5 py-1.5 rounded-xl transition text-[#2563EB] hover:bg-blue-50 flex items-center gap-1">
+            <i data-lucide="columns" class="w-3.5 h-3.5"></i>
+            <span>Side-by-Side Dual View</span>
+          </button>
+        </div>
+
+        <!-- Return links -->
+        <div class="flex items-center gap-2.5">
+          <a href="auth.html" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-purple-50 text-[#6C5CE7] hover:bg-purple-100 transition flex items-center gap-1.5">
+            <i data-lucide="key" class="w-3.5 h-3.5"></i>
+            <span>Auth Portal</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 text-xs font-bold rounded-xl border border-stone-200 text-stone-700 hover:bg-stone-50 transition flex items-center gap-1.5">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Portfolio</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 flex items-center justify-center p-3 sm:p-6 lg:p-10">
+
+      <!-- ===================================================================== -->
+      <!-- SINGLE PROFILE CARD VIEW (Exact Match to Image 2 Template) -->
+      <!-- ===================================================================== -->
+      <div id="single-profile-view" class="w-full max-w-sm sm:max-w-[390px] mx-auto">
+        
+        <!-- CARD CONTAINER -->
+        <div class="w-full rounded-[40px] shadow-2xl shadow-blue-950/15 overflow-hidden border border-white/60 bg-white relative transition-all duration-300 pb-6">
+          
+          <!-- TOP BLUE CURVED BANNER -->
+          <div class="curved-header-bg pt-6 px-6 pb-12 text-white relative z-0">
+            <!-- Top Bar inside Blue Banner -->
+            <div class="flex items-center justify-between">
+              <!-- Menu Bar Icon on Left (2 horizontal rounded bars) -->
+              <button type="button" onclick="openMenuDrawer()" class="p-1 text-white hover:opacity-80 transition cursor-pointer" title="Menu">
+                <div class="space-y-1.5">
+                  <span class="block w-5 h-0.5 bg-white rounded-full"></span>
+                  <span class="block w-3.5 h-0.5 bg-white rounded-full"></span>
+                </div>
+              </button>
+
+              <!-- Edit Link on Right -->
+              <button type="button" onclick="openEditModal()" class="text-white font-semibold text-sm hover:opacity-80 transition cursor-pointer">
+                Edit
+              </button>
+            </div>
+          </div>
+
+          <!-- FLOATING AVATAR SECTION -->
+          <div class="relative z-10 flex flex-col items-center -mt-16 mb-4">
+            
+            <!-- Avatar Circle Wrapper -->
+            <div class="relative group cursor-pointer" onclick="toggleAvatarModeQuick()">
+              
+              <!-- State 1: Initial Letter Avatar (Blue circle with large letter) -->
+              <div id="avatar-letter-display" class="hidden w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-[#2563EB] border-4 border-white shadow-xl flex items-center justify-center text-white font-display font-bold text-4xl sm:text-5xl select-none">
+                <span id="avatar-letter-char">A</span>
+              </div>
+
+              <!-- State 2: Photo Avatar (Matching Developer Portrait in Template) -->
+              <div id="avatar-photo-display" class="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white shadow-xl overflow-hidden bg-stone-100">
+                <img id="avatar-photo-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="User Profile Photo" class="w-full h-full object-cover" />
+              </div>
+
+              <!-- Verified Green Checkmark Badge at Bottom-Left (Exact as in Image 2) -->
+              <div class="verified-badge-bl" title="Verified Account">
+                <svg class="w-3.5 h-3.5 stroke-current fill-none stroke-[3]" viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+
+              <!-- Hover prompt to change -->
+              <div class="absolute inset-0 rounded-full bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-[10px] font-bold transition">
+                Change
+              </div>
+            </div>
+
+            <!-- User Full Name & Email Details -->
+            <div class="text-center mt-3 space-y-1">
+              <h1 id="profile-display-name" class="text-lg sm:text-xl font-extrabold text-stone-900 font-display uppercase tracking-wider">
+                ABIMBOLA
+              </h1>
+              <p id="profile-display-email" class="text-xs text-stone-400 font-medium">
+                abims2642@gmail.com
+              </p>
+            </div>
+
+          </div>
+
+          <!-- PROFILE MENU LIST ROWS (4 Clean Rounded Cards) -->
+          <div class="px-5 sm:px-6 space-y-3 mb-6">
+            
+            <!-- Row 1: My Profile -->
+            <div onclick="openEditModal()" class="profile-menu-row">
+              <div class="flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center shadow-2xs">
+                  <i data-lucide="user" class="w-5 h-5"></i>
+                </div>
+                <span class="text-sm font-bold text-stone-700">My Profile</span>
+              </div>
+              <div class="text-stone-300">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </div>
+            </div>
+
+            <!-- Row 2: Messages (with Green Badge count '2') -->
+            <div onclick="openMessagesDrawer()" class="profile-menu-row">
+              <div class="flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center shadow-2xs">
+                  <i data-lucide="mail" class="w-5 h-5"></i>
+                </div>
+                <span class="text-sm font-bold text-stone-700">Messages</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span id="messages-count-badge" class="bg-[#22C55E] text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-2xs">
+                  2
+                </span>
+                <div class="text-stone-300">
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3: Settings -->
+            <div onclick="openSettingsDrawer()" class="profile-menu-row">
+              <div class="flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center shadow-2xs">
+                  <i data-lucide="settings" class="w-5 h-5"></i>
+                </div>
+                <span class="text-sm font-bold text-stone-700">Settings</span>
+              </div>
+              <div class="text-stone-300">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </div>
+            </div>
+
+            <!-- Row 4: Terms & Privacy Policy -->
+            <div onclick="openTermsDrawer()" class="profile-menu-row">
+              <div class="flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center shadow-2xs">
+                  <i data-lucide="file-text" class="w-5 h-5"></i>
+                </div>
+                <span class="text-sm font-bold text-stone-700">Terms & Privacy Policy</span>
+              </div>
+              <div class="text-stone-300">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- LOGOUT BUTTON (Centered at Bottom - Exact as in Template) -->
+          <div class="text-center pt-2">
+            <button type="button" onclick="logoutProfile()" class="inline-flex items-center justify-center gap-2 text-stone-500 hover:text-rose-600 text-xs sm:text-sm font-bold py-2 px-6 rounded-full transition cursor-pointer">
+              <i data-lucide="log-out" class="w-4 h-4"></i>
+              <span>Logout</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ===================================================================== -->
+      <!-- DUAL STATE COMPARISON VIEW (Desktop side-by-side template preview) -->
+      <!-- ===================================================================== -->
+      <div id="dual-comparison-view" class="hidden w-full max-w-5xl mx-auto py-4">
+        <div class="text-center mb-8">
+          <span class="px-3 py-1 rounded-full bg-blue-100 text-[#2563EB] text-xs font-bold uppercase font-mono">
+            Dual Template Comparison
+          </span>
+          <h2 class="text-3xl font-extrabold text-stone-900 font-display mt-2">
+            Profile Design States
+          </h2>
+          <p class="text-sm text-stone-500 max-w-md mx-auto mt-1">
+            Exact side-by-side display of the Letter Avatar state and Photo Avatar state from the template.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start justify-center max-w-3xl mx-auto">
+          
+          <!-- Card 1: Initial Letter Avatar -->
+          <div class="w-full max-w-[360px] mx-auto rounded-[40px] shadow-2xl overflow-hidden border border-white/60 bg-white pb-6">
+            <div class="curved-header-bg pt-6 px-6 pb-12 text-white">
+              <div class="flex items-center justify-between">
+                <div class="space-y-1.5">
+                  <span class="block w-5 h-0.5 bg-white rounded-full"></span>
+                  <span class="block w-3.5 h-0.5 bg-white rounded-full"></span>
+                </div>
+                <span class="text-white font-semibold text-sm">Edit</span>
+              </div>
+            </div>
+
+            <div class="relative z-10 flex flex-col items-center -mt-16 mb-4">
+              <div class="relative">
+                <div class="w-28 h-28 rounded-full bg-[#2563EB] border-4 border-white shadow-xl flex items-center justify-center text-white font-display font-bold text-4xl select-none">
+                  A
+                </div>
+                <div class="verified-badge-bl">
+                  <svg class="w-3.5 h-3.5 stroke-current fill-none stroke-[3]" viewBox="0 0 24 24">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="text-center mt-3 space-y-1">
+                <h3 class="text-lg font-extrabold text-stone-900 font-display uppercase tracking-wider">ABIMBOLA</h3>
+                <p class="text-xs text-stone-400 font-medium">abims2642@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="px-6 space-y-3 mb-6">
+              <div class="profile-menu-row">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="user" class="w-4 h-4"></i></div>
+                  <span class="text-sm font-bold text-stone-700">My Profile</span>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
+              </div>
+              <div class="profile-menu-row">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="mail" class="w-4 h-4"></i></div>
+                  <span class="text-sm font-bold text-stone-700">Messages</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="bg-[#22C55E] text-white text-[11px] font-bold px-2 py-0.5 rounded-full">2</span>
+                  <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
+                </div>
+              </div>
+              <div class="profile-menu-row">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="settings" class="w-4 h-4"></i></div>
+                  <span class="text-sm font-bold text-stone-700">Settings</span>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
+              </div>
+              <div class="profile-menu-row">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="file-text" class="w-4 h-4"></i></div>
+                  <span class="text-sm font-bold text-stone-700">Terms & Privacy Policy</span>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
+              </div>
+            </div>
+            <div class="text-center"><span class="text-xs font-bold text-stone-400">State 1: Initial Letter</span></div>
+          </div>
+
+          <!-- Card 2: Photo Avatar -->
+          <div class="w-full max-w-[360px] mx-auto rounded-[40px] shadow-2xl overflow-hidden border border-white/60 bg-white pb-6">
+            <div class="curved-header-bg pt-6 px-6 pb-12 text-white">
+              <div class="flex items-center justify-between">
+                <div class="space-y-1.5">
+                  <span class="block w-5 h-0.5 bg-white rounded-full"></span>
+                  <span class="block w-3.5 h-0.5 bg-white rounded-full"></span>
+                </div>
+                <span class="text-white font-semibold text-sm">Edit</span>
+              </div>
+            </div>
+
+            <div class="relative z-10 flex flex-col items-center -mt-16 mb-4">
+              <div class="relative">
+                <div class="w-28 h-28 rounded-full border-4 border-white shadow-xl overflow-hidden bg-stone-100">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Avatar" class="w-full h-full object-cover" />
+                </div>
+                <div class="verified-badge-bl">
+                  <svg class="w-3.5 h-3.5 stroke-current fill-none stroke-[3]" viewBox="0 0 24 24">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <div class="text-center mt-3 space-y-1">
+                <h3 class="text-lg font-extrabold text-stone-900 font-display uppercase tracking-wider">ABIMBOLA</h3>
+                <p class="text-xs text-stone-400 font-medium">abims2642@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="px-6 space-y-3 mb-6">
+              <div class="profile-menu-row">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="user" class="w-4 h-4"></i></div>
+                  <span class="text-sm font-bold text-stone-700">My Profile</span>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
+              </div>
+              <div class="profile-menu-row">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="mail" class="w-4 h-4"></i></div>
+                  <span class="text-sm font-bold text-stone-700">Messages</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="bg-[#22C55E] text-white text-[11px] font-bold px-2 py-0.5 rounded-full">2</span>
+                  <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
+                </div>
+              </div>
+              <div class="profile-menu-row">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="settings" class="w-4 h-4"></i></div>
+                  <span class="text-sm font-bold text-stone-700">Settings</span>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
+              </div>
+              <div class="profile-menu-row">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="file-text" class="w-4 h-4"></i></div>
+                  <span class="text-sm font-bold text-stone-700">Terms & Privacy Policy</span>
+                </div>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
+              </div>
+            </div>
+            <div class="text-center"><span class="text-xs font-bold text-stone-400">State 2: Photo Avatar</span></div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ======================================================================= -->
+    <!-- INTERACTIVE DRAWERS & MODALS (EDIT PROFILE • MESSAGES • SETTINGS • TERMS) -->
+    <!-- ======================================================================= -->
+
+    <!-- EDIT PROFILE MODAL -->
+    <div id="modal-edit-profile" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-4">
+      <div class="bg-white rounded-3xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6 shadow-2xl border border-stone-200">
+        <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-5">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+              <i data-lucide="user-pen" class="w-4 h-4"></i>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-stone-900">Edit Profile Info</h3>
+          </div>
+          <button type="button" onclick="closeEditModal()" class="p-1 rounded-full text-stone-400 hover:text-stone-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <form onsubmit="saveProfileEdits(event)" class="space-y-4">
+          <!-- Avatar Style Chooser -->
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-2">Avatar Type</label>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" onclick="switchAvatarStyle('letter')" id="btn-choice-letter" class="p-3 rounded-2xl border-2 border-stone-200 text-xs font-bold text-stone-700 hover:border-blue-300 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold">A</span>
+                <span>Initial Letter</span>
+              </button>
+              <button type="button" onclick="switchAvatarStyle('photo')" id="btn-choice-photo" class="p-3 rounded-2xl border-2 border-[#2563EB] bg-blue-50/50 text-xs font-bold text-[#2563EB] flex items-center gap-2">
+                <i data-lucide="image" class="w-4 h-4"></i>
+                <span>Custom Photo</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Photo Upload & Camera Action -->
+          <div id="photo-action-group" class="p-3 bg-stone-50 rounded-2xl border border-stone-200 space-y-2">
+            <span class="text-[11px] font-bold text-stone-500 uppercase font-mono block">Update Photo</span>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="document.getElementById('file-upload-input').click()" class="flex-1 py-2 px-3 bg-white hover:bg-stone-100 border border-stone-200 text-stone-800 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shadow-2xs">
+                <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                <span>Upload File</span>
+              </button>
+              <button type="button" onclick="openCameraModal()" class="flex-1 py-2 px-3 bg-[#2563EB] hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shadow-2xs">
+                <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+                <span>Snap Camera</span>
+              </button>
+            </div>
+            <input type="file" id="file-upload-input" accept="image/*" class="hidden" onchange="handleFileUpload(event)" />
+          </div>
+
+          <!-- Full Name -->
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Full Name / Display</label>
+            <input type="text" id="edit-input-name" required value="ABIMBOLA" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-2xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition" />
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Email Address</label>
+            <input type="email" id="edit-input-email" required value="abims2642@gmail.com" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-2xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition" />
+          </div>
+
+          <!-- Role / Headline -->
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Professional Role</label>
+            <input type="text" id="edit-input-role" value="Full-Stack Engineer & Kotlin Android Developer" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-2xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition" />
+          </div>
+
+          <div class="flex items-center gap-3 pt-2">
+            <button type="button" onclick="closeEditModal()" class="flex-1 py-3 border border-stone-200 rounded-2xl text-xs font-bold text-stone-600 hover:bg-stone-50 transition">
+              Cancel
+            </button>
+            <button type="submit" class="flex-1 py-3 bg-[#2563EB] hover:bg-blue-700 text-white rounded-2xl text-xs font-bold transition shadow-md shadow-blue-500/20">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MESSAGES DRAWER -->
+    <div id="modal-messages" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-4">
+      <div class="bg-white rounded-3xl w-full max-w-md max-h-[85vh] overflow-y-auto p-6 shadow-2xl border border-stone-200 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-4">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </div>
+              <h3 class="font-display font-extrabold text-lg text-stone-900">Messages & Inquiries</h3>
+            </div>
+            <button type="button" onclick="closeMessagesDrawer()" class="p-1 text-stone-400 hover:text-stone-700">
+              <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+          </div>
+
+          <div class="space-y-3">
+            <!-- Message 1 -->
+            <div class="p-3.5 rounded-2xl bg-blue-50/60 border border-blue-100 space-y-1">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-[#2563EB] flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-[#22C55E]"></span>
+                  <span>Isaac (codertech)</span>
+                </span>
+                <span class="text-[10px] text-stone-400 font-mono">10m ago</span>
+              </div>
+              <p class="text-xs text-stone-700 leading-relaxed font-medium">
+                Welcome to codertech! Feel free to explore Kotlin architecture guides and modern web toolkits.
+              </p>
+            </div>
+
+            <!-- Message 2 -->
+            <div class="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 space-y-1">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-stone-800">Project Inquiry: Kotlin App</span>
+                <span class="text-[10px] text-stone-400 font-mono">2h ago</span>
+              </div>
+              <p class="text-xs text-stone-600 leading-relaxed font-medium">
+                "Hello, I loved your PulseFit Kotlin showcase and would like to collaborate on an Android MVP."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-5 border-t border-stone-100 mt-4">
+          <button type="button" onclick="closeMessagesDrawer()" class="w-full py-3 bg-stone-900 hover:bg-stone-800 text-white rounded-2xl text-xs font-bold transition">
+            Close Inbox
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS DRAWER -->
+    <div id="modal-settings" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-4">
+      <div class="bg-white rounded-3xl w-full max-w-md max-h-[85vh] overflow-y-auto p-6 shadow-2xl border border-stone-200">
+        <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-5">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+              <i data-lucide="settings" class="w-4 h-4"></i>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-stone-900">Settings & Preferences</h3>
+          </div>
+          <button type="button" onclick="closeSettingsDrawer()" class="p-1 text-stone-400 hover:text-stone-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Theme Toggle -->
+          <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-50 border border-stone-200">
+            <div>
+              <span class="text-xs font-bold text-stone-800 block">Dark Mode</span>
+              <span class="text-[11px] text-stone-500">Toggle dark visual canvas</span>
+            </div>
+            <button type="button" onclick="toggleAppTheme()" id="btn-theme-toggle" class="px-3 py-1.5 bg-white border border-stone-200 text-xs font-bold rounded-xl text-stone-800 shadow-2xs">
+              Toggle
+            </button>
+          </div>
+
+          <!-- Notification Toggle -->
+          <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-50 border border-stone-200">
+            <div>
+              <span class="text-xs font-bold text-stone-800 block">Email Inquiries</span>
+              <span class="text-[11px] text-stone-500">Receive instant updates</span>
+            </div>
+            <input type="checkbox" checked class="w-4 h-4 rounded text-[#2563EB]" />
+          </div>
+
+          <!-- Clear Cache -->
+          <div class="p-3 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold text-rose-800 block">Reset Session</span>
+              <span class="text-[11px] text-rose-600">Clear local session data</span>
+            </div>
+            <button type="button" onclick="resetUserData()" class="px-3 py-1.5 bg-white border border-rose-200 text-xs font-bold rounded-xl text-rose-700 hover:bg-rose-100 transition">
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-5 border-t border-stone-100 mt-5">
+          <button type="button" onclick="closeSettingsDrawer()" class="w-full py-3 bg-stone-900 text-white rounded-2xl text-xs font-bold">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMS & PRIVACY POLICY DRAWER -->
+    <div id="modal-terms" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-4">
+      <div class="bg-white rounded-3xl w-full max-w-md max-h-[85vh] overflow-y-auto p-6 shadow-2xl border border-stone-200">
+        <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+            </div>
+            <h3 class="font-display font-extrabold text-lg text-stone-900">Terms & Privacy</h3>
+          </div>
+          <button type="button" onclick="closeTermsDrawer()" class="p-1 text-stone-400 hover:text-stone-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="space-y-3 text-xs text-stone-600 leading-relaxed max-h-60 overflow-y-auto pr-1">
+          <p class="font-bold text-stone-800">1. Client-Side Data Privacy</p>
+          <p>codertech runs frontend-only storage in your browser LocalStorage. No private developer credentials or unrequested server data are transmitted.</p>
+
+          <p class="font-bold text-stone-800 mt-2">2. Open Learning & Code Usage</p>
+          <p>All Kotlin Android templates, architecture guides, and web utilities provided on this portfolio are designed for developer education and prototyping.</p>
+        </div>
+
+        <div class="pt-5 border-t border-stone-100 mt-4">
+          <button type="button" onclick="closeTermsDrawer()" class="w-full py-3 bg-stone-900 text-white rounded-2xl text-xs font-bold">
+            I Understand
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVE CAMERA MODAL -->
+    <div id="modal-camera" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs hidden items-center justify-center p-4">
+      <div class="bg-white rounded-3xl w-full max-w-sm p-6 shadow-2xl border border-stone-200">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100 mb-4">
+          <h3 class="font-display font-extrabold text-base text-stone-900 flex items-center gap-2">
+            <i data-lucide="camera" class="w-4 h-4 text-[#2563EB]"></i>
+            <span>Snap Camera Profile</span>
+          </h3>
+          <button type="button" onclick="closeCameraModal()" class="p-1 text-stone-400 hover:text-stone-700">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div class="relative w-full aspect-square rounded-2xl bg-black overflow-hidden mb-4 shadow-inner">
+          <video id="camera-feed" autoplay playsinline class="w-full h-full object-cover"></video>
+          <canvas id="camera-canvas" class="hidden"></canvas>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="closeCameraModal()" class="flex-1 py-2.5 border border-stone-200 rounded-xl text-xs font-bold text-stone-600 hover:bg-stone-50">
+            Cancel
+          </button>
+          <button type="button" onclick="captureCameraSnapshot()" class="flex-1 py-2.5 bg-[#2563EB] hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition shadow-md shadow-blue-500/20 flex items-center justify-center gap-1.5">
+            <i data-lucide="aperture" class="w-4 h-4"></i>
+            <span>Capture</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script>
+      let avatarStyle = 'photo'; // 'photo' or 'letter'
+      let mediaStream = null;
+      let dualComparison = false;
+
+      function loadUserProfile() {
+        let user = null;
+        try {
+          const stored = localStorage.getItem('codertech_user');
+          if (stored) user = JSON.parse(stored);
+        } catch (e) {}
+
+        if (!user) {
+          // Default profile matching template
+          user = {
+            isLoggedIn: true,
+            name: 'ABIMBOLA',
+            email: 'abims2642@gmail.com',
+            role: 'Full-Stack Engineer & Kotlin Android Developer',
+            avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
+            avatarStyle: 'photo'
+          };
+          localStorage.setItem('codertech_user', JSON.stringify(user));
+        }
+
+        const nameEl = document.getElementById('profile-display-name');
+        const emailEl = document.getElementById('profile-display-email');
+        const photoImg = document.getElementById('avatar-photo-img');
+        const letterChar = document.getElementById('avatar-letter-char');
+        const editName = document.getElementById('edit-input-name');
+        const editEmail = document.getElementById('edit-input-email');
+        const editRole = document.getElementById('edit-input-role');
+
+        if (nameEl) nameEl.textContent = (user.name || 'ABIMBOLA').toUpperCase();
+        if (emailEl) emailEl.textContent = user.email || 'abims2642@gmail.com';
+        if (photoImg && user.avatar) photoImg.src = user.avatar;
+        if (letterChar) letterChar.textContent = (user.name || 'A').charAt(0).toUpperCase();
+
+        if (editName) editName.value = user.name || 'ABIMBOLA';
+        if (editEmail) editEmail.value = user.email || 'abims2642@gmail.com';
+        if (editRole) editRole.value = user.role || 'Full-Stack Engineer';
+
+        if (user.avatarStyle) {
+          switchAvatarStyle(user.avatarStyle, false);
+        }
+
+        if (window.lucide) lucide.createIcons();
+      }
+
+      function switchAvatarStyle(style, persist = true) {
+        avatarStyle = style;
+        const letterDiv = document.getElementById('avatar-letter-display');
+        const photoDiv = document.getElementById('avatar-photo-display');
+        const navLetter = document.getElementById('nav-btn-letter');
+        const navPhoto = document.getElementById('nav-btn-photo');
+        const btnChoiceLetter = document.getElementById('btn-choice-letter');
+        const btnChoicePhoto = document.getElementById('btn-choice-photo');
+
+        if (style === 'letter') {
+          if (letterDiv) letterDiv.classList.remove('hidden');
+          if (photoDiv) photoDiv.classList.add('hidden');
+
+          if (navLetter) navLetter.className = 'px-3.5 py-1.5 rounded-xl transition bg-white text-stone-900 shadow-2xs font-bold';
+          if (navPhoto) navPhoto.className = 'px-3.5 py-1.5 rounded-xl transition text-stone-600 hover:text-stone-900 font-bold';
+          
+          if (btnChoiceLetter) btnChoiceLetter.className = 'p-3 rounded-2xl border-2 border-[#2563EB] bg-blue-50/50 text-xs font-bold text-[#2563EB] flex items-center gap-2';
+          if (btnChoicePhoto) btnChoicePhoto.className = 'p-3 rounded-2xl border-2 border-stone-200 text-xs font-bold text-stone-700 hover:border-blue-300 flex items-center gap-2';
+        } else {
+          if (letterDiv) letterDiv.classList.add('hidden');
+          if (photoDiv) photoDiv.classList.remove('hidden');
+
+          if (navPhoto) navPhoto.className = 'px-3.5 py-1.5 rounded-xl transition bg-white text-stone-900 shadow-2xs font-bold';
+          if (navLetter) navLetter.className = 'px-3.5 py-1.5 rounded-xl transition text-stone-600 hover:text-stone-900 font-bold';
+
+          if (btnChoicePhoto) btnChoicePhoto.className = 'p-3 rounded-2xl border-2 border-[#2563EB] bg-blue-50/50 text-xs font-bold text-[#2563EB] flex items-center gap-2';
+          if (btnChoiceLetter) btnChoiceLetter.className = 'p-3 rounded-2xl border-2 border-stone-200 text-xs font-bold text-stone-700 hover:border-blue-300 flex items-center gap-2';
+        }
+
+        if (persist) {
+          try {
+            const user = JSON.parse(localStorage.getItem('codertech_user') || '{}');
+            user.avatarStyle = style;
+            localStorage.setItem('codertech_user', JSON.stringify(user));
+            showToast(`Switched avatar to: ${style === 'letter' ? 'Initial Letter' : 'Custom Photo'}`);
+          } catch (e) {}
+        }
+      }
+
+      function toggleAvatarModeQuick() {
+        switchAvatarStyle(avatarStyle === 'photo' ? 'letter' : 'photo', true);
+      }
+
+      function toggleDualComparison() {
+        dualComparison = !dualComparison;
+        const single = document.getElementById('single-profile-view');
+        const dual = document.getElementById('dual-comparison-view');
+        const btn = document.getElementById('nav-btn-dual');
+
+        if (dualComparison) {
+          single.classList.add('hidden');
+          dual.classList.remove('hidden');
+          if (btn) btn.className = 'px-3.5 py-1.5 rounded-xl transition bg-[#2563EB] text-white font-bold flex items-center gap-1';
+        } else {
+          dual.classList.add('hidden');
+          single.classList.remove('hidden');
+          if (btn) btn.className = 'px-3.5 py-1.5 rounded-xl transition text-[#2563EB] hover:bg-blue-50 font-bold flex items-center gap-1';
+        }
+        if (window.lucide) lucide.createIcons();
+      }
+
+      // Modals and Drawers
+      function openEditModal() {
+        document.getElementById('modal-edit-profile').classList.remove('hidden');
+        document.getElementById('modal-edit-profile').classList.add('flex');
+        if (window.lucide) lucide.createIcons();
+      }
+      function closeEditModal() {
+        document.getElementById('modal-edit-profile').classList.add('hidden');
+        document.getElementById('modal-edit-profile').classList.remove('flex');
+      }
+
+      function openMessagesDrawer() {
+        document.getElementById('modal-messages').classList.remove('hidden');
+        document.getElementById('modal-messages').classList.add('flex');
+        if (window.lucide) lucide.createIcons();
+      }
+      function closeMessagesDrawer() {
+        document.getElementById('modal-messages').classList.add('hidden');
+        document.getElementById('modal-messages').classList.remove('flex');
+      }
+
+      function openSettingsDrawer() {
+        document.getElementById('modal-settings').classList.remove('hidden');
+        document.getElementById('modal-settings').classList.add('flex');
+        if (window.lucide) lucide.createIcons();
+      }
+      function closeSettingsDrawer() {
+        document.getElementById('modal-settings').classList.add('hidden');
+        document.getElementById('modal-settings').classList.remove('flex');
+      }
+
+      function openTermsDrawer() {
+        document.getElementById('modal-terms').classList.remove('hidden');
+        document.getElementById('modal-terms').classList.add('flex');
+        if (window.lucide) lucide.createIcons();
+      }
+      function closeTermsDrawer() {
+        document.getElementById('modal-terms').classList.add('hidden');
+        document.getElementById('modal-terms').classList.remove('flex');
+      }
+
+      function openMenuDrawer() {
+        openSettingsDrawer();
+      }
+
+      // Profile Save Form
+      function saveProfileEdits(e) {
+        e.preventDefault();
+        const name = document.getElementById('edit-input-name')?.value.trim() || 'ABIMBOLA';
+        const email = document.getElementById('edit-input-email')?.value.trim() || 'abims2642@gmail.com';
+        const role = document.getElementById('edit-input-role')?.value.trim() || 'Full-Stack Engineer';
+
+        try {
+          const user = JSON.parse(localStorage.getItem('codertech_user') || '{}');
+          user.name = name;
+          user.email = email;
+          user.role = role;
+          user.avatarStyle = avatarStyle;
+          localStorage.setItem('codertech_user', JSON.stringify(user));
+        } catch (e) {}
+
+        loadUserProfile();
+        closeEditModal();
+        showToast('Profile updated successfully! ✓');
+      }
+
+      // File upload handler
+      function handleFileUpload(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const base64 = event.target.result;
+          try {
+            const user = JSON.parse(localStorage.getItem('codertech_user') || '{}');
+            user.avatar = base64;
+            user.avatarStyle = 'photo';
+            localStorage.setItem('codertech_user', JSON.stringify(user));
+          } catch (err) {}
+          loadUserProfile();
+          switchAvatarStyle('photo');
+          showToast('New profile photo uploaded!');
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // Live Camera functions
+      async function openCameraModal() {
+        document.getElementById('modal-camera').classList.remove('hidden');
+        document.getElementById('modal-camera').classList.add('flex');
+        const video = document.getElementById('camera-feed');
+        try {
+          mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
+          video.srcObject = mediaStream;
+        } catch (err) {
+          showToast('Camera permission denied or unavailable.');
+          closeCameraModal();
+        }
+      }
+
+      function closeCameraModal() {
+        if (mediaStream) {
+          mediaStream.getTracks().forEach(track => track.stop());
+          mediaStream = null;
+        }
+        document.getElementById('modal-camera').classList.add('hidden');
+        document.getElementById('modal-camera').classList.remove('flex');
+      }
+
+      function captureCameraSnapshot() {
+        const video = document.getElementById('camera-feed');
+        const canvas = document.getElementById('camera-canvas');
+        if (!video || !canvas) return;
+
+        canvas.width = video.videoWidth || 400;
+        canvas.height = video.videoHeight || 400;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const dataUrl = canvas.toDataURL('image/jpeg');
+
+        try {
+          const user = JSON.parse(localStorage.getItem('codertech_user') || '{}');
+          user.avatar = dataUrl;
+          user.avatarStyle = 'photo';
+          localStorage.setItem('codertech_user', JSON.stringify(user));
+        } catch (err) {}
+
+        closeCameraModal();
+        loadUserProfile();
+        switchAvatarStyle('photo');
+        showToast('Snapshot saved as profile avatar!');
+      }
+
+      function logoutProfile() {
+        try {
+          const user = JSON.parse(localStorage.getItem('codertech_user') || '{}');
+          user.isLoggedIn = false;
+          localStorage.setItem('codertech_user', JSON.stringify(user));
+        } catch (e) {}
+        showToast('Logged out. Returning to home...');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 600);
+      }
+
+      function resetUserData() {
+        localStorage.removeItem('codertech_user');
+        loadUserProfile();
+        closeSettingsDrawer();
+        showToast('Session reset to template defaults.');
+      }
+
+      function toggleAppTheme() {
+        const html = document.documentElement;
+        if (html.classList.contains('dark')) {
+          html.classList.remove('dark');
+          html.classList.add('light');
+          showToast('Light theme activated');
+        } else {
+          html.classList.remove('light');
+          html.classList.add('dark');
+          showToast('Dark theme activated');
+        }
+      }
+
+      function showToast(message) {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+        const toast = document.createElement('div');
+        toast.className = 'pointer-events-auto px-4 py-3 bg-stone-900 text-white rounded-2xl shadow-xl text-xs font-bold flex items-center gap-2 border border-stone-700 animate-bounce';
+        toast.innerHTML = `<span>✓</span> <span>${message}</span>`;
+        container.appendChild(toast);
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        loadUserProfile();
+      });
+    </script>
+  </body>
+</html>

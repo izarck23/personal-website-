@@ -409,10 +409,10 @@
           <!-- User Auth / Profile Badge Container (Dynamic in js/app.js) -->
           <div id="nav-auth-container" class="relative">
             <!-- Rendered dynamically by updateNavbarAuthState() -->
-            <button onclick="window.openAuthModal('signin')" class="px-3.5 py-1.5 rounded-xl bg-white border border-stone-200 text-stone-700 hover:text-stone-900 hover:border-stone-300 text-xs font-bold flex items-center gap-1.5 transition shadow-2xs">
+            <a href="auth.html" class="px-3.5 py-1.5 rounded-xl bg-white border border-stone-200 text-stone-700 hover:text-stone-900 hover:border-stone-300 text-xs font-bold flex items-center gap-1.5 transition shadow-2xs">
               <i data-lucide="user" class="w-3.5 h-3.5 text-[#6C5CE7]"></i>
               <span>Sign In</span>
-            </button>
+            </a>
           </div>
 
           <!-- Contact Modal Trigger -->
@@ -435,12 +435,12 @@
           <div class="flex items-center justify-between gap-2">
             <div class="text-xs font-bold text-stone-500 uppercase font-mono">Account</div>
             <div class="flex items-center gap-2">
-              <button onclick="window.toggleMobileNav(); window.openAuthModal('signin');" class="px-3 py-1 bg-white border border-stone-200 text-xs font-bold text-stone-800 rounded-lg shadow-2xs">
+              <a href="auth.html" onclick="window.toggleMobileNav();" class="px-3 py-1 bg-white border border-stone-200 text-xs font-bold text-stone-800 rounded-lg shadow-2xs">
                 Sign In
-              </button>
-              <button onclick="window.toggleMobileNav(); window.openAuthModal('signup');" class="px-3 py-1 bg-[#6C5CE7] text-xs font-bold text-white rounded-lg shadow-2xs">
+              </a>
+              <a href="auth.html#signup" onclick="window.toggleMobileNav();" class="px-3 py-1 bg-[#6C5CE7] text-xs font-bold text-white rounded-lg shadow-2xs">
                 Create Account
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -451,7 +451,7 @@
         <a href="#process" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Process</a>
         <a href="#monetize" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-[#e17055] py-1.5">Monetization Hub ⚡</a>
         <a href="#blog" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Tech Blog</a>
-        <a href="#/profile" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-[#6C5CE7] py-1.5 flex items-center gap-1.5">
+        <a href="profile.html" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-[#6C5CE7] py-1.5 flex items-center gap-1.5">
           <i data-lucide="user" class="w-3.5 h-3.5"></i>
           <span>User Profile & Settings</span>
         </a>
@@ -2108,8 +2108,8 @@
           <div class="md:col-span-2 space-y-3">
             <div class="text-xs font-bold text-stone-400 uppercase font-mono tracking-wider">Account & Hub</div>
             <ul class="space-y-2 text-xs font-semibold text-stone-600">
-              <li><a href="#/profile" class="hover:text-stone-900 transition text-[#6C5CE7] font-bold">User Profile</a></li>
-              <li><a href="#/auth" class="hover:text-stone-900 transition">Sign In / Sign Up</a></li>
+              <li><a href="profile.html" class="hover:text-stone-900 transition text-[#6C5CE7] font-bold flex items-center gap-1.5"><i data-lucide="user" class="w-3.5 h-3.5"></i><span>User Profile</span></a></li>
+              <li><a href="auth.html" class="hover:text-stone-900 transition flex items-center gap-1.5"><i data-lucide="key" class="w-3.5 h-3.5"></i><span>Sign In / Sign Up</span></a></li>
               <li><button onclick="window.openSearchModal()" class="hover:text-stone-900 transition">Global Search</button></li>
               <li><a href="#faq" class="hover:text-stone-900 transition">FAQ</a></li>
               <li><button onclick="window.openSitemapModal()" class="hover:text-stone-900 transition flex items-center gap-1.5 text-stone-600">
@@ -2463,74 +2463,479 @@
       </div>
     </div>
 
-    <!-- 8. AUTHENTICATION POPUP MODAL (Quick Sign In / Register from Anywhere) -->
-    <div id="auth-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-      <div class="modal-content bg-[#FFFDFB] rounded-3xl border border-stone-200 max-w-md w-full p-6 sm:p-8 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto">
-        <button onclick="window.closeModal()" class="modal-close-btn absolute top-5 right-5 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition" title="Close">
-          <i data-lucide="x" class="w-4 h-4"></i>
-        </button>
-
-        <div class="text-center mb-6">
-          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#6C5CE7] to-[#A29BFE] text-white flex items-center justify-center font-bold text-sm shadow-md mx-auto mb-2">
-            <i data-lucide="sparkles" class="w-5 h-5"></i>
-          </div>
-          <h3 id="modal-auth-title" class="text-xl font-extrabold text-stone-900 font-display">Sign In to codertech</h3>
-          <p id="modal-auth-subtitle" class="text-xs text-stone-500 mt-1">Access user profile, saved articles, and developer toolkits.</p>
-        </div>
-
-        <!-- Quick Switch Tab -->
-        <div class="flex items-center justify-center gap-2 p-1 bg-stone-100 rounded-xl mb-5">
-          <button type="button" onclick="window.setModalAuthMode('signin')" id="m-auth-tab-signin" class="flex-1 py-1.5 text-xs font-bold rounded-lg transition bg-white text-stone-900 shadow-2xs">
-            Sign In
-          </button>
-          <button type="button" onclick="window.setModalAuthMode('signup')" id="m-auth-tab-signup" class="flex-1 py-1.5 text-xs font-bold rounded-lg transition text-stone-600 hover:text-stone-900">
-            Create Account
-          </button>
-        </div>
-
-        <form id="modal-auth-form" onsubmit="window.handleModalAuthSubmit(event)" class="space-y-3.5">
-          <div id="m-field-name" class="hidden">
-            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1">Your Name</label>
-            <input type="text" id="m-auth-name" placeholder="Ex. John Doe" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]" />
+    <!-- 8. AUTHENTICATION POPUP & STARTUP GATEWAY MODAL (Full Multi-Screen Auth Suite) -->
+    <div id="auth-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-950/70 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+      <div class="modal-content w-full max-w-md my-auto relative transition-all duration-300">
+        
+        <!-- Outer Mobile Shell Card with Concentric Wave Background and Rounded Corners -->
+        <div class="bg-white rounded-[32px] sm:rounded-[36px] shadow-2xl border border-stone-200/90 overflow-hidden relative">
+          
+          <!-- Top Global Dismiss / Guest Bar -->
+          <div class="absolute top-4 right-4 z-30 flex items-center gap-2">
+            <button onclick="window.skipToPortfolio()" class="px-3 py-1.5 rounded-full bg-white/70 hover:bg-white text-stone-700 hover:text-stone-900 backdrop-blur-md text-[11px] font-bold transition flex items-center gap-1 shadow-2xs cursor-pointer" title="Explore Portfolio as Guest">
+              <span>Explore as Guest</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="window.closeModal()" class="p-2 rounded-full bg-white/70 hover:bg-white text-stone-700 hover:text-stone-900 backdrop-blur-md transition shadow-2xs cursor-pointer" title="Close">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
           </div>
 
-          <div>
-            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1">Email</label>
-            <input type="email" id="m-auth-email" required placeholder="example@gmail.com" value="isaacapptech23developer@gmail.com" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]" />
-          </div>
+          <!-- ================================================================= -->
+          <!-- SCREEN 1: WELCOME SCREEN (Welcome =) -->
+          <!-- ================================================================= -->
+          <div id="m-screen-welcome" class="auth-gateway-panel concentric-wave-bg wave-lines-overlay min-h-[580px] sm:min-h-[620px] p-6 sm:p-8 flex flex-col justify-between relative">
+            
+            <!-- Header Text -->
+            <div class="pt-3 text-center">
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 font-display tracking-tight">
+                Welcome =)
+              </h2>
+              <p class="text-xs sm:text-sm text-stone-700/80 font-medium mt-2 leading-relaxed max-w-xs mx-auto">
+                Hi there!<br />
+                We're here to help you learn new skills.<br />
+                The choice is yours: <span class="font-bold text-stone-900">Log in</span> or <span class="font-bold text-stone-900">create an account</span>.
+              </p>
+            </div>
 
-          <div>
-            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1">Password</label>
-            <div class="relative">
-              <input type="password" id="m-auth-password" required placeholder="••••••••••••" value="codertech2026" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] pr-10" />
-              <button type="button" onclick="window.togglePasswordVisibility('m-auth-password', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700">
-                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+            <!-- Central Minimalist Illustration (Character with Laptop SVG) -->
+            <div class="my-4 flex items-center justify-center relative">
+              <!-- Concentric Rings Glow -->
+              <div class="absolute w-44 h-44 rounded-full bg-white/40 blur-xl animate-pulse"></div>
+              <div class="relative w-48 h-48 sm:w-56 sm:h-56 flex items-center justify-center">
+                <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md">
+                  <!-- Ground Shadow -->
+                  <ellipse cx="100" cy="180" rx="65" ry="10" fill="#9333EA" opacity="0.15" />
+                  
+                  <!-- Floating Pastel Blob -->
+                  <circle cx="100" cy="100" r="70" fill="url(#welcome-blob-gradient)" opacity="0.85" />
+                  
+                  <!-- Character Body -->
+                  <path d="M70 170 C70 125, 130 125, 130 170 Z" fill="#6C5CE7" />
+                  
+                  <!-- Character Head -->
+                  <circle cx="100" cy="85" r="28" fill="#FFD1BA" />
+                  
+                  <!-- Hair -->
+                  <path d="M74 80 C74 55, 126 55, 126 80 C120 70, 110 65, 100 65 C90 65, 80 70, 74 80 Z" fill="#2D3436" />
+                  <circle cx="76" cy="82" r="6" fill="#2D3436" />
+                  
+                  <!-- Smiling Face -->
+                  <circle cx="92" cy="84" r="2.5" fill="#2D3436" />
+                  <circle cx="108" cy="84" r="2.5" fill="#2D3436" />
+                  <path d="M95 93 Q100 98 105 93" stroke="#2D3436" stroke-width="2" fill="none" stroke-linecap="round" />
+                  <ellipse cx="88" cy="89" rx="3" ry="1.5" fill="#FF7675" opacity="0.6" />
+                  <ellipse cx="112" cy="89" rx="3" ry="1.5" fill="#FF7675" opacity="0.6" />
+                  
+                  <!-- Laptop Desk and Device -->
+                  <rect x="65" y="140" width="70" height="7" rx="3.5" fill="#FFFFFF" opacity="0.9" />
+                  <polygon points="76,140 124,140 118,112 82,112" fill="#E2E8F0" />
+                  <!-- Laptop Screen Glow -->
+                  <polygon points="78,138 122,138 116,114 84,114" fill="#3B82F6" opacity="0.8" />
+                  <circle cx="100" cy="126" r="3.5" fill="#FFFFFF" />
+                  
+                  <!-- Decorative Floating Sparkles -->
+                  <path d="M145 60 L148 68 L156 71 L148 74 L145 82 L142 74 L134 71 L142 68 Z" fill="#F59E0B" />
+                  <path d="M52 105 L54 110 L59 112 L54 114 L52 119 L50 114 L45 112 L50 110 Z" fill="#EC4899" />
+                  
+                  <!-- Wavy Doodle Line -->
+                  <path d="M42 65 Q48 58 54 65 T66 65" stroke="#8B5CF6" stroke-width="2.5" fill="none" stroke-linecap="round" />
+
+                  <!-- Gradients -->
+                  <defs>
+                    <linearGradient id="welcome-blob-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FDE047" stop-opacity="0.7" />
+                      <stop offset="50%" stop-color="#F472B6" stop-opacity="0.8" />
+                      <stop offset="100%" stop-color="#C084FC" stop-opacity="0.9" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Action Buttons Group -->
+            <div class="space-y-3 pb-2">
+              <!-- Create Account Button (Solid White Pill with subtle shadow) -->
+              <button onclick="window.showAuthGatewayScreen('signup')" class="w-full py-4 px-6 rounded-full bg-white hover:bg-stone-50 text-stone-900 font-extrabold text-sm sm:text-base shadow-lg shadow-purple-950/5 transition transform active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer">
+                <span>Create Account</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 text-purple-600"></i>
               </button>
+
+              <!-- Log In Button (Translucent Glass Pill) -->
+              <button onclick="window.showAuthGatewayScreen('signin')" class="w-full py-4 px-6 rounded-full bg-white/35 hover:bg-white/50 text-stone-900 font-extrabold text-sm sm:text-base backdrop-blur-md border border-white/60 transition transform active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer">
+                <span>Log In</span>
+              </button>
+
+              <!-- Quick Explore Link -->
+              <div class="text-center pt-1">
+                <button onclick="window.skipToPortfolio()" class="text-xs font-bold text-stone-700/80 hover:text-stone-950 hover:underline transition">
+                  ⚡ Continue to portfolio as guest →
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ================================================================= -->
+          <!-- SCREEN 2: LOG IN SCREEN (Welcome Back) -->
+          <!-- ================================================================= -->
+          <div id="m-screen-signin" class="auth-gateway-panel hidden concentric-wave-bg wave-lines-overlay min-h-[580px] sm:min-h-[620px] flex flex-col justify-between relative">
+            
+            <!-- Top Bar with Back Button -->
+            <div class="p-6 pb-2 flex items-center justify-between relative z-10">
+              <button onclick="window.showAuthGatewayScreen('welcome')" class="flex items-center gap-1.5 text-stone-800 hover:text-stone-950 font-bold text-xs bg-white/50 hover:bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full transition shadow-2xs cursor-pointer">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                <span>Back</span>
+              </button>
+              <span class="text-[10px] font-mono font-bold text-purple-900/60 uppercase">Authentication</span>
+            </div>
+
+            <!-- Main White Card with Rounded Top -->
+            <div class="bg-white rounded-t-[32px] p-6 sm:p-7 pt-6 shadow-2xl relative z-10 flex-1 flex flex-col justify-between">
+              <div>
+                <!-- Heading & Subtitle -->
+                <div class="text-center mb-4">
+                  <h2 class="text-2xl font-extrabold text-stone-900 font-display tracking-tight">
+                    Welcome Back
+                  </h2>
+                  <p class="text-xs text-stone-500 font-medium mt-1 leading-relaxed">
+                    Ready to continue your learning journey?<br />
+                    <span class="text-stone-700">Your path is right here.</span>
+                  </p>
+                </div>
+
+                <!-- 1-Click Quick Demo Presets -->
+                <div class="mb-4 p-2.5 rounded-2xl bg-purple-50/80 border border-purple-100 flex items-center justify-between gap-2">
+                  <span class="text-[11px] font-bold text-[#6C5CE7] flex items-center gap-1">
+                    <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                    <span>Quick Demo:</span>
+                  </span>
+                  <div class="flex items-center gap-1.5">
+                    <button type="button" onclick="window.fillDemoCredentials('isaac')" class="px-2.5 py-1 bg-white hover:bg-purple-100 border border-purple-200 text-stone-800 text-[11px] font-bold rounded-lg transition shadow-2xs">
+                      👨‍💻 Isaac
+                    </button>
+                    <button type="button" onclick="window.fillDemoCredentials('demo')" class="px-2.5 py-1 bg-white hover:bg-purple-100 border border-purple-200 text-stone-800 text-[11px] font-bold rounded-lg transition shadow-2xs">
+                      🚀 Guest
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Form -->
+                <form id="form-signin" onsubmit="window.handleGatewaySignIn(event)" class="space-y-3">
+                  <!-- Email Input -->
+                  <div>
+                    <input type="email" id="input-signin-email" required placeholder="Enter email" value="isaacapptech23developer@gmail.com" class="w-full px-4 py-3 rounded-2xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 text-xs sm:text-sm font-medium focus:outline-none focus:border-purple-400 focus:ring-3 focus:ring-purple-100 transition shadow-2xs" />
+                  </div>
+
+                  <!-- Password Input with Eye Icon -->
+                  <div class="relative">
+                    <input type="password" id="input-signin-password" required placeholder="Enter password" value="codertech2026" class="w-full px-4 py-3 pr-11 rounded-2xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 text-xs sm:text-sm font-medium focus:outline-none focus:border-purple-400 focus:ring-3 focus:ring-purple-100 transition shadow-2xs" />
+                    <button type="button" onclick="window.togglePasswordVisibility('input-signin-password', this)" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 p-1" title="Toggle password visibility">
+                      <i data-lucide="eye" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+
+                  <!-- Remember Me & Forgot Password -->
+                  <div class="flex items-center justify-between text-xs pt-0.5">
+                    <label class="flex items-center gap-2 cursor-pointer select-none text-stone-600 font-medium">
+                      <input type="checkbox" id="remember-me-checkbox" checked class="w-4 h-4 rounded border-stone-300 text-[#6C5CE7] focus:ring-purple-200 accent-purple-600" />
+                      <span>Remember me</span>
+                    </label>
+                    <button type="button" onclick="window.showAuthGatewayScreen('forgot')" class="text-xs font-semibold text-stone-500 hover:text-[#6C5CE7] transition cursor-pointer">
+                      Forgot password?
+                    </button>
+                  </div>
+
+                  <!-- Log In Button (Sunset Gradient Pill) -->
+                  <button type="submit" class="w-full py-3.5 px-6 rounded-full btn-sunset-gradient text-white font-extrabold text-sm transition transform active:scale-[0.98] flex items-center justify-center gap-2 mt-2 cursor-pointer">
+                    <span>Log In</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                  </button>
+                </form>
+
+                <!-- Divider: Sign in with -->
+                <div class="relative flex items-center justify-center my-3.5">
+                  <div class="border-t border-stone-200 w-full"></div>
+                  <span class="bg-white px-3 text-[11px] font-medium text-stone-400 whitespace-nowrap">
+                    Sign in with
+                  </span>
+                  <div class="border-t border-stone-200 w-full"></div>
+                </div>
+
+                <!-- Circular Social Buttons (Facebook, Google, Apple) -->
+                <div class="flex items-center justify-center gap-4">
+                  <!-- Facebook -->
+                  <button type="button" onclick="window.socialAuth('Facebook')" class="social-circle-btn text-[#1877F2]" title="Sign in with Facebook">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                  </button>
+
+                  <!-- Google -->
+                  <button type="button" onclick="window.socialAuth('Google')" class="social-circle-btn" title="Sign in with Google">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24">
+                      <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+                      <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.27 21.39 7.34 24 12 24z"/>
+                      <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.94 0 12s.46 3.84 1.26 5.42l4.02-3.15z"/>
+                      <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.27 2.61 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                    </svg>
+                  </button>
+
+                  <!-- Apple -->
+                  <button type="button" onclick="window.socialAuth('Apple')" class="social-circle-btn text-stone-900" title="Sign in with Apple">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 0.93-2.85-.9.04-1.99.6-2.61 1.34-.55.63-1.03 1.68-.9 2.71 1 .08 2.02-.45 2.58-1.2"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Bottom Footer Link -->
+              <div class="text-center pt-3 border-t border-stone-100 mt-2">
+                <p class="text-xs text-stone-500">
+                  Don't have an account? 
+                  <button type="button" onclick="window.showAuthGatewayScreen('signup')" class="font-extrabold text-[#6C5CE7] hover:underline cursor-pointer">
+                    Sign Up
+                  </button>
+                </p>
+              </div>
+
             </div>
           </div>
 
-          <button type="submit" id="m-auth-submit-btn" class="w-full py-3 bg-[#6C5CE7] hover:bg-[#5b4bc4] text-white rounded-xl text-xs sm:text-sm font-bold transition shadow-sm cursor-pointer mt-2">
-            Sign In
-          </button>
-        </form>
+          <!-- ================================================================= -->
+          <!-- SCREEN 3: CREATE ACCOUNT (Sign Up) -->
+          <!-- ================================================================= -->
+          <div id="m-screen-signup" class="auth-gateway-panel hidden concentric-wave-bg wave-lines-overlay min-h-[580px] sm:min-h-[620px] flex flex-col justify-between relative">
+            
+            <!-- Top Bar with Back Button -->
+            <div class="p-6 pb-2 flex items-center justify-between relative z-10">
+              <button onclick="window.showAuthGatewayScreen('welcome')" class="flex items-center gap-1.5 text-stone-800 hover:text-stone-950 font-bold text-xs bg-white/50 hover:bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full transition shadow-2xs cursor-pointer">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                <span>Back</span>
+              </button>
+              <span class="text-[10px] font-mono font-bold text-purple-900/60 uppercase">Registration</span>
+            </div>
 
-        <!-- Social login buttons in modal -->
-        <div class="pt-4 mt-4 border-t border-stone-100 text-center">
-          <div class="text-[11px] font-semibold text-stone-400 uppercase tracking-wider mb-3">Or continue with</div>
-          <div class="flex items-center justify-center gap-3">
-            <button onclick="window.handleSocialLogin('Google')" type="button" class="px-4 py-2 bg-white border border-stone-200 hover:bg-stone-50 rounded-xl text-xs font-bold text-stone-700 transition flex items-center gap-2 shadow-2xs">
-              <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
-              <span>Google</span>
-            </button>
-            <button onclick="window.handleSocialLogin('GitHub')" type="button" class="px-4 py-2 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-2xs">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-              <span>GitHub</span>
-            </button>
+            <!-- Main White Card with Rounded Top -->
+            <div class="bg-white rounded-t-[32px] p-6 sm:p-7 pt-6 shadow-2xl relative z-10 flex-1 flex flex-col justify-between">
+              <div>
+                <!-- Heading & Subtitle -->
+                <div class="text-center mb-4">
+                  <h2 class="text-2xl font-extrabold text-stone-900 font-display tracking-tight">
+                    Create Your Account
+                  </h2>
+                  <p class="text-xs text-stone-500 font-medium mt-1 leading-relaxed">
+                    We're here to help you reach the peaks of learning.<br />
+                    <span class="text-stone-700">Are you ready?</span>
+                  </p>
+                </div>
+
+                <!-- Form -->
+                <form id="form-signup" onsubmit="window.handleGatewaySignUp(event)" class="space-y-3">
+                  <!-- Name Input -->
+                  <div>
+                    <input type="text" id="input-signup-name" required placeholder="Enter full name" value="Isaac" class="w-full px-4 py-3 rounded-2xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 text-xs sm:text-sm font-medium focus:outline-none focus:border-purple-400 focus:ring-3 focus:ring-purple-100 transition shadow-2xs" />
+                  </div>
+
+                  <!-- Email Input -->
+                  <div>
+                    <input type="email" id="input-signup-email" required placeholder="Enter email" value="isaacapptech23developer@gmail.com" class="w-full px-4 py-3 rounded-2xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 text-xs sm:text-sm font-medium focus:outline-none focus:border-purple-400 focus:ring-3 focus:ring-purple-100 transition shadow-2xs" />
+                  </div>
+
+                  <!-- Password Input with Eye Icon -->
+                  <div class="relative">
+                    <input type="password" id="input-signup-password" required placeholder="Enter password" value="codertech2026" class="w-full px-4 py-3 pr-11 rounded-2xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 text-xs sm:text-sm font-medium focus:outline-none focus:border-purple-400 focus:ring-3 focus:ring-purple-100 transition shadow-2xs" />
+                    <button type="button" onclick="window.togglePasswordVisibility('input-signup-password', this)" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 p-1" title="Toggle password visibility">
+                      <i data-lucide="eye" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+
+                  <!-- Terms and Condition Checkbox -->
+                  <div class="flex items-center gap-2 pt-0.5">
+                    <input type="checkbox" id="signup-agree-terms" required checked class="w-4 h-4 rounded border-stone-300 text-[#6C5CE7] focus:ring-purple-200 accent-purple-600" />
+                    <label for="signup-agree-terms" class="text-xs text-stone-600 font-medium select-none">
+                      Agree with <button type="button" onclick="window.openTermsModal()" class="text-[#6C5CE7] font-bold underline">Terms & Condition</button>
+                    </label>
+                  </div>
+
+                  <!-- Get Started Button (Sunset Gradient Pill) -->
+                  <button type="submit" class="w-full py-3.5 px-6 rounded-full btn-sunset-gradient text-white font-extrabold text-sm transition transform active:scale-[0.98] flex items-center justify-center gap-2 mt-2 cursor-pointer">
+                    <span>Get Started</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                  </button>
+                </form>
+
+                <!-- Divider: Sign up with -->
+                <div class="relative flex items-center justify-center my-3.5">
+                  <div class="border-t border-stone-200 w-full"></div>
+                  <span class="bg-white px-3 text-[11px] font-medium text-stone-400 whitespace-nowrap">
+                    Sign up with
+                  </span>
+                  <div class="border-t border-stone-200 w-full"></div>
+                </div>
+
+                <!-- Circular Social Buttons -->
+                <div class="flex items-center justify-center gap-4">
+                  <button type="button" onclick="window.socialAuth('Facebook')" class="social-circle-btn text-[#1877F2]" title="Sign up with Facebook">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                  </button>
+                  <button type="button" onclick="window.socialAuth('Google')" class="social-circle-btn" title="Sign up with Google">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.27 21.39 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.94 0 12s.46 3.84 1.26 5.42l4.02-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.27 2.61 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+                  </button>
+                  <button type="button" onclick="window.socialAuth('Apple')" class="social-circle-btn text-stone-900" title="Sign up with Apple">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 0.93-2.85-.9.04-1.99.6-2.61 1.34-.55.63-1.03 1.68-.9 2.71 1 .08 2.02-.45 2.58-1.2"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Bottom Footer Link -->
+              <div class="text-center pt-3 border-t border-stone-100 mt-2">
+                <p class="text-xs text-stone-500">
+                  Already have an account? 
+                  <button type="button" onclick="window.showAuthGatewayScreen('signin')" class="font-extrabold text-[#6C5CE7] hover:underline cursor-pointer">
+                    Log In
+                  </button>
+                </p>
+              </div>
+
+            </div>
           </div>
+
+          <!-- ================================================================= -->
+          <!-- SCREEN 4: VERIFY CODE (2FA OTP Verification) -->
+          <!-- ================================================================= -->
+          <div id="m-screen-verify" class="auth-gateway-panel hidden concentric-wave-bg wave-lines-overlay min-h-[580px] sm:min-h-[620px] flex flex-col justify-between relative">
+            
+            <!-- Top Bar with Back Button -->
+            <div class="p-6 pb-2 flex items-center justify-between relative z-10">
+              <button onclick="window.showAuthGatewayScreen('signup')" class="flex items-center gap-1.5 text-stone-800 hover:text-stone-950 font-bold text-xs bg-white/50 hover:bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full transition shadow-2xs cursor-pointer">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                <span>Back</span>
+              </button>
+              <span class="text-[10px] font-mono font-bold text-purple-900/60 uppercase">2FA Verification</span>
+            </div>
+
+            <!-- Main White Card with Rounded Top -->
+            <div class="bg-white rounded-t-[32px] p-6 sm:p-7 pt-6 shadow-2xl relative z-10 flex-1 flex flex-col justify-between">
+              <div class="space-y-4">
+                
+                <!-- Heading & Subtitle -->
+                <div class="text-center">
+                  <h2 class="text-2xl font-extrabold text-stone-900 font-display tracking-tight">
+                    Verify Code
+                  </h2>
+                  <p class="text-xs text-stone-500 font-medium mt-1 leading-relaxed">
+                    Please enter the code we just sent to email<br />
+                    <span id="gateway-verify-email-display" class="font-bold text-[#6C5CE7] font-mono">example@gmail.com</span>
+                  </p>
+                </div>
+
+                <!-- 4-Digit OTP Boxes -->
+                <div class="flex items-center justify-center gap-3 py-2">
+                  <input type="text" maxlength="1" id="m-otp-1" class="gateway-otp-input w-12 h-14 sm:w-14 sm:h-16 text-center font-extrabold text-2xl rounded-2xl bg-stone-50 border-2 border-stone-200 focus:border-[#6C5CE7] focus:bg-white focus:ring-4 focus:ring-purple-100 text-stone-900 outline-none transition font-mono shadow-2xs" inputmode="numeric" />
+                  <input type="text" maxlength="1" id="m-otp-2" class="gateway-otp-input w-12 h-14 sm:w-14 sm:h-16 text-center font-extrabold text-2xl rounded-2xl bg-stone-50 border-2 border-stone-200 focus:border-[#6C5CE7] focus:bg-white focus:ring-4 focus:ring-purple-100 text-stone-900 outline-none transition font-mono shadow-2xs" inputmode="numeric" />
+                  <input type="text" maxlength="1" id="m-otp-3" class="gateway-otp-input w-12 h-14 sm:w-14 sm:h-16 text-center font-extrabold text-2xl rounded-2xl bg-stone-50 border-2 border-stone-200 focus:border-[#6C5CE7] focus:bg-white focus:ring-4 focus:ring-purple-100 text-stone-900 outline-none transition font-mono shadow-2xs" inputmode="numeric" />
+                  <input type="text" maxlength="1" id="m-otp-4" class="gateway-otp-input w-12 h-14 sm:w-14 sm:h-16 text-center font-extrabold text-2xl rounded-2xl bg-stone-50 border-2 border-stone-200 focus:border-[#6C5CE7] focus:bg-white focus:ring-4 focus:ring-purple-100 text-stone-900 outline-none transition font-mono shadow-2xs" inputmode="numeric" />
+                </div>
+
+                <!-- 1-Click Auto-Fill Demo OTP Helper -->
+                <div class="text-center">
+                  <button type="button" onclick="window.fillDemoGatewayOtp()" class="px-3 py-1.5 bg-purple-50 hover:bg-purple-100 border border-purple-200 text-[#6C5CE7] text-xs font-bold rounded-xl transition inline-flex items-center gap-1.5 shadow-2xs cursor-pointer">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    <span>Auto-Fill Demo Code (2026)</span>
+                  </button>
+                </div>
+
+                <!-- Resend Timer -->
+                <div class="text-center text-xs text-stone-500 pt-1">
+                  <span>Didn't receive OTP?</span>
+                  <button type="button" onclick="window.resendGatewayOtp()" id="gateway-btn-resend-otp" class="text-[#6C5CE7] font-bold hover:underline ml-1 cursor-pointer">
+                    Resend code
+                  </button>
+                  <span id="gateway-otp-countdown" class="text-stone-400 font-mono ml-1">(45s)</span>
+                </div>
+
+                <!-- Verify Button (Sunset Gradient Pill) -->
+                <button type="button" onclick="window.submitGatewayVerifyOtp()" class="w-full py-3.5 px-6 rounded-full btn-sunset-gradient text-white font-extrabold text-sm transition transform active:scale-[0.98] flex items-center justify-center gap-2 mt-2 cursor-pointer">
+                  <span>Verify & Unlock</span>
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                </button>
+
+              </div>
+
+              <!-- Quick Explore -->
+              <div class="text-center pt-3 border-t border-stone-100 mt-3">
+                <button type="button" onclick="window.skipToPortfolio()" class="text-xs font-semibold text-stone-500 hover:text-stone-900 transition">
+                  Skip to portfolio →
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ================================================================= -->
+          <!-- SCREEN 5: FORGOT PASSWORD -->
+          <!-- ================================================================= -->
+          <div id="m-screen-forgot" class="auth-gateway-panel hidden concentric-wave-bg wave-lines-overlay min-h-[580px] sm:min-h-[620px] flex flex-col justify-between relative">
+            
+            <!-- Top Bar with Back Button -->
+            <div class="p-6 pb-2 flex items-center justify-between relative z-10">
+              <button onclick="window.showAuthGatewayScreen('signin')" class="flex items-center gap-1.5 text-stone-800 hover:text-stone-950 font-bold text-xs bg-white/50 hover:bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full transition shadow-2xs cursor-pointer">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                <span>Back to Log In</span>
+              </button>
+              <span class="text-[10px] font-mono font-bold text-purple-900/60 uppercase">Password Recovery</span>
+            </div>
+
+            <!-- Main White Card with Rounded Top -->
+            <div class="bg-white rounded-t-[32px] p-6 sm:p-7 pt-6 shadow-2xl relative z-10 flex-1 flex flex-col justify-between">
+              <div class="space-y-4">
+                
+                <!-- Heading & Subtitle -->
+                <div class="text-center">
+                  <h2 class="text-2xl font-extrabold text-stone-900 font-display tracking-tight">
+                    Reset Password
+                  </h2>
+                  <p class="text-xs text-stone-500 font-medium mt-1 leading-relaxed">
+                    Enter your email to receive a 4-digit verification code.
+                  </p>
+                </div>
+
+                <form onsubmit="window.handleGatewayForgotSubmit(event)" class="space-y-3.5">
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Account Email</label>
+                    <input type="email" id="input-forgot-email" required placeholder="Enter email" value="isaacapptech23developer@gmail.com" class="w-full px-4 py-3 rounded-2xl border border-stone-200 bg-white text-stone-900 placeholder:text-stone-400 text-xs sm:text-sm font-medium focus:outline-none focus:border-purple-400 focus:ring-3 focus:ring-purple-100 transition shadow-2xs" />
+                  </div>
+
+                  <!-- Send Code Button (Sunset Gradient Pill) -->
+                  <button type="submit" class="w-full py-3.5 px-6 rounded-full btn-sunset-gradient text-white font-extrabold text-sm transition transform active:scale-[0.98] flex items-center justify-center gap-2 mt-3 cursor-pointer">
+                    <span>Send Reset Code</span>
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                  </button>
+                </form>
+
+              </div>
+
+              <!-- Bottom Footer Link -->
+              <div class="text-center pt-3 border-t border-stone-100 mt-3">
+                <p class="text-xs text-stone-500">
+                  Remember password? 
+                  <button type="button" onclick="window.showAuthGatewayScreen('signin')" class="font-extrabold text-[#6C5CE7] hover:underline cursor-pointer">
+                    Log In
+                  </button>
+                </p>
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
       </div>
     </div>
+
+    <!-- 9. LIVE CAMERA CAPTURE STUDIO MODAL (WebRTC / Camera Viewfinder) -->
 
     <!-- 9. LIVE CAMERA CAPTURE STUDIO MODAL (WebRTC / Camera Viewfinder) -->
     <div id="camera-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-900/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
