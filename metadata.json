@@ -1,6 +1,6 @@
 {
   "name": "codertech Portfolio & Tech Blog",
   "description": "A personal website, tech blog, and online monetization platform for codertech with project showcases, services, interactive blog reader, and growth toolkit.",
-  "requestFramePermissions": [],
+  "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

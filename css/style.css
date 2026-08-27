@@ -1,6 +1,7 @@
 /* ==========================================================================
    CODERTECH (Isaac) — Stylesheet
    Pure CSS3 + Tailwind compatible styling for browsers and Acode editor
+   With seamless Light / Dark Theme transition system
    ========================================================================== */
 
 :root {
@@ -20,11 +21,19 @@
   --font-mono: 'Fira Code', 'Courier New', monospace;
 }
 
+html.dark {
+  --color-warm-bg: #0F1015;
+  --color-card-bg: #181A22;
+  --color-dark: #F3F4F6;
+  color-scheme: dark;
+}
+
 html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);
   background-color: var(--color-warm-bg);
   color: var(--color-dark);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
@@ -32,9 +41,10 @@ body {
   padding: 0;
   overflow-x: hidden;
   background-color: var(--color-warm-bg);
-  color: #2d3436;
+  color: var(--color-dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom Scrollbar */
@@ -54,6 +64,18 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #b5a999;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #14161E;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #2D313D;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3F4454;
 }
 
 /* Typography styles */
@@ -98,6 +120,10 @@ body {
   box-shadow: 0 16px 32px -8px rgba(45, 52, 54, 0.08), 0 4px 12px -2px rgba(45, 52, 54, 0.04);
 }
 
+html.dark .hover-lift:hover {
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.4), 0 4px 12px -2px rgba(0, 0, 0, 0.2);
+}
+
 /* Floating element animation */
 @keyframes floatSlow {
   0%, 100% {
@@ -126,6 +152,147 @@ body {
 
 .animate-soft-pulse {
   animation: softPulse 3s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   DARK THEME COMPREHENSIVE OVERRIDES
+   Ensures every component, modal, input, and badge seamlessly adjusts
+   ========================================================================== */
+
+html.dark body {
+  background-color: #0F1015 !important;
+  color: #E5E7EB;
+}
+
+/* Header & Drawers */
+html.dark header {
+  background-color: rgba(15, 16, 21, 0.88) !important;
+  border-color: #272A34 !important;
+}
+
+html.dark #mobile-nav-drawer {
+  background-color: #14161E !important;
+  border-color: #272A34 !important;
+}
+
+/* Containers and Cards */
+html.dark .bg-\[\#FFF8F3\] {
+  background-color: #0F1015 !important;
+}
+
+html.dark .bg-\[\#FFFDFB\],
+html.dark .bg-white {
+  background-color: #181A22 !important;
+  border-color: #272A34 !important;
+  color: #E5E7EB;
+}
+
+html.dark .bg-stone-50 {
+  background-color: #1F222C !important;
+  border-color: #2D313D !important;
+}
+
+html.dark .bg-stone-100 {
+  background-color: #262936 !important;
+  border-color: #323746 !important;
+  color: #E5E7EB;
+}
+
+/* Text Colors */
+html.dark .text-stone-900,
+html.dark .text-stone-800 {
+  color: #F9FAFB !important;
+}
+
+html.dark .text-stone-700 {
+  color: #E5E7EB !important;
+}
+
+html.dark .text-stone-600 {
+  color: #9CA3AF !important;
+}
+
+html.dark .text-stone-500 {
+  color: #8E96A6 !important;
+}
+
+html.dark .text-stone-400 {
+  color: #6B7280 !important;
+}
+
+/* Borders */
+html.dark .border-stone-100,
+html.dark .border-stone-200,
+html.dark .border-stone-200\/60,
+html.dark .border-stone-200\/70,
+html.dark .border-stone-200\/80,
+html.dark .border-stone-200\/90,
+html.dark .border-stone-300 {
+  border-color: #272A34 !important;
+}
+
+/* Form Inputs, Selects & Textareas */
+html.dark input[type="text"],
+html.dark input[type="email"],
+html.dark select,
+html.dark textarea {
+  background-color: #14161E !important;
+  border-color: #2D313D !important;
+  color: #F3F4F6 !important;
+}
+
+html.dark input[type="text"]:focus,
+html.dark input[type="email"]:focus,
+html.dark select:focus,
+html.dark textarea:focus {
+  border-color: #6C5CE7 !important;
+}
+
+html.dark kbd {
+  background-color: #262936 !important;
+  border-color: #373C4D !important;
+  color: #D1D5DB !important;
+}
+
+/* Modals */
+html.dark .modal-content {
+  background-color: #181A22 !important;
+  border-color: #2D313D !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
+}
+
+html.dark .modal-close-btn {
+  background-color: #262936 !important;
+  color: #D1D5DB !important;
+}
+
+html.dark .modal-close-btn:hover {
+  background-color: #323746 !important;
+  color: #FFFFFF !important;
+}
+
+/* Buttons */
+html.dark .bg-stone-900 {
+  background-color: #F3F4F6 !important;
+  color: #111827 !important;
+}
+
+html.dark .bg-stone-900:hover {
+  background-color: #FFFFFF !important;
+}
+
+html.dark .nav-link:hover {
+  color: #FFFFFF !important;
+}
+
+/* Gradients in Hero / Waves */
+html.dark .bg-gradient-to-b.from-\[\#FFF8F3\] {
+  background-image: linear-gradient(to bottom, #0F1015, #14161E) !important;
+}
+
+html.dark footer {
+  background-color: #0B0C10 !important;
+  border-color: #1F222C !important;
 }
 
 /* Code block markdown rendering */
@@ -175,7 +342,7 @@ body {
 }
 
 .markdown-body pre {
-  background-color: #1e1e2e;
+  background-color: #14161E;
   color: #cdd6f4;
   padding: 1.25rem;
   border-radius: 0.875rem;
@@ -185,7 +352,7 @@ body {
   font-family: var(--font-mono);
   font-size: 0.825rem;
   line-height: 1.6;
-  border: 1px solid #313244;
+  border: 1px solid #272A34;
   position: relative;
 }
 
@@ -196,6 +363,30 @@ body {
   background: transparent;
   padding: 0;
   border: none;
+}
+
+/* Dark Mode Markdown Overrides */
+html.dark .markdown-body h2 {
+  color: #F9FAFB;
+}
+
+html.dark .markdown-body h3 {
+  color: #F3F4F6;
+}
+
+html.dark .markdown-body p {
+  color: #D1D5DB;
+}
+
+html.dark .markdown-body ul,
+html.dark .markdown-body li {
+  color: #D1D5DB;
+}
+
+html.dark .markdown-body code:not(pre code) {
+  background-color: #262936;
+  color: #FF8E8D;
+  border-color: #373C4D;
 }
 
 /* Modal Transitions */
@@ -241,6 +432,13 @@ body {
   animation: slideUpToast 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+html.dark .toast-item {
+  background-color: #1F222C !important;
+  border-color: #2D313D !important;
+  color: #F9FAFB !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
 @keyframes slideUpToast {
   from {
     opacity: 0;
@@ -259,6 +457,11 @@ mark.search-highlight {
   font-weight: 700;
   padding: 0 2px;
   border-radius: 2px;
+}
+
+html.dark mark.search-highlight {
+  background-color: rgba(245, 158, 11, 0.35);
+  color: #FCD34D;
 }
 
 /* Progress bar */

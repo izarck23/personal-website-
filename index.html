@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Isaac (codertech) — Full-Stack Developer, Mobile Engineer & Tech Creator</title>
+    <title>Isaac (codertech) — Kotlin App Developer & HTML/CSS/JavaScript Web Engineer</title>
     
     <!-- Primary SEO Meta Tags -->
-    <meta name="title" content="Isaac (codertech) — Full-Stack Developer, Mobile Engineer & Tech Creator" />
-    <meta name="description" content="Official portfolio & technical blog of Isaac (codertech). Building production-ready React web apps, cross-platform mobile apps, cloud backends, and digital developer products." />
-    <meta name="keywords" content="codertech, Isaac, software engineer, full-stack developer, React developer, TypeScript, Node.js, mobile app developer, tech blog, developer portfolio, SaaS builder, developer monetization" />
+    <meta name="title" content="Isaac (codertech) — Kotlin App Developer & HTML/CSS/JavaScript Web Engineer" />
+    <meta name="description" content="Official portfolio & technical blog of Isaac (codertech). Specializing in native Kotlin Android apps, responsive HTML5/CSS3/JavaScript web development, and developer digital products." />
+    <meta name="keywords" content="codertech, Isaac, Kotlin developer, Android developer, Jetpack Compose, HTML CSS JavaScript, web developer, frontend developer, mobile app developer, tech blog, developer portfolio, indie hacker" />
     <meta name="author" content="Isaac (codertech)" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#FFF8F3" />
@@ -24,8 +24,8 @@
     <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://codertech.dev" />
-    <meta property="og:title" content="Isaac (codertech) — Full-Stack Developer, Mobile Engineer & Tech Creator" />
-    <meta property="og:description" content="Building fast, delightful digital experiences, full-stack web applications, mobile companion apps, and modern developer toolkits." />
+    <meta property="og:title" content="Isaac (codertech) — Kotlin App Developer & HTML/CSS/JavaScript Web Engineer" />
+    <meta property="og:description" content="Building fast, delightful native Android apps in Kotlin and lightweight, high-performance websites in pure HTML, CSS, and JavaScript." />
     <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&auto=format&fit=crop&q=80" />
     <meta property="og:site_name" content="codertech" />
     <meta property="profile:first_name" content="Isaac" />
@@ -38,6 +38,244 @@
     <meta property="twitter:description" content="Explore full-stack web apps, mobile apps, in-depth technical blogs, and online developer toolkits." />
     <meta property="twitter:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&auto=format&fit=crop&q=80" />
 
+    <!-- Early Theme & Global API Initializer to ensure instantaneous response to user interactions -->
+    <script>
+      (function() {
+        try {
+          // Modal core functions
+          window.openModal = window.openModal || function(modalId) {
+            const allModals = document.querySelectorAll('.modal-overlay');
+            allModals.forEach(function(m) {
+              m.classList.remove('active');
+              m.classList.add('modal-hidden');
+            });
+            const target = document.getElementById(modalId);
+            if (target) {
+              target.classList.remove('modal-hidden');
+              void target.offsetWidth;
+              target.classList.add('active');
+              document.body.style.overflow = 'hidden';
+            }
+          };
+
+          window.closeModal = window.closeModal || function() {
+            const allModals = document.querySelectorAll('.modal-overlay');
+            allModals.forEach(function(m) {
+              m.classList.remove('active');
+              setTimeout(function() {
+                if (!m.classList.contains('active')) {
+                  m.classList.add('modal-hidden');
+                }
+              }, 250);
+            });
+            document.body.style.overflow = '';
+          };
+
+          // Auth Modal functions
+          window.openAuthModal = window.openAuthModal || function(mode) {
+            mode = mode || 'signin';
+            if (typeof window.setModalAuthMode === 'function') {
+              window.setModalAuthMode(mode);
+            }
+            window.openModal('auth-modal');
+          };
+
+          window.setModalAuthMode = window.setModalAuthMode || function(mode) {
+            const isSignup = mode === 'signup';
+            const tabSignIn = document.getElementById('m-auth-tab-signin');
+            const tabSignUp = document.getElementById('m-auth-tab-signup');
+            const title = document.getElementById('modal-auth-title');
+            const subtitle = document.getElementById('modal-auth-subtitle');
+            const nameField = document.getElementById('m-field-name');
+            const submitBtn = document.getElementById('m-auth-submit-btn');
+
+            if (tabSignIn && tabSignUp) {
+              if (isSignup) {
+                tabSignUp.className = 'flex-1 py-1.5 text-xs font-bold rounded-lg transition bg-white text-stone-900 shadow-2xs';
+                tabSignIn.className = 'flex-1 py-1.5 text-xs font-bold rounded-lg transition text-stone-600 hover:text-stone-900';
+              } else {
+                tabSignIn.className = 'flex-1 py-1.5 text-xs font-bold rounded-lg transition bg-white text-stone-900 shadow-2xs';
+                tabSignUp.className = 'flex-1 py-1.5 text-xs font-bold rounded-lg transition text-stone-600 hover:text-stone-900';
+              }
+            }
+
+            if (title) title.textContent = isSignup ? 'Create Account' : 'Sign In to codertech';
+            if (subtitle) subtitle.textContent = isSignup ? 'Fill your details to start using all developer features.' : 'Access user profile, saved articles, and developer toolkits.';
+            if (nameField) {
+              if (isSignup) {
+                nameField.classList.remove('hidden');
+              } else {
+                nameField.classList.add('hidden');
+              }
+            }
+            if (submitBtn) submitBtn.textContent = isSignup ? 'Create Account' : 'Sign In';
+          };
+
+          window.fillDemoCredentials = window.fillDemoCredentials || function(type) {
+            type = type || 'isaac';
+            const emailInput = document.getElementById('signin-email');
+            const passInput = document.getElementById('signin-password');
+            const modalEmail = document.getElementById('m-auth-email');
+            const modalPass = document.getElementById('m-auth-password');
+
+            if (type === 'isaac') {
+              if (emailInput) emailInput.value = 'isaacapptech23developer@gmail.com';
+              if (passInput) passInput.value = 'codertech2026';
+              if (modalEmail) modalEmail.value = 'isaacapptech23developer@gmail.com';
+              if (modalPass) modalPass.value = 'codertech2026';
+            } else {
+              if (emailInput) emailInput.value = 'guest.developer@codertech.dev';
+              if (passInput) passInput.value = 'demo12345';
+              if (modalEmail) modalEmail.value = 'guest.developer@codertech.dev';
+              if (modalPass) modalPass.value = 'demo12345';
+            }
+          };
+
+          window.fillDemoOtp = window.fillDemoOtp || function() {
+            const d1 = document.getElementById('otp-digit-1');
+            const d2 = document.getElementById('otp-digit-2');
+            const d3 = document.getElementById('otp-digit-3');
+            const d4 = document.getElementById('otp-digit-4');
+            if (d1) d1.value = '2';
+            if (d2) d2.value = '0';
+            if (d3) d3.value = '2';
+            if (d4) d4.value = '6';
+          };
+
+          window.openContactModal = window.openContactModal || function(prefillMessage) {
+            const msgInput = document.getElementById('contact-message');
+            if (msgInput && prefillMessage) {
+              msgInput.value = prefillMessage;
+            }
+            window.openModal('contact-modal');
+          };
+
+          window.openSearchModal = window.openSearchModal || function() {
+            window.openModal('search-modal');
+            setTimeout(function() {
+              const input = document.getElementById('global-search-input');
+              if (input) {
+                input.focus();
+                input.value = '';
+              }
+            }, 50);
+          };
+
+          window.applyTheme = function(theme, showNotification) {
+            const isDark = theme === 'dark';
+            if (isDark) {
+              document.documentElement.classList.add('dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+            }
+
+            // Sync toggle button icons & labels if DOM elements exist
+            const moonIcon = document.getElementById('theme-icon-moon');
+            const sunIcon = document.getElementById('theme-icon-sun');
+            const mobileThemeText = document.getElementById('mobile-theme-text');
+
+            if (moonIcon && sunIcon) {
+              if (isDark) {
+                moonIcon.classList.add('hidden');
+                moonIcon.classList.remove('block');
+                sunIcon.classList.remove('hidden');
+                sunIcon.classList.add('block');
+              } else {
+                sunIcon.classList.add('hidden');
+                sunIcon.classList.remove('block');
+                moonIcon.classList.remove('hidden');
+                moonIcon.classList.add('block');
+              }
+            }
+
+            if (mobileThemeText) {
+              mobileThemeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            }
+
+            if (showNotification && typeof window.showToast === 'function') {
+              window.showToast(isDark ? '🌙 Dark theme enabled' : '☀️ Light theme enabled', 'info');
+            }
+
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+              window.lucide.createIcons();
+            }
+          };
+
+          window.toggleTheme = function() {
+            const isCurrentlyDark = document.documentElement.classList.contains('dark');
+            const newTheme = isCurrentlyDark ? 'light' : 'dark';
+            try {
+              localStorage.setItem('codertech_theme', newTheme);
+            } catch (err) {}
+            window.applyTheme(newTheme, true);
+            if (typeof window.trackEvent === 'function') {
+              window.trackEvent('theme_toggle', { theme: newTheme });
+            }
+          };
+
+          const savedTheme = localStorage.getItem('codertech_theme');
+          const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {
+          console.warn('Theme/Global init error:', e);
+        }
+      })();
+    </script>
+
+    <!-- Google Analytics 4 (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CODERTECH23"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Configure GA4 measurement ID
+      window.GA_MEASUREMENT_ID = 'G-CODERTECH23';
+      gtag('config', window.GA_MEASUREMENT_ID, {
+        send_page_view: false, // Managed manually for SPA hash routing
+        anonymize_ip: true
+      });
+
+      // Global helper for GA4 custom event tracking
+      window.trackEvent = function(eventName, eventParams = {}) {
+        try {
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', eventName, {
+              ...eventParams,
+              timestamp: new Date().toISOString()
+            });
+          }
+          if (window.__DEV_MODE__) {
+            console.log('[GA4 Event]:', eventName, eventParams);
+          }
+        } catch (err) {
+          console.warn('[GA4 Event Warning]:', err);
+        }
+      };
+
+      // Global helper for GA4 SPA page views
+      window.trackPageView = function(pagePath, pageTitle) {
+        try {
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'page_view', {
+              page_path: pagePath,
+              page_title: pageTitle || document.title,
+              page_location: window.location.origin + window.location.pathname + (window.location.hash || '')
+            });
+          }
+          if (window.__DEV_MODE__) {
+            console.log('[GA4 PageView]:', pagePath, pageTitle);
+          }
+        } catch (err) {
+          console.warn('[GA4 PageView Warning]:', err);
+        }
+      };
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,13 +285,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
+        darkMode: 'class',
         theme: {
           extend: {
             colors: {
               brand: {
                 warm: '#FFF8F3',
                 card: '#FFFDFB',
-                dark: '#2D3436',
+                dark: '#0F1015',
+                darkCard: '#181A22',
+                darkBorder: '#272A34',
                 coral: '#FF7675',
                 purple: '#6C5CE7',
                 purpleLight: '#8B7EFF',
@@ -150,7 +391,6 @@
           <a href="#services" class="nav-link hover:text-stone-900 transition">Services</a>
           <a href="#process" class="nav-link hover:text-stone-900 transition">Process</a>
           <a href="#blog" class="nav-link hover:text-stone-900 transition">Blog</a>
-          <a href="#socials" class="nav-link hover:text-stone-900 transition">Socials</a>
           <a href="#monetize" class="nav-link hover:text-stone-900 transition flex items-center gap-1 text-[#e17055]">
             <i data-lucide="zap" class="w-3.5 h-3.5"></i>
             <span>Monetize</span>
@@ -158,7 +398,7 @@
         </nav>
 
         <!-- Right Action Controls -->
-        <div class="flex items-center gap-2.5">
+        <div class="flex items-center gap-2 sm:gap-2.5">
           <!-- Search Trigger (⌘K) -->
           <button onclick="window.openSearchModal()" class="px-3 py-1.5 rounded-xl bg-white border border-stone-200 text-stone-500 hover:text-stone-900 hover:border-stone-300 text-xs font-semibold flex items-center gap-2 transition shadow-2xs" title="Search Everything (⌘K)">
             <i data-lucide="search" class="w-3.5 h-3.5"></i>
@@ -166,10 +406,14 @@
             <kbd class="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-stone-100 text-stone-500 rounded border border-stone-200 font-mono">⌘K</kbd>
           </button>
 
-          <!-- Photo Settings Trigger -->
-          <button onclick="window.openPhotoSettingsModal()" class="p-2 rounded-xl bg-white border border-stone-200 text-stone-600 hover:text-stone-900 hover:border-stone-300 transition shadow-2xs" title="Customize Profile Photo">
-            <i data-lucide="image" class="w-4 h-4"></i>
-          </button>
+          <!-- User Auth / Profile Badge Container (Dynamic in js/app.js) -->
+          <div id="nav-auth-container" class="relative">
+            <!-- Rendered dynamically by updateNavbarAuthState() -->
+            <button onclick="window.openAuthModal('signin')" class="px-3.5 py-1.5 rounded-xl bg-white border border-stone-200 text-stone-700 hover:text-stone-900 hover:border-stone-300 text-xs font-bold flex items-center gap-1.5 transition shadow-2xs">
+              <i data-lucide="user" class="w-3.5 h-3.5 text-[#6C5CE7]"></i>
+              <span>Sign In</span>
+            </button>
+          </div>
 
           <!-- Contact Modal Trigger -->
           <button onclick="window.openContactModal()" class="hidden sm:flex px-4 py-2 bg-gradient-to-r from-[#FF7675] to-[#FF8E8D] hover:opacity-95 text-white rounded-xl text-xs font-bold transition items-center gap-1.5 shadow-sm shadow-rose-200">
@@ -178,7 +422,7 @@
           </button>
 
           <!-- Mobile Hamburger Toggle -->
-          <button onclick="window.toggleMobileNav()" class="md:hidden p-2 rounded-xl bg-white border border-stone-200 text-stone-700 hover:bg-stone-50">
+          <button onclick="window.toggleMobileNav()" class="md:hidden p-2 rounded-xl bg-white border border-stone-200 text-stone-700 hover:bg-stone-50" title="Toggle Navigation Menu">
             <i data-lucide="menu" class="w-5 h-5"></i>
           </button>
         </div>
@@ -186,13 +430,31 @@
 
       <!-- Mobile Navigation Drawer -->
       <div id="mobile-nav-drawer" class="hidden md:hidden border-t border-stone-200/80 bg-[#FFF8F3] px-4 py-4 space-y-3 shadow-lg">
+        <!-- Dynamic Mobile Auth Header -->
+        <div id="mobile-auth-container" class="pb-3 border-b border-stone-200/60">
+          <div class="flex items-center justify-between gap-2">
+            <div class="text-xs font-bold text-stone-500 uppercase font-mono">Account</div>
+            <div class="flex items-center gap-2">
+              <button onclick="window.toggleMobileNav(); window.openAuthModal('signin');" class="px-3 py-1 bg-white border border-stone-200 text-xs font-bold text-stone-800 rounded-lg shadow-2xs">
+                Sign In
+              </button>
+              <button onclick="window.toggleMobileNav(); window.openAuthModal('signup');" class="px-3 py-1 bg-[#6C5CE7] text-xs font-bold text-white rounded-lg shadow-2xs">
+                Create Account
+              </button>
+            </div>
+          </div>
+        </div>
+
         <a href="#home" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Home</a>
         <a href="#projects" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Projects</a>
         <a href="#services" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Services</a>
         <a href="#process" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Process</a>
         <a href="#monetize" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-[#e17055] py-1.5">Monetization Hub ⚡</a>
         <a href="#blog" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Tech Blog</a>
-        <a href="#socials" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">Socials</a>
+        <a href="#/profile" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-[#6C5CE7] py-1.5 flex items-center gap-1.5">
+          <i data-lucide="user" class="w-3.5 h-3.5"></i>
+          <span>User Profile & Settings</span>
+        </a>
         <a href="#faq" onclick="window.toggleMobileNav()" class="block text-xs font-bold text-stone-700 py-1.5">FAQ</a>
         <div class="pt-2">
           <button onclick="window.toggleMobileNav(); window.openContactModal();" class="w-full py-2.5 bg-gradient-to-r from-[#FF7675] to-[#FF8E8D] text-white rounded-xl text-xs font-bold shadow-sm">
@@ -227,7 +489,7 @@
                 <!-- Pill Badge -->
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFEAE6] border border-[#FFD2C9] text-[#E76F51] text-xs font-extrabold tracking-wide shadow-2xs">
                   <span class="w-2 h-2 rounded-full bg-[#FF7675] animate-ping"></span>
-                  <span>FULL-STACK DEVELOPER & TECH CREATOR ❤️</span>
+                  <span>KOTLIN APP & WEB DEVELOPER ❤️</span>
                 </div>
 
                 <!-- Main Headline with Handcrafted Accents -->
@@ -245,7 +507,7 @@
                 </div>
 
                 <p class="text-base sm:text-lg text-stone-600 leading-relaxed max-w-xl">
-                  Hi! I'm <strong class="text-stone-900 font-bold">Isaac (codertech)</strong>, a software developer & tech creator turning ideas into clean, fast, and scalable digital solutions for web, mobile, and online monetization.
+                  Hi! I'm <strong class="text-stone-900 font-bold">Isaac (codertech)</strong>, a software engineer specialized in <span class="text-stone-900 font-semibold">Kotlin Android app development</span> and <span class="text-stone-900 font-semibold">HTML, CSS & JavaScript website development</span>, building fast, lightweight, and scalable digital solutions.
                 </p>
 
                 <!-- Action CTA Buttons -->
@@ -266,11 +528,11 @@
                 <!-- Tech Focus Pills -->
                 <div class="pt-4 flex flex-wrap items-center gap-2">
                   <span class="text-xs font-bold text-stone-400 uppercase font-mono mr-1">Core Focus:</span>
-                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-stone-700 shadow-2xs">TypeScript</span>
-                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-stone-700 shadow-2xs">React 19</span>
-                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-stone-700 shadow-2xs">Next.js</span>
-                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-stone-700 shadow-2xs">Node / Express</span>
-                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-[#e17055] shadow-2xs">AI & Monetization</span>
+                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-stone-700 shadow-2xs">Kotlin</span>
+                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-stone-700 shadow-2xs">Jetpack Compose</span>
+                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-stone-700 shadow-2xs">HTML5 & CSS3</span>
+                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-stone-700 shadow-2xs">Modern JavaScript</span>
+                  <span class="px-3 py-1 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-lg text-xs font-bold text-[#e17055] shadow-2xs">Zero-Build Web Apps</span>
                 </div>
               </div>
 
@@ -524,50 +786,6 @@
         </section>
 
         <!-- ========================================================================= -->
-        <!-- SOCIAL MEDIA & COMMUNITY HUB -->
-        <!-- ========================================================================= -->
-        <section id="socials" class="py-16 md:py-24 bg-[#FFF8F3] border-t border-stone-200/60">
-          <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            
-            <div class="text-center max-w-2xl mx-auto mb-12">
-              <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold font-mono mb-3">
-                <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
-                <span>Community & Online Presence</span>
-              </span>
-              <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight font-display">
-                Connect with codertech
-              </h2>
-              <p class="text-sm text-stone-600 mt-2">
-                Join our channels for live pair programming, code reviews, and monetization discussions.
-              </p>
-            </div>
-
-            <div id="social-links-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-              <!-- Rendered by js/app.js -->
-            </div>
-
-            <!-- Fast Action Banner -->
-            <div class="p-6 bg-stone-900 text-white rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
-              <div>
-                <h4 class="text-base font-bold font-display">Share codertech with other developers 🚀</h4>
-                <p class="text-xs text-stone-400">Help fellow creators discover tools, technical articles, and starter kits.</p>
-              </div>
-              <div class="flex items-center gap-2">
-                <button onclick="window.copyText(window.location.origin, 'Portfolio Link')" class="px-4 py-2.5 bg-stone-800 hover:bg-stone-700 text-white text-xs font-bold rounded-xl transition flex items-center gap-2 border border-stone-700">
-                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                  <span>Copy Link</span>
-                </button>
-                <button onclick="window.openContactModal()" class="px-4 py-2.5 bg-gradient-to-r from-[#FF7675] to-[#FF8E8D] hover:opacity-95 text-white text-xs font-bold rounded-xl transition flex items-center gap-2 shadow-sm">
-                  <span>Start Collaboration</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </button>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- ========================================================================= -->
         <!-- CTA BANNER & QUICK QUESTIONS FAQ ACCORDION -->
         <!-- ========================================================================= -->
         <section id="faq" class="py-16 md:py-24 bg-stone-100/50 border-t border-stone-200/60">
@@ -644,7 +862,7 @@
                   Thoughts, Tutorials & Monetization
                 </h2>
                 <p class="text-sm text-stone-600 mt-2 max-w-xl leading-relaxed">
-                  Deep-dives on modern TypeScript architectures, developer monetization strategies, mobile performance, and AI tooling.
+                  Deep-dives on Kotlin Android architecture, vanilla HTML/CSS/JS engineering, mobile performance, and developer monetization.
                 </p>
               </div>
 
@@ -653,17 +871,17 @@
                 <button onclick="window.filterBlog('all')" data-category="all" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-stone-900 text-white shadow-sm transition">
                   All Articles
                 </button>
+                <button onclick="window.filterBlog('Kotlin')" data-category="Kotlin" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
+                  Kotlin
+                </button>
+                <button onclick="window.filterBlog('Web Dev')" data-category="Web Dev" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
+                  Web Dev
+                </button>
+                <button onclick="window.filterBlog('Android')" data-category="Android" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
+                  Android
+                </button>
                 <button onclick="window.filterBlog('Monetization')" data-category="Monetization" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
                   Monetization
-                </button>
-                <button onclick="window.filterBlog('Full-Stack')" data-category="Full-Stack" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
-                  Full-Stack
-                </button>
-                <button onclick="window.filterBlog('AI & Tools')" data-category="AI & Tools" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
-                  AI & Tools
-                </button>
-                <button onclick="window.filterBlog('Tech Journey')" data-category="Tech Journey" class="blog-filter-btn px-4 py-2 rounded-full text-xs font-bold bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 transition">
-                  Career
                 </button>
               </div>
             </div>
@@ -887,7 +1105,7 @@
                 Articles, Architecture & Developer Monetization
               </h1>
               <p class="text-base text-stone-600 leading-relaxed">
-                Practical engineering breakdowns, monetization playbooks, and TypeScript patterns for modern software builders.
+                Practical engineering breakdowns, Kotlin Android tutorials, vanilla HTML/CSS/JS guides, and developer monetization blueprints.
               </p>
             </div>
 
@@ -904,17 +1122,17 @@
                 <button onclick="window.filterBlogList('all')" data-blogcat="all" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-900 text-white transition">
                   All
                 </button>
+                <button onclick="window.filterBlogList('Kotlin')" data-blogcat="Kotlin" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-100 text-stone-600 hover:bg-stone-200 transition">
+                  Kotlin
+                </button>
+                <button onclick="window.filterBlogList('Web Dev')" data-blogcat="Web Dev" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-100 text-stone-600 hover:bg-stone-200 transition">
+                  Web Dev
+                </button>
+                <button onclick="window.filterBlogList('Android')" data-blogcat="Android" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-100 text-stone-600 hover:bg-stone-200 transition">
+                  Android
+                </button>
                 <button onclick="window.filterBlogList('Monetization')" data-blogcat="Monetization" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-100 text-stone-600 hover:bg-stone-200 transition">
                   Monetization
-                </button>
-                <button onclick="window.filterBlogList('Full-Stack')" data-blogcat="Full-Stack" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-100 text-stone-600 hover:bg-stone-200 transition">
-                  Full-Stack
-                </button>
-                <button onclick="window.filterBlogList('AI & Tools')" data-blogcat="AI & Tools" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-100 text-stone-600 hover:bg-stone-200 transition">
-                  AI & Tools
-                </button>
-                <button onclick="window.filterBlogList('Tech Journey')" data-blogcat="Tech Journey" class="blog-list-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-stone-100 text-stone-600 hover:bg-stone-200 transition">
-                  Career
                 </button>
               </div>
             </div>
@@ -1084,14 +1302,768 @@
         </section>
       </div>
 
+      <!-- ========================================================================= -->
+      <!-- VIEW 5: AUTHENTICATION SCREENS (SIGN IN • CREATE ACCOUNT • VERIFY CODE OTP) -->
+      <!-- ========================================================================= -->
+      <div id="auth-view" class="spa-view">
+        <section class="min-h-[85vh] py-12 md:py-20 relative overflow-hidden flex items-center justify-center bg-gradient-to-b from-[#FFF8F3] via-[#FAF3FC] to-[#F5EEFB]">
+          
+          <!-- Background Decorative Gradient Elements matching Mobile Mockup -->
+          <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#6C5CE7]/15 to-[#FF7675]/15 blur-3xl pointer-events-none"></div>
+          <div class="absolute top-1/2 -right-24 w-80 h-80 rounded-full bg-gradient-to-tl from-[#6C5CE7]/20 to-[#A29BFE]/20 blur-2xl pointer-events-none"></div>
+          <div class="hidden lg:block absolute top-16 right-1/4 w-72 h-72 rounded-full bg-[#6C5CE7] opacity-80 blur-xs -z-0 transform translate-x-20"></div>
+
+          <div class="max-w-md w-full mx-auto px-4 sm:px-6 relative z-10">
+            
+            <!-- Auth Navigation Mode Switcher Pills (Top Header) -->
+            <div class="flex items-center justify-center gap-2 p-1.5 bg-white/80 backdrop-blur-md rounded-2xl border border-stone-200/80 shadow-2xs mb-6 max-w-xs mx-auto">
+              <button onclick="window.switchAuthTab('signin')" id="auth-tab-btn-signin" class="flex-1 py-2 text-xs font-bold rounded-xl transition bg-[#6C5CE7] text-white shadow-xs">
+                Sign In
+              </button>
+              <button onclick="window.switchAuthTab('signup')" id="auth-tab-btn-signup" class="flex-1 py-2 text-xs font-bold rounded-xl transition text-stone-600 hover:text-stone-900">
+                Create Account
+              </button>
+            </div>
+
+            <!-- Authentic Mobile Card Wrapper -->
+            <div class="bg-white rounded-3xl border border-stone-200/90 p-6 sm:p-8 shadow-2xl shadow-purple-900/5 relative overflow-hidden transition-all duration-300">
+              
+              <!-- Screen Indicator Bar (Mobile UI Touch) -->
+              <div class="flex items-center justify-between text-[11px] font-mono font-bold text-stone-400 mb-6 pb-2 border-b border-stone-100">
+                <span class="flex items-center gap-1.5 text-stone-800">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span>Frontend Auth UI</span>
+                </span>
+                <span id="auth-screen-status" class="text-[#6C5CE7] bg-purple-50 px-2.5 py-0.5 rounded-full font-bold">Client-Side Sandbox</span>
+              </div>
+
+              <!-- Quick Demo Presets Banner -->
+              <div class="mb-5 p-3 rounded-2xl bg-purple-50/70 border border-purple-100 text-xs">
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <span class="font-bold text-[#6C5CE7] flex items-center gap-1">
+                    <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                    <span>Quick Demo Login</span>
+                  </span>
+                  <span class="text-[10px] text-stone-400 font-mono">No backend needed</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <button type="button" onclick="window.fillDemoCredentials('isaac')" class="px-2.5 py-1.5 bg-white hover:bg-purple-100/50 border border-purple-200 rounded-xl text-[11px] font-bold text-stone-800 transition text-left truncate shadow-2xs">
+                    👨‍💻 Isaac (Lead Dev)
+                  </button>
+                  <button type="button" onclick="window.fillDemoCredentials('demo')" class="px-2.5 py-1.5 bg-white hover:bg-purple-100/50 border border-purple-200 rounded-xl text-[11px] font-bold text-stone-800 transition text-left truncate shadow-2xs">
+                    🚀 Guest Member
+                  </button>
+                </div>
+              </div>
+
+              <!-- SCREEN 1: SIGN IN -->
+              <div id="auth-screen-signin" class="auth-screen-block space-y-5">
+                <div class="text-center space-y-1.5 mb-6">
+                  <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 font-display tracking-tight">
+                    Sign In
+                  </h2>
+                  <p class="text-xs sm:text-sm text-stone-500">
+                    Hi! Welcome back, you've been missed
+                  </p>
+                </div>
+
+                <form onsubmit="window.handleSignInSubmit(event)" class="space-y-4">
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Email</label>
+                    <div class="relative">
+                      <input type="email" id="signin-email" required placeholder="example@gmail.com" value="isaacapptech23developer@gmail.com" class="w-full px-4 py-3 bg-stone-50 border border-stone-200/90 rounded-2xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] focus:bg-white transition" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Password</label>
+                    <div class="relative">
+                      <input type="password" id="signin-password" required placeholder="••••••••••••••" value="codertech2026" class="w-full px-4 py-3 bg-stone-50 border border-stone-200/90 rounded-2xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] focus:bg-white transition pr-11" />
+                      <button type="button" onclick="window.togglePasswordVisibility('signin-password', this)" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 p-1" title="Toggle password visibility">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                    <div class="text-right mt-1.5">
+                      <button type="button" onclick="window.switchAuthTab('forgot')" class="text-[11px] font-bold text-[#6C5CE7] hover:underline">
+                        Forgot Password?
+                      </button>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="w-full py-3.5 bg-[#6C5CE7] hover:bg-[#5b4bc4] text-white rounded-2xl text-xs sm:text-sm font-bold shadow-md shadow-purple-200 transition flex items-center justify-center gap-2 mt-2 cursor-pointer">
+                    <span>Sign In</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                  </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="relative flex items-center justify-center my-6">
+                  <div class="border-t border-stone-200 w-full"></div>
+                  <span class="bg-white px-3 text-[11px] font-semibold text-stone-400 uppercase tracking-wider whitespace-nowrap">Or sign in with</span>
+                  <div class="border-t border-stone-200 w-full"></div>
+                </div>
+
+                <!-- Circular Social Buttons (Apple, Google, Facebook/GitHub) -->
+                <div class="flex items-center justify-center gap-4">
+                  <button onclick="window.handleSocialLogin('Apple')" type="button" class="w-12 h-12 rounded-full border border-stone-200 hover:border-stone-400 bg-white flex items-center justify-center text-stone-800 hover:bg-stone-50 transition shadow-2xs group" title="Sign in with Apple">
+                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.87-.9.04-2 .6-2.63 1.34-.56.64-1.04 1.72-.91 2.76 1 .08 2-.48 2.62-1.23z"/></svg>
+                  </button>
+                  <button onclick="window.handleSocialLogin('Google')" type="button" class="w-12 h-12 rounded-full border border-stone-200 hover:border-stone-400 bg-white flex items-center justify-center hover:bg-stone-50 transition shadow-2xs group" title="Sign in with Google">
+                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+                  </button>
+                  <button onclick="window.handleSocialLogin('Facebook')" type="button" class="w-12 h-12 rounded-full border border-stone-200 hover:border-stone-400 bg-white flex items-center justify-center hover:bg-stone-50 transition shadow-2xs group" title="Sign in with Facebook">
+                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="#1877F2" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                  </button>
+                </div>
+
+                <!-- Footer Prompt -->
+                <div class="text-center pt-2 text-xs text-stone-500">
+                  <span>Don't have an account?</span>
+                  <button type="button" onclick="window.switchAuthTab('signup')" class="text-[#6C5CE7] font-extrabold hover:underline ml-1">
+                    Sign Up
+                  </button>
+                </div>
+              </div>
+
+              <!-- SCREEN 2: CREATE ACCOUNT (SIGN UP) -->
+              <div id="auth-screen-signup" class="auth-screen-block hidden space-y-5">
+                <div class="text-center space-y-1.5 mb-6">
+                  <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 font-display tracking-tight">
+                    Create Account
+                  </h2>
+                  <p class="text-xs sm:text-sm text-stone-500">
+                    Fill your information below or register with your social account.
+                  </p>
+                </div>
+
+                <form onsubmit="window.handleSignUpSubmit(event)" class="space-y-4">
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Name</label>
+                    <input type="text" id="signup-name" required placeholder="Ex. John Doe" class="w-full px-4 py-3 bg-stone-50 border border-stone-200/90 rounded-2xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] focus:bg-white transition" />
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Email</label>
+                    <input type="email" id="signup-email" required placeholder="example@gmail.com" class="w-full px-4 py-3 bg-stone-50 border border-stone-200/90 rounded-2xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] focus:bg-white transition" />
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Password</label>
+                    <div class="relative">
+                      <input type="password" id="signup-password" required placeholder="••••••••••••••" class="w-full px-4 py-3 bg-stone-50 border border-stone-200/90 rounded-2xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] focus:bg-white transition pr-11" />
+                      <button type="button" onclick="window.togglePasswordVisibility('signup-password', this)" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 p-1" title="Toggle password visibility">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Terms and Condition Checkbox -->
+                  <div class="flex items-center gap-2.5 pt-1">
+                    <input type="checkbox" id="signup-terms" required checked class="w-4 h-4 rounded text-[#6C5CE7] focus:ring-[#6C5CE7] border-stone-300 accent-[#6C5CE7]" />
+                    <label for="signup-terms" class="text-xs text-stone-600 font-medium select-none">
+                      Agree with <button type="button" onclick="window.showTermsModal()" class="text-[#6C5CE7] font-bold underline">Terms & Condition</button>
+                    </label>
+                  </div>
+
+                  <button type="submit" class="w-full py-3.5 bg-[#6C5CE7] hover:bg-[#5b4bc4] text-white rounded-2xl text-xs sm:text-sm font-bold shadow-md shadow-purple-200 transition flex items-center justify-center gap-2 mt-2 cursor-pointer">
+                    <span>Sign Up</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                  </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="relative flex items-center justify-center my-6">
+                  <div class="border-t border-stone-200 w-full"></div>
+                  <span class="bg-white px-3 text-[11px] font-semibold text-stone-400 uppercase tracking-wider whitespace-nowrap">Or sign up with</span>
+                  <div class="border-t border-stone-200 w-full"></div>
+                </div>
+
+                <!-- Circular Social Buttons -->
+                <div class="flex items-center justify-center gap-4">
+                  <button onclick="window.handleSocialLogin('Apple')" type="button" class="w-12 h-12 rounded-full border border-stone-200 hover:border-stone-400 bg-white flex items-center justify-center text-stone-800 hover:bg-stone-50 transition shadow-2xs group" title="Sign up with Apple">
+                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.87-.9.04-2 .6-2.63 1.34-.56.64-1.04 1.72-.91 2.76 1 .08 2-.48 2.62-1.23z"/></svg>
+                  </button>
+                  <button onclick="window.handleSocialLogin('Google')" type="button" class="w-12 h-12 rounded-full border border-stone-200 hover:border-stone-400 bg-white flex items-center justify-center hover:bg-stone-50 transition shadow-2xs group" title="Sign up with Google">
+                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+                  </button>
+                  <button onclick="window.handleSocialLogin('Facebook')" type="button" class="w-12 h-12 rounded-full border border-stone-200 hover:border-stone-400 bg-white flex items-center justify-center hover:bg-stone-50 transition shadow-2xs group" title="Sign up with Facebook">
+                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="#1877F2" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                  </button>
+                </div>
+
+                <!-- Footer Prompt -->
+                <div class="text-center pt-2 text-xs text-stone-500">
+                  <span>Already have an account?</span>
+                  <button type="button" onclick="window.switchAuthTab('signin')" class="text-[#6C5CE7] font-extrabold hover:underline ml-1">
+                    Sign In
+                  </button>
+                </div>
+              </div>
+
+              <!-- SCREEN 3: VERIFY CODE (OTP VERIFICATION) -->
+              <div id="auth-screen-verify" class="auth-screen-block hidden space-y-6">
+                <!-- Back arrow -->
+                <button type="button" onclick="window.switchAuthTab('signup')" class="p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition inline-flex items-center gap-1 text-xs font-bold" title="Back">
+                  <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                  <span>Back</span>
+                </button>
+
+                <div class="text-center space-y-2">
+                  <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 font-display tracking-tight">
+                    Verify Code
+                  </h2>
+                  <p class="text-xs sm:text-sm text-stone-500 max-w-xs mx-auto">
+                    Please enter the code we just sent to email <span id="auth-verify-email-text" class="text-[#6C5CE7] font-bold font-mono">example@gmail.com</span>
+                  </p>
+                </div>
+
+                <!-- 4-Digit OTP Input Boxes -->
+                <div class="flex items-center justify-center gap-3 py-3">
+                  <input type="text" maxlength="1" id="otp-digit-1" class="otp-input-field w-12 h-14 sm:w-14 sm:h-16 text-center font-extrabold text-2xl rounded-2xl bg-stone-50 border-2 border-stone-200 focus:border-[#6C5CE7] focus:bg-white focus:ring-4 focus:ring-purple-100 text-stone-900 outline-none transition font-mono" inputmode="numeric" />
+                  <input type="text" maxlength="1" id="otp-digit-2" class="otp-input-field w-12 h-14 sm:w-14 sm:h-16 text-center font-extrabold text-2xl rounded-2xl bg-stone-50 border-2 border-stone-200 focus:border-[#6C5CE7] focus:bg-white focus:ring-4 focus:ring-purple-100 text-stone-900 outline-none transition font-mono" inputmode="numeric" />
+                  <input type="text" maxlength="1" id="otp-digit-3" class="otp-input-field w-12 h-14 sm:w-14 sm:h-16 text-center font-extrabold text-2xl rounded-2xl bg-stone-50 border-2 border-stone-200 focus:border-[#6C5CE7] focus:bg-white focus:ring-4 focus:ring-purple-100 text-stone-900 outline-none transition font-mono" inputmode="numeric" />
+                  <input type="text" maxlength="1" id="otp-digit-4" class="otp-input-field w-12 h-14 sm:w-14 sm:h-16 text-center font-extrabold text-2xl rounded-2xl bg-stone-50 border-2 border-stone-200 focus:border-[#6C5CE7] focus:bg-white focus:ring-4 focus:ring-purple-100 text-stone-900 outline-none transition font-mono" inputmode="numeric" />
+                </div>
+
+                <!-- Demo OTP Shortcut Button -->
+                <div class="text-center">
+                  <button type="button" onclick="window.fillDemoOtp()" class="px-3.5 py-1.5 bg-purple-50 hover:bg-purple-100 border border-purple-200 text-[#6C5CE7] text-xs font-bold rounded-xl transition inline-flex items-center gap-1.5 shadow-2xs">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    <span>Auto-Fill Demo Code (2026)</span>
+                  </button>
+                </div>
+
+                <!-- Resend Prompt -->
+                <div class="text-center text-xs text-stone-500">
+                  <span>Didn't receive OTP?</span>
+                  <button type="button" onclick="window.resendOtpCode()" id="btn-resend-otp" class="text-[#6C5CE7] font-bold hover:underline ml-1">
+                    Resend code
+                  </button>
+                  <span id="otp-countdown-timer" class="text-stone-400 font-mono ml-1">(45s)</span>
+                </div>
+
+                <button type="button" onclick="window.submitVerifyOtp()" class="w-full py-3.5 bg-[#6C5CE7] hover:bg-[#5b4bc4] text-white rounded-2xl text-xs sm:text-sm font-bold shadow-md shadow-purple-200 transition flex items-center justify-center gap-2 cursor-pointer">
+                  <span>Verify</span>
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <!-- SCREEN 4: FORGOT PASSWORD -->
+              <div id="auth-screen-forgot" class="auth-screen-block hidden space-y-5">
+                <button type="button" onclick="window.switchAuthTab('signin')" class="p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition inline-flex items-center gap-1 text-xs font-bold" title="Back">
+                  <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                  <span>Back to Sign In</span>
+                </button>
+
+                <div class="text-center space-y-1.5 mb-6">
+                  <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 font-display tracking-tight">
+                    Reset Password
+                  </h2>
+                  <p class="text-xs sm:text-sm text-stone-500">
+                    Enter your email to receive a 4-digit password recovery code.
+                  </p>
+                </div>
+
+                <form onsubmit="window.handleForgotSubmit(event)" class="space-y-4">
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Your Account Email</label>
+                    <input type="email" id="forgot-email" required placeholder="example@gmail.com" value="isaacapptech23developer@gmail.com" class="w-full px-4 py-3 bg-stone-50 border border-stone-200/90 rounded-2xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] focus:bg-white transition" />
+                  </div>
+
+                  <button type="submit" class="w-full py-3.5 bg-[#6C5CE7] hover:bg-[#5b4bc4] text-white rounded-2xl text-xs sm:text-sm font-bold shadow-md shadow-purple-200 transition flex items-center justify-center gap-2 cursor-pointer">
+                    <span>Send Reset Code</span>
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                  </button>
+                </form>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- VIEW 6: USER PROFILE & SETTINGS (CAMERA AVATAR, UPLOAD, THEME TOGGLE, LOGOUT) -->
+      <!-- ========================================================================= -->
+      <div id="profile-view" class="spa-view">
+        <section class="py-10 md:py-16 bg-stone-50/70 min-h-[85vh]">
+          <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            
+            <!-- Profile Banner & Main Header Card -->
+            <div class="bg-white rounded-3xl border border-stone-200/90 shadow-lg overflow-hidden mb-8">
+              
+              <!-- Gradient Cover Area -->
+              <div class="h-36 sm:h-48 bg-gradient-to-r from-[#6C5CE7] via-[#8B7EFF] to-[#FF7675] relative p-4 flex items-end justify-end">
+                <span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-[11px] font-mono font-bold">
+                  codertech Verified Profile ⚡
+                </span>
+              </div>
+
+              <!-- Profile Details Header Strip -->
+              <div class="px-6 sm:px-8 pb-8 pt-0 relative">
+                <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 -mt-16 sm:-mt-20">
+                  
+                  <!-- Avatar Container with Camera Trigger Overlay -->
+                  <div class="flex items-end gap-5">
+                    <div class="relative group">
+                      <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-3xl p-1 bg-white shadow-xl border border-stone-200/80 overflow-hidden">
+                        <img id="user-profile-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="User Avatar" class="w-full h-full object-cover rounded-2xl dynamic-user-avatar" />
+                      </div>
+                      
+                      <!-- Camera Quick Overlay Button -->
+                      <button onclick="window.openCameraModal()" class="absolute bottom-2 right-2 p-2.5 rounded-2xl bg-[#6C5CE7] hover:bg-[#5b4bc4] text-white shadow-lg transition transform hover:scale-110 flex items-center justify-center cursor-pointer" title="Take photo with Camera or Upload image">
+                        <i data-lucide="camera" class="w-4 h-4"></i>
+                      </button>
+                    </div>
+
+                    <div class="space-y-1">
+                      <div class="flex flex-wrap items-center gap-2">
+                        <h1 id="user-profile-name-display" class="text-2xl sm:text-3xl font-extrabold text-stone-900 font-display">
+                          Isaac
+                        </h1>
+                        <span class="px-2.5 py-0.5 rounded-full bg-purple-100 text-[#6C5CE7] text-[11px] font-extrabold font-mono">
+                          PRO DEVELOPER
+                        </span>
+                      </div>
+                      <p id="user-profile-handle-display" class="text-xs sm:text-sm text-stone-500 font-mono">
+                        @isaac_codertech
+                      </p>
+                      <p id="user-profile-email-display" class="text-xs text-stone-600 font-medium">
+                        isaacapptech23developer@gmail.com
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Quick Header Actions -->
+                  <div class="flex flex-wrap items-center gap-2.5">
+                    <button onclick="window.openCameraModal()" class="px-4 py-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm">
+                      <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+                      <span>Take Photo</span>
+                    </button>
+                    <button onclick="document.getElementById('avatar-file-input').click()" class="px-4 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-xs font-bold transition flex items-center gap-2">
+                      <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                      <span>Upload Avatar</span>
+                    </button>
+                    <input type="file" id="avatar-file-input" accept="image/*" class="hidden" onchange="window.handleAvatarFileInput(event)" />
+                    <button onclick="window.logoutUser()" class="px-4 py-2.5 border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                      <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+                      <span>Log Out</span>
+                    </button>
+                  </div>
+
+                </div>
+
+                <!-- Quick Stats Strip -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 mt-6 border-t border-stone-100">
+                  <div class="p-3 rounded-2xl bg-stone-50 border border-stone-200/60">
+                    <div class="text-[10px] font-bold text-stone-400 uppercase font-mono">Account Status</div>
+                    <div class="text-sm font-bold text-emerald-600 font-display flex items-center gap-1 mt-0.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                      <span>Active • Verified</span>
+                    </div>
+                  </div>
+                  <div class="p-3 rounded-2xl bg-stone-50 border border-stone-200/60">
+                    <div class="text-[10px] font-bold text-stone-400 uppercase font-mono">Saved Articles</div>
+                    <div id="stat-saved-count" class="text-sm font-bold text-[#6C5CE7] font-display mt-0.5">2 Bookmarks</div>
+                  </div>
+                  <div class="p-3 rounded-2xl bg-stone-50 border border-stone-200/60">
+                    <div class="text-[10px] font-bold text-stone-400 uppercase font-mono">Estimates Created</div>
+                    <div class="text-sm font-bold text-[#FF7675] font-display mt-0.5">3 Scopes</div>
+                  </div>
+                  <div class="p-3 rounded-2xl bg-stone-50 border border-stone-200/60">
+                    <div class="text-[10px] font-bold text-stone-400 uppercase font-mono">Member Since</div>
+                    <div class="text-sm font-bold text-stone-800 font-display mt-0.5">August 2026</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Profile Sections Grid (2 Columns: Left Tabs, Right Content) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              
+              <!-- Left Column: Settings Navigation Links -->
+              <div class="lg:col-span-4 space-y-4">
+                <div class="bg-white rounded-3xl border border-stone-200/80 p-4 shadow-sm space-y-1">
+                  <button onclick="window.switchProfileTab('info')" id="ptab-btn-info" class="w-full px-4 py-3 rounded-2xl text-left text-xs font-bold flex items-center gap-3 transition bg-[#6C5CE7] text-white shadow-2xs">
+                    <i data-lucide="user" class="w-4 h-4"></i>
+                    <span>Personal Info & Bio</span>
+                  </button>
+                  <button onclick="window.switchProfileTab('avatar')" id="ptab-btn-avatar" class="w-full px-4 py-3 rounded-2xl text-left text-xs font-bold flex items-center gap-3 transition text-stone-600 hover:bg-stone-50">
+                    <i data-lucide="camera" class="w-4 h-4"></i>
+                    <span>Avatar & Camera Studio</span>
+                  </button>
+                  <button onclick="window.switchProfileTab('settings')" id="ptab-btn-settings" class="w-full px-4 py-3 rounded-2xl text-left text-xs font-bold flex items-center gap-3 transition text-stone-600 hover:bg-stone-50">
+                    <i data-lucide="sliders" class="w-4 h-4"></i>
+                    <span>Preferences & Theme</span>
+                  </button>
+                  <button onclick="window.switchProfileTab('bookmarks')" id="ptab-btn-bookmarks" class="w-full px-4 py-3 rounded-2xl text-left text-xs font-bold flex items-center gap-3 transition text-stone-600 hover:bg-stone-50">
+                    <i data-lucide="bookmark" class="w-4 h-4"></i>
+                    <span>Saved Blog Articles</span>
+                  </button>
+                  <div class="pt-2 border-t border-stone-100">
+                    <button onclick="window.logoutUser()" class="w-full px-4 py-3 rounded-2xl text-left text-xs font-bold flex items-center gap-3 transition text-rose-600 hover:bg-rose-50">
+                      <i data-lucide="log-out" class="w-4 h-4"></i>
+                      <span>Log Out of Session</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Helpful Tip Box -->
+                <div class="p-5 rounded-3xl bg-gradient-to-br from-purple-50 to-rose-50 border border-purple-100 space-y-2">
+                  <div class="flex items-center gap-2 text-xs font-bold text-[#6C5CE7]">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    <span>Camera & Avatar Tip</span>
+                  </div>
+                  <p class="text-xs text-stone-600 leading-relaxed">
+                    You can snap a selfie using your front or back camera, upload high-res images, or select from curated developer avatars. All stored safely in browser memory.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Right Column: Tab Panels -->
+              <div class="lg:col-span-8">
+                
+                <!-- TAB 1: PERSONAL INFO -->
+                <div id="ptab-panel-info" class="profile-tab-panel bg-white rounded-3xl border border-stone-200/90 p-6 sm:p-8 shadow-sm space-y-6">
+                  <div>
+                    <h3 class="text-xl font-extrabold text-stone-900 font-display">Personal Profile</h3>
+                    <p class="text-xs text-stone-500">Update your public developer identity and professional bio.</p>
+                  </div>
+
+                  <form onsubmit="window.handleProfileSave(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Full Name</label>
+                        <input type="text" id="prof-name" required value="Isaac" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]" />
+                      </div>
+                      <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Username Handle</label>
+                        <input type="text" id="prof-handle" required value="@isaac_codertech" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]" />
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Professional Title / Role</label>
+                        <input type="text" id="prof-headline" value="Full-Stack Engineer & Kotlin Android Developer" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]" />
+                      </div>
+                      <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Primary Email</label>
+                        <input type="email" id="prof-email" required value="isaacapptech23developer@gmail.com" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]" />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Bio / About Me</label>
+                      <textarea id="prof-bio" rows="3" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] resize-none">Software engineer building modern native Kotlin Android apps and lightweight, ultra-fast web architectures. Passionate about developer tools and tech blogging.</textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Location</label>
+                        <input type="text" id="prof-location" value="Global / Remote" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]" />
+                      </div>
+                      <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">GitHub URL</label>
+                        <input type="url" id="prof-github" value="https://github.com" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]" />
+                      </div>
+                      <div>
+                        <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">X / Twitter</label>
+                        <input type="url" id="prof-twitter" value="https://twitter.com" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]" />
+                      </div>
+                    </div>
+
+                    <div class="pt-4 flex justify-end">
+                      <button type="submit" class="px-6 py-3 bg-[#6C5CE7] hover:bg-[#5b4bc4] text-white rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-md shadow-purple-200 cursor-pointer">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                        <span>Save Profile Changes</span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- TAB 2: AVATAR & CAMERA STUDIO -->
+                <div id="ptab-panel-avatar" class="profile-tab-panel hidden bg-white rounded-3xl border border-stone-200/90 p-6 sm:p-8 shadow-sm space-y-6">
+                  <div>
+                    <h3 class="text-xl font-extrabold text-stone-900 font-display">Avatar & Camera Studio</h3>
+                    <p class="text-xs text-stone-500">Capture a snapshot with your camera, upload a custom picture, or pick a preset.</p>
+                  </div>
+
+                  <!-- Live Camera Launch Box -->
+                  <div class="p-6 rounded-3xl bg-gradient-to-r from-purple-50 via-rose-50 to-amber-50 border border-purple-100 flex flex-col sm:flex-row items-center justify-between gap-5">
+                    <div class="space-y-1 text-center sm:text-left">
+                      <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-white rounded-full text-[11px] font-bold text-[#6C5CE7] shadow-2xs">
+                        <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+                        <span>LIVE WEBCAM / PHONE CAMERA</span>
+                      </div>
+                      <h4 class="text-base font-bold text-stone-900">Take Live Camera Snapshot</h4>
+                      <p class="text-xs text-stone-600 max-w-sm">Use your device's live video feed with mirror mode and real-time capture.</p>
+                    </div>
+                    <button onclick="window.openCameraModal()" class="px-5 py-3 bg-[#6C5CE7] hover:bg-[#5b4bc4] text-white rounded-2xl text-xs font-bold transition flex items-center gap-2 shadow-md shadow-purple-200 cursor-pointer whitespace-nowrap">
+                      <i data-lucide="camera" class="w-4 h-4"></i>
+                      <span>Launch Camera</span>
+                    </button>
+                  </div>
+
+                  <!-- File Upload Drop Zone -->
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-2">Upload From Device</label>
+                    <div onclick="document.getElementById('avatar-file-input').click()" class="border-2 border-dashed border-stone-200 hover:border-[#6C5CE7] rounded-3xl p-8 text-center cursor-pointer transition bg-stone-50 hover:bg-purple-50/40 group">
+                      <div class="w-12 h-12 rounded-2xl bg-white border border-stone-200 flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform text-[#6C5CE7]">
+                        <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+                      </div>
+                      <div class="text-xs font-bold text-stone-800">Click to upload photo or drag & drop</div>
+                      <div class="text-[11px] text-stone-400 mt-1">PNG, JPG, WEBP or GIF (Max 5MB)</div>
+                    </div>
+                  </div>
+
+                  <!-- Preset Avatars -->
+                  <div>
+                    <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-3">Or Select A Curated Developer Preset</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                      <button onclick="window.selectAvatarPreset('https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80')" class="p-2 rounded-2xl border-2 border-stone-200 hover:border-[#6C5CE7] transition bg-white text-left group">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80" class="w-full h-24 object-cover rounded-xl mb-1.5" />
+                        <span class="text-[11px] font-bold text-stone-700 group-hover:text-[#6C5CE7]">Creator Isaac</span>
+                      </button>
+                      <button onclick="window.selectAvatarPreset('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80')" class="p-2 rounded-2xl border-2 border-stone-200 hover:border-[#6C5CE7] transition bg-white text-left group">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80" class="w-full h-24 object-cover rounded-xl mb-1.5" />
+                        <span class="text-[11px] font-bold text-stone-700 group-hover:text-[#6C5CE7]">Tech Lead</span>
+                      </button>
+                      <button onclick="window.selectAvatarPreset('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80')" class="p-2 rounded-2xl border-2 border-stone-200 hover:border-[#6C5CE7] transition bg-white text-left group">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80" class="w-full h-24 object-cover rounded-xl mb-1.5" />
+                        <span class="text-[11px] font-bold text-stone-700 group-hover:text-[#6C5CE7]">Android Pro</span>
+                      </button>
+                      <button onclick="window.selectAvatarPreset('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80')" class="p-2 rounded-2xl border-2 border-stone-200 hover:border-[#6C5CE7] transition bg-white text-left group">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80" class="w-full h-24 object-cover rounded-xl mb-1.5" />
+                        <span class="text-[11px] font-bold text-stone-700 group-hover:text-[#6C5CE7]">Staff Engineer</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- TAB 3: SETTINGS & THEME TOGGLE -->
+                <div id="ptab-panel-settings" class="profile-tab-panel hidden bg-white rounded-3xl border border-stone-200/90 p-6 sm:p-8 shadow-sm space-y-6">
+                  <div>
+                    <h3 class="text-xl font-extrabold text-stone-900 font-display">Preferences & Theme</h3>
+                    <p class="text-xs text-stone-500">Configure visual themes, notification alerts, and account security.</p>
+                  </div>
+
+                  <!-- THEME MODE SELECTOR (LIGHT / DARK) -->
+                  <div class="space-y-3 pt-2">
+                    <label class="block text-xs font-bold text-stone-700 uppercase font-mono">Appearance / Visual Theme</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <!-- Light Mode Card -->
+                      <div onclick="window.setThemeFromProfile('light')" id="theme-card-light" class="p-5 rounded-3xl border-2 cursor-pointer transition border-[#6C5CE7] bg-purple-50/40 shadow-xs">
+                        <div class="flex items-center justify-between mb-3">
+                          <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold">
+                            ☀️
+                          </div>
+                          <span id="badge-light-active" class="px-2.5 py-0.5 rounded-full bg-[#6C5CE7] text-white text-[10px] font-bold font-mono">ACTIVE</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-stone-900 font-display">Light Mode (Default)</h4>
+                        <p class="text-xs text-stone-600 mt-1">Warm pastel canvas (#FFF8F3), high readability, and clean typography.</p>
+                      </div>
+
+                      <!-- Dark Mode Card -->
+                      <div onclick="window.setThemeFromProfile('dark')" id="theme-card-dark" class="p-5 rounded-3xl border-2 cursor-pointer transition border-stone-200 bg-stone-900 text-white hover:border-stone-400">
+                        <div class="flex items-center justify-between mb-3">
+                          <div class="w-10 h-10 rounded-2xl bg-stone-800 text-purple-400 flex items-center justify-center font-bold">
+                            🌙
+                          </div>
+                          <span id="badge-dark-active" class="hidden px-2.5 py-0.5 rounded-full bg-[#6C5CE7] text-white text-[10px] font-bold font-mono">ACTIVE</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white font-display">Dark Mode</h4>
+                        <p class="text-xs text-stone-400 mt-1">Sleek midnight dark palette (#0F1015) for low-light developer workflows.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Email Notifications -->
+                  <div class="space-y-3 pt-4 border-t border-stone-100">
+                    <label class="block text-xs font-bold text-stone-700 uppercase font-mono">Email Notification Alerts</label>
+                    <div class="space-y-3">
+                      <label class="flex items-center justify-between p-3.5 bg-stone-50 rounded-2xl border border-stone-200/80 cursor-pointer">
+                        <div>
+                          <div class="text-xs font-bold text-stone-800">New Technical Articles & Guides</div>
+                          <div class="text-[11px] text-stone-500">Get notified when Isaac publishes Kotlin or Web tutorials</div>
+                        </div>
+                        <input type="checkbox" checked class="w-4 h-4 accent-[#6C5CE7] rounded" />
+                      </label>
+                      <label class="flex items-center justify-between p-3.5 bg-stone-50 rounded-2xl border border-stone-200/80 cursor-pointer">
+                        <div>
+                          <div class="text-xs font-bold text-stone-800">Starter Kits & Monetization Discounts</div>
+                          <div class="text-[11px] text-stone-500">Receive special coupons for developer digital products</div>
+                        </div>
+                        <input type="checkbox" checked class="w-4 h-4 accent-[#6C5CE7] rounded" />
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Security Section -->
+                  <div class="space-y-3 pt-4 border-t border-stone-100">
+                    <label class="block text-xs font-bold text-stone-700 uppercase font-mono">Account Security</label>
+                    <div class="flex items-center justify-between p-4 bg-stone-50 rounded-2xl border border-stone-200/80">
+                      <div>
+                        <div class="text-xs font-bold text-stone-800">Two-Factor Authentication (2FA)</div>
+                        <div class="text-[11px] text-stone-500">Require OTP verification on every login attempt</div>
+                      </div>
+                      <button onclick="window.showToast('2-Factor Authentication is currently active', 'info')" class="px-3.5 py-1.5 bg-[#6C5CE7] text-white text-xs font-bold rounded-xl shadow-2xs">
+                        Enabled
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- TAB 4: SAVED BLOG ARTICLES -->
+                <div id="ptab-panel-bookmarks" class="profile-tab-panel hidden bg-white rounded-3xl border border-stone-200/90 p-6 sm:p-8 shadow-sm space-y-6">
+                  <div>
+                    <h3 class="text-xl font-extrabold text-stone-900 font-display">Bookmarked Articles</h3>
+                    <p class="text-xs text-stone-500">Articles and technical playbooks you have saved for reading.</p>
+                  </div>
+
+                  <div id="profile-saved-blogs-list" class="space-y-3">
+                    <!-- Rendered dynamically by js/app.js -->
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      </div>
+
     </main>
 
     <!-- ========================================================================= -->
-    <!-- FOOTER (4-COLUMN RESPONSIVE LAYOUT) -->
+    <!-- FOOTER (WITH EXPANDED SOCIAL PLATFORMS & REAL BRAND ICONS) -->
     <!-- ========================================================================= -->
     <footer class="bg-[#FFF8F3] border-t border-stone-200/80 pt-16 pb-12">
       <div class="max-w-6xl mx-auto px-4 sm:px-6">
         
+        <!-- TOP SECTION: COMPREHENSIVE SOCIAL PLATFORMS & COMMUNITIES -->
+        <div class="mb-14 pb-12 border-b border-stone-200">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+            <div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 text-[#6C5CE7] text-xs font-extrabold font-mono mb-2">
+                <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
+                <span>ONLINE PLATFORMS & COMMUNITIES</span>
+              </span>
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-stone-900 font-display">
+                Follow & Connect with Isaac (codertech)
+              </h3>
+            </div>
+            <p class="text-xs text-stone-500 max-w-md">
+              Join 40,000+ developers across our YouTube, GitHub, Discord, and Telegram channels for daily tips and code breakdowns.
+            </p>
+          </div>
+
+          <!-- Rich Real Social Icons Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            
+            <!-- 1. GitHub -->
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-stone-200 hover:border-stone-900 transition hover-lift group flex items-start gap-3 shadow-2xs">
+              <div class="w-10 h-10 rounded-xl bg-stone-900 text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-stone-900 group-hover:text-[#6C5CE7] transition truncate">GitHub</div>
+                <div class="text-[11px] text-stone-500 font-mono">@codertech</div>
+                <div class="text-[10px] text-emerald-600 font-semibold mt-0.5">3.8k Stars • 50+ Repos</div>
+              </div>
+            </a>
+
+            <!-- 2. LinkedIn -->
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-stone-200 hover:border-[#0A66C2] transition hover-lift group flex items-start gap-3 shadow-2xs">
+              <div class="w-10 h-10 rounded-xl bg-[#0A66C2] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-stone-900 group-hover:text-[#0A66C2] transition truncate">LinkedIn</div>
+                <div class="text-[11px] text-stone-500 font-mono">Isaac (codertech)</div>
+                <div class="text-[10px] text-blue-600 font-semibold mt-0.5">6.2k Followers</div>
+              </div>
+            </a>
+
+            <!-- 3. X (Twitter) -->
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-stone-200 hover:border-stone-900 transition hover-lift group flex items-start gap-3 shadow-2xs">
+              <div class="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-stone-900 group-hover:text-stone-700 transition truncate">X (Twitter)</div>
+                <div class="text-[11px] text-stone-500 font-mono">@codertech_dev</div>
+                <div class="text-[10px] text-stone-600 font-semibold mt-0.5">14.5k Followers</div>
+              </div>
+            </a>
+
+            <!-- 4. YouTube -->
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-stone-200 hover:border-[#FF0000] transition hover-lift group flex items-start gap-3 shadow-2xs">
+              <div class="w-10 h-10 rounded-xl bg-[#FF0000] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-stone-900 group-hover:text-[#FF0000] transition truncate">YouTube</div>
+                <div class="text-[11px] text-stone-500 font-mono">codertech TV</div>
+                <div class="text-[10px] text-red-600 font-semibold mt-0.5">21.0k Subscribers</div>
+              </div>
+            </a>
+
+            <!-- 5. Discord -->
+            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-stone-200 hover:border-[#5865F2] transition hover-lift group flex items-start gap-3 shadow-2xs">
+              <div class="w-10 h-10 rounded-xl bg-[#5865F2] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-stone-900 group-hover:text-[#5865F2] transition truncate">Discord</div>
+                <div class="text-[11px] text-stone-500 font-mono">codertech Lounge</div>
+                <div class="text-[10px] text-indigo-600 font-semibold mt-0.5">2.5k Members</div>
+              </div>
+            </a>
+
+            <!-- 6. Instagram -->
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-stone-200 hover:border-[#E4405F] transition hover-lift group flex items-start gap-3 shadow-2xs">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#FFDC80] via-[#FD1D1D] to-[#833AB4] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-stone-900 group-hover:text-[#E4405F] transition truncate">Instagram</div>
+                <div class="text-[11px] text-stone-500 font-mono">@codertech.dev</div>
+                <div class="text-[10px] text-rose-600 font-semibold mt-0.5">8.4k Followers</div>
+              </div>
+            </a>
+
+            <!-- 7. Telegram -->
+            <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-stone-200 hover:border-[#24A1DE] transition hover-lift group flex items-start gap-3 shadow-2xs">
+              <div class="w-10 h-10 rounded-xl bg-[#24A1DE] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-stone-900 group-hover:text-[#24A1DE] transition truncate">Telegram</div>
+                <div class="text-[11px] text-stone-500 font-mono">@codertech_updates</div>
+                <div class="text-[10px] text-sky-600 font-semibold mt-0.5">4.1k Subscribers</div>
+              </div>
+            </a>
+
+            <!-- 8. Direct Email -->
+            <a href="mailto:isaacapptech23developer@gmail.com" class="p-4 rounded-2xl bg-white border border-stone-200 hover:border-[#FF7675] transition hover-lift group flex items-start gap-3 shadow-2xs">
+              <div class="w-10 h-10 rounded-xl bg-[#FF7675] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs font-bold text-stone-900 group-hover:text-[#FF7675] transition truncate">Direct Email</div>
+                <div class="text-[11px] text-stone-500 font-mono truncate">isaacapptech23...</div>
+                <div class="text-[10px] text-rose-600 font-semibold mt-0.5">&lt;24h Response Rate</div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-stone-200">
           
           <!-- Col 1: Brand & Bio -->
@@ -1110,19 +2082,12 @@
               Turning ideas into clean, fast, and scalable digital solutions for web, mobile, and developer monetization. Let's create something meaningful together.
             </p>
 
-            <div class="flex items-center gap-3 text-stone-500">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-2 bg-white rounded-xl border border-stone-200 hover:text-stone-900 transition">
-                <i data-lucide="github" class="w-4 h-4"></i>
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="p-2 bg-white rounded-xl border border-stone-200 hover:text-stone-900 transition">
-                <i data-lucide="twitter" class="w-4 h-4"></i>
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-2 bg-white rounded-xl border border-stone-200 hover:text-stone-900 transition">
-                <i data-lucide="linkedin" class="w-4 h-4"></i>
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="p-2 bg-white rounded-xl border border-stone-200 hover:text-stone-900 transition">
-                <i data-lucide="youtube" class="w-4 h-4"></i>
-              </a>
+            <!-- Quick copy handle badge -->
+            <div class="pt-1">
+              <button onclick="window.copyText('isaacapptech23developer@gmail.com', 'Isaac Email')" class="px-3 py-1.5 rounded-xl bg-white border border-stone-200 hover:border-stone-400 text-xs font-mono font-bold text-stone-700 transition flex items-center gap-2 shadow-2xs">
+                <i data-lucide="copy" class="w-3.5 h-3.5 text-[#6C5CE7]"></i>
+                <span>isaacapptech23developer@gmail.com</span>
+              </button>
             </div>
           </div>
 
@@ -1139,14 +2104,18 @@
             </ul>
           </div>
 
-          <!-- Col 3: Resources & Presets -->
+          <!-- Col 3: Account & Information -->
           <div class="md:col-span-2 space-y-3">
-            <div class="text-xs font-bold text-stone-400 uppercase font-mono tracking-wider">Information</div>
+            <div class="text-xs font-bold text-stone-400 uppercase font-mono tracking-wider">Account & Hub</div>
             <ul class="space-y-2 text-xs font-semibold text-stone-600">
-              <li><a href="#faq" class="hover:text-stone-900 transition">FAQ</a></li>
-              <li><a href="#socials" class="hover:text-stone-900 transition">Community Hub</a></li>
+              <li><a href="#/profile" class="hover:text-stone-900 transition text-[#6C5CE7] font-bold">User Profile</a></li>
+              <li><a href="#/auth" class="hover:text-stone-900 transition">Sign In / Sign Up</a></li>
               <li><button onclick="window.openSearchModal()" class="hover:text-stone-900 transition">Global Search</button></li>
-              <li><button onclick="window.openPhotoSettingsModal()" class="hover:text-stone-900 transition">Photo Settings</button></li>
+              <li><a href="#faq" class="hover:text-stone-900 transition">FAQ</a></li>
+              <li><button onclick="window.openSitemapModal()" class="hover:text-stone-900 transition flex items-center gap-1.5 text-stone-600">
+                <i data-lucide="map" class="w-3 h-3 text-purple-500"></i>
+                <span>Sitemap XML</span>
+              </button></li>
               <li><button onclick="window.openContactModal()" class="hover:text-stone-900 transition">Hire Isaac</button></li>
             </ul>
           </div>
@@ -1156,7 +2125,7 @@
             <div class="text-xs font-bold text-stone-400 uppercase font-mono tracking-wider">Stay Updated</div>
             <p class="text-xs text-stone-600">Get notified when new articles, open source tools, or starter kits drop.</p>
             <form onsubmit="window.handleNewsletterSubmit(event)" class="space-y-2">
-              <input type="email" id="footer-newsletter-email" required placeholder="your.email@dev.com" class="w-full px-3.5 py-2 bg-white border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-stone-900" />
+              <input type="email" id="footer-newsletter-email" required placeholder="your.email@dev.com" class="w-full px-3.5 py-2 bg-white border border-stone-200 rounded-xl text-xs text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]" />
               <button type="submit" class="w-full py-2 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition">
                 Subscribe
               </button>
@@ -1424,6 +2393,244 @@
           <span>Navigate with click or Enter</span>
           <span>codertech Global Search</span>
         </div>
+      </div>
+    </div>
+
+    <!-- 7. DYNAMIC SITEMAP MODAL (XML Generator & SEO Indexer) -->
+    <div id="sitemap-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div class="modal-content bg-[#FFFDFB] rounded-3xl border border-stone-200 max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto">
+        <button onclick="window.closeModal()" class="modal-close-btn absolute top-5 right-5 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition" title="Close">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-10 h-10 rounded-2xl bg-purple-100 text-[#6C5CE7] flex items-center justify-center font-bold">
+            <i data-lucide="map" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-extrabold text-stone-900 font-display">Dynamic Sitemap.xml Generator</h3>
+            <p class="text-xs text-stone-500">Live search engine index for Google, Bing & DuckDuckGo bots</p>
+          </div>
+        </div>
+
+        <!-- Stats summary -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 my-4">
+          <div class="p-3 bg-stone-50 rounded-xl border border-stone-200/60 text-center">
+            <div class="text-[10px] uppercase font-mono text-stone-400 font-bold">Total URLs</div>
+            <div id="sitemap-stat-total" class="text-lg font-bold text-stone-900 font-display mt-0.5">18</div>
+          </div>
+          <div class="p-3 bg-stone-50 rounded-xl border border-stone-200/60 text-center">
+            <div class="text-[10px] uppercase font-mono text-stone-400 font-bold">Blog Articles</div>
+            <div id="sitemap-stat-blogs" class="text-lg font-bold text-[#6C5CE7] font-display mt-0.5">6</div>
+          </div>
+          <div class="p-3 bg-stone-50 rounded-xl border border-stone-200/60 text-center">
+            <div class="text-[10px] uppercase font-mono text-stone-400 font-bold">Projects</div>
+            <div id="sitemap-stat-projects" class="text-lg font-bold text-[#FF7675] font-display mt-0.5">4</div>
+          </div>
+          <div class="p-3 bg-stone-50 rounded-xl border border-stone-200/60 text-center">
+            <div class="text-[10px] uppercase font-mono text-stone-400 font-bold">Core Hubs</div>
+            <div id="sitemap-stat-pages" class="text-lg font-bold text-emerald-600 font-display mt-0.5">8</div>
+          </div>
+        </div>
+
+        <div class="space-y-2 mb-4">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-stone-700 font-mono uppercase">Live XML Output</span>
+            <span class="text-[11px] text-stone-500">Auto-synced with <code class="bg-stone-100 px-1 py-0.5 rounded font-mono">PORTFOLIO_DATA</code></span>
+          </div>
+          <div class="relative rounded-2xl bg-[#14161E] border border-stone-800 p-4 text-[11px] font-mono text-stone-200 max-h-64 overflow-y-auto">
+            <pre><code id="sitemap-code-preview" class="text-emerald-400">&lt;!-- Generating dynamic sitemap XML... --&gt;</code></pre>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="pt-4 border-t border-stone-100 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex flex-wrap gap-2">
+            <button onclick="window.copySitemapXml()" class="px-4 py-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy XML</span>
+            </button>
+            <button onclick="window.downloadSitemapXml()" class="px-4 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-xs font-bold transition flex items-center gap-2">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
+              <span>Download sitemap.xml</span>
+            </button>
+          </div>
+          <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 text-[#6C5CE7] hover:bg-purple-50 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+            <span>Open in New Tab</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. AUTHENTICATION POPUP MODAL (Quick Sign In / Register from Anywhere) -->
+    <div id="auth-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div class="modal-content bg-[#FFFDFB] rounded-3xl border border-stone-200 max-w-md w-full p-6 sm:p-8 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto">
+        <button onclick="window.closeModal()" class="modal-close-btn absolute top-5 right-5 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition" title="Close">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+
+        <div class="text-center mb-6">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#6C5CE7] to-[#A29BFE] text-white flex items-center justify-center font-bold text-sm shadow-md mx-auto mb-2">
+            <i data-lucide="sparkles" class="w-5 h-5"></i>
+          </div>
+          <h3 id="modal-auth-title" class="text-xl font-extrabold text-stone-900 font-display">Sign In to codertech</h3>
+          <p id="modal-auth-subtitle" class="text-xs text-stone-500 mt-1">Access user profile, saved articles, and developer toolkits.</p>
+        </div>
+
+        <!-- Quick Switch Tab -->
+        <div class="flex items-center justify-center gap-2 p-1 bg-stone-100 rounded-xl mb-5">
+          <button type="button" onclick="window.setModalAuthMode('signin')" id="m-auth-tab-signin" class="flex-1 py-1.5 text-xs font-bold rounded-lg transition bg-white text-stone-900 shadow-2xs">
+            Sign In
+          </button>
+          <button type="button" onclick="window.setModalAuthMode('signup')" id="m-auth-tab-signup" class="flex-1 py-1.5 text-xs font-bold rounded-lg transition text-stone-600 hover:text-stone-900">
+            Create Account
+          </button>
+        </div>
+
+        <form id="modal-auth-form" onsubmit="window.handleModalAuthSubmit(event)" class="space-y-3.5">
+          <div id="m-field-name" class="hidden">
+            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1">Your Name</label>
+            <input type="text" id="m-auth-name" placeholder="Ex. John Doe" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1">Email</label>
+            <input type="email" id="m-auth-email" required placeholder="example@gmail.com" value="isaacapptech23developer@gmail.com" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7]" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1">Password</label>
+            <div class="relative">
+              <input type="password" id="m-auth-password" required placeholder="••••••••••••" value="codertech2026" class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] pr-10" />
+              <button type="button" onclick="window.togglePasswordVisibility('m-auth-password', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700">
+                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" id="m-auth-submit-btn" class="w-full py-3 bg-[#6C5CE7] hover:bg-[#5b4bc4] text-white rounded-xl text-xs sm:text-sm font-bold transition shadow-sm cursor-pointer mt-2">
+            Sign In
+          </button>
+        </form>
+
+        <!-- Social login buttons in modal -->
+        <div class="pt-4 mt-4 border-t border-stone-100 text-center">
+          <div class="text-[11px] font-semibold text-stone-400 uppercase tracking-wider mb-3">Or continue with</div>
+          <div class="flex items-center justify-center gap-3">
+            <button onclick="window.handleSocialLogin('Google')" type="button" class="px-4 py-2 bg-white border border-stone-200 hover:bg-stone-50 rounded-xl text-xs font-bold text-stone-700 transition flex items-center gap-2 shadow-2xs">
+              <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+              <span>Google</span>
+            </button>
+            <button onclick="window.handleSocialLogin('GitHub')" type="button" class="px-4 py-2 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-2xs">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              <span>GitHub</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 9. LIVE CAMERA CAPTURE STUDIO MODAL (WebRTC / Camera Viewfinder) -->
+    <div id="camera-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-900/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div class="modal-content bg-[#FFFDFB] rounded-3xl border border-stone-200 max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto">
+        <button onclick="window.closeCameraModal()" class="modal-close-btn absolute top-5 right-5 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition" title="Close Camera">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-2xl bg-purple-100 text-[#6C5CE7] flex items-center justify-center font-bold">
+            <i data-lucide="camera" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-extrabold text-stone-900 font-display">Live Camera Avatar Studio</h3>
+            <p class="text-xs text-stone-500">Capture a photo directly with your webcam or mobile camera.</p>
+          </div>
+        </div>
+
+        <!-- Camera Viewfinder Box -->
+        <div class="relative rounded-2xl bg-stone-950 overflow-hidden mb-4 border border-stone-800 shadow-inner min-h-[260px] flex items-center justify-center">
+          
+          <!-- Live Video Element -->
+          <video id="camera-stream-video" autoplay playsinline muted class="w-full h-64 sm:h-72 object-cover transition-transform"></video>
+          
+          <!-- Canvas for capturing frame -->
+          <canvas id="camera-capture-canvas" class="hidden"></canvas>
+          
+          <!-- Frozen Snapshot Image Preview -->
+          <img id="camera-snapshot-preview" class="hidden w-full h-64 sm:h-72 object-cover" alt="Camera Snapshot" />
+
+          <!-- Camera Loading / Permission Fallback -->
+          <div id="camera-fallback-msg" class="hidden absolute inset-0 bg-stone-900 p-6 flex flex-col items-center justify-center text-center text-white space-y-3">
+            <i data-lucide="camera-off" class="w-8 h-8 text-rose-400"></i>
+            <div class="text-xs font-bold">Camera is starting or permission required</div>
+            <p class="text-[11px] text-stone-400 max-w-xs">Please allow camera permissions in your browser or select an image file directly.</p>
+            <button onclick="document.getElementById('avatar-file-input').click(); window.closeCameraModal();" class="px-4 py-2 bg-[#6C5CE7] text-white rounded-xl text-xs font-bold">
+              Choose File Instead
+            </button>
+          </div>
+
+          <!-- Top Viewfinder Overlay -->
+          <div id="camera-live-badge" class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 bg-black/60 backdrop-blur-md rounded-full text-[10px] text-white font-mono font-bold">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+            <span>LIVE FEED</span>
+          </div>
+
+          <!-- Flash Animation Div -->
+          <div id="camera-flash-overlay" class="pointer-events-none absolute inset-0 bg-white opacity-0 transition-opacity duration-150"></div>
+        </div>
+
+        <!-- Camera Action Controls -->
+        <div id="camera-live-controls" class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <button onclick="window.toggleCameraMirror()" id="btn-camera-mirror" class="px-3 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-bold rounded-xl transition flex items-center gap-1.5" title="Toggle Mirror Mode">
+              <i data-lucide="flip-horizontal" class="w-3.5 h-3.5"></i>
+              <span>Mirror</span>
+            </button>
+            <button onclick="window.switchCameraDevice()" class="px-3 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-bold rounded-xl transition flex items-center gap-1.5" title="Switch Front/Rear Camera">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+              <span>Switch</span>
+            </button>
+          </div>
+
+          <button onclick="window.takeCameraSnapshot()" class="px-6 py-3 bg-[#6C5CE7] hover:bg-[#5b4bc4] text-white rounded-2xl text-xs font-bold transition flex items-center gap-2 shadow-lg shadow-purple-300 transform active:scale-95 cursor-pointer">
+            <i data-lucide="camera" class="w-4 h-4"></i>
+            <span>Snap Photo</span>
+          </button>
+        </div>
+
+        <!-- Snapshot Review Controls (Shown after taking photo) -->
+        <div id="camera-review-controls" class="hidden flex items-center justify-between gap-3">
+          <button onclick="window.retakeCameraSnapshot()" class="px-4 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-bold rounded-xl transition flex items-center gap-1.5 cursor-pointer">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            <span>Retake</span>
+          </button>
+          <button onclick="window.applyCameraAvatar()" class="px-6 py-2.5 bg-[#6C5CE7] hover:bg-[#5b4bc4] text-white text-xs font-bold rounded-xl transition flex items-center gap-2 shadow-md shadow-purple-200 cursor-pointer">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Set as Profile Avatar</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 10. TERMS & CONDITIONS MODAL -->
+    <div id="terms-modal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      <div class="modal-content bg-[#FFFDFB] rounded-3xl border border-stone-200 max-w-lg w-full p-6 sm:p-8 shadow-2xl relative my-8 max-h-[90vh] overflow-y-auto space-y-4">
+        <button onclick="window.closeModal()" class="modal-close-btn absolute top-5 right-5 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+        <h3 class="text-xl font-extrabold text-stone-900 font-display">Terms & Conditions</h3>
+        <p class="text-xs text-stone-600 leading-relaxed">
+          Welcome to codertech! By using our website, developer tools, and code guides, you agree to treat all open source snippets under the MIT License. Your profile data and uploaded avatars are saved locally in your browser memory.
+        </p>
+        <p class="text-xs text-stone-600 leading-relaxed">
+          We do not sell personal data, tracking cookies, or contact information. Enjoy building scalable web and Android applications!
+        </p>
+        <button onclick="window.closeModal()" class="w-full py-2.5 bg-[#6C5CE7] text-white rounded-xl text-xs font-bold">
+          Understood & Accept
+        </button>
       </div>
     </div>
 
