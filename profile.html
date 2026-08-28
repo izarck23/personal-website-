@@ -2,7 +2,7 @@
 <html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Profile — codertech</title>
     <meta name="description" content="View and manage your codertech profile, messages, settings, and developer toolkits." />
 
@@ -38,154 +38,87 @@
 
     <!-- App Stylesheet -->
     <link rel="stylesheet" href="css/style.css" />
-
-    <style>
-      /* Curved Header Shape matching Profile Template */
-      .curved-header-bg {
-        background-color: #2563EB;
-        position: relative;
-      }
-      
-      .curved-header-bg::after {
-        content: '';
-        position: absolute;
-        bottom: -26px;
-        left: 0;
-        right: 0;
-        height: 52px;
-        background-color: #2563EB;
-        border-radius: 0 0 50% 50% / 0 0 100% 100%;
-        z-index: 1;
-      }
-
-      /* Verified Green Badge at bottom-left */
-      .verified-badge-bl {
-        position: absolute;
-        bottom: 2px;
-        left: 4px;
-        width: 26px;
-        height: 26px;
-        background-color: #22C55E;
-        border: 2.5px solid #FFFFFF;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #FFFFFF;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-        z-index: 10;
-      }
-
-      /* Profile Menu Row Card */
-      .profile-menu-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 13px 16px;
-        background-color: #FFFFFF;
-        border: 1px solid #F1F5F9;
-        border-radius: 20px;
-        box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.02);
-        cursor: pointer;
-        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .dark .profile-menu-row {
-        background-color: #1E293B;
-        border-color: #334155;
-      }
-      .profile-menu-row:hover {
-        transform: translateY(-2px);
-        background-color: #F8FAFC;
-        border-color: #E2E8F0;
-        box-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.06);
-      }
-      .dark .profile-menu-row:hover {
-        background-color: #243048;
-        border-color: #475569;
-      }
-    </style>
   </head>
   <body class="bg-stone-100 dark:bg-stone-950 min-h-screen text-stone-900 dark:text-stone-100 antialiased font-sans flex flex-col justify-between selection:bg-blue-100 transition-colors duration-200">
     
     <!-- Top Global App Bar -->
-    <header class="w-full bg-white/90 dark:bg-stone-900/90 backdrop-blur-md border-b border-stone-200/80 dark:border-stone-800 sticky top-0 z-40">
-      <div class="max-w-4xl mx-auto px-4 py-2.5 flex items-center justify-between">
-        <a href="index.html" class="flex items-center gap-2.5 group">
-          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#2563EB] to-[#60A5FA] flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition">
-            <i data-lucide="user" class="w-4 h-4"></i>
+    <header class="w-full bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border-b border-stone-200/80 dark:border-stone-800 sticky top-0 z-40 transition-colors">
+      <div class="max-w-4xl mx-auto px-3.5 sm:px-4 py-2.5 sm:py-3 flex items-center justify-between gap-2">
+        <!-- Logo & Brand Header -->
+        <a href="index.html" class="flex items-center gap-2 sm:gap-2.5 group shrink-0 min-w-0" aria-label="Codertech Home">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-[#2563EB] to-[#60A5FA] flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition shrink-0">
+            <i data-lucide="user" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
           </div>
-          <div>
-            <span class="font-display font-extrabold text-base text-stone-900 dark:text-white tracking-tight">codertech</span>
-            <span class="text-[10px] font-mono font-bold text-stone-400 dark:text-stone-500 block -mt-1">User Profile</span>
+          <div class="truncate">
+            <span class="font-display font-extrabold text-sm sm:text-base text-stone-900 dark:text-white tracking-tight block">codertech</span>
+            <span class="text-[10px] font-mono font-bold text-stone-400 dark:text-stone-500 block -mt-0.5">User Profile</span>
           </div>
         </a>
 
-        <!-- Controls: Theme Toggle & Links -->
-        <div class="flex items-center gap-2">
+        <!-- Controls: Theme Toggle, Auth, Portfolio -->
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <!-- Theme Toggle Button -->
-          <button type="button" onclick="toggleAppTheme()" id="theme-toggle-btn" class="p-2 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-700 transition shadow-2xs cursor-pointer" title="Toggle Theme">
+          <button type="button" onclick="toggleAppTheme()" id="theme-toggle-btn" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-700 transition flex items-center justify-center shadow-2xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500/40" title="Toggle Light/Dark Theme" aria-label="Toggle visual theme">
             <i id="theme-icon-sun" data-lucide="sun" class="w-4 h-4 hidden"></i>
             <i id="theme-icon-moon" data-lucide="moon" class="w-4 h-4 block"></i>
           </button>
 
           <!-- Auth Portal Link -->
-          <a href="auth.html" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-purple-50 dark:bg-purple-950/50 text-[#6C5CE7] dark:text-purple-300 hover:bg-purple-100 transition flex items-center gap-1.5 shadow-2xs">
-            <i data-lucide="key" class="w-3.5 h-3.5"></i>
-            <span class="hidden sm:inline">Auth Portal</span>
+          <a href="auth.html" class="h-9 sm:h-10 px-2.5 sm:px-3 text-xs font-bold rounded-xl bg-purple-50 dark:bg-purple-950/50 text-[#6C5CE7] dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/50 transition flex items-center gap-1.5 shadow-2xs cursor-pointer whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-purple-500/40" title="Auth Portal" aria-label="Auth Portal">
+            <i data-lucide="key" class="w-3.5 h-3.5 shrink-0"></i>
+            <span class="hidden xs:inline sm:inline">Auth</span>
           </a>
 
           <!-- Portfolio Link -->
-          <a href="index.html" class="px-3 py-1.5 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-700 transition flex items-center gap-1.5 shadow-2xs">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <a href="index.html" class="h-9 sm:h-10 px-2.5 sm:px-3.5 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-700 transition flex items-center gap-1.5 shadow-2xs cursor-pointer whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-blue-500/40" title="Return to Portfolio" aria-label="Return to Portfolio">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5 shrink-0"></i>
             <span>Portfolio</span>
           </a>
         </div>
       </div>
     </header>
 
-    <!-- Main Container (Centered & Responsive for mobile, laptop, and desktop) -->
-    <main class="flex-1 flex items-center justify-center p-3 sm:p-5 my-auto">
+    <!-- Main Container (Natural top flow on mobile: 20-28px spacing, centered card) -->
+    <main class="flex-1 w-full flex flex-col items-center pt-5 sm:pt-7 pb-8 px-3.5 sm:px-4">
 
       <!-- ===================================================================== -->
       <!-- USER PROFILE CARD -->
       <!-- ===================================================================== -->
-      <div id="single-profile-view" class="w-full max-w-[370px] sm:max-w-[380px] mx-auto">
+      <div id="single-profile-view" class="w-full max-w-[420px] mx-auto">
         
         <!-- CARD CONTAINER -->
-        <div class="w-full rounded-[36px] shadow-2xl shadow-blue-950/10 dark:shadow-black/40 overflow-hidden border border-white/60 dark:border-stone-800 bg-white dark:bg-stone-900 relative transition-all duration-300 pb-5">
+        <div class="w-full rounded-[30px] sm:rounded-[32px] shadow-xl shadow-blue-950/5 dark:shadow-black/40 overflow-hidden border border-stone-200/80 dark:border-stone-800 bg-white dark:bg-stone-900 relative transition-all duration-300 pb-5">
           
           <!-- TOP BLUE CURVED BANNER -->
-          <div class="curved-header-bg pt-5 px-6 pb-11 text-white relative z-0">
+          <div class="curved-header-bg pt-4 sm:pt-5 px-5 sm:px-6 pb-12 sm:pb-14 text-white relative z-0">
             <!-- Top Bar inside Blue Banner -->
             <div class="flex items-center justify-between">
-              <!-- Menu Icon on Left -->
-              <button type="button" onclick="openSettingsDrawer()" class="p-1 text-white hover:opacity-80 transition cursor-pointer" title="Settings & Menu">
-                <div class="space-y-1.5">
-                  <span class="block w-5 h-0.5 bg-white rounded-full"></span>
-                  <span class="block w-3.5 h-0.5 bg-white rounded-full"></span>
-                </div>
+              <!-- Menu / Settings Icon on Left -->
+              <button type="button" onclick="openModal('modal-settings')" class="w-9 h-9 flex items-center justify-center rounded-full bg-white/15 hover:bg-white/25 text-white backdrop-blur-md transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/40" title="Settings & Preferences" aria-label="Settings & Preferences">
+                <i data-lucide="settings-2" class="w-4 h-4"></i>
               </button>
 
-              <!-- Edit Button on Right -->
-              <button type="button" onclick="openEditModal()" class="text-white font-bold text-xs sm:text-sm bg-white/20 hover:bg-white/30 backdrop-blur-md px-3 py-1 rounded-full transition cursor-pointer">
-                Edit
+              <!-- Edit Profile Button on Right -->
+              <button type="button" onclick="openModal('modal-edit-profile')" class="text-white font-bold text-xs sm:text-sm bg-white/20 hover:bg-white/30 backdrop-blur-md px-3.5 py-1.5 rounded-full transition cursor-pointer flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-white/40" aria-label="Edit Profile Information">
+                <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+                <span>Edit</span>
               </button>
             </div>
           </div>
 
           <!-- FLOATING AVATAR SECTION -->
-          <div class="relative z-10 flex flex-col items-center -mt-14 mb-3">
+          <div class="relative z-10 flex flex-col items-center -mt-13 sm:-mt-14 mb-3.5">
             
             <!-- Avatar Circle Wrapper -->
-            <div class="relative group cursor-pointer" onclick="toggleAvatarModeQuick()" title="Click to toggle avatar style or customize">
+            <div class="relative group cursor-pointer" onclick="toggleAvatarModeQuick()" title="Click to toggle avatar style (Photo / Letter)" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleAvatarModeQuick();}">
               
-              <!-- State 1: Initial Letter Avatar (Blue circle with letter) -->
-              <div id="avatar-letter-display" class="hidden w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#2563EB] border-4 border-white dark:border-stone-800 shadow-xl flex items-center justify-center text-white font-display font-bold text-3xl sm:text-4xl select-none">
-                <span id="avatar-letter-char">A</span>
+              <!-- State 1: Initial Letter Avatar -->
+              <div id="avatar-letter-display" class="hidden w-24 h-24 sm:w-26 sm:h-26 rounded-full bg-[#2563EB] border-[3.5px] border-white dark:border-stone-900 shadow-xl flex items-center justify-center text-white font-display font-bold text-3xl sm:text-4xl select-none transition">
+                <span id="avatar-letter-char">I</span>
               </div>
 
               <!-- State 2: Photo Avatar -->
-              <div id="avatar-photo-display" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-white dark:border-stone-800 shadow-xl overflow-hidden bg-stone-100 dark:bg-stone-800">
+              <div id="avatar-photo-display" class="w-24 h-24 sm:w-26 sm:h-26 rounded-full border-[3.5px] border-white dark:border-stone-900 shadow-xl overflow-hidden bg-stone-100 dark:bg-stone-800 transition">
                 <img id="avatar-photo-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="User Profile Photo" class="w-full h-full object-cover" />
               </div>
 
@@ -197,49 +130,58 @@
               </div>
 
               <!-- Hover prompt to change -->
-              <div class="absolute inset-0 rounded-full bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-[10px] font-bold transition">
+              <div class="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-[10px] font-bold transition">
                 Switch
               </div>
             </div>
 
-            <!-- User Full Name & Email Details -->
-            <div class="text-center mt-2.5 space-y-0.5">
-              <h1 id="profile-display-name" class="text-lg sm:text-xl font-extrabold text-stone-900 dark:text-white font-display uppercase tracking-wider">
-                ABIMBOLA
+            <!-- User Full Name, Email & Role Details -->
+            <div class="text-center mt-2.5 px-4 space-y-0.5 max-w-full">
+              <h1 id="profile-display-name" class="text-xl sm:text-2xl font-extrabold text-stone-900 dark:text-white font-display tracking-normal truncate">
+                ISAAC
               </h1>
-              <p id="profile-display-email" class="text-xs text-stone-400 dark:text-stone-400 font-medium">
-                abims2642@gmail.com
+              <p id="profile-display-email" class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 font-medium truncate max-w-[280px] mx-auto">
+                isaacapptech23developer@gmail.com
+              </p>
+              <p id="profile-display-role" class="text-[11px] font-mono font-medium text-stone-400 dark:text-stone-500 pt-0.5 truncate max-w-[300px] mx-auto">
+                Full-Stack Engineer & Kotlin Android Developer
               </p>
             </div>
 
           </div>
 
           <!-- PROFILE MENU LIST ROWS (4 Clean Rounded Cards) -->
-          <div class="px-5 space-y-2.5 mb-4">
+          <div class="px-4 sm:px-5 space-y-2.5 mb-4">
             
             <!-- Row 1: My Profile -->
-            <div onclick="openEditModal()" class="profile-menu-row">
-              <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shadow-2xs">
+            <div onclick="openModal('modal-edit-profile')" class="profile-menu-row" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('modal-edit-profile');}">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-[#EBF3FE] dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shadow-2xs shrink-0">
                   <i data-lucide="user" class="w-4 h-4"></i>
                 </div>
-                <span class="text-xs sm:text-sm font-bold text-stone-700 dark:text-stone-200">My Profile</span>
+                <div class="truncate">
+                  <span class="text-xs sm:text-sm font-bold text-stone-800 dark:text-stone-100 block">My Profile</span>
+                  <span class="text-[11px] text-stone-400 dark:text-stone-500 block truncate">Account info & credentials</span>
+                </div>
               </div>
-              <div class="text-stone-300 dark:text-stone-600">
+              <div class="text-stone-300 dark:text-stone-600 shrink-0 ml-2">
                 <i data-lucide="chevron-right" class="w-4 h-4"></i>
               </div>
             </div>
 
             <!-- Row 2: Messages (with Green Badge count '2') -->
-            <div onclick="openMessagesDrawer()" class="profile-menu-row">
-              <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shadow-2xs">
+            <div onclick="openModal('modal-messages')" class="profile-menu-row" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('modal-messages');}">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-[#EBF3FE] dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shadow-2xs shrink-0">
                   <i data-lucide="mail" class="w-4 h-4"></i>
                 </div>
-                <span class="text-xs sm:text-sm font-bold text-stone-700 dark:text-stone-200">Messages</span>
+                <div class="truncate">
+                  <span class="text-xs sm:text-sm font-bold text-stone-800 dark:text-stone-100 block">Messages</span>
+                  <span class="text-[11px] text-stone-400 dark:text-stone-500 block truncate">Inquiries & collaborations</span>
+                </div>
               </div>
-              <div class="flex items-center gap-2">
-                <span id="messages-count-badge" class="bg-[#22C55E] text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-2xs">
+              <div class="flex items-center gap-2 shrink-0 ml-2">
+                <span id="messages-count-badge" class="bg-[#22C55E] text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-2xs font-mono">
                   2
                 </span>
                 <div class="text-stone-300 dark:text-stone-600">
@@ -249,17 +191,17 @@
             </div>
 
             <!-- Row 3: Settings -->
-            <div onclick="openSettingsDrawer()" class="profile-menu-row">
-              <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shadow-2xs">
+            <div onclick="openModal('modal-settings')" class="profile-menu-row" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('modal-settings');}">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-[#EBF3FE] dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shadow-2xs shrink-0">
                   <i data-lucide="settings" class="w-4 h-4"></i>
                 </div>
-                <div>
-                  <span class="text-xs sm:text-sm font-bold text-stone-700 dark:text-stone-200 block">Settings</span>
-                  <span class="text-[10px] text-stone-400 dark:text-stone-500 font-medium">Dark Mode & Preferences</span>
+                <div class="truncate">
+                  <span class="text-xs sm:text-sm font-bold text-stone-800 dark:text-stone-100 block">Settings</span>
+                  <span class="text-[11px] text-stone-400 dark:text-stone-500 block truncate">Dark Mode & Preferences</span>
                 </div>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2 shrink-0 ml-2">
                 <span id="row-theme-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold font-mono bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 border border-stone-200 dark:border-stone-700">Light</span>
                 <div class="text-stone-300 dark:text-stone-600">
                   <i data-lucide="chevron-right" class="w-4 h-4"></i>
@@ -268,14 +210,17 @@
             </div>
 
             <!-- Row 4: Terms & Privacy Policy -->
-            <div onclick="openTermsDrawer()" class="profile-menu-row">
-              <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shadow-2xs">
+            <div onclick="openModal('modal-terms')" class="profile-menu-row" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('modal-terms');}">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-[#EBF3FE] dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shadow-2xs shrink-0">
                   <i data-lucide="file-text" class="w-4 h-4"></i>
                 </div>
-                <span class="text-xs sm:text-sm font-bold text-stone-700 dark:text-stone-200">Terms & Privacy Policy</span>
+                <div class="truncate">
+                  <span class="text-xs sm:text-sm font-bold text-stone-800 dark:text-stone-100 block">Terms & Privacy Policy</span>
+                  <span class="text-[11px] text-stone-400 dark:text-stone-500 block truncate">Client-side privacy & terms</span>
+                </div>
               </div>
-              <div class="text-stone-300 dark:text-stone-600">
+              <div class="text-stone-300 dark:text-stone-600 shrink-0 ml-2">
                 <i data-lucide="chevron-right" class="w-4 h-4"></i>
               </div>
             </div>
@@ -283,10 +228,10 @@
           </div>
 
           <!-- LOGOUT BUTTON (Centered at Bottom) -->
-          <div class="text-center pt-1">
-            <button type="button" onclick="logoutProfile()" class="inline-flex items-center justify-center gap-1.5 text-stone-400 hover:text-rose-600 dark:text-stone-500 dark:hover:text-rose-400 text-xs font-bold py-1.5 px-4 rounded-full transition cursor-pointer">
+          <div class="text-center pt-1 px-4">
+            <button type="button" onclick="logoutProfile()" class="inline-flex items-center justify-center gap-1.5 text-stone-400 hover:text-rose-600 dark:text-stone-500 dark:hover:text-rose-400 text-xs font-bold py-2 px-4 rounded-full transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-rose-400/40">
               <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
-              <span>Logout</span>
+              <span>Logout Account</span>
             </button>
           </div>
 
@@ -297,55 +242,57 @@
 
     <!-- Footer Credit -->
     <footer class="py-3 text-center text-[11px] text-stone-400 dark:text-stone-600">
-      <span>codertech Platform &bull; All developer tools & Kotlin templates</span>
+      <span>codertech Platform &bull; Kotlin Android & Modern Web Toolkits</span>
     </footer>
 
     <!-- ======================================================================= -->
-    <!-- INTERACTIVE DRAWERS & MODALS (EDIT PROFILE • MESSAGES • SETTINGS • TERMS) -->
+    <!-- INTERACTIVE MODALS (EDIT PROFILE • MESSAGES • SETTINGS • TERMS • CAMERA) -->
     <!-- ======================================================================= -->
 
     <!-- EDIT PROFILE MODAL -->
-    <div id="modal-edit-profile" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-3 sm:p-4">
-      <div class="bg-white dark:bg-stone-900 rounded-3xl w-full max-w-sm sm:max-w-md max-h-[90vh] overflow-y-auto p-5 sm:p-6 shadow-2xl border border-stone-200 dark:border-stone-800">
-        <div class="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800 mb-4">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950 text-[#2563EB] dark:text-blue-400 flex items-center justify-center">
+    <div id="modal-edit-profile" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-3.5 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-edit-title" onclick="handleBackdropClick(event, 'modal-edit-profile')">
+      <div class="bg-white dark:bg-stone-900 rounded-[28px] sm:rounded-3xl w-full max-w-sm sm:max-w-md max-h-[min(90dvh,760px)] flex flex-col shadow-2xl border border-stone-200/90 dark:border-stone-800 my-auto animate-modal-in overflow-hidden" onclick="event.stopPropagation()">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between px-5 py-4 border-b border-stone-100 dark:border-stone-800 shrink-0">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950/70 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shrink-0">
               <i data-lucide="user-pen" class="w-4 h-4"></i>
             </div>
-            <h3 class="font-display font-extrabold text-base sm:text-lg text-stone-900 dark:text-white">Edit Profile Info</h3>
+            <h3 id="modal-edit-title" class="font-display font-extrabold text-base sm:text-lg text-stone-900 dark:text-white truncate">Edit Profile Info</h3>
           </div>
-          <button type="button" onclick="closeEditModal()" class="p-1 rounded-full text-stone-400 hover:text-stone-700 dark:hover:text-stone-200">
-            <i data-lucide="x" class="w-5 h-5"></i>
+          <button type="button" onclick="closeModal('modal-edit-profile')" class="w-8 h-8 rounded-xl flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition cursor-pointer" aria-label="Close dialog">
+            <i data-lucide="x" class="w-4 h-4"></i>
           </button>
         </div>
 
-        <form onsubmit="saveProfileEdits(event)" class="space-y-3.5">
+        <!-- Scrollable Modal Body -->
+        <form onsubmit="saveProfileEdits(event)" class="p-5 sm:p-6 overflow-y-auto space-y-4 flex-1 overscroll-contain">
           <!-- Avatar Style Chooser -->
           <div>
-            <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 uppercase font-mono mb-2">Avatar Type</label>
-            <div class="grid grid-cols-2 gap-2">
-              <button type="button" onclick="switchAvatarStyle('letter')" id="btn-choice-letter" class="p-2.5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-700 dark:text-stone-300 flex items-center gap-2">
-                <span class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-xs">A</span>
-                <span>Initial Letter</span>
+            <label class="block text-[11px] font-bold text-stone-600 dark:text-stone-400 uppercase font-mono mb-1.5">Avatar Presentation</label>
+            <div class="grid grid-cols-2 gap-2.5">
+              <button type="button" onclick="switchAvatarStyle('letter')" id="btn-choice-letter" class="min-h-[48px] p-2.5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-700 dark:text-stone-300 flex items-center justify-center gap-2 cursor-pointer transition focus:outline-none focus:ring-2 focus:ring-blue-500/40">
+                <span class="w-6 h-6 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-xs shrink-0">I</span>
+                <span class="truncate">Initial Letter</span>
               </button>
-              <button type="button" onclick="switchAvatarStyle('photo')" id="btn-choice-photo" class="p-2.5 rounded-2xl border-2 border-[#2563EB] bg-blue-50/50 dark:bg-blue-950/50 text-xs font-bold text-[#2563EB] dark:text-blue-400 flex items-center gap-2">
-                <i data-lucide="image" class="w-4 h-4"></i>
-                <span>Custom Photo</span>
+              <button type="button" onclick="switchAvatarStyle('photo')" id="btn-choice-photo" class="min-h-[48px] p-2.5 rounded-2xl border-2 border-[#2563EB] bg-blue-50/60 dark:bg-blue-950/50 text-xs font-bold text-[#2563EB] dark:text-blue-400 flex items-center justify-center gap-2 cursor-pointer transition focus:outline-none focus:ring-2 focus:ring-blue-500/40">
+                <i data-lucide="image" class="w-4 h-4 shrink-0"></i>
+                <span class="truncate">Custom Photo</span>
               </button>
             </div>
           </div>
 
           <!-- Photo Upload & Camera Action -->
-          <div id="photo-action-group" class="p-3 bg-stone-50 dark:bg-stone-800/60 rounded-2xl border border-stone-200 dark:border-stone-700 space-y-2">
-            <span class="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase font-mono block">Update Photo</span>
-            <div class="flex items-center gap-2">
-              <button type="button" onclick="document.getElementById('file-upload-input').click()" class="flex-1 py-2 px-3 bg-white dark:bg-stone-800 hover:bg-stone-100 dark:hover:bg-stone-700 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-200 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer">
-                <i data-lucide="upload" class="w-3.5 h-3.5"></i>
-                <span>Upload File</span>
+          <div id="photo-action-group" class="p-3.5 bg-stone-50 dark:bg-stone-800/60 rounded-2xl border border-stone-200/80 dark:border-stone-700 space-y-2">
+            <span class="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase font-mono block">Photo Source</span>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" onclick="document.getElementById('file-upload-input').click()" class="min-h-[44px] py-2 px-3 bg-white dark:bg-stone-800 hover:bg-stone-100 dark:hover:bg-stone-700 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-200 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-stone-400/40">
+                <i data-lucide="upload" class="w-3.5 h-3.5 shrink-0"></i>
+                <span class="truncate">Upload File</span>
               </button>
-              <button type="button" onclick="openCameraModal()" class="flex-1 py-2 px-3 bg-[#2563EB] hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer">
-                <i data-lucide="camera" class="w-3.5 h-3.5"></i>
-                <span>Camera</span>
+              <button type="button" onclick="openCameraModal()" class="min-h-[44px] py-2 px-3 bg-[#2563EB] hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500/40">
+                <i data-lucide="camera" class="w-3.5 h-3.5 shrink-0"></i>
+                <span class="truncate">Live Camera</span>
               </button>
             </div>
             <input type="file" id="file-upload-input" accept="image/*" class="hidden" onchange="handleFileUpload(event)" />
@@ -353,27 +300,28 @@
 
           <!-- Full Name -->
           <div>
-            <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 uppercase font-mono mb-1">Full Name / Display</label>
-            <input type="text" id="edit-input-name" required value="ABIMBOLA" class="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-2xl text-xs sm:text-sm text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-stone-900 transition" />
+            <label for="edit-input-name" class="block text-[11px] font-bold text-stone-600 dark:text-stone-400 uppercase font-mono mb-1">Full Name / Display</label>
+            <input type="text" id="edit-input-name" required value="Isaac" placeholder="e.g. Isaac" class="w-full h-12 px-3.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-sm text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-stone-900 transition" />
           </div>
 
           <!-- Email -->
           <div>
-            <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 uppercase font-mono mb-1">Email Address</label>
-            <input type="email" id="edit-input-email" required value="abims2642@gmail.com" class="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-2xl text-xs sm:text-sm text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-stone-900 transition" />
+            <label for="edit-input-email" class="block text-[11px] font-bold text-stone-600 dark:text-stone-400 uppercase font-mono mb-1">Email Address</label>
+            <input type="email" id="edit-input-email" required value="isaacapptech23developer@gmail.com" placeholder="name@example.com" class="w-full h-12 px-3.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-sm text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-stone-900 transition" />
           </div>
 
           <!-- Role / Headline -->
           <div>
-            <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 uppercase font-mono mb-1">Professional Role</label>
-            <input type="text" id="edit-input-role" value="Full-Stack Engineer & Kotlin Android Developer" class="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-2xl text-xs sm:text-sm text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-stone-900 transition" />
+            <label for="edit-input-role" class="block text-[11px] font-bold text-stone-600 dark:text-stone-400 uppercase font-mono mb-1">Professional Role</label>
+            <input type="text" id="edit-input-role" value="Full-Stack Engineer & Kotlin Android Developer" placeholder="e.g. Full-Stack Engineer" class="w-full h-12 px-3.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl text-sm text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-stone-900 transition" />
           </div>
 
+          <!-- Action Buttons -->
           <div class="flex items-center gap-2.5 pt-2">
-            <button type="button" onclick="closeEditModal()" class="flex-1 py-2.5 border border-stone-200 dark:border-stone-700 rounded-2xl text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition cursor-pointer">
+            <button type="button" onclick="closeModal('modal-edit-profile')" class="flex-1 min-h-[48px] py-2.5 border border-stone-200 dark:border-stone-700 rounded-xl text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition cursor-pointer">
               Cancel
             </button>
-            <button type="submit" class="flex-1 py-2.5 bg-[#2563EB] hover:bg-blue-700 text-white rounded-2xl text-xs font-bold transition shadow-md shadow-blue-500/20 cursor-pointer">
+            <button type="submit" class="flex-1 min-h-[48px] py-2.5 bg-[#2563EB] hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition shadow-md shadow-blue-500/20 cursor-pointer">
               Save Changes
             </button>
           </div>
@@ -381,124 +329,127 @@
       </div>
     </div>
 
-    <!-- MESSAGES DRAWER -->
-    <div id="modal-messages" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-3 sm:p-4">
-      <div class="bg-white dark:bg-stone-900 rounded-3xl w-full max-w-sm sm:max-w-md max-h-[85vh] overflow-y-auto p-5 sm:p-6 shadow-2xl border border-stone-200 dark:border-stone-800 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800 mb-3.5">
-            <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950 text-[#2563EB] dark:text-blue-400 flex items-center justify-center">
-                <i data-lucide="mail" class="w-4 h-4"></i>
-              </div>
-              <h3 class="font-display font-extrabold text-base sm:text-lg text-stone-900 dark:text-white">Messages & Inquiries</h3>
+    <!-- MESSAGES DRAWER / MODAL -->
+    <div id="modal-messages" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-3.5 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-messages-title" onclick="handleBackdropClick(event, 'modal-messages')">
+      <div class="bg-white dark:bg-stone-900 rounded-[28px] sm:rounded-3xl w-full max-w-sm sm:max-w-md max-h-[min(88dvh,700px)] flex flex-col shadow-2xl border border-stone-200/90 dark:border-stone-800 my-auto animate-modal-in overflow-hidden" onclick="event.stopPropagation()">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between px-5 py-4 border-b border-stone-100 dark:border-stone-800 shrink-0">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950/70 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shrink-0">
+              <i data-lucide="mail" class="w-4 h-4"></i>
             </div>
-            <button type="button" onclick="closeMessagesDrawer()" class="p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200">
-              <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
+            <h3 id="modal-messages-title" class="font-display font-extrabold text-base sm:text-lg text-stone-900 dark:text-white truncate">Messages & Inquiries</h3>
+          </div>
+          <button type="button" onclick="closeModal('modal-messages')" class="w-8 h-8 rounded-xl flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition cursor-pointer" aria-label="Close dialog">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Scrollable Messages Body -->
+        <div class="p-5 sm:p-6 overflow-y-auto space-y-3 flex-1 overscroll-contain">
+          <!-- Message 1 -->
+          <div class="p-3.5 rounded-2xl bg-blue-50/70 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/50 space-y-1">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-[#2563EB] dark:text-blue-400 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#22C55E]"></span>
+                <span>Isaac (codertech team)</span>
+              </span>
+              <span class="text-[10px] text-stone-400 font-mono">10m ago</span>
+            </div>
+            <p class="text-xs text-stone-700 dark:text-stone-300 leading-relaxed font-medium">
+              Welcome to codertech! Feel free to explore Kotlin architecture guides and modern web toolkits.
+            </p>
           </div>
 
-          <div class="space-y-2.5">
-            <!-- Message 1 -->
-            <div class="p-3 rounded-2xl bg-blue-50/70 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/50 space-y-1">
-              <div class="flex items-center justify-between text-xs">
-                <span class="font-bold text-[#2563EB] dark:text-blue-400 flex items-center gap-1">
-                  <span class="w-2 h-2 rounded-full bg-[#22C55E]"></span>
-                  <span>Isaac (codertech)</span>
-                </span>
-                <span class="text-[10px] text-stone-400 font-mono">10m ago</span>
-              </div>
-              <p class="text-xs text-stone-700 dark:text-stone-300 leading-relaxed font-medium">
-                Welcome to codertech! Feel free to explore Kotlin architecture guides and modern web toolkits.
-              </p>
+          <!-- Message 2 -->
+          <div class="p-3.5 rounded-2xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 space-y-1">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-stone-800 dark:text-stone-200">Project Collaboration</span>
+              <span class="text-[10px] text-stone-400 font-mono">2h ago</span>
             </div>
-
-            <!-- Message 2 -->
-            <div class="p-3 rounded-2xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 space-y-1">
-              <div class="flex items-center justify-between text-xs">
-                <span class="font-bold text-stone-800 dark:text-stone-200">Project Inquiry: Kotlin App</span>
-                <span class="text-[10px] text-stone-400 font-mono">2h ago</span>
-              </div>
-              <p class="text-xs text-stone-600 dark:text-stone-400 leading-relaxed font-medium">
-                "Hello, I loved your PulseFit Kotlin showcase and would like to collaborate on an Android MVP."
-              </p>
-            </div>
+            <p class="text-xs text-stone-600 dark:text-stone-400 leading-relaxed font-medium">
+              "Hi Isaac, loved your PulseFit Kotlin showcase. Let's connect on future mobile and web projects."
+            </p>
           </div>
         </div>
 
-        <div class="pt-4 border-t border-stone-100 dark:border-stone-800 mt-4">
-          <button type="button" onclick="closeMessagesDrawer()" class="w-full py-2.5 bg-stone-900 dark:bg-stone-800 hover:bg-stone-800 dark:hover:bg-stone-700 text-white rounded-2xl text-xs font-bold transition cursor-pointer">
+        <!-- Modal Footer -->
+        <div class="p-4 border-t border-stone-100 dark:border-stone-800 shrink-0">
+          <button type="button" onclick="closeModal('modal-messages')" class="w-full min-h-[46px] py-2.5 bg-stone-900 dark:bg-stone-800 hover:bg-stone-800 dark:hover:bg-stone-700 text-white rounded-xl text-xs font-bold transition cursor-pointer">
             Close Inbox
           </button>
         </div>
       </div>
     </div>
 
-    <!-- SETTINGS DRAWER -->
-    <div id="modal-settings" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-3 sm:p-4">
-      <div class="bg-white dark:bg-stone-900 rounded-3xl w-full max-w-sm sm:max-w-md max-h-[85vh] overflow-y-auto p-5 sm:p-6 shadow-2xl border border-stone-200 dark:border-stone-800">
-        <div class="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800 mb-4">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950 text-[#2563EB] dark:text-blue-400 flex items-center justify-center">
+    <!-- SETTINGS DRAWER / MODAL -->
+    <div id="modal-settings" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-3.5 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-settings-title" onclick="handleBackdropClick(event, 'modal-settings')">
+      <div class="bg-white dark:bg-stone-900 rounded-[28px] sm:rounded-3xl w-full max-w-sm sm:max-w-md max-h-[min(90dvh,760px)] flex flex-col shadow-2xl border border-stone-200/90 dark:border-stone-800 my-auto animate-modal-in overflow-hidden" onclick="event.stopPropagation()">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between px-5 py-4 border-b border-stone-100 dark:border-stone-800 shrink-0">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950/70 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shrink-0">
               <i data-lucide="settings" class="w-4 h-4"></i>
             </div>
-            <h3 class="font-display font-extrabold text-base sm:text-lg text-stone-900 dark:text-white">Settings & Preferences</h3>
+            <h3 id="modal-settings-title" class="font-display font-extrabold text-base sm:text-lg text-stone-900 dark:text-white truncate">Settings & Preferences</h3>
           </div>
-          <button type="button" onclick="closeSettingsDrawer()" class="p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200">
-            <i data-lucide="x" class="w-5 h-5"></i>
+          <button type="button" onclick="closeModal('modal-settings')" class="w-8 h-8 rounded-xl flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition cursor-pointer" aria-label="Close dialog">
+            <i data-lucide="x" class="w-4 h-4"></i>
           </button>
         </div>
 
-        <div class="space-y-4">
+        <!-- Scrollable Settings Body -->
+        <div class="p-5 sm:p-6 overflow-y-auto space-y-4 flex-1 overscroll-contain">
           <!-- APPEARANCE & DARK MODE TOGGLE SECTION -->
           <div class="p-4 rounded-2xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 space-y-3">
             <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-xl bg-white dark:bg-stone-700 text-stone-800 dark:text-stone-100 flex items-center justify-center shadow-2xs">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-8 h-8 rounded-xl bg-white dark:bg-stone-700 text-stone-800 dark:text-stone-100 flex items-center justify-center shadow-2xs shrink-0">
                   <i data-lucide="moon" class="w-4 h-4 text-purple-600 dark:text-purple-300"></i>
                 </div>
-                <div>
+                <div class="truncate">
                   <span class="text-xs font-bold text-stone-800 dark:text-stone-100 block">Dark Mode</span>
-                  <span id="settings-theme-status-text" class="text-[11px] text-stone-500 dark:text-stone-400 font-medium">Light mode enabled (Default)</span>
+                  <span id="settings-theme-status-text" class="text-[11px] text-stone-500 dark:text-stone-400 font-medium truncate block">Light mode enabled (Default)</span>
                 </div>
               </div>
 
               <!-- Interactive Switch Toggle -->
-              <label class="relative inline-flex items-center cursor-pointer select-none" title="Toggle Dark / Light Mode">
+              <label class="relative inline-flex items-center cursor-pointer select-none shrink-0" title="Toggle Dark / Light Mode">
                 <input type="checkbox" id="settings-theme-checkbox" onchange="toggleAppTheme()" class="sr-only peer" />
                 <div class="w-11 h-6 bg-stone-200 peer-focus:outline-none rounded-full peer dark:bg-stone-700 peer-checked:after:translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-stone-600 peer-checked:bg-[#2563EB]"></div>
               </label>
             </div>
 
             <!-- Light vs Dark Theme Selection Presets -->
-            <div class="grid grid-cols-2 gap-2 pt-1">
+            <div class="grid grid-cols-2 gap-2.5 pt-1">
               <!-- Light Theme Preset -->
-              <button type="button" onclick="setAppThemeExplicit('light')" id="settings-card-light" class="p-2.5 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-[#2563EB] bg-blue-50/70 dark:bg-stone-800">
+              <button type="button" onclick="setAppThemeExplicit('light')" id="settings-card-light" class="p-3 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-[#2563EB] bg-blue-50/70 dark:bg-stone-800">
                 <div class="flex items-center justify-between mb-1.5">
                   <span class="text-base">☀️</span>
                   <span id="settings-badge-light" class="px-1.5 py-0.5 rounded-full bg-[#2563EB] text-white text-[9px] font-bold font-mono">ACTIVE</span>
                 </div>
                 <div>
                   <span class="text-xs font-bold text-stone-900 dark:text-white block">Light Mode</span>
-                  <span class="text-[10px] text-stone-500 dark:text-stone-400 font-medium">Original default UI</span>
+                  <span class="text-[10px] text-stone-500 dark:text-stone-400 font-medium">Default Theme</span>
                 </div>
               </button>
 
               <!-- Dark Theme Preset -->
-              <button type="button" onclick="setAppThemeExplicit('dark')" id="settings-card-dark" class="p-2.5 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900">
+              <button type="button" onclick="setAppThemeExplicit('dark')" id="settings-card-dark" class="p-3 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900">
                 <div class="flex items-center justify-between mb-1.5">
                   <span class="text-base">🌙</span>
                   <span id="settings-badge-dark" class="hidden px-1.5 py-0.5 rounded-full bg-[#2563EB] text-white text-[9px] font-bold font-mono">ACTIVE</span>
                 </div>
                 <div>
                   <span class="text-xs font-bold text-stone-900 dark:text-white block">Dark Mode</span>
-                  <span class="text-[10px] text-stone-500 dark:text-stone-400 font-medium">User choice</span>
+                  <span class="text-[10px] text-stone-500 dark:text-stone-400 font-medium">User Choice</span>
                 </div>
               </button>
             </div>
           </div>
 
           <!-- Notification Toggle -->
-          <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700">
+          <div class="flex items-center justify-between p-3.5 rounded-2xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700">
             <div>
               <span class="text-xs font-bold text-stone-800 dark:text-stone-200 block">Email Inquiries</span>
               <span class="text-[11px] text-stone-500 dark:text-stone-400">Receive instant updates</span>
@@ -506,51 +457,64 @@
             <input type="checkbox" checked class="w-4 h-4 rounded text-[#2563EB] accent-[#2563EB]" />
           </div>
 
-          <!-- Clear Cache -->
-          <div class="p-3 rounded-2xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/40 flex items-center justify-between">
+          <!-- Clear Session -->
+          <div class="p-3.5 rounded-2xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/40 flex items-center justify-between">
             <div>
               <span class="text-xs font-bold text-rose-800 dark:text-rose-300 block">Reset Session</span>
               <span class="text-[11px] text-rose-600 dark:text-rose-400">Clear local session data</span>
             </div>
-            <button type="button" onclick="resetUserData()" class="px-3 py-1.5 bg-white dark:bg-stone-800 border border-rose-200 dark:border-rose-800 text-xs font-bold rounded-xl text-rose-700 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-950 transition cursor-pointer">
+            <button type="button" onclick="resetUserData()" class="px-3.5 py-1.5 bg-white dark:bg-stone-800 border border-rose-200 dark:border-rose-800 text-xs font-bold rounded-xl text-rose-700 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-950 transition cursor-pointer">
               Reset
             </button>
           </div>
         </div>
 
-        <div class="pt-4 border-t border-stone-100 dark:border-stone-800 mt-4">
-          <button type="button" onclick="closeSettingsDrawer()" class="w-full py-2.5 bg-stone-900 dark:bg-stone-800 text-white rounded-2xl text-xs font-bold cursor-pointer">
+        <!-- Modal Footer -->
+        <div class="p-4 border-t border-stone-100 dark:border-stone-800 shrink-0">
+          <button type="button" onclick="closeModal('modal-settings')" class="w-full min-h-[46px] py-2.5 bg-stone-900 dark:bg-stone-800 text-white rounded-xl text-xs font-bold cursor-pointer hover:bg-stone-800 dark:hover:bg-stone-700 transition">
             Done
           </button>
         </div>
       </div>
     </div>
 
-    <!-- TERMS & PRIVACY POLICY DRAWER -->
-    <div id="modal-terms" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-3 sm:p-4">
-      <div class="bg-white dark:bg-stone-900 rounded-3xl w-full max-w-sm sm:max-w-md max-h-[85vh] overflow-y-auto p-5 sm:p-6 shadow-2xl border border-stone-200 dark:border-stone-800">
-        <div class="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800 mb-3.5">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950 text-[#2563EB] dark:text-blue-400 flex items-center justify-center">
+    <!-- TERMS & PRIVACY POLICY DRAWER / MODAL -->
+    <div id="modal-terms" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-3.5 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-terms-title" onclick="handleBackdropClick(event, 'modal-terms')">
+      <div class="bg-white dark:bg-stone-900 rounded-[28px] sm:rounded-3xl w-full max-w-sm sm:max-w-md max-h-[min(88dvh,700px)] flex flex-col shadow-2xl border border-stone-200/90 dark:border-stone-800 my-auto animate-modal-in overflow-hidden" onclick="event.stopPropagation()">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between px-5 py-4 border-b border-stone-100 dark:border-stone-800 shrink-0">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950/70 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shrink-0">
               <i data-lucide="file-text" class="w-4 h-4"></i>
             </div>
-            <h3 class="font-display font-extrabold text-base sm:text-lg text-stone-900 dark:text-white">Terms & Privacy</h3>
+            <h3 id="modal-terms-title" class="font-display font-extrabold text-base sm:text-lg text-stone-900 dark:text-white truncate">Terms & Privacy Policy</h3>
           </div>
-          <button type="button" onclick="closeTermsDrawer()" class="p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200">
-            <i data-lucide="x" class="w-5 h-5"></i>
+          <button type="button" onclick="closeModal('modal-terms')" class="w-8 h-8 rounded-xl flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition cursor-pointer" aria-label="Close dialog">
+            <i data-lucide="x" class="w-4 h-4"></i>
           </button>
         </div>
 
-        <div class="space-y-2.5 text-xs text-stone-600 dark:text-stone-300 leading-relaxed max-h-56 overflow-y-auto pr-1">
-          <p class="font-bold text-stone-800 dark:text-stone-100">1. Client-Side Data Privacy</p>
-          <p>codertech runs frontend-only storage in your browser LocalStorage. No private developer credentials or unrequested server data are transmitted.</p>
+        <!-- Scrollable Terms Body -->
+        <div class="p-5 sm:p-6 overflow-y-auto space-y-3.5 text-xs text-stone-600 dark:text-stone-300 leading-relaxed flex-1 overscroll-contain">
+          <div class="space-y-1">
+            <h4 class="font-bold text-stone-900 dark:text-stone-100 text-xs">1. Client-Side Data Privacy</h4>
+            <p>codertech runs frontend-only state in your browser LocalStorage. No private developer credentials, tokens, or unrequested server data are transmitted.</p>
+          </div>
 
-          <p class="font-bold text-stone-800 dark:text-stone-100 mt-2">2. Open Learning & Code Usage</p>
-          <p>All Kotlin Android templates, architecture guides, and web utilities provided on this portfolio are designed for developer education and prototyping.</p>
+          <div class="space-y-1">
+            <h4 class="font-bold text-stone-900 dark:text-stone-100 text-xs">2. Open Learning & Code Usage</h4>
+            <p>All Kotlin Android architecture guides, full-stack components, and developer toolkits are designed for education and rapid prototyping.</p>
+          </div>
+
+          <div class="space-y-1">
+            <h4 class="font-bold text-stone-900 dark:text-stone-100 text-xs">3. Security & Account Sovereignty</h4>
+            <p>You may reset your session data anytime via the Settings section. All modifications remain strictly under your local control.</p>
+          </div>
         </div>
 
-        <div class="pt-4 border-t border-stone-100 dark:border-stone-800 mt-4">
-          <button type="button" onclick="closeTermsDrawer()" class="w-full py-2.5 bg-stone-900 dark:bg-stone-800 text-white rounded-2xl text-xs font-bold cursor-pointer">
+        <!-- Modal Footer -->
+        <div class="p-4 border-t border-stone-100 dark:border-stone-800 shrink-0">
+          <button type="button" onclick="closeModal('modal-terms')" class="w-full min-h-[46px] py-2.5 bg-stone-900 dark:bg-stone-800 text-white rounded-xl text-xs font-bold cursor-pointer hover:bg-stone-800 dark:hover:bg-stone-700 transition">
             I Understand
           </button>
         </div>
@@ -558,15 +522,15 @@
     </div>
 
     <!-- LIVE CAMERA MODAL -->
-    <div id="modal-camera" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs hidden items-center justify-center p-3 sm:p-4">
-      <div class="bg-white dark:bg-stone-900 rounded-3xl w-full max-w-xs sm:max-w-sm p-5 shadow-2xl border border-stone-200 dark:border-stone-800">
+    <div id="modal-camera" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs hidden items-center justify-center p-3.5 sm:p-4 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-camera-title" onclick="handleBackdropClick(event, 'modal-camera')">
+      <div class="bg-white dark:bg-stone-900 rounded-[28px] sm:rounded-3xl w-full max-w-xs sm:max-w-sm flex flex-col shadow-2xl border border-stone-200/90 dark:border-stone-800 my-auto animate-modal-in overflow-hidden p-5" onclick="event.stopPropagation()">
         <div class="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800 mb-3.5">
-          <h3 class="font-display font-extrabold text-sm sm:text-base text-stone-900 dark:text-white flex items-center gap-2">
+          <h3 id="modal-camera-title" class="font-display font-extrabold text-sm sm:text-base text-stone-900 dark:text-white flex items-center gap-2">
             <i data-lucide="camera" class="w-4 h-4 text-[#2563EB]"></i>
             <span>Snap Camera Profile</span>
           </h3>
-          <button type="button" onclick="closeCameraModal()" class="p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200">
-            <i data-lucide="x" class="w-5 h-5"></i>
+          <button type="button" onclick="closeModal('modal-camera')" class="w-8 h-8 rounded-xl flex items-center justify-center text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 transition cursor-pointer" aria-label="Close dialog">
+            <i data-lucide="x" class="w-4 h-4"></i>
           </button>
         </div>
 
@@ -576,10 +540,10 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <button type="button" onclick="closeCameraModal()" class="flex-1 py-2 border border-stone-200 dark:border-stone-700 rounded-xl text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer">
+          <button type="button" onclick="closeModal('modal-camera')" class="flex-1 min-h-[44px] py-2 border border-stone-200 dark:border-stone-700 rounded-xl text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer">
             Cancel
           </button>
-          <button type="button" onclick="captureCameraSnapshot()" class="flex-1 py-2 bg-[#2563EB] hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition shadow-md shadow-blue-500/20 flex items-center justify-center gap-1.5 cursor-pointer">
+          <button type="button" onclick="captureCameraSnapshot()" class="flex-1 min-h-[44px] py-2 bg-[#2563EB] hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition shadow-md shadow-blue-500/20 flex items-center justify-center gap-1.5 cursor-pointer">
             <i data-lucide="aperture" class="w-4 h-4"></i>
             <span>Capture</span>
           </button>
@@ -588,7 +552,7 @@
     </div>
 
     <!-- Toast Notification Container -->
-    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
     <!-- Scripts -->
     <script src="js/data.js"></script>
@@ -653,13 +617,13 @@
 
         if (cardLight && cardDark) {
           if (isDark) {
-            cardLight.className = 'p-2.5 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900';
-            cardDark.className = 'p-2.5 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-[#2563EB] bg-blue-50/70 dark:bg-blue-950/40 text-stone-900 dark:text-white shadow-2xs';
+            cardLight.className = 'p-3 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900';
+            cardDark.className = 'p-3 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-[#2563EB] bg-blue-50/70 dark:bg-blue-950/40 text-stone-900 dark:text-white shadow-2xs';
             if (badgeLight) badgeLight.classList.add('hidden');
             if (badgeDark) badgeDark.classList.remove('hidden');
           } else {
-            cardLight.className = 'p-2.5 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-[#2563EB] bg-blue-50/70 dark:bg-stone-800 shadow-2xs';
-            cardDark.className = 'p-2.5 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900';
+            cardLight.className = 'p-3 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-[#2563EB] bg-blue-50/70 dark:bg-stone-800 shadow-2xs';
+            cardDark.className = 'p-3 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900';
             if (badgeLight) badgeLight.classList.remove('hidden');
             if (badgeDark) badgeDark.classList.add('hidden');
           }
@@ -702,8 +666,8 @@
         if (!user) {
           user = {
             isLoggedIn: true,
-            name: 'ABIMBOLA',
-            email: 'abims2642@gmail.com',
+            name: 'Isaac',
+            email: 'isaacapptech23developer@gmail.com',
             role: 'Full-Stack Engineer & Kotlin Android Developer',
             avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
             avatarStyle: 'photo'
@@ -715,20 +679,23 @@
 
         const nameEl = document.getElementById('profile-display-name');
         const emailEl = document.getElementById('profile-display-email');
+        const roleEl = document.getElementById('profile-display-role');
         const photoImg = document.getElementById('avatar-photo-img');
         const letterChar = document.getElementById('avatar-letter-char');
         const editName = document.getElementById('edit-input-name');
         const editEmail = document.getElementById('edit-input-email');
         const editRole = document.getElementById('edit-input-role');
 
-        if (nameEl) nameEl.textContent = (user.name || 'ABIMBOLA').toUpperCase();
-        if (emailEl) emailEl.textContent = user.email || 'abims2642@gmail.com';
+        const displayName = user.name || 'Isaac';
+        if (nameEl) nameEl.textContent = displayName.toUpperCase();
+        if (emailEl) emailEl.textContent = user.email || 'isaacapptech23developer@gmail.com';
+        if (roleEl) roleEl.textContent = user.role || 'Full-Stack Engineer & Kotlin Android Developer';
         if (photoImg && user.avatar) photoImg.src = user.avatar;
-        if (letterChar) letterChar.textContent = (user.name || 'A').charAt(0).toUpperCase();
+        if (letterChar) letterChar.textContent = displayName.charAt(0).toUpperCase();
 
-        if (editName) editName.value = user.name || 'ABIMBOLA';
-        if (editEmail) editEmail.value = user.email || 'abims2642@gmail.com';
-        if (editRole) editRole.value = user.role || 'Full-Stack Engineer';
+        if (editName) editName.value = displayName;
+        if (editEmail) editEmail.value = user.email || 'isaacapptech23developer@gmail.com';
+        if (editRole) editRole.value = user.role || 'Full-Stack Engineer & Kotlin Android Developer';
 
         if (user.avatarStyle) {
           switchAvatarStyle(user.avatarStyle, false);
@@ -748,14 +715,14 @@
           if (letterDiv) letterDiv.classList.remove('hidden');
           if (photoDiv) photoDiv.classList.add('hidden');
           
-          if (btnChoiceLetter) btnChoiceLetter.className = 'p-2.5 rounded-2xl border-2 border-[#2563EB] bg-blue-50/50 dark:bg-blue-950/50 text-xs font-bold text-[#2563EB] dark:text-blue-400 flex items-center gap-2';
-          if (btnChoicePhoto) btnChoicePhoto.className = 'p-2.5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-700 dark:text-stone-300 hover:border-blue-300 flex items-center gap-2';
+          if (btnChoiceLetter) btnChoiceLetter.className = 'min-h-[48px] p-2.5 rounded-2xl border-2 border-[#2563EB] bg-blue-50/60 dark:bg-blue-950/50 text-xs font-bold text-[#2563EB] dark:text-blue-400 flex items-center justify-center gap-2 cursor-pointer transition';
+          if (btnChoicePhoto) btnChoicePhoto.className = 'min-h-[48px] p-2.5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-700 dark:text-stone-300 hover:border-blue-300 flex items-center justify-center gap-2 cursor-pointer transition';
         } else {
           if (letterDiv) letterDiv.classList.add('hidden');
           if (photoDiv) photoDiv.classList.remove('hidden');
 
-          if (btnChoicePhoto) btnChoicePhoto.className = 'p-2.5 rounded-2xl border-2 border-[#2563EB] bg-blue-50/50 dark:bg-blue-950/50 text-xs font-bold text-[#2563EB] dark:text-blue-400 flex items-center gap-2';
-          if (btnChoiceLetter) btnChoiceLetter.className = 'p-2.5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-700 dark:text-stone-300 hover:border-blue-300 flex items-center gap-2';
+          if (btnChoicePhoto) btnChoicePhoto.className = 'min-h-[48px] p-2.5 rounded-2xl border-2 border-[#2563EB] bg-blue-50/60 dark:bg-blue-950/50 text-xs font-bold text-[#2563EB] dark:text-blue-400 flex items-center justify-center gap-2 cursor-pointer transition';
+          if (btnChoiceLetter) btnChoiceLetter.className = 'min-h-[48px] p-2.5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-700 dark:text-stone-300 hover:border-blue-300 flex items-center justify-center gap-2 cursor-pointer transition';
         }
 
         if (persist) {
@@ -763,7 +730,7 @@
             const user = JSON.parse(localStorage.getItem('codertech_user') || '{}');
             user.avatarStyle = style;
             localStorage.setItem('codertech_user', JSON.stringify(user));
-            showToast(`Avatar mode: ${style === 'letter' ? 'Initial Letter' : 'Custom Photo'}`);
+            showToast(`Avatar presentation: ${style === 'letter' ? 'Initial Letter' : 'Custom Photo'}`);
           } catch (e) {}
         }
       }
@@ -772,77 +739,54 @@
         switchAvatarStyle(avatarStyle === 'photo' ? 'letter' : 'photo', true);
       }
 
-      // Modals and Drawers
-      function openEditModal() {
-        const m = document.getElementById('modal-edit-profile');
+      // Unified Modal Manager
+      function openModal(modalId) {
+        const m = document.getElementById(modalId);
         if (m) {
           m.classList.remove('hidden');
           m.classList.add('flex');
+          document.body.classList.add('overflow-hidden');
         }
         if (window.lucide) lucide.createIcons();
       }
-      function closeEditModal() {
-        const m = document.getElementById('modal-edit-profile');
+
+      function closeModal(modalId) {
+        if (modalId === 'modal-camera' && mediaStream) {
+          mediaStream.getTracks().forEach(track => track.stop());
+          mediaStream = null;
+        }
+        const m = document.getElementById(modalId);
         if (m) {
           m.classList.add('hidden');
           m.classList.remove('flex');
+        }
+        // If no other modals are open, unlock body scrolling
+        const anyOpen = document.querySelectorAll('[role="dialog"].flex');
+        if (!anyOpen || anyOpen.length === 0) {
+          document.body.classList.remove('overflow-hidden');
         }
       }
 
-      function openMessagesDrawer() {
-        const m = document.getElementById('modal-messages');
-        if (m) {
-          m.classList.remove('hidden');
-          m.classList.add('flex');
-        }
-        if (window.lucide) lucide.createIcons();
-      }
-      function closeMessagesDrawer() {
-        const m = document.getElementById('modal-messages');
-        if (m) {
-          m.classList.add('hidden');
-          m.classList.remove('flex');
+      function handleBackdropClick(e, modalId) {
+        if (e.target.id === modalId) {
+          closeModal(modalId);
         }
       }
 
-      function openSettingsDrawer() {
-        const m = document.getElementById('modal-settings');
-        if (m) {
-          m.classList.remove('hidden');
-          m.classList.add('flex');
+      // Keyboard Escape listener
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const openModals = document.querySelectorAll('[role="dialog"].flex');
+          openModals.forEach(m => closeModal(m.id));
         }
-        if (window.lucide) lucide.createIcons();
-      }
-      function closeSettingsDrawer() {
-        const m = document.getElementById('modal-settings');
-        if (m) {
-          m.classList.add('hidden');
-          m.classList.remove('flex');
-        }
-      }
-
-      function openTermsDrawer() {
-        const m = document.getElementById('modal-terms');
-        if (m) {
-          m.classList.remove('hidden');
-          m.classList.add('flex');
-        }
-        if (window.lucide) lucide.createIcons();
-      }
-      function closeTermsDrawer() {
-        const m = document.getElementById('modal-terms');
-        if (m) {
-          m.classList.add('hidden');
-          m.classList.remove('flex');
-        }
-      }
+      });
 
       // Profile Save Form
       function saveProfileEdits(e) {
         e.preventDefault();
-        const name = document.getElementById('edit-input-name')?.value.trim() || 'ABIMBOLA';
-        const email = document.getElementById('edit-input-email')?.value.trim() || 'abims2642@gmail.com';
-        const role = document.getElementById('edit-input-role')?.value.trim() || 'Full-Stack Engineer';
+        const name = document.getElementById('edit-input-name')?.value.trim() || 'Isaac';
+        const email = document.getElementById('edit-input-email')?.value.trim() || 'isaacapptech23developer@gmail.com';
+        const role = document.getElementById('edit-input-role')?.value.trim() || 'Full-Stack Engineer & Kotlin Android Developer';
 
         try {
           const user = JSON.parse(localStorage.getItem('codertech_user') || '{}');
@@ -854,7 +798,7 @@
         } catch (e) {}
 
         loadUserProfile();
-        closeEditModal();
+        closeModal('modal-edit-profile');
         showToast('Profile updated successfully! ✓');
       }
 
@@ -881,30 +825,14 @@
 
       // Live Camera functions
       async function openCameraModal() {
-        const m = document.getElementById('modal-camera');
-        if (m) {
-          m.classList.remove('hidden');
-          m.classList.add('flex');
-        }
+        openModal('modal-camera');
         const video = document.getElementById('camera-feed');
         try {
           mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
           if (video) video.srcObject = mediaStream;
         } catch (err) {
-          showToast('Camera permission denied or unavailable.');
-          closeCameraModal();
-        }
-      }
-
-      function closeCameraModal() {
-        if (mediaStream) {
-          mediaStream.getTracks().forEach(track => track.stop());
-          mediaStream = null;
-        }
-        const m = document.getElementById('modal-camera');
-        if (m) {
-          m.classList.add('hidden');
-          m.classList.remove('flex');
+          showToast('Camera permission denied or unavailable in this environment.');
+          closeModal('modal-camera');
         }
       }
 
@@ -926,7 +854,7 @@
           localStorage.setItem('codertech_user', JSON.stringify(user));
         } catch (err) {}
 
-        closeCameraModal();
+        closeModal('modal-camera');
         loadUserProfile();
         switchAvatarStyle('photo');
         showToast('Snapshot saved as profile avatar!');
@@ -947,7 +875,7 @@
       function resetUserData() {
         localStorage.removeItem('codertech_user');
         loadUserProfile();
-        closeSettingsDrawer();
+        closeModal('modal-settings');
         showToast('Session reset to template defaults.');
       }
 

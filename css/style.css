@@ -564,18 +564,18 @@ html.dark mark.search-highlight {
 
 /* Curved Header Shape matching Profile Template */
 .curved-header-bg {
-  background-color: #2563EB;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
   position: relative;
 }
 
 .curved-header-bg::after {
   content: '';
   position: absolute;
-  bottom: -28px;
+  bottom: -24px;
   left: 0;
   right: 0;
-  height: 56px;
-  background-color: #2563EB;
+  height: 48px;
+  background: inherit;
   border-radius: 0 0 50% 50% / 0 0 100% 100%;
   z-index: 1;
 }
@@ -583,10 +583,10 @@ html.dark mark.search-highlight {
 /* Verified Green Badge */
 .verified-badge-bl {
   position: absolute;
-  bottom: 4px;
-  left: 6px;
-  width: 26px;
-  height: 26px;
+  bottom: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
   background-color: #22C55E;
   border: 2.5px solid #FFFFFF;
   border-radius: 50%;
@@ -595,7 +595,11 @@ html.dark mark.search-highlight {
   justify-content: center;
   color: #FFFFFF;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  z-index: 10;
+  z-index: 20;
+}
+
+html.dark .verified-badge-bl {
+  border-color: #1C1917;
 }
 
 /* Profile Menu Row Card */
@@ -603,19 +607,64 @@ html.dark mark.search-highlight {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px;
+  min-height: 64px;
+  padding: 12px 16px;
   background-color: #FFFFFF;
   border: 1px solid #F1F5F9;
-  border-radius: 20px;
+  border-radius: 18px;
   box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.02);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+  user-select: none;
+}
+
+.dark .profile-menu-row,
+html.dark .profile-menu-row {
+  background-color: #1C1917;
+  border-color: #292524;
 }
 
 .profile-menu-row:hover {
   transform: translateY(-2px);
   background-color: #F8FAFC;
   border-color: #E2E8F0;
-  box-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.05);
 }
+
+.dark .profile-menu-row:hover,
+html.dark .profile-menu-row:hover {
+  background-color: #292524;
+  border-color: #44403C;
+}
+
+.profile-menu-row:active {
+  transform: scale(0.99);
+}
+
+/* Modal Entrance Animation */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-in {
+  animation: modalFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-modal-in {
+    animation: none;
+  }
+  .profile-menu-row:hover {
+    transform: none;
+  }
+}
+
 
