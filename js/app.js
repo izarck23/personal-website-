@@ -1837,19 +1837,22 @@
   // ============================================================================
 
   function showAuthGatewayScreen(screenName) {
+    const validScreen = ['welcome', 'signin', 'signup', 'verify', 'forgot'].includes(screenName) ? screenName : 'welcome';
     const screens = ['welcome', 'signin', 'signup', 'verify', 'forgot'];
     screens.forEach(s => {
       const panel = document.getElementById(`m-screen-${s}`);
       if (panel) {
-        if (s === screenName) {
+        if (s === validScreen) {
           panel.classList.remove('hidden');
+          panel.classList.add('active');
         } else {
+          panel.classList.remove('active');
           panel.classList.add('hidden');
         }
       }
     });
 
-    if (screenName === 'verify') {
+    if (validScreen === 'verify') {
       setTimeout(() => {
         const firstOtp = document.getElementById('m-otp-1');
         if (firstOtp) firstOtp.focus();
@@ -2052,13 +2055,16 @@
 
   // Full Screen Auth Page View (#/auth)
   function switchAuthTab(tab) {
+    const validTab = ['signin', 'signup', 'verify', 'forgot'].includes(tab) ? tab : 'signin';
     const screens = ['signin', 'signup', 'verify', 'forgot'];
     screens.forEach(s => {
       const el = document.getElementById(`auth-screen-${s}`);
       if (el) {
-        if (s === tab) {
+        if (s === validTab) {
           el.classList.remove('hidden');
+          el.classList.add('active');
         } else {
+          el.classList.remove('active');
           el.classList.add('hidden');
         }
       }
@@ -2069,17 +2075,17 @@
     const statusText = document.getElementById('auth-screen-status');
 
     if (btnSignin && btnSignup) {
-      if (tab === 'signup') {
+      if (validTab === 'signup') {
         btnSignup.className = 'flex-1 py-2 text-xs font-bold rounded-xl transition bg-[#6C5CE7] text-white shadow-xs';
         btnSignin.className = 'flex-1 py-2 text-xs font-bold rounded-xl transition text-stone-600 hover:text-stone-900';
         if (statusText) statusText.textContent = 'Registration';
-      } else if (tab === 'signin') {
+      } else if (validTab === 'signin') {
         btnSignin.className = 'flex-1 py-2 text-xs font-bold rounded-xl transition bg-[#6C5CE7] text-white shadow-xs';
         btnSignup.className = 'flex-1 py-2 text-xs font-bold rounded-xl transition text-stone-600 hover:text-stone-900';
         if (statusText) statusText.textContent = 'Secure Session';
-      } else if (tab === 'verify') {
+      } else if (validTab === 'verify') {
         if (statusText) statusText.textContent = '2FA Verification';
-      } else if (tab === 'forgot') {
+      } else if (validTab === 'forgot') {
         if (statusText) statusText.textContent = 'Password Recovery';
       }
     }

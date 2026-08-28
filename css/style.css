@@ -549,7 +549,7 @@ html.dark mark.search-highlight {
 /* Screen transitions */
 .auth-screen-panel,
 .auth-gateway-panel {
-  display: none !important;
+  display: none;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.25s ease, transform 0.25s ease;
@@ -560,6 +560,11 @@ html.dark mark.search-highlight {
   display: flex !important;
   opacity: 1;
   transform: translateY(0);
+}
+
+.auth-screen-panel.hidden,
+.auth-gateway-panel.hidden {
+  display: none !important;
 }
 
 /* Curved Header Shape matching Profile Template */

@@ -12,6 +12,15 @@ export default defineConfig(({ command }) => {
         '@': path.resolve(__dirname, '.'),
       },
     },
+    build: {
+      rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html'),
+          auth: path.resolve(__dirname, 'auth.html'),
+          profile: path.resolve(__dirname, 'profile.html'),
+        },
+      },
+    },
     server: {
       port: 3000,
       host: '0.0.0.0',

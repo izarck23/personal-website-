@@ -74,41 +74,29 @@
           // Auth Modal functions
           window.openAuthModal = window.openAuthModal || function(mode) {
             mode = mode || 'signin';
-            if (typeof window.setModalAuthMode === 'function') {
-              window.setModalAuthMode(mode);
+            const screen = mode === 'signup' ? 'signup' : (mode === 'welcome' ? 'welcome' : 'signin');
+            if (typeof window.showAuthGatewayScreen === 'function') {
+              window.showAuthGatewayScreen(screen);
+            } else {
+              const screens = ['welcome', 'signin', 'signup', 'verify', 'forgot'];
+              screens.forEach(function(s) {
+                const el = document.getElementById('m-screen-' + s);
+                if (el) {
+                  if (s === screen) {
+                    el.classList.remove('hidden');
+                    el.classList.add('active');
+                  } else {
+                    el.classList.remove('active');
+                    el.classList.add('hidden');
+                  }
+                }
+              });
             }
             window.openModal('auth-modal');
           };
 
           window.setModalAuthMode = window.setModalAuthMode || function(mode) {
-            const isSignup = mode === 'signup';
-            const tabSignIn = document.getElementById('m-auth-tab-signin');
-            const tabSignUp = document.getElementById('m-auth-tab-signup');
-            const title = document.getElementById('modal-auth-title');
-            const subtitle = document.getElementById('modal-auth-subtitle');
-            const nameField = document.getElementById('m-field-name');
-            const submitBtn = document.getElementById('m-auth-submit-btn');
-
-            if (tabSignIn && tabSignUp) {
-              if (isSignup) {
-                tabSignUp.className = 'flex-1 py-1.5 text-xs font-bold rounded-lg transition bg-white text-stone-900 shadow-2xs';
-                tabSignIn.className = 'flex-1 py-1.5 text-xs font-bold rounded-lg transition text-stone-600 hover:text-stone-900';
-              } else {
-                tabSignIn.className = 'flex-1 py-1.5 text-xs font-bold rounded-lg transition bg-white text-stone-900 shadow-2xs';
-                tabSignUp.className = 'flex-1 py-1.5 text-xs font-bold rounded-lg transition text-stone-600 hover:text-stone-900';
-              }
-            }
-
-            if (title) title.textContent = isSignup ? 'Create Account' : 'Sign In to codertech';
-            if (subtitle) subtitle.textContent = isSignup ? 'Fill your details to start using all developer features.' : 'Access user profile, saved articles, and developer toolkits.';
-            if (nameField) {
-              if (isSignup) {
-                nameField.classList.remove('hidden');
-              } else {
-                nameField.classList.add('hidden');
-              }
-            }
-            if (submitBtn) submitBtn.textContent = isSignup ? 'Create Account' : 'Sign In';
+            window.openAuthModal(mode);
           };
 
           window.fillDemoCredentials = window.fillDemoCredentials || function(type) {
@@ -2496,7 +2484,7 @@
           <!-- ================================================================= -->
           <!-- SCREEN 1: WELCOME SCREEN (Welcome =) -->
           <!-- ================================================================= -->
-          <div id="m-screen-welcome" class="auth-gateway-panel concentric-wave-bg wave-lines-overlay min-h-[580px] sm:min-h-[620px] p-6 sm:p-8 flex flex-col justify-between relative">
+          <div id="m-screen-welcome" class="auth-gateway-panel active concentric-wave-bg wave-lines-overlay min-h-[580px] sm:min-h-[620px] p-6 sm:p-8 flex flex-col justify-between relative">
             
             <!-- Header Text -->
             <div class="pt-3 text-center">

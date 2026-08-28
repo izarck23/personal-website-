@@ -21,9 +21,23 @@
         var search = l.search ? l.search : '';
         var hash = l.hash ? l.hash : '';
 
-        // If path exists, route it as hash
+        // If path exists, route it correctly
         if (path) {
-          if (path.indexOf('blog') === 0 || path.indexOf('projects') === 0) {
+          if (path === 'auth' || path === 'auth.html' || path.startsWith('auth/')) {
+            var authSub = path.replace('auth.html', '').replace('auth/', '').replace('auth', '');
+            var authTarget = 'auth.html' + (authSub ? '#' + authSub : (hash ? hash : '')) + (search ? search : '');
+            var directAuthUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+              l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/' + authTarget;
+            window.location.replace(directAuthUrl);
+            return;
+          }
+          if (path === 'profile' || path === 'profile.html') {
+            var directProfileUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+              l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/profile.html' + (hash ? hash : '') + (search ? search : '');
+            window.location.replace(directProfileUrl);
+            return;
+          }
+          if (path.indexOf('blog') === 0 || path.indexOf('projects') === 0 || path.indexOf('store') === 0) {
             hash = '#/' + path;
           }
         }
