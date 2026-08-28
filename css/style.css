@@ -547,14 +547,16 @@ html.dark mark.search-highlight {
 }
 
 /* Screen transitions */
-.auth-screen-panel {
+.auth-screen-panel,
+.auth-gateway-panel {
   display: none !important;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.auth-screen-panel.active {
+.auth-screen-panel.active,
+.auth-gateway-panel.active {
   display: flex !important;
   opacity: 1;
   transform: translateY(0);

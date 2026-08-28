@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -214,11 +214,12 @@
           };
 
           const savedTheme = localStorage.getItem('codertech_theme');
-          const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+          if (savedTheme === 'dark') {
             document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
           } else {
             document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
           }
         } catch (e) {
           console.warn('Theme/Global init error:', e);
@@ -1845,9 +1846,20 @@
 
                 <!-- TAB 3: SETTINGS & THEME TOGGLE -->
                 <div id="ptab-panel-settings" class="profile-tab-panel hidden bg-white rounded-3xl border border-stone-200/90 p-6 sm:p-8 shadow-sm space-y-6">
-                  <div>
-                    <h3 class="text-xl font-extrabold text-stone-900 font-display">Preferences & Theme</h3>
-                    <p class="text-xs text-stone-500">Configure visual themes, notification alerts, and account security.</p>
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                      <h3 class="text-xl font-extrabold text-stone-900 font-display">Preferences & Theme</h3>
+                      <p class="text-xs text-stone-500">Configure visual themes, notification alerts, and account security.</p>
+                    </div>
+
+                    <!-- Quick Dark Mode Toggle Switch in Header -->
+                    <div class="flex items-center gap-2.5 bg-stone-50 px-3.5 py-2 rounded-2xl border border-stone-200/80 w-fit">
+                      <span class="text-xs font-bold text-stone-700 font-mono">DARK MODE</span>
+                      <label class="relative inline-flex items-center cursor-pointer select-none">
+                        <input type="checkbox" id="prof-theme-switch" onchange="window.toggleTheme()" class="sr-only peer" />
+                        <div class="w-11 h-6 bg-stone-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#6C5CE7]"></div>
+                      </label>
+                    </div>
                   </div>
 
                   <!-- THEME MODE SELECTOR (LIGHT / DARK) -->

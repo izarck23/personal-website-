@@ -106,17 +106,9 @@
   // --- THEME MANAGEMENT (DARK / LIGHT MODE) ---
   function initTheme() {
     try {
-      const isCurrentlyDark = document.documentElement.classList.contains('dark');
-      applyTheme(isCurrentlyDark ? 'dark' : 'light', false);
-
-      // Listen for system theme preference changes
-      if (window.matchMedia) {
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-          if (!localStorage.getItem('codertech_theme')) {
-            applyTheme(e.matches ? 'dark' : 'light', false);
-          }
-        });
-      }
+      const savedTheme = localStorage.getItem('codertech_theme');
+      const isDark = savedTheme === 'dark';
+      applyTheme(isDark ? 'dark' : 'light', false);
     } catch (e) {
       console.warn('Theme initialization warning:', e);
     }
@@ -152,6 +144,30 @@
 
     if (mobileThemeText) {
       mobileThemeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+    }
+
+    const cardLight = document.getElementById('theme-card-light');
+    const cardDark = document.getElementById('theme-card-dark');
+    const badgeLight = document.getElementById('badge-light-active');
+    const badgeDark = document.getElementById('badge-dark-active');
+    const profThemeCheckbox = document.getElementById('prof-theme-switch');
+
+    if (cardLight && cardDark) {
+      if (isDark) {
+        cardLight.className = 'p-5 rounded-3xl border-2 cursor-pointer transition border-stone-200 bg-stone-50 hover:border-stone-400';
+        cardDark.className = 'p-5 rounded-3xl border-2 cursor-pointer transition border-[#6C5CE7] bg-stone-900 text-white shadow-xs';
+        if (badgeLight) badgeLight.classList.add('hidden');
+        if (badgeDark) badgeDark.classList.remove('hidden');
+      } else {
+        cardLight.className = 'p-5 rounded-3xl border-2 cursor-pointer transition border-[#6C5CE7] bg-purple-50/40 shadow-xs';
+        cardDark.className = 'p-5 rounded-3xl border-2 cursor-pointer transition border-stone-200 bg-stone-900 text-white hover:border-stone-400';
+        if (badgeLight) badgeLight.classList.remove('hidden');
+        if (badgeDark) badgeDark.classList.add('hidden');
+      }
+    }
+
+    if (profThemeCheckbox) {
+      profThemeCheckbox.checked = isDark;
     }
 
     if (showNotification && typeof showToast === 'function') {

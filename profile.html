@@ -49,10 +49,10 @@
       .curved-header-bg::after {
         content: '';
         position: absolute;
-        bottom: -28px;
+        bottom: -26px;
         left: 0;
         right: 0;
-        height: 56px;
+        height: 52px;
         background-color: #2563EB;
         border-radius: 0 0 50% 50% / 0 0 100% 100%;
         z-index: 1;
@@ -61,8 +61,8 @@
       /* Verified Green Badge at bottom-left */
       .verified-badge-bl {
         position: absolute;
-        bottom: 4px;
-        left: 6px;
+        bottom: 2px;
+        left: 4px;
         width: 26px;
         height: 26px;
         background-color: #22C55E;
@@ -81,7 +81,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 14px 16px;
+        padding: 13px 16px;
         background-color: #FFFFFF;
         border: 1px solid #F1F5F9;
         border-radius: 20px;
@@ -89,59 +89,53 @@
         cursor: pointer;
         transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       }
+      .dark .profile-menu-row {
+        background-color: #1E293B;
+        border-color: #334155;
+      }
       .profile-menu-row:hover {
         transform: translateY(-2px);
         background-color: #F8FAFC;
         border-color: #E2E8F0;
         box-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.06);
       }
-
-      /* Modal and Drawer backdrop */
-      .drawer-panel {
-        transform: translateY(100%);
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .drawer-panel.open {
-        transform: translateY(0);
+      .dark .profile-menu-row:hover {
+        background-color: #243048;
+        border-color: #475569;
       }
     </style>
   </head>
-  <body class="bg-stone-100 min-h-screen text-stone-900 antialiased font-sans flex flex-col justify-between selection:bg-blue-100">
+  <body class="bg-stone-100 dark:bg-stone-950 min-h-screen text-stone-900 dark:text-stone-100 antialiased font-sans flex flex-col justify-between selection:bg-blue-100 transition-colors duration-200">
     
     <!-- Top Global App Bar -->
-    <header class="w-full bg-white/80 backdrop-blur-md border-b border-stone-200/80 sticky top-0 z-40">
-      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <header class="w-full bg-white/90 dark:bg-stone-900/90 backdrop-blur-md border-b border-stone-200/80 dark:border-stone-800 sticky top-0 z-40">
+      <div class="max-w-4xl mx-auto px-4 py-2.5 flex items-center justify-between">
         <a href="index.html" class="flex items-center gap-2.5 group">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#2563EB] to-[#60A5FA] flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition">
-            <i data-lucide="user" class="w-5 h-5"></i>
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#2563EB] to-[#60A5FA] flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition">
+            <i data-lucide="user" class="w-4 h-4"></i>
           </div>
           <div>
-            <span class="font-display font-extrabold text-lg text-stone-900 tracking-tight">codertech</span>
-            <span class="text-[10px] font-mono font-bold text-stone-400 block -mt-1">User Account</span>
+            <span class="font-display font-extrabold text-base text-stone-900 dark:text-white tracking-tight">codertech</span>
+            <span class="text-[10px] font-mono font-bold text-stone-400 dark:text-stone-500 block -mt-1">User Profile</span>
           </div>
         </a>
 
-        <!-- Desktop Mode Switches -->
-        <div class="hidden md:flex items-center gap-2 p-1 bg-stone-100/90 rounded-2xl border border-stone-200/70 text-xs font-bold text-stone-600">
-          <button type="button" onclick="switchAvatarStyle('letter')" id="nav-btn-letter" class="px-3.5 py-1.5 rounded-xl transition hover:text-stone-900">
-            Initial Letter Avatar (A)
+        <!-- Controls: Theme Toggle & Links -->
+        <div class="flex items-center gap-2">
+          <!-- Theme Toggle Button -->
+          <button type="button" onclick="toggleAppTheme()" id="theme-toggle-btn" class="p-2 rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-700 transition shadow-2xs cursor-pointer" title="Toggle Theme">
+            <i id="theme-icon-sun" data-lucide="sun" class="w-4 h-4 hidden"></i>
+            <i id="theme-icon-moon" data-lucide="moon" class="w-4 h-4 block"></i>
           </button>
-          <button type="button" onclick="switchAvatarStyle('photo')" id="nav-btn-photo" class="px-3.5 py-1.5 rounded-xl transition bg-white text-stone-900 shadow-2xs font-bold">
-            Photo Avatar 📷
-          </button>
-          <button type="button" onclick="toggleDualComparison()" id="nav-btn-dual" class="px-3.5 py-1.5 rounded-xl transition text-[#2563EB] hover:bg-blue-50 flex items-center gap-1">
-            <i data-lucide="columns" class="w-3.5 h-3.5"></i>
-            <span>Side-by-Side Dual View</span>
-          </button>
-        </div>
 
-        <!-- Return links -->
-        <div class="flex items-center gap-2.5">
-          <a href="auth.html" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-purple-50 text-[#6C5CE7] hover:bg-purple-100 transition flex items-center gap-1.5">
+          <!-- Auth Portal Link -->
+          <a href="auth.html" class="px-3 py-1.5 text-xs font-bold rounded-xl bg-purple-50 dark:bg-purple-950/50 text-[#6C5CE7] dark:text-purple-300 hover:bg-purple-100 transition flex items-center gap-1.5 shadow-2xs">
             <i data-lucide="key" class="w-3.5 h-3.5"></i>
-            <span>Auth Portal</span>
+            <span class="hidden sm:inline">Auth Portal</span>
           </a>
-          <a href="index.html" class="px-3 py-1.5 text-xs font-bold rounded-xl border border-stone-200 text-stone-700 hover:bg-stone-50 transition flex items-center gap-1.5">
+
+          <!-- Portfolio Link -->
+          <a href="index.html" class="px-3 py-1.5 text-xs font-bold rounded-xl border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-700 transition flex items-center gap-1.5 shadow-2xs">
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
             <span>Portfolio</span>
           </a>
@@ -149,53 +143,53 @@
       </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="flex-1 flex items-center justify-center p-3 sm:p-6 lg:p-10">
+    <!-- Main Container (Centered & Responsive for mobile, laptop, and desktop) -->
+    <main class="flex-1 flex items-center justify-center p-3 sm:p-5 my-auto">
 
       <!-- ===================================================================== -->
-      <!-- SINGLE PROFILE CARD VIEW (Exact Match to Image 2 Template) -->
+      <!-- USER PROFILE CARD -->
       <!-- ===================================================================== -->
-      <div id="single-profile-view" class="w-full max-w-sm sm:max-w-[390px] mx-auto">
+      <div id="single-profile-view" class="w-full max-w-[370px] sm:max-w-[380px] mx-auto">
         
         <!-- CARD CONTAINER -->
-        <div class="w-full rounded-[40px] shadow-2xl shadow-blue-950/15 overflow-hidden border border-white/60 bg-white relative transition-all duration-300 pb-6">
+        <div class="w-full rounded-[36px] shadow-2xl shadow-blue-950/10 dark:shadow-black/40 overflow-hidden border border-white/60 dark:border-stone-800 bg-white dark:bg-stone-900 relative transition-all duration-300 pb-5">
           
           <!-- TOP BLUE CURVED BANNER -->
-          <div class="curved-header-bg pt-6 px-6 pb-12 text-white relative z-0">
+          <div class="curved-header-bg pt-5 px-6 pb-11 text-white relative z-0">
             <!-- Top Bar inside Blue Banner -->
             <div class="flex items-center justify-between">
-              <!-- Menu Bar Icon on Left (2 horizontal rounded bars) -->
-              <button type="button" onclick="openMenuDrawer()" class="p-1 text-white hover:opacity-80 transition cursor-pointer" title="Menu">
+              <!-- Menu Icon on Left -->
+              <button type="button" onclick="openSettingsDrawer()" class="p-1 text-white hover:opacity-80 transition cursor-pointer" title="Settings & Menu">
                 <div class="space-y-1.5">
                   <span class="block w-5 h-0.5 bg-white rounded-full"></span>
                   <span class="block w-3.5 h-0.5 bg-white rounded-full"></span>
                 </div>
               </button>
 
-              <!-- Edit Link on Right -->
-              <button type="button" onclick="openEditModal()" class="text-white font-semibold text-sm hover:opacity-80 transition cursor-pointer">
+              <!-- Edit Button on Right -->
+              <button type="button" onclick="openEditModal()" class="text-white font-bold text-xs sm:text-sm bg-white/20 hover:bg-white/30 backdrop-blur-md px-3 py-1 rounded-full transition cursor-pointer">
                 Edit
               </button>
             </div>
           </div>
 
           <!-- FLOATING AVATAR SECTION -->
-          <div class="relative z-10 flex flex-col items-center -mt-16 mb-4">
+          <div class="relative z-10 flex flex-col items-center -mt-14 mb-3">
             
             <!-- Avatar Circle Wrapper -->
-            <div class="relative group cursor-pointer" onclick="toggleAvatarModeQuick()">
+            <div class="relative group cursor-pointer" onclick="toggleAvatarModeQuick()" title="Click to toggle avatar style or customize">
               
-              <!-- State 1: Initial Letter Avatar (Blue circle with large letter) -->
-              <div id="avatar-letter-display" class="hidden w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-[#2563EB] border-4 border-white shadow-xl flex items-center justify-center text-white font-display font-bold text-4xl sm:text-5xl select-none">
+              <!-- State 1: Initial Letter Avatar (Blue circle with letter) -->
+              <div id="avatar-letter-display" class="hidden w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#2563EB] border-4 border-white dark:border-stone-800 shadow-xl flex items-center justify-center text-white font-display font-bold text-3xl sm:text-4xl select-none">
                 <span id="avatar-letter-char">A</span>
               </div>
 
-              <!-- State 2: Photo Avatar (Matching Developer Portrait in Template) -->
-              <div id="avatar-photo-display" class="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white shadow-xl overflow-hidden bg-stone-100">
+              <!-- State 2: Photo Avatar -->
+              <div id="avatar-photo-display" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-white dark:border-stone-800 shadow-xl overflow-hidden bg-stone-100 dark:bg-stone-800">
                 <img id="avatar-photo-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="User Profile Photo" class="w-full h-full object-cover" />
               </div>
 
-              <!-- Verified Green Checkmark Badge at Bottom-Left (Exact as in Image 2) -->
+              <!-- Verified Green Checkmark Badge at Bottom-Left -->
               <div class="verified-badge-bl" title="Verified Account">
                 <svg class="w-3.5 h-3.5 stroke-current fill-none stroke-[3]" viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
@@ -204,16 +198,16 @@
 
               <!-- Hover prompt to change -->
               <div class="absolute inset-0 rounded-full bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-[10px] font-bold transition">
-                Change
+                Switch
               </div>
             </div>
 
             <!-- User Full Name & Email Details -->
-            <div class="text-center mt-3 space-y-1">
-              <h1 id="profile-display-name" class="text-lg sm:text-xl font-extrabold text-stone-900 font-display uppercase tracking-wider">
+            <div class="text-center mt-2.5 space-y-0.5">
+              <h1 id="profile-display-name" class="text-lg sm:text-xl font-extrabold text-stone-900 dark:text-white font-display uppercase tracking-wider">
                 ABIMBOLA
               </h1>
-              <p id="profile-display-email" class="text-xs text-stone-400 font-medium">
+              <p id="profile-display-email" class="text-xs text-stone-400 dark:text-stone-400 font-medium">
                 abims2642@gmail.com
               </p>
             </div>
@@ -221,34 +215,34 @@
           </div>
 
           <!-- PROFILE MENU LIST ROWS (4 Clean Rounded Cards) -->
-          <div class="px-5 sm:px-6 space-y-3 mb-6">
+          <div class="px-5 space-y-2.5 mb-4">
             
             <!-- Row 1: My Profile -->
             <div onclick="openEditModal()" class="profile-menu-row">
-              <div class="flex items-center gap-3.5">
-                <div class="w-10 h-10 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center shadow-2xs">
-                  <i data-lucide="user" class="w-5 h-5"></i>
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shadow-2xs">
+                  <i data-lucide="user" class="w-4 h-4"></i>
                 </div>
-                <span class="text-sm font-bold text-stone-700">My Profile</span>
+                <span class="text-xs sm:text-sm font-bold text-stone-700 dark:text-stone-200">My Profile</span>
               </div>
-              <div class="text-stone-300">
+              <div class="text-stone-300 dark:text-stone-600">
                 <i data-lucide="chevron-right" class="w-4 h-4"></i>
               </div>
             </div>
 
             <!-- Row 2: Messages (with Green Badge count '2') -->
             <div onclick="openMessagesDrawer()" class="profile-menu-row">
-              <div class="flex items-center gap-3.5">
-                <div class="w-10 h-10 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center shadow-2xs">
-                  <i data-lucide="mail" class="w-5 h-5"></i>
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shadow-2xs">
+                  <i data-lucide="mail" class="w-4 h-4"></i>
                 </div>
-                <span class="text-sm font-bold text-stone-700">Messages</span>
+                <span class="text-xs sm:text-sm font-bold text-stone-700 dark:text-stone-200">Messages</span>
               </div>
               <div class="flex items-center gap-2">
                 <span id="messages-count-badge" class="bg-[#22C55E] text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-2xs">
                   2
                 </span>
-                <div class="text-stone-300">
+                <div class="text-stone-300 dark:text-stone-600">
                   <i data-lucide="chevron-right" class="w-4 h-4"></i>
                 </div>
               </div>
@@ -256,36 +250,42 @@
 
             <!-- Row 3: Settings -->
             <div onclick="openSettingsDrawer()" class="profile-menu-row">
-              <div class="flex items-center gap-3.5">
-                <div class="w-10 h-10 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center shadow-2xs">
-                  <i data-lucide="settings" class="w-5 h-5"></i>
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shadow-2xs">
+                  <i data-lucide="settings" class="w-4 h-4"></i>
                 </div>
-                <span class="text-sm font-bold text-stone-700">Settings</span>
+                <div>
+                  <span class="text-xs sm:text-sm font-bold text-stone-700 dark:text-stone-200 block">Settings</span>
+                  <span class="text-[10px] text-stone-400 dark:text-stone-500 font-medium">Dark Mode & Preferences</span>
+                </div>
               </div>
-              <div class="text-stone-300">
-                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              <div class="flex items-center gap-2">
+                <span id="row-theme-badge" class="px-2 py-0.5 rounded-full text-[10px] font-bold font-mono bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 border border-stone-200 dark:border-stone-700">Light</span>
+                <div class="text-stone-300 dark:text-stone-600">
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </div>
               </div>
             </div>
 
             <!-- Row 4: Terms & Privacy Policy -->
             <div onclick="openTermsDrawer()" class="profile-menu-row">
-              <div class="flex items-center gap-3.5">
-                <div class="w-10 h-10 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center shadow-2xs">
-                  <i data-lucide="file-text" class="w-5 h-5"></i>
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] dark:bg-blue-950/60 text-[#2563EB] dark:text-blue-400 flex items-center justify-center shadow-2xs">
+                  <i data-lucide="file-text" class="w-4 h-4"></i>
                 </div>
-                <span class="text-sm font-bold text-stone-700">Terms & Privacy Policy</span>
+                <span class="text-xs sm:text-sm font-bold text-stone-700 dark:text-stone-200">Terms & Privacy Policy</span>
               </div>
-              <div class="text-stone-300">
+              <div class="text-stone-300 dark:text-stone-600">
                 <i data-lucide="chevron-right" class="w-4 h-4"></i>
               </div>
             </div>
 
           </div>
 
-          <!-- LOGOUT BUTTON (Centered at Bottom - Exact as in Template) -->
-          <div class="text-center pt-2">
-            <button type="button" onclick="logoutProfile()" class="inline-flex items-center justify-center gap-2 text-stone-500 hover:text-rose-600 text-xs sm:text-sm font-bold py-2 px-6 rounded-full transition cursor-pointer">
-              <i data-lucide="log-out" class="w-4 h-4"></i>
+          <!-- LOGOUT BUTTON (Centered at Bottom) -->
+          <div class="text-center pt-1">
+            <button type="button" onclick="logoutProfile()" class="inline-flex items-center justify-center gap-1.5 text-stone-400 hover:text-rose-600 dark:text-stone-500 dark:hover:text-rose-400 text-xs font-bold py-1.5 px-4 rounded-full transition cursor-pointer">
+              <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
               <span>Logout</span>
             </button>
           </div>
@@ -293,189 +293,42 @@
         </div>
       </div>
 
-
-      <!-- ===================================================================== -->
-      <!-- DUAL STATE COMPARISON VIEW (Desktop side-by-side template preview) -->
-      <!-- ===================================================================== -->
-      <div id="dual-comparison-view" class="hidden w-full max-w-5xl mx-auto py-4">
-        <div class="text-center mb-8">
-          <span class="px-3 py-1 rounded-full bg-blue-100 text-[#2563EB] text-xs font-bold uppercase font-mono">
-            Dual Template Comparison
-          </span>
-          <h2 class="text-3xl font-extrabold text-stone-900 font-display mt-2">
-            Profile Design States
-          </h2>
-          <p class="text-sm text-stone-500 max-w-md mx-auto mt-1">
-            Exact side-by-side display of the Letter Avatar state and Photo Avatar state from the template.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start justify-center max-w-3xl mx-auto">
-          
-          <!-- Card 1: Initial Letter Avatar -->
-          <div class="w-full max-w-[360px] mx-auto rounded-[40px] shadow-2xl overflow-hidden border border-white/60 bg-white pb-6">
-            <div class="curved-header-bg pt-6 px-6 pb-12 text-white">
-              <div class="flex items-center justify-between">
-                <div class="space-y-1.5">
-                  <span class="block w-5 h-0.5 bg-white rounded-full"></span>
-                  <span class="block w-3.5 h-0.5 bg-white rounded-full"></span>
-                </div>
-                <span class="text-white font-semibold text-sm">Edit</span>
-              </div>
-            </div>
-
-            <div class="relative z-10 flex flex-col items-center -mt-16 mb-4">
-              <div class="relative">
-                <div class="w-28 h-28 rounded-full bg-[#2563EB] border-4 border-white shadow-xl flex items-center justify-center text-white font-display font-bold text-4xl select-none">
-                  A
-                </div>
-                <div class="verified-badge-bl">
-                  <svg class="w-3.5 h-3.5 stroke-current fill-none stroke-[3]" viewBox="0 0 24 24">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-              </div>
-              <div class="text-center mt-3 space-y-1">
-                <h3 class="text-lg font-extrabold text-stone-900 font-display uppercase tracking-wider">ABIMBOLA</h3>
-                <p class="text-xs text-stone-400 font-medium">abims2642@gmail.com</p>
-              </div>
-            </div>
-
-            <div class="px-6 space-y-3 mb-6">
-              <div class="profile-menu-row">
-                <div class="flex items-center gap-3.5">
-                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="user" class="w-4 h-4"></i></div>
-                  <span class="text-sm font-bold text-stone-700">My Profile</span>
-                </div>
-                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
-              </div>
-              <div class="profile-menu-row">
-                <div class="flex items-center gap-3.5">
-                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="mail" class="w-4 h-4"></i></div>
-                  <span class="text-sm font-bold text-stone-700">Messages</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="bg-[#22C55E] text-white text-[11px] font-bold px-2 py-0.5 rounded-full">2</span>
-                  <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
-                </div>
-              </div>
-              <div class="profile-menu-row">
-                <div class="flex items-center gap-3.5">
-                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="settings" class="w-4 h-4"></i></div>
-                  <span class="text-sm font-bold text-stone-700">Settings</span>
-                </div>
-                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
-              </div>
-              <div class="profile-menu-row">
-                <div class="flex items-center gap-3.5">
-                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="file-text" class="w-4 h-4"></i></div>
-                  <span class="text-sm font-bold text-stone-700">Terms & Privacy Policy</span>
-                </div>
-                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
-              </div>
-            </div>
-            <div class="text-center"><span class="text-xs font-bold text-stone-400">State 1: Initial Letter</span></div>
-          </div>
-
-          <!-- Card 2: Photo Avatar -->
-          <div class="w-full max-w-[360px] mx-auto rounded-[40px] shadow-2xl overflow-hidden border border-white/60 bg-white pb-6">
-            <div class="curved-header-bg pt-6 px-6 pb-12 text-white">
-              <div class="flex items-center justify-between">
-                <div class="space-y-1.5">
-                  <span class="block w-5 h-0.5 bg-white rounded-full"></span>
-                  <span class="block w-3.5 h-0.5 bg-white rounded-full"></span>
-                </div>
-                <span class="text-white font-semibold text-sm">Edit</span>
-              </div>
-            </div>
-
-            <div class="relative z-10 flex flex-col items-center -mt-16 mb-4">
-              <div class="relative">
-                <div class="w-28 h-28 rounded-full border-4 border-white shadow-xl overflow-hidden bg-stone-100">
-                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" alt="Avatar" class="w-full h-full object-cover" />
-                </div>
-                <div class="verified-badge-bl">
-                  <svg class="w-3.5 h-3.5 stroke-current fill-none stroke-[3]" viewBox="0 0 24 24">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-              </div>
-              <div class="text-center mt-3 space-y-1">
-                <h3 class="text-lg font-extrabold text-stone-900 font-display uppercase tracking-wider">ABIMBOLA</h3>
-                <p class="text-xs text-stone-400 font-medium">abims2642@gmail.com</p>
-              </div>
-            </div>
-
-            <div class="px-6 space-y-3 mb-6">
-              <div class="profile-menu-row">
-                <div class="flex items-center gap-3.5">
-                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="user" class="w-4 h-4"></i></div>
-                  <span class="text-sm font-bold text-stone-700">My Profile</span>
-                </div>
-                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
-              </div>
-              <div class="profile-menu-row">
-                <div class="flex items-center gap-3.5">
-                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="mail" class="w-4 h-4"></i></div>
-                  <span class="text-sm font-bold text-stone-700">Messages</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="bg-[#22C55E] text-white text-[11px] font-bold px-2 py-0.5 rounded-full">2</span>
-                  <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
-                </div>
-              </div>
-              <div class="profile-menu-row">
-                <div class="flex items-center gap-3.5">
-                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="settings" class="w-4 h-4"></i></div>
-                  <span class="text-sm font-bold text-stone-700">Settings</span>
-                </div>
-                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
-              </div>
-              <div class="profile-menu-row">
-                <div class="flex items-center gap-3.5">
-                  <div class="w-9 h-9 rounded-2xl bg-[#EBF3FE] text-[#2563EB] flex items-center justify-center"><i data-lucide="file-text" class="w-4 h-4"></i></div>
-                  <span class="text-sm font-bold text-stone-700">Terms & Privacy Policy</span>
-                </div>
-                <i data-lucide="chevron-right" class="w-4 h-4 text-stone-300"></i>
-              </div>
-            </div>
-            <div class="text-center"><span class="text-xs font-bold text-stone-400">State 2: Photo Avatar</span></div>
-          </div>
-
-        </div>
-      </div>
-
     </main>
+
+    <!-- Footer Credit -->
+    <footer class="py-3 text-center text-[11px] text-stone-400 dark:text-stone-600">
+      <span>codertech Platform &bull; All developer tools & Kotlin templates</span>
+    </footer>
 
     <!-- ======================================================================= -->
     <!-- INTERACTIVE DRAWERS & MODALS (EDIT PROFILE • MESSAGES • SETTINGS • TERMS) -->
     <!-- ======================================================================= -->
 
     <!-- EDIT PROFILE MODAL -->
-    <div id="modal-edit-profile" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-4">
-      <div class="bg-white rounded-3xl w-full max-w-md max-h-[90vh] overflow-y-auto p-6 shadow-2xl border border-stone-200">
-        <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-5">
+    <div id="modal-edit-profile" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-3 sm:p-4">
+      <div class="bg-white dark:bg-stone-900 rounded-3xl w-full max-w-sm sm:max-w-md max-h-[90vh] overflow-y-auto p-5 sm:p-6 shadow-2xl border border-stone-200 dark:border-stone-800">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800 mb-4">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+            <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950 text-[#2563EB] dark:text-blue-400 flex items-center justify-center">
               <i data-lucide="user-pen" class="w-4 h-4"></i>
             </div>
-            <h3 class="font-display font-extrabold text-lg text-stone-900">Edit Profile Info</h3>
+            <h3 class="font-display font-extrabold text-base sm:text-lg text-stone-900 dark:text-white">Edit Profile Info</h3>
           </div>
-          <button type="button" onclick="closeEditModal()" class="p-1 rounded-full text-stone-400 hover:text-stone-700">
+          <button type="button" onclick="closeEditModal()" class="p-1 rounded-full text-stone-400 hover:text-stone-700 dark:hover:text-stone-200">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
         </div>
 
-        <form onsubmit="saveProfileEdits(event)" class="space-y-4">
+        <form onsubmit="saveProfileEdits(event)" class="space-y-3.5">
           <!-- Avatar Style Chooser -->
           <div>
-            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-2">Avatar Type</label>
+            <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 uppercase font-mono mb-2">Avatar Type</label>
             <div class="grid grid-cols-2 gap-2">
-              <button type="button" onclick="switchAvatarStyle('letter')" id="btn-choice-letter" class="p-3 rounded-2xl border-2 border-stone-200 text-xs font-bold text-stone-700 hover:border-blue-300 flex items-center gap-2">
-                <span class="w-6 h-6 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold">A</span>
+              <button type="button" onclick="switchAvatarStyle('letter')" id="btn-choice-letter" class="p-2.5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-700 dark:text-stone-300 flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-xs">A</span>
                 <span>Initial Letter</span>
               </button>
-              <button type="button" onclick="switchAvatarStyle('photo')" id="btn-choice-photo" class="p-3 rounded-2xl border-2 border-[#2563EB] bg-blue-50/50 text-xs font-bold text-[#2563EB] flex items-center gap-2">
+              <button type="button" onclick="switchAvatarStyle('photo')" id="btn-choice-photo" class="p-2.5 rounded-2xl border-2 border-[#2563EB] bg-blue-50/50 dark:bg-blue-950/50 text-xs font-bold text-[#2563EB] dark:text-blue-400 flex items-center gap-2">
                 <i data-lucide="image" class="w-4 h-4"></i>
                 <span>Custom Photo</span>
               </button>
@@ -483,16 +336,16 @@
           </div>
 
           <!-- Photo Upload & Camera Action -->
-          <div id="photo-action-group" class="p-3 bg-stone-50 rounded-2xl border border-stone-200 space-y-2">
-            <span class="text-[11px] font-bold text-stone-500 uppercase font-mono block">Update Photo</span>
+          <div id="photo-action-group" class="p-3 bg-stone-50 dark:bg-stone-800/60 rounded-2xl border border-stone-200 dark:border-stone-700 space-y-2">
+            <span class="text-[10px] font-bold text-stone-500 dark:text-stone-400 uppercase font-mono block">Update Photo</span>
             <div class="flex items-center gap-2">
-              <button type="button" onclick="document.getElementById('file-upload-input').click()" class="flex-1 py-2 px-3 bg-white hover:bg-stone-100 border border-stone-200 text-stone-800 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shadow-2xs">
+              <button type="button" onclick="document.getElementById('file-upload-input').click()" class="flex-1 py-2 px-3 bg-white dark:bg-stone-800 hover:bg-stone-100 dark:hover:bg-stone-700 border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-200 text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer">
                 <i data-lucide="upload" class="w-3.5 h-3.5"></i>
                 <span>Upload File</span>
               </button>
-              <button type="button" onclick="openCameraModal()" class="flex-1 py-2 px-3 bg-[#2563EB] hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shadow-2xs">
+              <button type="button" onclick="openCameraModal()" class="flex-1 py-2 px-3 bg-[#2563EB] hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition flex items-center justify-center gap-1.5 shadow-2xs cursor-pointer">
                 <i data-lucide="camera" class="w-3.5 h-3.5"></i>
-                <span>Snap Camera</span>
+                <span>Camera</span>
               </button>
             </div>
             <input type="file" id="file-upload-input" accept="image/*" class="hidden" onchange="handleFileUpload(event)" />
@@ -500,27 +353,27 @@
 
           <!-- Full Name -->
           <div>
-            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Full Name / Display</label>
-            <input type="text" id="edit-input-name" required value="ABIMBOLA" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-2xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition" />
+            <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 uppercase font-mono mb-1">Full Name / Display</label>
+            <input type="text" id="edit-input-name" required value="ABIMBOLA" class="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-2xl text-xs sm:text-sm text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-stone-900 transition" />
           </div>
 
           <!-- Email -->
           <div>
-            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Email Address</label>
-            <input type="email" id="edit-input-email" required value="abims2642@gmail.com" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-2xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition" />
+            <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 uppercase font-mono mb-1">Email Address</label>
+            <input type="email" id="edit-input-email" required value="abims2642@gmail.com" class="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-2xl text-xs sm:text-sm text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-stone-900 transition" />
           </div>
 
           <!-- Role / Headline -->
           <div>
-            <label class="block text-xs font-bold text-stone-700 uppercase font-mono mb-1.5">Professional Role</label>
-            <input type="text" id="edit-input-role" value="Full-Stack Engineer & Kotlin Android Developer" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-2xl text-xs sm:text-sm text-stone-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition" />
+            <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 uppercase font-mono mb-1">Professional Role</label>
+            <input type="text" id="edit-input-role" value="Full-Stack Engineer & Kotlin Android Developer" class="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-2xl text-xs sm:text-sm text-stone-800 dark:text-stone-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white dark:focus:bg-stone-900 transition" />
           </div>
 
-          <div class="flex items-center gap-3 pt-2">
-            <button type="button" onclick="closeEditModal()" class="flex-1 py-3 border border-stone-200 rounded-2xl text-xs font-bold text-stone-600 hover:bg-stone-50 transition">
+          <div class="flex items-center gap-2.5 pt-2">
+            <button type="button" onclick="closeEditModal()" class="flex-1 py-2.5 border border-stone-200 dark:border-stone-700 rounded-2xl text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 transition cursor-pointer">
               Cancel
             </button>
-            <button type="submit" class="flex-1 py-3 bg-[#2563EB] hover:bg-blue-700 text-white rounded-2xl text-xs font-bold transition shadow-md shadow-blue-500/20">
+            <button type="submit" class="flex-1 py-2.5 bg-[#2563EB] hover:bg-blue-700 text-white rounded-2xl text-xs font-bold transition shadow-md shadow-blue-500/20 cursor-pointer">
               Save Changes
             </button>
           </div>
@@ -529,51 +382,51 @@
     </div>
 
     <!-- MESSAGES DRAWER -->
-    <div id="modal-messages" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-4">
-      <div class="bg-white rounded-3xl w-full max-w-md max-h-[85vh] overflow-y-auto p-6 shadow-2xl border border-stone-200 flex flex-col justify-between">
+    <div id="modal-messages" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-3 sm:p-4">
+      <div class="bg-white dark:bg-stone-900 rounded-3xl w-full max-w-sm sm:max-w-md max-h-[85vh] overflow-y-auto p-5 sm:p-6 shadow-2xl border border-stone-200 dark:border-stone-800 flex flex-col justify-between">
         <div>
-          <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-4">
+          <div class="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800 mb-3.5">
             <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+              <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950 text-[#2563EB] dark:text-blue-400 flex items-center justify-center">
                 <i data-lucide="mail" class="w-4 h-4"></i>
               </div>
-              <h3 class="font-display font-extrabold text-lg text-stone-900">Messages & Inquiries</h3>
+              <h3 class="font-display font-extrabold text-base sm:text-lg text-stone-900 dark:text-white">Messages & Inquiries</h3>
             </div>
-            <button type="button" onclick="closeMessagesDrawer()" class="p-1 text-stone-400 hover:text-stone-700">
+            <button type="button" onclick="closeMessagesDrawer()" class="p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200">
               <i data-lucide="x" class="w-5 h-5"></i>
             </button>
           </div>
 
-          <div class="space-y-3">
+          <div class="space-y-2.5">
             <!-- Message 1 -->
-            <div class="p-3.5 rounded-2xl bg-blue-50/60 border border-blue-100 space-y-1">
+            <div class="p-3 rounded-2xl bg-blue-50/70 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/50 space-y-1">
               <div class="flex items-center justify-between text-xs">
-                <span class="font-bold text-[#2563EB] flex items-center gap-1">
+                <span class="font-bold text-[#2563EB] dark:text-blue-400 flex items-center gap-1">
                   <span class="w-2 h-2 rounded-full bg-[#22C55E]"></span>
                   <span>Isaac (codertech)</span>
                 </span>
                 <span class="text-[10px] text-stone-400 font-mono">10m ago</span>
               </div>
-              <p class="text-xs text-stone-700 leading-relaxed font-medium">
+              <p class="text-xs text-stone-700 dark:text-stone-300 leading-relaxed font-medium">
                 Welcome to codertech! Feel free to explore Kotlin architecture guides and modern web toolkits.
               </p>
             </div>
 
             <!-- Message 2 -->
-            <div class="p-3.5 rounded-2xl bg-stone-50 border border-stone-200 space-y-1">
+            <div class="p-3 rounded-2xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 space-y-1">
               <div class="flex items-center justify-between text-xs">
-                <span class="font-bold text-stone-800">Project Inquiry: Kotlin App</span>
+                <span class="font-bold text-stone-800 dark:text-stone-200">Project Inquiry: Kotlin App</span>
                 <span class="text-[10px] text-stone-400 font-mono">2h ago</span>
               </div>
-              <p class="text-xs text-stone-600 leading-relaxed font-medium">
+              <p class="text-xs text-stone-600 dark:text-stone-400 leading-relaxed font-medium">
                 "Hello, I loved your PulseFit Kotlin showcase and would like to collaborate on an Android MVP."
               </p>
             </div>
           </div>
         </div>
 
-        <div class="pt-5 border-t border-stone-100 mt-4">
-          <button type="button" onclick="closeMessagesDrawer()" class="w-full py-3 bg-stone-900 hover:bg-stone-800 text-white rounded-2xl text-xs font-bold transition">
+        <div class="pt-4 border-t border-stone-100 dark:border-stone-800 mt-4">
+          <button type="button" onclick="closeMessagesDrawer()" class="w-full py-2.5 bg-stone-900 dark:bg-stone-800 hover:bg-stone-800 dark:hover:bg-stone-700 text-white rounded-2xl text-xs font-bold transition cursor-pointer">
             Close Inbox
           </button>
         </div>
@@ -581,55 +434,92 @@
     </div>
 
     <!-- SETTINGS DRAWER -->
-    <div id="modal-settings" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-4">
-      <div class="bg-white rounded-3xl w-full max-w-md max-h-[85vh] overflow-y-auto p-6 shadow-2xl border border-stone-200">
-        <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-5">
+    <div id="modal-settings" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-3 sm:p-4">
+      <div class="bg-white dark:bg-stone-900 rounded-3xl w-full max-w-sm sm:max-w-md max-h-[85vh] overflow-y-auto p-5 sm:p-6 shadow-2xl border border-stone-200 dark:border-stone-800">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800 mb-4">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+            <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950 text-[#2563EB] dark:text-blue-400 flex items-center justify-center">
               <i data-lucide="settings" class="w-4 h-4"></i>
             </div>
-            <h3 class="font-display font-extrabold text-lg text-stone-900">Settings & Preferences</h3>
+            <h3 class="font-display font-extrabold text-base sm:text-lg text-stone-900 dark:text-white">Settings & Preferences</h3>
           </div>
-          <button type="button" onclick="closeSettingsDrawer()" class="p-1 text-stone-400 hover:text-stone-700">
+          <button type="button" onclick="closeSettingsDrawer()" class="p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
         </div>
 
         <div class="space-y-4">
-          <!-- Theme Toggle -->
-          <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-50 border border-stone-200">
-            <div>
-              <span class="text-xs font-bold text-stone-800 block">Dark Mode</span>
-              <span class="text-[11px] text-stone-500">Toggle dark visual canvas</span>
+          <!-- APPEARANCE & DARK MODE TOGGLE SECTION -->
+          <div class="p-4 rounded-2xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700 space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-white dark:bg-stone-700 text-stone-800 dark:text-stone-100 flex items-center justify-center shadow-2xs">
+                  <i data-lucide="moon" class="w-4 h-4 text-purple-600 dark:text-purple-300"></i>
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-stone-800 dark:text-stone-100 block">Dark Mode</span>
+                  <span id="settings-theme-status-text" class="text-[11px] text-stone-500 dark:text-stone-400 font-medium">Light mode enabled (Default)</span>
+                </div>
+              </div>
+
+              <!-- Interactive Switch Toggle -->
+              <label class="relative inline-flex items-center cursor-pointer select-none" title="Toggle Dark / Light Mode">
+                <input type="checkbox" id="settings-theme-checkbox" onchange="toggleAppTheme()" class="sr-only peer" />
+                <div class="w-11 h-6 bg-stone-200 peer-focus:outline-none rounded-full peer dark:bg-stone-700 peer-checked:after:translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-stone-600 peer-checked:bg-[#2563EB]"></div>
+              </label>
             </div>
-            <button type="button" onclick="toggleAppTheme()" id="btn-theme-toggle" class="px-3 py-1.5 bg-white border border-stone-200 text-xs font-bold rounded-xl text-stone-800 shadow-2xs">
-              Toggle
-            </button>
+
+            <!-- Light vs Dark Theme Selection Presets -->
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <!-- Light Theme Preset -->
+              <button type="button" onclick="setAppThemeExplicit('light')" id="settings-card-light" class="p-2.5 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-[#2563EB] bg-blue-50/70 dark:bg-stone-800">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-base">☀️</span>
+                  <span id="settings-badge-light" class="px-1.5 py-0.5 rounded-full bg-[#2563EB] text-white text-[9px] font-bold font-mono">ACTIVE</span>
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-stone-900 dark:text-white block">Light Mode</span>
+                  <span class="text-[10px] text-stone-500 dark:text-stone-400 font-medium">Original default UI</span>
+                </div>
+              </button>
+
+              <!-- Dark Theme Preset -->
+              <button type="button" onclick="setAppThemeExplicit('dark')" id="settings-card-dark" class="p-2.5 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-base">🌙</span>
+                  <span id="settings-badge-dark" class="hidden px-1.5 py-0.5 rounded-full bg-[#2563EB] text-white text-[9px] font-bold font-mono">ACTIVE</span>
+                </div>
+                <div>
+                  <span class="text-xs font-bold text-stone-900 dark:text-white block">Dark Mode</span>
+                  <span class="text-[10px] text-stone-500 dark:text-stone-400 font-medium">User choice</span>
+                </div>
+              </button>
+            </div>
           </div>
 
           <!-- Notification Toggle -->
-          <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-50 border border-stone-200">
+          <div class="flex items-center justify-between p-3 rounded-2xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200 dark:border-stone-700">
             <div>
-              <span class="text-xs font-bold text-stone-800 block">Email Inquiries</span>
-              <span class="text-[11px] text-stone-500">Receive instant updates</span>
+              <span class="text-xs font-bold text-stone-800 dark:text-stone-200 block">Email Inquiries</span>
+              <span class="text-[11px] text-stone-500 dark:text-stone-400">Receive instant updates</span>
             </div>
-            <input type="checkbox" checked class="w-4 h-4 rounded text-[#2563EB]" />
+            <input type="checkbox" checked class="w-4 h-4 rounded text-[#2563EB] accent-[#2563EB]" />
           </div>
 
           <!-- Clear Cache -->
-          <div class="p-3 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-between">
+          <div class="p-3 rounded-2xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/40 flex items-center justify-between">
             <div>
-              <span class="text-xs font-bold text-rose-800 block">Reset Session</span>
-              <span class="text-[11px] text-rose-600">Clear local session data</span>
+              <span class="text-xs font-bold text-rose-800 dark:text-rose-300 block">Reset Session</span>
+              <span class="text-[11px] text-rose-600 dark:text-rose-400">Clear local session data</span>
             </div>
-            <button type="button" onclick="resetUserData()" class="px-3 py-1.5 bg-white border border-rose-200 text-xs font-bold rounded-xl text-rose-700 hover:bg-rose-100 transition">
+            <button type="button" onclick="resetUserData()" class="px-3 py-1.5 bg-white dark:bg-stone-800 border border-rose-200 dark:border-rose-800 text-xs font-bold rounded-xl text-rose-700 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-950 transition cursor-pointer">
               Reset
             </button>
           </div>
         </div>
 
-        <div class="pt-5 border-t border-stone-100 mt-5">
-          <button type="button" onclick="closeSettingsDrawer()" class="w-full py-3 bg-stone-900 text-white rounded-2xl text-xs font-bold">
+        <div class="pt-4 border-t border-stone-100 dark:border-stone-800 mt-4">
+          <button type="button" onclick="closeSettingsDrawer()" class="w-full py-2.5 bg-stone-900 dark:bg-stone-800 text-white rounded-2xl text-xs font-bold cursor-pointer">
             Done
           </button>
         </div>
@@ -637,30 +527,30 @@
     </div>
 
     <!-- TERMS & PRIVACY POLICY DRAWER -->
-    <div id="modal-terms" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-4">
-      <div class="bg-white rounded-3xl w-full max-w-md max-h-[85vh] overflow-y-auto p-6 shadow-2xl border border-stone-200">
-        <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-4">
+    <div id="modal-terms" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-3 sm:p-4">
+      <div class="bg-white dark:bg-stone-900 rounded-3xl w-full max-w-sm sm:max-w-md max-h-[85vh] overflow-y-auto p-5 sm:p-6 shadow-2xl border border-stone-200 dark:border-stone-800">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800 mb-3.5">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+            <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-950 text-[#2563EB] dark:text-blue-400 flex items-center justify-center">
               <i data-lucide="file-text" class="w-4 h-4"></i>
             </div>
-            <h3 class="font-display font-extrabold text-lg text-stone-900">Terms & Privacy</h3>
+            <h3 class="font-display font-extrabold text-base sm:text-lg text-stone-900 dark:text-white">Terms & Privacy</h3>
           </div>
-          <button type="button" onclick="closeTermsDrawer()" class="p-1 text-stone-400 hover:text-stone-700">
+          <button type="button" onclick="closeTermsDrawer()" class="p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
         </div>
 
-        <div class="space-y-3 text-xs text-stone-600 leading-relaxed max-h-60 overflow-y-auto pr-1">
-          <p class="font-bold text-stone-800">1. Client-Side Data Privacy</p>
+        <div class="space-y-2.5 text-xs text-stone-600 dark:text-stone-300 leading-relaxed max-h-56 overflow-y-auto pr-1">
+          <p class="font-bold text-stone-800 dark:text-stone-100">1. Client-Side Data Privacy</p>
           <p>codertech runs frontend-only storage in your browser LocalStorage. No private developer credentials or unrequested server data are transmitted.</p>
 
-          <p class="font-bold text-stone-800 mt-2">2. Open Learning & Code Usage</p>
+          <p class="font-bold text-stone-800 dark:text-stone-100 mt-2">2. Open Learning & Code Usage</p>
           <p>All Kotlin Android templates, architecture guides, and web utilities provided on this portfolio are designed for developer education and prototyping.</p>
         </div>
 
-        <div class="pt-5 border-t border-stone-100 mt-4">
-          <button type="button" onclick="closeTermsDrawer()" class="w-full py-3 bg-stone-900 text-white rounded-2xl text-xs font-bold">
+        <div class="pt-4 border-t border-stone-100 dark:border-stone-800 mt-4">
+          <button type="button" onclick="closeTermsDrawer()" class="w-full py-2.5 bg-stone-900 dark:bg-stone-800 text-white rounded-2xl text-xs font-bold cursor-pointer">
             I Understand
           </button>
         </div>
@@ -668,28 +558,28 @@
     </div>
 
     <!-- LIVE CAMERA MODAL -->
-    <div id="modal-camera" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs hidden items-center justify-center p-4">
-      <div class="bg-white rounded-3xl w-full max-w-sm p-6 shadow-2xl border border-stone-200">
-        <div class="flex items-center justify-between pb-3 border-b border-stone-100 mb-4">
-          <h3 class="font-display font-extrabold text-base text-stone-900 flex items-center gap-2">
+    <div id="modal-camera" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs hidden items-center justify-center p-3 sm:p-4">
+      <div class="bg-white dark:bg-stone-900 rounded-3xl w-full max-w-xs sm:max-w-sm p-5 shadow-2xl border border-stone-200 dark:border-stone-800">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100 dark:border-stone-800 mb-3.5">
+          <h3 class="font-display font-extrabold text-sm sm:text-base text-stone-900 dark:text-white flex items-center gap-2">
             <i data-lucide="camera" class="w-4 h-4 text-[#2563EB]"></i>
             <span>Snap Camera Profile</span>
           </h3>
-          <button type="button" onclick="closeCameraModal()" class="p-1 text-stone-400 hover:text-stone-700">
-            <i data-lucide="x" class="w-4 h-4"></i>
+          <button type="button" onclick="closeCameraModal()" class="p-1 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200">
+            <i data-lucide="x" class="w-5 h-5"></i>
           </button>
         </div>
 
-        <div class="relative w-full aspect-square rounded-2xl bg-black overflow-hidden mb-4 shadow-inner">
+        <div class="relative w-full aspect-square rounded-2xl bg-black overflow-hidden mb-3.5 shadow-inner">
           <video id="camera-feed" autoplay playsinline class="w-full h-full object-cover"></video>
           <canvas id="camera-canvas" class="hidden"></canvas>
         </div>
 
         <div class="flex items-center gap-2">
-          <button type="button" onclick="closeCameraModal()" class="flex-1 py-2.5 border border-stone-200 rounded-xl text-xs font-bold text-stone-600 hover:bg-stone-50">
+          <button type="button" onclick="closeCameraModal()" class="flex-1 py-2 border border-stone-200 dark:border-stone-700 rounded-xl text-xs font-bold text-stone-600 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 cursor-pointer">
             Cancel
           </button>
-          <button type="button" onclick="captureCameraSnapshot()" class="flex-1 py-2.5 bg-[#2563EB] hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition shadow-md shadow-blue-500/20 flex items-center justify-center gap-1.5">
+          <button type="button" onclick="captureCameraSnapshot()" class="flex-1 py-2 bg-[#2563EB] hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition shadow-md shadow-blue-500/20 flex items-center justify-center gap-1.5 cursor-pointer">
             <i data-lucide="aperture" class="w-4 h-4"></i>
             <span>Capture</span>
           </button>
@@ -705,7 +595,102 @@
     <script>
       let avatarStyle = 'photo'; // 'photo' or 'letter'
       let mediaStream = null;
-      let dualComparison = false;
+
+      // Theme Management (Light mode is original default, Dark mode is user choice)
+      function initAppTheme() {
+        try {
+          const savedTheme = localStorage.getItem('codertech_theme');
+          const isDark = savedTheme === 'dark';
+          applyAppTheme(isDark ? 'dark' : 'light');
+        } catch (e) {}
+      }
+
+      function applyAppTheme(theme) {
+        const root = document.documentElement;
+        const isDark = theme === 'dark';
+        if (isDark) {
+          root.classList.add('dark');
+          root.classList.remove('light');
+        } else {
+          root.classList.remove('dark');
+          root.classList.add('light');
+        }
+
+        // Header theme button icons
+        const sun = document.getElementById('theme-icon-sun');
+        const moon = document.getElementById('theme-icon-moon');
+        if (sun && moon) {
+          if (isDark) {
+            sun.classList.remove('hidden');
+            sun.classList.add('block');
+            moon.classList.add('hidden');
+            moon.classList.remove('block');
+          } else {
+            moon.classList.remove('hidden');
+            moon.classList.add('block');
+            sun.classList.add('hidden');
+            sun.classList.remove('block');
+          }
+        }
+
+        // Settings toggle switch checkbox
+        const toggleCheckbox = document.getElementById('settings-theme-checkbox');
+        if (toggleCheckbox) {
+          toggleCheckbox.checked = isDark;
+        }
+
+        // Settings status text
+        const statusText = document.getElementById('settings-theme-status-text');
+        if (statusText) {
+          statusText.textContent = isDark ? 'Dark mode enabled (User choice)' : 'Light mode enabled (Default)';
+        }
+
+        // Settings Light & Dark preset cards
+        const cardLight = document.getElementById('settings-card-light');
+        const cardDark = document.getElementById('settings-card-dark');
+        const badgeLight = document.getElementById('settings-badge-light');
+        const badgeDark = document.getElementById('settings-badge-dark');
+
+        if (cardLight && cardDark) {
+          if (isDark) {
+            cardLight.className = 'p-2.5 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900';
+            cardDark.className = 'p-2.5 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-[#2563EB] bg-blue-50/70 dark:bg-blue-950/40 text-stone-900 dark:text-white shadow-2xs';
+            if (badgeLight) badgeLight.classList.add('hidden');
+            if (badgeDark) badgeDark.classList.remove('hidden');
+          } else {
+            cardLight.className = 'p-2.5 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-[#2563EB] bg-blue-50/70 dark:bg-stone-800 shadow-2xs';
+            cardDark.className = 'p-2.5 rounded-xl border-2 text-left transition cursor-pointer flex flex-col justify-between border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900';
+            if (badgeLight) badgeLight.classList.remove('hidden');
+            if (badgeDark) badgeDark.classList.add('hidden');
+          }
+        }
+
+        // Profile Menu Row theme badge
+        const rowBadge = document.getElementById('row-theme-badge');
+        if (rowBadge) {
+          rowBadge.textContent = isDark ? 'Dark' : 'Light';
+        }
+
+        if (window.lucide) lucide.createIcons();
+      }
+
+      function toggleAppTheme() {
+        const isCurrentlyDark = document.documentElement.classList.contains('dark');
+        const newTheme = isCurrentlyDark ? 'light' : 'dark';
+        try {
+          localStorage.setItem('codertech_theme', newTheme);
+        } catch (e) {}
+        applyAppTheme(newTheme);
+        showToast(newTheme === 'dark' ? '🌙 Dark mode enabled' : '☀️ Light mode enabled');
+      }
+
+      function setAppThemeExplicit(theme) {
+        try {
+          localStorage.setItem('codertech_theme', theme);
+        } catch (e) {}
+        applyAppTheme(theme);
+        showToast(theme === 'dark' ? '🌙 Dark mode enabled' : '☀️ Light mode enabled');
+      }
 
       function loadUserProfile() {
         let user = null;
@@ -715,7 +700,6 @@
         } catch (e) {}
 
         if (!user) {
-          // Default profile matching template
           user = {
             isLoggedIn: true,
             name: 'ABIMBOLA',
@@ -724,7 +708,9 @@
             avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
             avatarStyle: 'photo'
           };
-          localStorage.setItem('codertech_user', JSON.stringify(user));
+          try {
+            localStorage.setItem('codertech_user', JSON.stringify(user));
+          } catch (e) {}
         }
 
         const nameEl = document.getElementById('profile-display-name');
@@ -755,29 +741,21 @@
         avatarStyle = style;
         const letterDiv = document.getElementById('avatar-letter-display');
         const photoDiv = document.getElementById('avatar-photo-display');
-        const navLetter = document.getElementById('nav-btn-letter');
-        const navPhoto = document.getElementById('nav-btn-photo');
         const btnChoiceLetter = document.getElementById('btn-choice-letter');
         const btnChoicePhoto = document.getElementById('btn-choice-photo');
 
         if (style === 'letter') {
           if (letterDiv) letterDiv.classList.remove('hidden');
           if (photoDiv) photoDiv.classList.add('hidden');
-
-          if (navLetter) navLetter.className = 'px-3.5 py-1.5 rounded-xl transition bg-white text-stone-900 shadow-2xs font-bold';
-          if (navPhoto) navPhoto.className = 'px-3.5 py-1.5 rounded-xl transition text-stone-600 hover:text-stone-900 font-bold';
           
-          if (btnChoiceLetter) btnChoiceLetter.className = 'p-3 rounded-2xl border-2 border-[#2563EB] bg-blue-50/50 text-xs font-bold text-[#2563EB] flex items-center gap-2';
-          if (btnChoicePhoto) btnChoicePhoto.className = 'p-3 rounded-2xl border-2 border-stone-200 text-xs font-bold text-stone-700 hover:border-blue-300 flex items-center gap-2';
+          if (btnChoiceLetter) btnChoiceLetter.className = 'p-2.5 rounded-2xl border-2 border-[#2563EB] bg-blue-50/50 dark:bg-blue-950/50 text-xs font-bold text-[#2563EB] dark:text-blue-400 flex items-center gap-2';
+          if (btnChoicePhoto) btnChoicePhoto.className = 'p-2.5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-700 dark:text-stone-300 hover:border-blue-300 flex items-center gap-2';
         } else {
           if (letterDiv) letterDiv.classList.add('hidden');
           if (photoDiv) photoDiv.classList.remove('hidden');
 
-          if (navPhoto) navPhoto.className = 'px-3.5 py-1.5 rounded-xl transition bg-white text-stone-900 shadow-2xs font-bold';
-          if (navLetter) navLetter.className = 'px-3.5 py-1.5 rounded-xl transition text-stone-600 hover:text-stone-900 font-bold';
-
-          if (btnChoicePhoto) btnChoicePhoto.className = 'p-3 rounded-2xl border-2 border-[#2563EB] bg-blue-50/50 text-xs font-bold text-[#2563EB] flex items-center gap-2';
-          if (btnChoiceLetter) btnChoiceLetter.className = 'p-3 rounded-2xl border-2 border-stone-200 text-xs font-bold text-stone-700 hover:border-blue-300 flex items-center gap-2';
+          if (btnChoicePhoto) btnChoicePhoto.className = 'p-2.5 rounded-2xl border-2 border-[#2563EB] bg-blue-50/50 dark:bg-blue-950/50 text-xs font-bold text-[#2563EB] dark:text-blue-400 flex items-center gap-2';
+          if (btnChoiceLetter) btnChoiceLetter.className = 'p-2.5 rounded-2xl border-2 border-stone-200 dark:border-stone-700 text-xs font-bold text-stone-700 dark:text-stone-300 hover:border-blue-300 flex items-center gap-2';
         }
 
         if (persist) {
@@ -785,7 +763,7 @@
             const user = JSON.parse(localStorage.getItem('codertech_user') || '{}');
             user.avatarStyle = style;
             localStorage.setItem('codertech_user', JSON.stringify(user));
-            showToast(`Switched avatar to: ${style === 'letter' ? 'Initial Letter' : 'Custom Photo'}`);
+            showToast(`Avatar mode: ${style === 'letter' ? 'Initial Letter' : 'Custom Photo'}`);
           } catch (e) {}
         }
       }
@@ -794,67 +772,69 @@
         switchAvatarStyle(avatarStyle === 'photo' ? 'letter' : 'photo', true);
       }
 
-      function toggleDualComparison() {
-        dualComparison = !dualComparison;
-        const single = document.getElementById('single-profile-view');
-        const dual = document.getElementById('dual-comparison-view');
-        const btn = document.getElementById('nav-btn-dual');
-
-        if (dualComparison) {
-          single.classList.add('hidden');
-          dual.classList.remove('hidden');
-          if (btn) btn.className = 'px-3.5 py-1.5 rounded-xl transition bg-[#2563EB] text-white font-bold flex items-center gap-1';
-        } else {
-          dual.classList.add('hidden');
-          single.classList.remove('hidden');
-          if (btn) btn.className = 'px-3.5 py-1.5 rounded-xl transition text-[#2563EB] hover:bg-blue-50 font-bold flex items-center gap-1';
+      // Modals and Drawers
+      function openEditModal() {
+        const m = document.getElementById('modal-edit-profile');
+        if (m) {
+          m.classList.remove('hidden');
+          m.classList.add('flex');
         }
         if (window.lucide) lucide.createIcons();
       }
-
-      // Modals and Drawers
-      function openEditModal() {
-        document.getElementById('modal-edit-profile').classList.remove('hidden');
-        document.getElementById('modal-edit-profile').classList.add('flex');
-        if (window.lucide) lucide.createIcons();
-      }
       function closeEditModal() {
-        document.getElementById('modal-edit-profile').classList.add('hidden');
-        document.getElementById('modal-edit-profile').classList.remove('flex');
+        const m = document.getElementById('modal-edit-profile');
+        if (m) {
+          m.classList.add('hidden');
+          m.classList.remove('flex');
+        }
       }
 
       function openMessagesDrawer() {
-        document.getElementById('modal-messages').classList.remove('hidden');
-        document.getElementById('modal-messages').classList.add('flex');
+        const m = document.getElementById('modal-messages');
+        if (m) {
+          m.classList.remove('hidden');
+          m.classList.add('flex');
+        }
         if (window.lucide) lucide.createIcons();
       }
       function closeMessagesDrawer() {
-        document.getElementById('modal-messages').classList.add('hidden');
-        document.getElementById('modal-messages').classList.remove('flex');
+        const m = document.getElementById('modal-messages');
+        if (m) {
+          m.classList.add('hidden');
+          m.classList.remove('flex');
+        }
       }
 
       function openSettingsDrawer() {
-        document.getElementById('modal-settings').classList.remove('hidden');
-        document.getElementById('modal-settings').classList.add('flex');
+        const m = document.getElementById('modal-settings');
+        if (m) {
+          m.classList.remove('hidden');
+          m.classList.add('flex');
+        }
         if (window.lucide) lucide.createIcons();
       }
       function closeSettingsDrawer() {
-        document.getElementById('modal-settings').classList.add('hidden');
-        document.getElementById('modal-settings').classList.remove('flex');
+        const m = document.getElementById('modal-settings');
+        if (m) {
+          m.classList.add('hidden');
+          m.classList.remove('flex');
+        }
       }
 
       function openTermsDrawer() {
-        document.getElementById('modal-terms').classList.remove('hidden');
-        document.getElementById('modal-terms').classList.add('flex');
+        const m = document.getElementById('modal-terms');
+        if (m) {
+          m.classList.remove('hidden');
+          m.classList.add('flex');
+        }
         if (window.lucide) lucide.createIcons();
       }
       function closeTermsDrawer() {
-        document.getElementById('modal-terms').classList.add('hidden');
-        document.getElementById('modal-terms').classList.remove('flex');
-      }
-
-      function openMenuDrawer() {
-        openSettingsDrawer();
+        const m = document.getElementById('modal-terms');
+        if (m) {
+          m.classList.add('hidden');
+          m.classList.remove('flex');
+        }
       }
 
       // Profile Save Form
@@ -901,12 +881,15 @@
 
       // Live Camera functions
       async function openCameraModal() {
-        document.getElementById('modal-camera').classList.remove('hidden');
-        document.getElementById('modal-camera').classList.add('flex');
+        const m = document.getElementById('modal-camera');
+        if (m) {
+          m.classList.remove('hidden');
+          m.classList.add('flex');
+        }
         const video = document.getElementById('camera-feed');
         try {
           mediaStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
-          video.srcObject = mediaStream;
+          if (video) video.srcObject = mediaStream;
         } catch (err) {
           showToast('Camera permission denied or unavailable.');
           closeCameraModal();
@@ -918,8 +901,11 @@
           mediaStream.getTracks().forEach(track => track.stop());
           mediaStream = null;
         }
-        document.getElementById('modal-camera').classList.add('hidden');
-        document.getElementById('modal-camera').classList.remove('flex');
+        const m = document.getElementById('modal-camera');
+        if (m) {
+          m.classList.add('hidden');
+          m.classList.remove('flex');
+        }
       }
 
       function captureCameraSnapshot() {
@@ -955,7 +941,7 @@
         showToast('Logged out. Returning to home...');
         setTimeout(() => {
           window.location.href = 'index.html';
-        }, 600);
+        }, 500);
       }
 
       function resetUserData() {
@@ -965,24 +951,11 @@
         showToast('Session reset to template defaults.');
       }
 
-      function toggleAppTheme() {
-        const html = document.documentElement;
-        if (html.classList.contains('dark')) {
-          html.classList.remove('dark');
-          html.classList.add('light');
-          showToast('Light theme activated');
-        } else {
-          html.classList.remove('light');
-          html.classList.add('dark');
-          showToast('Dark theme activated');
-        }
-      }
-
       function showToast(message) {
         const container = document.getElementById('toast-container');
         if (!container) return;
         const toast = document.createElement('div');
-        toast.className = 'pointer-events-auto px-4 py-3 bg-stone-900 text-white rounded-2xl shadow-xl text-xs font-bold flex items-center gap-2 border border-stone-700 animate-bounce';
+        toast.className = 'pointer-events-auto px-4 py-2.5 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-2xl shadow-xl text-xs font-bold flex items-center gap-2 border border-stone-700 dark:border-stone-300 animate-bounce';
         toast.innerHTML = `<span>✓</span> <span>${message}</span>`;
         container.appendChild(toast);
         setTimeout(() => {
@@ -991,6 +964,7 @@
       }
 
       document.addEventListener('DOMContentLoaded', () => {
+        initAppTheme();
         loadUserProfile();
       });
     </script>
