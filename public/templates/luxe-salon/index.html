@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxe Salon | Modern Hair & Beauty Salon</title>
+  <meta name="description" content="Experience premium hair styling, vibrant coloring, bridal beauty, and luxury spa treatments at Luxe Salon." />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo">
+        <span class="brand-sparkle">✦</span>
+        <span class="brand-name">LUXE</span>
+        <span class="brand-sub">SALON & SPA</span>
+      </a>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#team" class="nav-link">Stylists</a></li>
+        <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><button class="btn-book-nav" onclick="openBookingModal()">Book Appointment</button></li>
+      </ul>
+
+      <div class="nav-toggle" id="nav-toggle" onclick="toggleMobileMenu()">
+        <i data-lucide="menu"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span>✦</span> REFINED BEAUTY & ARTISTRY <span>✦</span>
+      </div>
+      <h1 class="hero-title">Elevate Your Everyday Elegance</h1>
+      <p class="hero-subtitle">
+        Bespoke haircuts, transformative color artistry, signature bridal styling, and restorative skin revival crafted by world-class stylists.
+      </p>
+      <div class="hero-cta-group">
+        <button class="btn-primary" onclick="openBookingModal()">
+          <span>Book Your Visit</span>
+          <i data-lucide="calendar" class="icon-sm"></i>
+        </button>
+        <a href="#services" class="btn-secondary">
+          <span>Explore Services</span>
+          <i data-lucide="arrow-down" class="icon-sm"></i>
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">12+</span>
+          <span class="stat-lbl">Master Stylists</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">15k+</span>
+          <span class="stat-lbl">Happy Clients</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">4.9 ★</span>
+          <span class="stat-lbl">500+ Verified Reviews</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image-wrapper">
+          <div class="about-image-card">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&auto=format&fit=crop&q=80" alt="Luxe Salon Interior" class="about-img" />
+            <div class="about-experience-badge">
+              <span class="exp-number">10</span>
+              <span class="exp-text">Years of<br>Excellence</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-text-content">
+          <span class="section-tag">OUR PHILOSOPHY</span>
+          <h2 class="section-heading">Where Precision Meets Indulgence</h2>
+          <p class="body-text">
+            At Luxe Salon, we believe that true luxury lies in tailored attention. Every cut, color formulation, and treatment begins with a dedicated one-on-one consultation to harmonize with your lifestyle and facial architecture.
+          </p>
+          <div class="about-features">
+            <div class="feature-box">
+              <i data-lucide="sparkles" class="feature-icon"></i>
+              <div>
+                <h4>Organic & Premium Products</h4>
+                <p>Cruelty-free, ammonia-free European botanical color lines.</p>
+              </div>
+            </div>
+            <div class="feature-box">
+              <i data-lucide="award" class="feature-icon"></i>
+              <div>
+                <h4>Certified Master Colorists</h4>
+                <p>Continuous education in Paris, London, and Tokyo technique.</p>
+              </div>
+            </div>
+            <div class="feature-box">
+              <i data-lucide="coffee" class="feature-icon"></i>
+              <div>
+                <h4>Complimentary Beverage Bar</h4>
+                <p>Artisan espresso, champagne, and calming herbal infusions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services & Price Menu Section -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">CURATED EXPERIENCES</span>
+        <h2 class="section-heading">Signature Services & Pricing</h2>
+        <p class="section-desc">Transparent pricing tailored to length, texture, and personalized service requirements.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&auto=format&fit=crop&q=80" alt="Haircuts & Blowouts" class="service-img" />
+            <span class="service-price-tag">From $65</span>
+          </div>
+          <div class="service-body">
+            <h3>Precision Haircut & Blowout</h3>
+            <p>Custom consultation, botanical scalp detox shampoo, precision scissor & razor design, followed by a signature blowout.</p>
+            <ul class="service-perks">
+              <li><i data-lucide="check" class="perk-icon"></i> Scalp massage & treatment</li>
+              <li><i data-lucide="check" class="perk-icon"></i> Heat protection & styling</li>
+              <li><i data-lucide="check" class="perk-icon"></i> 45-60 min session</li>
+            </ul>
+            <button class="btn-service-book" onclick="openBookingModal('Haircut & Blowout', 65)">Book Service</button>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card featured-service">
+          <div class="badge-bestseller">MOST POPULAR</div>
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop&q=80" alt="Balayage & Color" class="service-img" />
+            <span class="service-price-tag">From $140</span>
+          </div>
+          <div class="service-body">
+            <h3>Balayage & Custom Highlights</h3>
+            <p>Hand-painted sun-kissed dimension, root shadowing, and high-gloss toner for seamless, luminous regrowth.</p>
+            <ul class="service-perks">
+              <li><i data-lucide="check" class="perk-icon"></i> Bond-strengthening Olaplex</li>
+              <li><i data-lucide="check" class="perk-icon"></i> Customized gloss toner</li>
+              <li><i data-lucide="check" class="perk-icon"></i> 120-150 min session</li>
+            </ul>
+            <button class="btn-service-book" onclick="openBookingModal('Balayage & Highlights', 140)">Book Service</button>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&auto=format&fit=crop&q=80" alt="Bridal Styling" class="service-img" />
+            <span class="service-price-tag">From $180</span>
+          </div>
+          <div class="service-body">
+            <h3>Bridal & Couture Styling</h3>
+            <p>Intricate romantic updos, Hollywood waves, veil placement, and all-day weatherproof hold for your unforgettable day.</p>
+            <ul class="service-perks">
+              <li><i data-lucide="check" class="perk-icon"></i> Pre-wedding trial session option</li>
+              <li><i data-lucide="check" class="perk-icon"></i> Accessory & veil fastening</li>
+              <li><i data-lucide="check" class="perk-icon"></i> On-location service available</li>
+            </ul>
+            <button class="btn-service-book" onclick="openBookingModal('Bridal Styling', 180)">Book Service</button>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&auto=format&fit=crop&q=80" alt="Facial & Skin Revival" class="service-img" />
+            <span class="service-price-tag">From $95</span>
+          </div>
+          <div class="service-body">
+            <h3>Hydra-Glow Facial & Skin Revival</h3>
+            <p>Deep pore ultrasonic cleansing, hyaluronic acid infusion, LED photon therapy, and lymphatic face contour massage.</p>
+            <ul class="service-perks">
+              <li><i data-lucide="check" class="perk-icon"></i> Collagen sheet mask</li>
+              <li><i data-lucide="check" class="perk-icon"></i> Instant radiance & hydration</li>
+              <li><i data-lucide="check" class="perk-icon"></i> 60 min session</li>
+            </ul>
+            <button class="btn-service-book" onclick="openBookingModal('Hydra-Glow Facial', 95)">Book Service</button>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=600&auto=format&fit=crop&q=80" alt="Manicure & Pedicure" class="service-img" />
+            <span class="service-price-tag">From $50</span>
+          </div>
+          <div class="service-body">
+            <h3>Spa Manicure & Gel Extensions</h3>
+            <p>Cuticle conditioning, gentle exfoliating sugar scrub, massage with warm essential oils, and chip-free gel polish.</p>
+            <ul class="service-perks">
+              <li><i data-lucide="check" class="perk-icon"></i> 3+ week lasting shine</li>
+              <li><i data-lucide="check" class="perk-icon"></i> Custom minimalist nail art</li>
+              <li><i data-lucide="check" class="perk-icon"></i> 45 min session</li>
+            </ul>
+            <button class="btn-service-book" onclick="openBookingModal('Spa Manicure', 50)">Book Service</button>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&auto=format&fit=crop&q=80" alt="Keratin Smooth Treatment" class="service-img" />
+            <span class="service-price-tag">From $190</span>
+          </div>
+          <div class="service-body">
+            <h3>Brazilian Keratin Smoothing</h3>
+            <p>Eliminate 95% of frizz, seal split ends, cut morning drying time in half, and restore silk-like manageable luster for up to 5 months.</p>
+            <ul class="service-perks">
+              <li><i data-lucide="check" class="perk-icon"></i> Formaldehyde-free formula</li>
+              <li><i data-lucide="check" class="perk-icon"></i> Includes take-home shampoo</li>
+              <li><i data-lucide="check" class="perk-icon"></i> 120 min session</li>
+            </ul>
+            <button class="btn-service-book" onclick="openBookingModal('Keratin Treatment', 190)">Book Service</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Transformations Gallery -->
+  <section class="gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">PORTFOLIO</span>
+        <h2 class="section-heading">Visual Transformations</h2>
+        <p class="section-desc">Explore recent creations from our master stylists and color artists.</p>
+      </div>
+
+      <div class="gallery-filters">
+        <button class="gallery-filter-btn active" onclick="filterGallery('all')">All Work</button>
+        <button class="gallery-filter-btn" onclick="filterGallery('hair')">Color & Cut</button>
+        <button class="gallery-filter-btn" onclick="filterGallery('bridal')">Bridal Glam</button>
+        <button class="gallery-filter-btn" onclick="filterGallery('spa')">Skin & Spa</button>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" data-category="hair">
+          <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?w=700&auto=format&fit=crop&q=80" alt="Golden Balayage Wave" />
+          <div class="gallery-overlay">
+            <h4>Honey Honey Balayage</h4>
+            <span>Color by Sarah</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="bridal">
+          <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=700&auto=format&fit=crop&q=80" alt="Romantic Textured Updo" />
+          <div class="gallery-overlay">
+            <h4>Boho Bridal Updo</h4>
+            <span>Styled by Elena</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="hair">
+          <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=700&auto=format&fit=crop&q=80" alt="Platinum Blonde Bob" />
+          <div class="gallery-overlay">
+            <h4>Platinum Bob Cut</h4>
+            <span>By Marcus Vance</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="spa">
+          <img src="https://images.unsplash.com/photo-1512290900672-1f4a9b6c16ec?w=700&auto=format&fit=crop&q=80" alt="Hydra Radiance Facial" />
+          <div class="gallery-overlay">
+            <h4>Hydra Glow Treatment</h4>
+            <span>Esthetics by Chloe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stylists Team Section -->
+  <section class="team-section" id="team">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">OUR TALENT</span>
+        <h2 class="section-heading">Meet The Master Stylists</h2>
+        <p class="section-desc">Passionate artisans dedicated to elevating your personal aesthetic.</p>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-img-wrap">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&auto=format&fit=crop&q=80" alt="Elena Rostova" class="team-img" />
+          </div>
+          <div class="team-info">
+            <h3>Elena Rostova</h3>
+            <span class="team-role">Creative Director & Master Stylist</span>
+            <p>12 years experience in Paris Fashion Week & bespoke bridal design.</p>
+            <button class="btn-book-stylist" onclick="openBookingModal('Appointment with Elena', 120)">Book with Elena</button>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-img-wrap">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80" alt="Sarah Jenkins" class="team-img" />
+          </div>
+          <div class="team-info">
+            <h3>Sarah Jenkins</h3>
+            <span class="team-role">Senior Color & Balayage Specialist</span>
+            <p>Specialist in multidimensional blonde tones and gentle corrective color.</p>
+            <button class="btn-book-stylist" onclick="openBookingModal('Appointment with Sarah', 110)">Book with Sarah</button>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-img-wrap">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80" alt="Marcus Vance" class="team-img" />
+          </div>
+          <div class="team-info">
+            <h3>Marcus Vance</h3>
+            <span class="team-role">Precision Haircut & Texture Artist</span>
+            <p>Master of French-cut bobs, razored layers, and smoothing treatments.</p>
+            <button class="btn-book-stylist" onclick="openBookingModal('Appointment with Marcus', 100)">Book with Marcus</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">TESTIMONIALS</span>
+        <h2 class="section-heading">Loved By Our Guests</h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">"Sarah transformed my dark hair to the most luminous honey balayage without any breakage. The salon atmosphere feels like a boutique five-star sanctuary."</p>
+          <div class="reviewer-meta">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80" alt="Jessica Miller" class="reviewer-avatar" />
+            <div>
+              <div class="reviewer-name">Jessica Miller</div>
+              <div class="reviewer-tag">Regular Color Guest</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">"Elena and her team did the hair and skin prep for my wedding party of 7. Flawless timing, zero stress, and we received compliments all night long!"</p>
+          <div class="reviewer-meta">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=120&auto=format&fit=crop&q=80" alt="Camilla Thorne" class="reviewer-avatar" />
+            <div>
+              <div class="reviewer-name">Camilla Thorne</div>
+              <div class="reviewer-tag">Bridal Client</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">"Marcus has been cutting my hair for 3 years now. The precision is unmatched. I walk out with confidence every single appointment."</p>
+          <div class="reviewer-meta">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80" alt="David Sterling" class="reviewer-avatar" />
+            <div>
+              <div class="reviewer-name">David Sterling</div>
+              <div class="reviewer-tag">Executive Guest</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Location Section -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-card">
+        <div class="contact-grid">
+          <div class="contact-details">
+            <span class="section-tag">RESERVATIONS</span>
+            <h2 class="section-heading text-white">Visit Our Studio</h2>
+            <p class="text-white-muted">We welcome walk-ins when available, but recommend booking in advance to ensure your preferred time and stylist.</p>
+            
+            <div class="info-list">
+              <div class="info-item">
+                <i data-lucide="map-pin" class="info-icon"></i>
+                <div>
+                  <strong>Location</strong>
+                  <p>742 Evergreen Promenade, Suite 300, Beverly Hills, CA</p>
+                </div>
+              </div>
+              <div class="info-item">
+                <i data-lucide="clock" class="info-icon"></i>
+                <div>
+                  <strong>Opening Hours</strong>
+                  <p>Tue – Fri: 9:00 AM – 8:00 PM<br>Sat – Sun: 10:00 AM – 6:00 PM (Mon: Closed)</p>
+                </div>
+              </div>
+              <div class="info-item">
+                <i data-lucide="phone" class="info-icon"></i>
+                <div>
+                  <strong>Direct Telephone</strong>
+                  <p>+1 (555) 382-9900</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-card">
+            <h3>Quick Inquiry</h3>
+            <form onsubmit="handleContactSubmit(event)">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="c-name" required placeholder="Jane Doe" />
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="c-email" required placeholder="jane@example.com" />
+              </div>
+              <div class="form-group">
+                <label>Service of Interest</label>
+                <select id="c-service">
+                  <option value="Haircut & Blowout">Haircut & Blowout</option>
+                  <option value="Balayage & Color">Balayage & Custom Color</option>
+                  <option value="Bridal Styling">Bridal & Couture Styling</option>
+                  <option value="Hydra-Glow Facial">Hydra-Glow Facial</option>
+                  <option value="Other">Other / Custom Inquiry</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Notes / Questions</label>
+                <textarea id="c-notes" rows="3" placeholder="Tell us about your hair type or desired appointment date..."></textarea>
+              </div>
+              <button type="submit" class="btn-primary w-full">Send Inquiry</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="brand-name">LUXE SALON</span>
+          <p>Where artistry and luxury come together. Pure HTML, CSS & JavaScript template by Isaac (codertech).</p>
+        </div>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#team">Stylists</a>
+          <a href="#contact">Hours & Location</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Luxe Salon Platform. Frontend Open-Source Template & Premium Full-Stack Edition.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking Appointment Modal -->
+  <div class="modal-backdrop" id="booking-modal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+      <div class="modal-header">
+        <span class="section-tag">APPOINTMENT RESERVATION</span>
+        <h3 id="modal-service-title">Book Your Appointment</h3>
+      </div>
+      <form id="booking-form" onsubmit="handleBookingSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Select Service</label>
+            <select id="b-service" required>
+              <option value="Haircut & Blowout ($65)">Precision Haircut & Blowout ($65)</option>
+              <option value="Balayage & Highlights ($140)">Balayage & Custom Highlights ($140)</option>
+              <option value="Bridal Styling ($180)">Bridal & Couture Styling ($180)</option>
+              <option value="Hydra-Glow Facial ($95)">Hydra-Glow Facial & Skin Revival ($95)</option>
+              <option value="Spa Manicure ($50)">Spa Manicure & Gel Extensions ($50)</option>
+              <option value="Keratin Treatment ($190)">Brazilian Keratin Smoothing ($190)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Stylist</label>
+            <select id="b-stylist">
+              <option value="Any Available Stylist">Any Available Master Stylist</option>
+              <option value="Elena Rostova">Elena Rostova (Creative Director)</option>
+              <option value="Sarah Jenkins">Sarah Jenkins (Color Specialist)</option>
+              <option value="Marcus Vance">Marcus Vance (Texture & Precision)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Desired Date</label>
+            <input type="date" id="b-date" required />
+          </div>
+          <div class="form-group">
+            <label>Desired Time</label>
+            <select id="b-time" required>
+              <option value="10:00 AM">10:00 AM</option>
+              <option value="11:30 AM">11:30 AM</option>
+              <option value="01:00 PM">01:00 PM</option>
+              <option value="02:30 PM">02:30 PM</option>
+              <option value="04:00 PM">04:00 PM</option>
+              <option value="05:30 PM">05:30 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="b-name" required placeholder="Jessica Miller" />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="b-phone" required placeholder="(555) 000-1234" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="b-email" required placeholder="jessica@example.com" />
+        </div>
+
+        <div class="form-group">
+          <label>Special Requests or Hair Notes</label>
+          <textarea id="b-notes" rows="2" placeholder="e.g. thick wavy hair, sensitive scalp, wedding date on Oct 12..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary w-full">Confirm & Reserve Slot</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

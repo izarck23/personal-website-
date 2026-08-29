@@ -1,0 +1,675 @@
+/* ==========================================================================
+   CODERTECH (Isaac) — Stylesheet
+   Pure CSS3 + Tailwind compatible styling for browsers and Acode editor
+   With seamless Light / Dark Theme transition system
+   ========================================================================== */
+
+:root {
+  --color-warm-bg: #FFF8F3;
+  --color-card-bg: #FFFDFB;
+  --color-dark: #2D3436;
+  --color-coral: #FF7675;
+  --color-purple: #6C5CE7;
+  --color-purple-light: #8B7EFF;
+  --color-orange: #E17055;
+  --color-teal: #00B894;
+  --color-blue: #0984E3;
+  --color-yellow: #FDCB6E;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-mono: 'Fira Code', 'Courier New', monospace;
+}
+
+html.dark {
+  --color-warm-bg: #0F1015;
+  --color-card-bg: #181A22;
+  --color-dark: #F3F4F6;
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--color-warm-bg);
+  color: var(--color-dark);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--color-warm-bg);
+  color: var(--color-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1ece7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4cbbe;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b5a999;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #14161E;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #2D313D;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3F4454;
+}
+
+/* Typography styles */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Subtle hand-drawn highlight */
+.accent-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.accent-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 118, 117, 0.28);
+  border-radius: 4px;
+  z-index: -1;
+  transform: rotate(-1deg);
+}
+
+/* Card hover transitions */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px rgba(45, 52, 54, 0.08), 0 4px 12px -2px rgba(45, 52, 54, 0.04);
+}
+
+html.dark .hover-lift:hover {
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.4), 0 4px 12px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* Floating element animation */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(1deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+/* Pulse glow animation */
+@keyframes softPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.03);
+  }
+}
+
+.animate-soft-pulse {
+  animation: softPulse 3s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   DARK THEME COMPREHENSIVE OVERRIDES
+   Ensures every component, modal, input, and badge seamlessly adjusts
+   ========================================================================== */
+
+html.dark body {
+  background-color: #0F1015 !important;
+  color: #E5E7EB;
+}
+
+/* Header & Drawers */
+html.dark header {
+  background-color: rgba(15, 16, 21, 0.88) !important;
+  border-color: #272A34 !important;
+}
+
+html.dark #mobile-nav-drawer {
+  background-color: #14161E !important;
+  border-color: #272A34 !important;
+}
+
+/* Containers and Cards */
+html.dark .bg-\[\#FFF8F3\] {
+  background-color: #0F1015 !important;
+}
+
+html.dark .bg-\[\#FFFDFB\],
+html.dark .bg-white {
+  background-color: #181A22 !important;
+  border-color: #272A34 !important;
+  color: #E5E7EB;
+}
+
+html.dark .bg-stone-50 {
+  background-color: #1F222C !important;
+  border-color: #2D313D !important;
+}
+
+html.dark .bg-stone-100 {
+  background-color: #262936 !important;
+  border-color: #323746 !important;
+  color: #E5E7EB;
+}
+
+/* Text Colors */
+html.dark .text-stone-900,
+html.dark .text-stone-800 {
+  color: #F9FAFB !important;
+}
+
+html.dark .text-stone-700 {
+  color: #E5E7EB !important;
+}
+
+html.dark .text-stone-600 {
+  color: #9CA3AF !important;
+}
+
+html.dark .text-stone-500 {
+  color: #8E96A6 !important;
+}
+
+html.dark .text-stone-400 {
+  color: #6B7280 !important;
+}
+
+/* Borders */
+html.dark .border-stone-100,
+html.dark .border-stone-200,
+html.dark .border-stone-200\/60,
+html.dark .border-stone-200\/70,
+html.dark .border-stone-200\/80,
+html.dark .border-stone-200\/90,
+html.dark .border-stone-300 {
+  border-color: #272A34 !important;
+}
+
+/* Form Inputs, Selects & Textareas */
+html.dark input[type="text"],
+html.dark input[type="email"],
+html.dark select,
+html.dark textarea {
+  background-color: #14161E !important;
+  border-color: #2D313D !important;
+  color: #F3F4F6 !important;
+}
+
+html.dark input[type="text"]:focus,
+html.dark input[type="email"]:focus,
+html.dark select:focus,
+html.dark textarea:focus {
+  border-color: #6C5CE7 !important;
+}
+
+html.dark kbd {
+  background-color: #262936 !important;
+  border-color: #373C4D !important;
+  color: #D1D5DB !important;
+}
+
+/* Modals */
+html.dark .modal-content {
+  background-color: #181A22 !important;
+  border-color: #2D313D !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
+}
+
+html.dark .modal-close-btn {
+  background-color: #262936 !important;
+  color: #D1D5DB !important;
+}
+
+html.dark .modal-close-btn:hover {
+  background-color: #323746 !important;
+  color: #FFFFFF !important;
+}
+
+/* Buttons */
+html.dark .bg-stone-900 {
+  background-color: #F3F4F6 !important;
+  color: #111827 !important;
+}
+
+html.dark .bg-stone-900:hover {
+  background-color: #FFFFFF !important;
+}
+
+html.dark .nav-link:hover {
+  color: #FFFFFF !important;
+}
+
+/* Gradients in Hero / Waves */
+html.dark .bg-gradient-to-b.from-\[\#FFF8F3\] {
+  background-image: linear-gradient(to bottom, #0F1015, #14161E) !important;
+}
+
+html.dark footer {
+  background-color: #0B0C10 !important;
+  border-color: #1F222C !important;
+}
+
+/* Code block markdown rendering */
+.markdown-body h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1c1917;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+}
+
+.markdown-body h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #292524;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+}
+
+.markdown-body p {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+  color: #44403c;
+}
+
+.markdown-body ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: #44403c;
+}
+
+.markdown-body li {
+  margin-bottom: 0.35rem;
+}
+
+.markdown-body code:not(pre code) {
+  background-color: #f5f5f4;
+  color: #e17055;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  border: 1px solid #e7e5e4;
+}
+
+.markdown-body pre {
+  background-color: #14161E;
+  color: #cdd6f4;
+  padding: 1.25rem;
+  border-radius: 0.875rem;
+  overflow-x: auto;
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
+  line-height: 1.6;
+  border: 1px solid #272A34;
+  position: relative;
+}
+
+.markdown-body pre code {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+/* Dark Mode Markdown Overrides */
+html.dark .markdown-body h2 {
+  color: #F9FAFB;
+}
+
+html.dark .markdown-body h3 {
+  color: #F3F4F6;
+}
+
+html.dark .markdown-body p {
+  color: #D1D5DB;
+}
+
+html.dark .markdown-body ul,
+html.dark .markdown-body li {
+  color: #D1D5DB;
+}
+
+html.dark .markdown-body code:not(pre code) {
+  background-color: #262936;
+  color: #FF8E8D;
+  border-color: #373C4D;
+}
+
+/* Modal Transitions */
+.modal-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-hidden {
+  display: none !important;
+}
+
+/* Toast Container */
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast-item {
+  pointer-events: auto;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: slideUpToast 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+html.dark .toast-item {
+  background-color: #1F222C !important;
+  border-color: #2D313D !important;
+  color: #F9FAFB !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+@keyframes slideUpToast {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Search Results Highlighting */
+mark.search-highlight {
+  background-color: rgba(253, 203, 110, 0.55);
+  color: #2d3436;
+  font-weight: 700;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+html.dark mark.search-highlight {
+  background-color: rgba(245, 158, 11, 0.35);
+  color: #FCD34D;
+}
+
+/* Progress bar */
+#reading-progress-bar {
+  transition: width 0.1s linear;
+}
+
+/* View transitions */
+.spa-view {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.spa-view.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Purple section wave styles */
+.wave-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   AUTHENTICATION SCREENS STYLING (MATCHING MOBILE TEMPLATE)
+   ========================================================================== */
+
+/* Concentric wave lines background styling */
+.concentric-wave-bg {
+  background-color: #fce7f3;
+  background-image: 
+    radial-gradient(circle at 50% 15%, rgba(216, 180, 254, 0.8) 0%, rgba(254, 205, 211, 0.8) 40%, rgba(254, 215, 170, 0.7) 100%);
+}
+
+.wave-lines-overlay {
+  background-image: repeating-radial-gradient(
+    circle at 50% -20%,
+    transparent 0,
+    transparent 12px,
+    rgba(192, 132, 252, 0.22) 13px,
+    transparent 14px
+  );
+}
+
+/* Custom sunset button gradient */
+.btn-sunset-gradient {
+  background: linear-gradient(135deg, #fba1b7 0%, #d896ff 50%, #b886fc 100%);
+  box-shadow: 0 8px 20px -4px rgba(216, 150, 255, 0.5);
+  transition: all 0.2s ease;
+}
+
+.btn-sunset-gradient:hover {
+  background: linear-gradient(135deg, #fa90aa 0%, #cf84ff 50%, #ad76fc 100%);
+  box-shadow: 0 10px 24px -4px rgba(216, 150, 255, 0.65);
+  transform: translateY(-1px);
+}
+
+.btn-sunset-gradient:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+/* Social circular button styling */
+.social-circle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.social-circle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Screen transitions */
+.auth-screen-panel,
+.auth-gateway-panel {
+  display: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.auth-screen-panel.active,
+.auth-gateway-panel.active {
+  display: flex !important;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.auth-screen-panel.hidden,
+.auth-gateway-panel.hidden {
+  display: none !important;
+}
+
+/* Curved Header Shape matching Profile Template */
+.curved-header-bg {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  position: relative;
+}
+
+.curved-header-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: inherit;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  z-index: 1;
+}
+
+/* Verified Green Badge */
+.verified-badge-bl {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  background-color: #22C55E;
+  border: 2.5px solid #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 20;
+}
+
+html.dark .verified-badge-bl {
+  border-color: #1C1917;
+}
+
+/* Profile Menu Row Card */
+.profile-menu-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  padding: 12px 16px;
+  background-color: #FFFFFF;
+  border: 1px solid #F1F5F9;
+  border-radius: 18px;
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+  user-select: none;
+}
+
+.dark .profile-menu-row,
+html.dark .profile-menu-row {
+  background-color: #1C1917;
+  border-color: #292524;
+}
+
+.profile-menu-row:hover {
+  transform: translateY(-2px);
+  background-color: #F8FAFC;
+  border-color: #E2E8F0;
+  box-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .profile-menu-row:hover,
+html.dark .profile-menu-row:hover {
+  background-color: #292524;
+  border-color: #44403C;
+}
+
+.profile-menu-row:active {
+  transform: scale(0.99);
+}
+
+/* Modal Entrance Animation */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-in {
+  animation: modalFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-modal-in {
+    animation: none;
+  }
+  .profile-menu-row:hover {
+    transform: none;
+  }
+}
+
+

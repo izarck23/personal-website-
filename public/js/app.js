@@ -44,52 +44,12 @@
     modalAuthMode: 'signin',
   };
 
-  // Cache data & Version configuration
-  const CURRENT_BUILD_VERSION = '2026.08.29.01';
-  window.APP_BUILD_VERSION = CURRENT_BUILD_VERSION;
+  // Cache data
   const data = window.PORTFOLIO_DATA || {};
-
-  function checkVersionAndCacheHygiene() {
-    try {
-      const storedVersion = localStorage.getItem('codertech_app_version');
-      if (storedVersion && storedVersion !== CURRENT_BUILD_VERSION) {
-        console.log(`[codertech] Synced new app version: ${CURRENT_BUILD_VERSION} (previous: ${storedVersion})`);
-        localStorage.setItem('codertech_app_version', CURRENT_BUILD_VERSION);
-      } else if (!storedVersion) {
-        localStorage.setItem('codertech_app_version', CURRENT_BUILD_VERSION);
-      }
-
-      // Update version badge if DOM element exists
-      const versionEl = document.getElementById('footer-build-version');
-      if (versionEl) {
-        versionEl.textContent = `v${CURRENT_BUILD_VERSION}`;
-      }
-    } catch (e) {
-      console.warn('Version check error:', e);
-    }
-  }
-
-  function forceHardRefresh() {
-    if (typeof showToast === 'function') {
-      showToast('🔄 Syncing latest version from deployment...', 'info');
-    }
-    setTimeout(() => {
-      try {
-        if ('caches' in window) {
-          caches.keys().then((names) => {
-            for (let name of names) caches.delete(name);
-          });
-        }
-      } catch (e) {}
-      window.location.reload(true);
-    }, 300);
-  }
-  window.forceHardRefresh = forceHardRefresh;
 
   // --- INITIALIZATION ---
   function initializeApp() {
     try {
-      checkVersionAndCacheHygiene();
       initTheme();
       initRouter();
       initProfile();

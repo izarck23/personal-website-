@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Web Authentication Screens | Suite</title>
+  <meta name="description" content="Sleek multi-screen authentication gateway featuring Welcome, Sign In, Sign Up, 2FA Verification, and Password Recovery." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Background Ambient Glow -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Screen Switcher Pills (For Demo / Interactive Testing) -->
+  <div class="demo-screen-nav">
+    <button class="demo-pill active" onclick="switchAuthScreen('welcome')">1. Welcome</button>
+    <button class="demo-pill" onclick="switchAuthScreen('login')">2. Log In</button>
+    <button class="demo-pill" onclick="switchAuthScreen('signup')">3. Sign Up</button>
+    <button class="demo-pill" onclick="switchAuthScreen('otp')">4. 2FA (OTP)</button>
+    <button class="demo-pill" onclick="switchAuthScreen('forgot')">5. Recovery</button>
+  </div>
+
+  <!-- Main Mobile Card Device Wrapper -->
+  <main class="auth-card-wrapper">
+    
+    <!-- ========================================================================= -->
+    <!-- SCREEN 1: WELCOME SCREEN (Welcome =) -->
+    <!-- ========================================================================= -->
+    <div id="screen-welcome" class="auth-card-panel active concentric-wave-bg">
+      <div class="panel-header text-center">
+        <h1 class="auth-title">Welcome =)</h1>
+        <p class="auth-subtitle">
+          The choice is yours: <strong class="text-dark">Log in</strong> or <strong class="text-dark">create an account</strong> to get started.
+        </p>
+      </div>
+
+      <!-- Center Mascot / Decorative Emblem -->
+      <div class="welcome-emblem-wrap">
+        <div class="welcome-emblem">
+          <span class="emblem-sparkle">✦</span>
+          <i data-lucide="shield-check" class="emblem-icon"></i>
+          <span class="emblem-sparkle">✦</span>
+        </div>
+      </div>
+
+      <!-- Bottom Floating White Card for Actions -->
+      <div class="action-card-bottom">
+        <button class="btn-sunset w-full" onclick="switchAuthScreen('login')">
+          <span>Log In</span>
+        </button>
+        <button class="btn-light w-full" onclick="switchAuthScreen('signup')">
+          <span>Create an Account</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SCREEN 2: LOGIN SCREEN (Welcome Back) -->
+    <!-- ========================================================================= -->
+    <div id="screen-login" class="auth-card-panel concentric-wave-bg">
+      <div class="panel-header text-center">
+        <h1 class="auth-title">Welcome Back</h1>
+        <p class="auth-subtitle">Sign in to access your developer workspace.</p>
+      </div>
+
+      <div class="action-card-bottom form-card-body">
+        <form onsubmit="handleLoginSubmit(event)">
+          <div class="input-field-group">
+            <label class="input-label">Email Address</label>
+            <div class="input-wrap">
+              <i data-lucide="mail" class="input-icon"></i>
+              <input type="email" id="login-email" required placeholder="your.name@example.com" />
+            </div>
+          </div>
+
+          <div class="input-field-group">
+            <div class="label-with-link">
+              <label class="input-label">Password</label>
+              <button type="button" class="link-btn" onclick="switchAuthScreen('forgot')">Forgot?</button>
+            </div>
+            <div class="input-wrap">
+              <i data-lucide="lock" class="input-icon"></i>
+              <input type="password" id="login-password" required placeholder="Enter password" />
+              <button type="button" class="btn-pwd-toggle" onclick="togglePasswordVisibility('login-password', this)">
+                <i data-lucide="eye" class="icon-toggle"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="remember-row">
+            <label class="checkbox-label">
+              <input type="checkbox" id="login-remember" checked />
+              <span>Remember me</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-sunset w-full">
+            <span>Log In</span>
+          </button>
+        </form>
+
+        <div class="social-auth-divider">
+          <span>Or continue with</span>
+        </div>
+
+        <div class="social-btns-row">
+          <button class="social-circle-btn" onclick="simulateSocialAuth('Google')" title="Sign in with Google">
+            <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"/><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/><path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3s.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12 0 12s.7 2.3 1.9 4.7l3.7-2.9z"/><path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.2L1.9 16c1.8 3.7 5.6 7 10.1 7z"/></svg>
+          </button>
+          <button class="social-circle-btn" onclick="simulateSocialAuth('GitHub')" title="Sign in with GitHub">
+            <i data-lucide="github"></i>
+          </button>
+          <button class="social-circle-btn" onclick="simulateSocialAuth('Apple')" title="Sign in with Apple">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.85-.9.04-1.99.6-2.61 1.34-.55.63-1.03 1.68-.9 2.7 1 .08 2.03-.51 2.59-1.19z"/></svg>
+          </button>
+        </div>
+
+        <div class="auth-switch-footer">
+          <span>Don't have an account?</span>
+          <button class="switch-link" onclick="switchAuthScreen('signup')">Create account</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SCREEN 3: SIGN UP SCREEN (Create Your Account) -->
+    <!-- ========================================================================= -->
+    <div id="screen-signup" class="auth-card-panel concentric-wave-bg">
+      <div class="panel-header text-center">
+        <h1 class="auth-title">Create Your Account</h1>
+        <p class="auth-subtitle">Sign up in seconds to start building.</p>
+      </div>
+
+      <div class="action-card-bottom form-card-body">
+        <form onsubmit="handleSignupSubmit(event)">
+          <div class="input-field-group">
+            <label class="input-label">Full Name</label>
+            <div class="input-wrap">
+              <i data-lucide="user" class="input-icon"></i>
+              <input type="text" id="signup-name" required placeholder="Alex Morgan" />
+            </div>
+          </div>
+
+          <div class="input-field-group">
+            <label class="input-label">Email Address</label>
+            <div class="input-wrap">
+              <i data-lucide="mail" class="input-icon"></i>
+              <input type="email" id="signup-email" required placeholder="alex@company.com" />
+            </div>
+          </div>
+
+          <div class="input-field-group">
+            <label class="input-label">Password</label>
+            <div class="input-wrap">
+              <i data-lucide="lock" class="input-icon"></i>
+              <input type="password" id="signup-password" required placeholder="Minimum 8 characters" oninput="checkPasswordStrength(this.value)" />
+              <button type="button" class="btn-pwd-toggle" onclick="togglePasswordVisibility('signup-password', this)">
+                <i data-lucide="eye" class="icon-toggle"></i>
+              </button>
+            </div>
+            <!-- Strength Bar -->
+            <div class="strength-bar-track">
+              <div id="strength-fill" class="strength-fill"></div>
+            </div>
+          </div>
+
+          <div class="remember-row">
+            <label class="checkbox-label">
+              <input type="checkbox" id="signup-terms" required checked />
+              <span>I agree to the <a href="#" class="inline-link">Terms & Privacy Policy</a></span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-sunset w-full">
+            <span>Continue to Verification</span>
+          </button>
+        </form>
+
+        <div class="auth-switch-footer">
+          <span>Already registered?</span>
+          <button class="switch-link" onclick="switchAuthScreen('login')">Log in here</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SCREEN 4: 2FA OTP VERIFICATION SCREEN -->
+    <!-- ========================================================================= -->
+    <div id="screen-otp" class="auth-card-panel concentric-wave-bg">
+      <div class="panel-header text-center">
+        <h1 class="auth-title">Verify Code</h1>
+        <p class="auth-subtitle">We sent a 6-digit authentication code to <br><strong id="otp-target-email">alex@company.com</strong></p>
+      </div>
+
+      <div class="action-card-bottom form-card-body">
+        <form onsubmit="handleOtpSubmit(event)">
+          <div class="otp-inputs-row">
+            <input type="text" maxlength="1" class="otp-box" autofocus oninput="onOtpInput(this, 0)" onkeydown="onOtpKeyDown(event, 0)" />
+            <input type="text" maxlength="1" class="otp-box" oninput="onOtpInput(this, 1)" onkeydown="onOtpKeyDown(event, 1)" />
+            <input type="text" maxlength="1" class="otp-box" oninput="onOtpInput(this, 2)" onkeydown="onOtpKeyDown(event, 2)" />
+            <input type="text" maxlength="1" class="otp-box" oninput="onOtpInput(this, 3)" onkeydown="onOtpKeyDown(event, 3)" />
+            <input type="text" maxlength="1" class="otp-box" oninput="onOtpInput(this, 4)" onkeydown="onOtpKeyDown(event, 4)" />
+            <input type="text" maxlength="1" class="otp-box" oninput="onOtpInput(this, 5)" onkeydown="onOtpKeyDown(event, 5)" />
+          </div>
+
+          <button type="submit" class="btn-sunset w-full mt-4">
+            <span>Verify & Authenticate</span>
+          </button>
+        </form>
+
+        <div class="text-center mt-4">
+          <p class="text-xs text-muted">Didn't receive code? <button type="button" class="link-btn font-bold" onclick="resendOtp()">Resend (0:45)</button></p>
+        </div>
+
+        <div class="auth-switch-footer">
+          <button class="switch-link" onclick="switchAuthScreen('login')">← Back to Log in</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SCREEN 5: PASSWORD RECOVERY -->
+    <!-- ========================================================================= -->
+    <div id="screen-forgot" class="auth-card-panel concentric-wave-bg">
+      <div class="panel-header text-center">
+        <h1 class="auth-title">Reset Password</h1>
+        <p class="auth-subtitle">Enter your registered email to receive a recovery link.</p>
+      </div>
+
+      <div class="action-card-bottom form-card-body">
+        <form onsubmit="handleForgotSubmit(event)">
+          <div class="input-field-group">
+            <label class="input-label">Email Address</label>
+            <div class="input-wrap">
+              <i data-lucide="mail" class="input-icon"></i>
+              <input type="email" id="forgot-email" required placeholder="your.name@example.com" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn-sunset w-full mt-2">
+            <span>Send Reset Link</span>
+          </button>
+        </form>
+
+        <div class="auth-switch-footer">
+          <button class="switch-link" onclick="switchAuthScreen('login')">← Return to Log in</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

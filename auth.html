@@ -6,9 +6,16 @@
     <title>Authentication — codertech</title>
     <meta name="description" content="Sign in or create your codertech account to access user profile, developer toolkits, and saved learning playbooks." />
 
-    <!-- Google Fonts -->
+    <!-- Cache-Control & Version Freshness -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- DNS-Prefetch & Preconnect for High-Speed Loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Tailwind CSS CDN -->
@@ -35,8 +42,8 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- App Stylesheet -->
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- App Stylesheet (Versioned to bust stale browser caches) -->
+    <link rel="stylesheet" href="css/style.css?v=20260829" />
 
     <style>
       /* Concentric wave lines background styling matching template */
