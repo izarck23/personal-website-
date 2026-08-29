@@ -429,12 +429,67 @@
 
     // Show projects
     container.innerHTML = data.projects.map(p => {
-      // Mockup generation based on device type
+      // Mockup generation based on specific project ID or device type
       let mockupHtml = '';
 
-      if (p.deviceType === 'mobile') {
+      if (p.id === 'auth-screens-project') {
         mockupHtml = `
-          <div class="h-44 bg-gradient-to-tr from-rose-50 to-pink-100 rounded-2xl p-4 flex items-center justify-center relative overflow-hidden border border-rose-100/60 mb-5">
+          <div class="h-48 bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-2xl p-3 flex items-center justify-center relative overflow-hidden border border-blue-300/40 mb-5 shadow-inner select-none">
+            <!-- Concentric bubble circles in background matching screenshots -->
+            <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/20 blur-[1px]"></div>
+            <div class="absolute top-8 right-8 w-14 h-14 rounded-full bg-white/30"></div>
+            <div class="absolute top-2 left-6 w-16 h-16 rounded-full bg-blue-900/30"></div>
+            <div class="absolute -bottom-8 -left-4 w-28 h-28 rounded-full bg-white/15"></div>
+
+            <!-- Mobile phone shell preview -->
+            <div class="w-44 h-42 bg-stone-900/90 rounded-2xl p-2.5 shadow-2xl border border-white/20 flex flex-col justify-between relative z-10 backdrop-blur-sm transform hover:scale-[1.02] transition-transform">
+              <div class="flex items-center justify-between text-[8px] text-white/80 font-mono px-1">
+                <span>‹ Back</span>
+                <span class="font-bold text-amber-300 font-mono text-[7px] bg-amber-400/20 px-1.5 py-0.5 rounded">5 SCREENS</span>
+              </div>
+              <div class="text-center py-1">
+                <div class="text-xs font-black text-white tracking-tight font-display">Welcome Back!</div>
+                <div class="text-[8px] text-blue-200 font-medium">Enter details to the account</div>
+              </div>
+              <!-- Interactive pill buttons preview -->
+              <div class="space-y-1">
+                <div class="flex items-center justify-center gap-1.5 py-1 px-2 bg-white/10 rounded-lg text-[8px] font-bold text-white">
+                  <span>Sign in</span>
+                </div>
+                <div class="flex items-center justify-center gap-1.5 py-1 px-2 bg-white rounded-lg text-[8px] font-extrabold text-blue-900 shadow-sm">
+                  <span>Sign up</span>
+                </div>
+              </div>
+              <!-- Social auth mini dots -->
+              <div class="flex items-center justify-center gap-2 pt-0.5 text-[8px] text-white/70 font-mono">
+                <span class="text-[7px]">f</span>
+                <span class="text-[7px]">𝕏</span>
+                <span class="text-[7px]">G</span>
+                <span class="text-[7px]"></span>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (p.id === 'luxe-salon-website') {
+        mockupHtml = `
+          <div class="h-48 bg-gradient-to-br from-[#1a1a1a] via-[#2d241e] to-[#4a3928] rounded-2xl p-3 flex flex-col justify-between relative overflow-hidden border border-amber-500/30 mb-5 shadow-inner">
+            <div class="flex items-center justify-between bg-stone-900/80 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-amber-500/20">
+              <span class="text-[9px] font-extrabold text-amber-400 font-serif tracking-wider">LUXE SALON</span>
+              <span class="text-[8px] font-mono text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded">100/100 SPEED</span>
+            </div>
+            <div class="bg-stone-900/90 rounded-xl p-2.5 border border-amber-500/20 text-center shadow-lg">
+              <div class="text-[11px] font-bold text-stone-100 font-serif">Artistry in Every Strand</div>
+              <div class="text-[8px] text-amber-300 font-mono mt-0.5">Booking Modal • Filter Gallery • Express API</div>
+            </div>
+            <div class="flex items-center justify-between text-[8px] text-stone-400 px-1 font-mono">
+              <span>ZERO BUILD STEP</span>
+              <span class="text-amber-400 font-bold">FREE FRONTEND</span>
+            </div>
+          </div>
+        `;
+      } else if (p.deviceType === 'mobile') {
+        mockupHtml = `
+          <div class="h-48 bg-gradient-to-tr from-rose-50 to-pink-100 rounded-2xl p-4 flex items-center justify-center relative overflow-hidden border border-rose-100/60 mb-5">
             <div class="w-32 h-40 bg-stone-900 rounded-2xl p-2 shadow-lg border border-stone-800 flex flex-col justify-between transform -rotate-3 hover:rotate-0 transition-transform">
               <div class="flex items-center justify-between text-[8px] text-white font-mono px-1">
                 <span>9:41</span>
@@ -451,7 +506,7 @@
         `;
       } else if (p.deviceType === 'dashboard') {
         mockupHtml = `
-          <div class="h-44 bg-gradient-to-tr from-purple-50 to-indigo-100 rounded-2xl p-3 flex flex-col justify-between relative overflow-hidden border border-purple-100/60 mb-5">
+          <div class="h-48 bg-gradient-to-tr from-purple-50 to-indigo-100 rounded-2xl p-3 flex flex-col justify-between relative overflow-hidden border border-purple-100/60 mb-5">
             <div class="flex items-center justify-between bg-white/80 backdrop-blur-sm px-2.5 py-1 rounded-lg">
               <span class="text-[9px] font-bold text-stone-700 font-mono">Finova Cloud</span>
               <span class="text-[9px] font-bold text-emerald-600">+$120,450 MRR</span>
@@ -469,7 +524,7 @@
         `;
       } else {
         mockupHtml = `
-          <div class="h-44 bg-gradient-to-tr from-amber-50 to-orange-100 rounded-2xl p-3 flex flex-col justify-between relative overflow-hidden border border-amber-100/60 mb-5">
+          <div class="h-48 bg-gradient-to-tr from-amber-50 to-orange-100 rounded-2xl p-3 flex flex-col justify-between relative overflow-hidden border border-amber-100/60 mb-5">
             <div class="flex items-center gap-1.5 bg-white/80 px-2 py-1 rounded-lg w-fit">
               <span class="w-2 h-2 rounded-full bg-rose-400"></span>
               <span class="w-2 h-2 rounded-full bg-amber-400"></span>
@@ -479,6 +534,54 @@
             <div class="bg-white/90 rounded-xl p-2 shadow-sm text-center">
               <div class="text-[10px] font-extrabold text-stone-800">Kyoto Autumn Journey</div>
               <div class="text-[9px] text-amber-600 font-semibold">AI Route Generated ✈️</div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Card action footer customized for downloadable templates vs standard apps
+      let actionFooterHtml = '';
+
+      if (p.isFreeFrontend && p.downloadZipId) {
+        const backendPrice = p.downloadZipId === 'prod-auth-screens' ? '$1.99' : '$2.99';
+        actionFooterHtml = `
+          <div class="pt-4 border-t border-stone-100 flex flex-col gap-2">
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="window.openTemplateDemoModal('${p.liveUrl}', '${p.title}', '${p.tag}', '${p.downloadZipId}')" class="px-3 py-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm transform active:scale-95 cursor-pointer">
+                <i data-lucide="play" class="w-3.5 h-3.5 text-amber-300 fill-amber-300"></i>
+                <span>Live Demo</span>
+              </button>
+              <button onclick="window.openCheckoutModal('${p.downloadZipId}')" class="px-3 py-2.5 bg-[#e17055] hover:bg-[#d65d40] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm transform active:scale-95 cursor-pointer">
+                <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-300"></i>
+                <span>Get Full Access (${backendPrice})</span>
+              </button>
+            </div>
+            <div class="flex items-center justify-between gap-2">
+              <button onclick="window.downloadProjectZip('${p.downloadZipId}', false)" class="px-3 py-1.5 bg-gradient-to-r from-emerald-50 to-teal-50 hover:from-emerald-100 hover:to-teal-100 text-emerald-800 border border-emerald-200/80 rounded-xl text-[11px] font-extrabold transition flex items-center gap-1.5 cursor-pointer">
+                <i data-lucide="download" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>Free .ZIP</span>
+              </button>
+              <button onclick="window.openProjectModal('${p.id}')" class="px-3 py-1.5 text-stone-600 hover:text-stone-900 font-bold text-[11px] flex items-center gap-1 transition">
+                <span>Details & Case Study</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      } else {
+        actionFooterHtml = `
+          <div class="pt-4 border-t border-stone-100 flex items-center justify-between gap-3">
+            <button onclick="window.openProjectModal('${p.id}')" class="px-4 py-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-2">
+              <span>View Case Study</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+            <div class="flex items-center gap-2">
+              <a href="${p.liveUrl}" target="_blank" rel="noopener noreferrer" class="p-2 text-stone-600 hover:text-stone-900 bg-stone-100 hover:bg-stone-200 rounded-xl transition" title="Live Preview">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+              </a>
+              <a href="${p.githubUrl}" target="_blank" rel="noopener noreferrer" class="p-2 text-stone-600 hover:text-stone-900 bg-stone-100 hover:bg-stone-200 rounded-xl transition" title="GitHub Code">
+                <i data-lucide="github" class="w-4 h-4"></i>
+              </a>
             </div>
           </div>
         `;
@@ -508,20 +611,7 @@
             </div>
           </div>
 
-          <div class="pt-4 border-t border-stone-100 flex items-center justify-between gap-3">
-            <button onclick="window.openProjectModal('${p.id}')" class="px-4 py-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-2">
-              <span>View Case Study</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </button>
-            <div class="flex items-center gap-2">
-              <a href="${p.liveUrl}" target="_blank" rel="noopener noreferrer" class="p-2 text-stone-600 hover:text-stone-900 bg-stone-100 hover:bg-stone-200 rounded-xl transition" title="Live Preview">
-                <i data-lucide="external-link" class="w-4 h-4"></i>
-              </a>
-              <a href="${p.githubUrl}" target="_blank" rel="noopener noreferrer" class="p-2 text-stone-600 hover:text-stone-900 bg-stone-100 hover:bg-stone-200 rounded-xl transition" title="GitHub Code">
-                <i data-lucide="github" class="w-4 h-4"></i>
-              </a>
-            </div>
-          </div>
+          ${actionFooterHtml}
         </article>
       `;
     }).join('');
@@ -1032,44 +1122,133 @@
     const grid = document.getElementById('monetization-products-grid');
     if (!grid || !data.monetizationProducts) return;
 
-    grid.innerHTML = data.monetizationProducts.map(prod => `
-      <div class="bg-white rounded-3xl border border-stone-200/80 p-6 shadow-sm hover-lift flex flex-col justify-between relative overflow-hidden">
-        <div>
-          <div class="flex items-center justify-between mb-3">
-            <span class="px-3 py-1 rounded-full text-xs font-extrabold font-mono bg-orange-100 text-[#e17055]">
-              ${prod.badge}
-            </span>
-            <div class="flex items-center gap-1 text-xs font-bold text-amber-500 font-mono">
-              <span>★</span>
-              <span>${prod.popularityRating}</span>
-            </div>
+    grid.innerHTML = data.monetizationProducts.map(prod => {
+      const isBundle = prod.id === 'prod-fullstack-bundle';
+      const screensHtml = (prod.projectScreens || []).map((s, idx) => `
+        <div class="flex items-center gap-2 p-2 bg-stone-50 rounded-xl border border-stone-100 text-stone-700">
+          <span class="w-5 h-5 rounded-lg bg-stone-200 text-stone-700 font-mono font-bold text-[10px] flex items-center justify-center shrink-0">${idx + 1}</span>
+          <div class="overflow-hidden">
+            <div class="text-[11px] font-bold text-stone-900 truncate">${s.name}</div>
+            <div class="text-[10px] text-stone-500 truncate">${s.desc}</div>
           </div>
-
-          <h3 class="text-lg font-bold text-stone-900 font-display mb-1">${prod.title}</h3>
-          
-          <div class="flex items-baseline gap-1 my-3">
-            <span class="text-3xl font-extrabold text-stone-900 font-display">${prod.price}</span>
-            <span class="text-xs text-stone-500 font-mono">/ one-time</span>
-          </div>
-
-          <p class="text-xs text-stone-600 leading-relaxed mb-4">${prod.description}</p>
-
-          <ul class="space-y-2 mb-6">
-            ${prod.features.map(f => `
-              <li class="flex items-start gap-2 text-xs text-stone-600">
-                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500 mt-0.5 shrink-0"></i>
-                <span>${f}</span>
-              </li>
-            `).join('')}
-          </ul>
         </div>
+      `).join('');
 
-        <button onclick="window.openCheckoutModal('${prod.id}')" class="w-full py-3 bg-[#e17055] hover:bg-[#d65d40] text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-sm">
-          <span>Get Instant Access</span>
-          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-        </button>
-      </div>
-    `).join('');
+      const featuresHtml = (prod.features || []).map(f => `
+        <li class="flex items-start gap-2 text-xs text-stone-600">
+          <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-500 mt-0.5 shrink-0"></i>
+          <span>${f}</span>
+        </li>
+      `).join('');
+
+      return `
+        <div class="bg-white rounded-3xl border ${isBundle ? 'border-purple-300 shadow-md ring-2 ring-purple-100' : 'border-stone-200/90 shadow-sm'} p-6 sm:p-7 hover-lift flex flex-col justify-between relative overflow-hidden">
+          
+          <div>
+            <!-- Top Badges & Rating -->
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="px-3 py-1 rounded-full text-xs font-extrabold font-mono ${prod.badgeBg || 'bg-orange-100'} ${prod.badgeText || 'text-[#e17055]'}">
+                ${prod.badge}
+              </span>
+              <div class="flex items-center gap-1 text-xs font-bold text-amber-500 font-mono bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">
+                <span>★</span>
+                <span>${prod.popularityRating}</span>
+                <span class="text-stone-400 text-[10px]">(${prod.salesCount}+ downloads)</span>
+              </div>
+            </div>
+
+            <!-- Title & Type -->
+            <h3 class="text-xl font-extrabold text-stone-900 font-display mb-1.5 leading-snug">${prod.title}</h3>
+            <p class="text-[11px] font-mono text-stone-500 uppercase tracking-wider mb-3">${prod.type}</p>
+
+            <!-- Dual Pricing Badges (Free Frontend vs Premium Backend) -->
+            <div class="grid grid-cols-2 gap-2.5 p-3 bg-stone-50 rounded-2xl border border-stone-200/60 mb-4">
+              <div class="bg-white p-2.5 rounded-xl border border-emerald-100 text-center shadow-2xs">
+                <div class="text-[10px] font-bold uppercase font-mono text-emerald-700">Frontend (HTML/CSS/JS)</div>
+                <div class="text-lg font-black text-emerald-600 font-display">FREE</div>
+                <div class="text-[9px] text-stone-500">Zero-build client code</div>
+              </div>
+              <div class="bg-white p-2.5 rounded-xl border border-amber-100 text-center shadow-2xs">
+                <div class="text-[10px] font-bold uppercase font-mono text-[#e17055]">Backend Server</div>
+                <div class="text-lg font-black text-stone-900 font-display">${prod.backendPrice}</div>
+                <div class="text-[9px] text-stone-500">Node.js Express API</div>
+              </div>
+            </div>
+
+            <p class="text-xs text-stone-600 leading-relaxed mb-4">${prod.description}</p>
+
+            <!-- Project Screens Review Section -->
+            <div class="mb-5">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold text-stone-700 uppercase font-mono flex items-center gap-1.5">
+                  <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-stone-500"></i>
+                  <span>Included Project Screens (${prod.projectScreens?.length || 0})</span>
+                </span>
+                ${prod.previewUrl ? `
+                  <button onclick="window.openTemplateDemoModal('${prod.previewUrl}', '${prod.title.replace(/'/g, "\\'")}', '${prod.type.replace(/'/g, "\\'")}', '${prod.id}')" class="text-[11px] font-bold text-[#6C5CE7] hover:underline flex items-center gap-1 cursor-pointer">
+                    <span>Live Interactive Demo</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                  </button>
+                ` : ''}
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                ${screensHtml}
+              </div>
+            </div>
+
+            <!-- Features Review Checklist -->
+            <div class="mb-6">
+              <div class="text-[11px] font-bold text-stone-700 uppercase font-mono mb-2 flex items-center gap-1.5">
+                <i data-lucide="check-square" class="w-3.5 h-3.5 text-emerald-500"></i>
+                <span>Technical Specifications & Features</span>
+              </div>
+              <ul class="space-y-2">
+                ${featuresHtml}
+              </ul>
+            </div>
+
+          </div>
+
+          <!-- Bottom Action Buttons Group -->
+          <div class="space-y-2.5 pt-4 border-t border-stone-100">
+            
+            <!-- Download Free Frontend Code (.ZIP) Button -->
+            <button onclick="window.downloadProjectZip('${prod.id}')" class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl text-xs font-extrabold transition flex items-center justify-center gap-2 shadow-sm transform active:scale-[0.99] cursor-pointer" title="Download Free Frontend Code">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              <span>Download Frontend Code (.ZIP) — FREE</span>
+            </button>
+
+            <!-- Unlock Full-Stack Backend Button -->
+            <button onclick="window.openCheckoutModal('${prod.id}')" class="w-full py-3 px-4 ${isBundle ? 'btn-sunset-gradient' : 'bg-stone-900 hover:bg-stone-800'} text-white rounded-2xl text-xs font-extrabold transition flex items-center justify-center gap-2 shadow-sm transform active:scale-[0.99] cursor-pointer" title="Unlock Backend API">
+              <i data-lucide="zap" class="w-4 h-4 text-amber-300"></i>
+              <span>Get Full-Stack Backend (${prod.backendPrice})</span>
+            </button>
+
+            <!-- Interactive Live Preview & Code Viewer Row -->
+            <div class="flex items-center gap-2 pt-1">
+              ${prod.previewUrl ? `
+                <button onclick="window.openTemplateDemoModal('${prod.previewUrl}', '${prod.title.replace(/'/g, "\\'")}', '${prod.type.replace(/'/g, "\\'")}', '${prod.id}')" class="flex-1 py-2 px-3 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-[11px] font-bold transition flex items-center justify-center gap-1.5 cursor-pointer">
+                  <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                  <span>Live Sandbox Demo</span>
+                </button>
+              ` : `
+                <button onclick="window.openTemplateDemoModal('templates/luxe-salon/index.html', 'Luxe Salon Suite', 'Web Platform', 'prod-luxe-salon')" class="flex-1 py-2 px-3 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-[11px] font-bold transition flex items-center justify-center gap-1.5 cursor-pointer">
+                  <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                  <span>Preview Suite</span>
+                </button>
+              `}
+              
+              <button onclick="window.openProjectCodeModal('${prod.id}')" class="flex-1 py-2 px-3 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-[11px] font-bold transition flex items-center justify-center gap-1.5 cursor-pointer">
+                <i data-lucide="code-2" class="w-3.5 h-3.5"></i>
+                <span>Inspect Source</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      `;
+    }).join('');
 
     refreshIcons();
   }
@@ -1238,9 +1417,13 @@
   };
 
   // Project Modal
+  state.currentOpenProject = null;
+
   window.openProjectModal = function (projectId) {
     const p = (data.projects || []).find(x => x.id === projectId);
     if (!p) return;
+
+    state.currentOpenProject = p;
 
     document.getElementById('pm-tag').textContent = p.tag;
     document.getElementById('pm-title').textContent = p.title;
@@ -1252,6 +1435,9 @@
         <div class="text-[11px] text-stone-500">${m.label}</div>
       </div>
     `).join('');
+
+    // Render interactive Screen Preview Studio inside Project Modal
+    window.renderProjectModalScreens(p);
 
     document.getElementById('pm-highlights').innerHTML = (p.highlights || []).map(h => `
       <li class="flex items-start gap-2 text-xs text-stone-600">
@@ -1267,7 +1453,569 @@
     document.getElementById('pm-live-btn').href = p.liveUrl;
     document.getElementById('pm-code-btn').href = p.githubUrl;
 
+    const sandboxBtn = document.getElementById('pm-sandbox-btn');
+    const downloadFreeBtn = document.getElementById('pm-download-free-btn');
+    const unlockBackendBtn = document.getElementById('pm-unlock-backend-btn');
+    const unlockBackendText = document.getElementById('pm-unlock-backend-text');
+
+    if (p.isFreeFrontend && p.downloadZipId) {
+      if (sandboxBtn) sandboxBtn.classList.remove('hidden');
+      if (downloadFreeBtn) downloadFreeBtn.classList.remove('hidden');
+      if (unlockBackendBtn) {
+        unlockBackendBtn.classList.remove('hidden');
+        if (unlockBackendText) {
+          const price = p.downloadZipId === 'prod-auth-screens' ? '$1.99' : '$2.99';
+          unlockBackendText.textContent = `Get Full Access (${price})`;
+        }
+      }
+    } else {
+      if (sandboxBtn) sandboxBtn.classList.add('hidden');
+      if (downloadFreeBtn) downloadFreeBtn.classList.add('hidden');
+      if (unlockBackendBtn) unlockBackendBtn.classList.add('hidden');
+    }
+
     window.openModal('project-modal');
+    refreshIcons();
+  };
+
+  window.openModalBackendCheckout = function () {
+    const p = state.currentOpenProject;
+    if (!p) return;
+    window.closeModal();
+    setTimeout(() => {
+      window.openCheckoutModal(p.downloadZipId || 'prod-auth-screens');
+    }, 150);
+  };
+
+  window.openCurrentProjectSandbox = function () {
+    const p = state.currentOpenProject;
+    if (!p) return;
+    window.closeModal();
+    setTimeout(() => {
+      window.openTemplateDemoModal(p.liveUrl, p.title, p.tag, p.downloadZipId);
+    }, 150);
+  };
+
+  window.downloadCurrentProjectModalZip = function () {
+    const p = state.currentOpenProject;
+    if (!p || !p.downloadZipId) return;
+    window.downloadProjectZip(p.downloadZipId, false);
+  };
+
+  // --------------------------------------------------------------------------
+  // INTERACTIVE PROJECT MODAL SCREENS PREVIEW & SWITCHER STUDIO
+  // --------------------------------------------------------------------------
+  state.currentProjectScreensData = [];
+  state.activeProjectScreenIdx = 0;
+
+  window.renderProjectModalScreens = function (project) {
+    const section = document.getElementById('pm-screen-preview-section');
+    const tabsContainer = document.getElementById('pm-screen-tabs');
+    const viewport = document.getElementById('pm-screen-viewport');
+    const countBadge = document.getElementById('pm-screen-count-badge');
+    const hintText = document.getElementById('pm-screen-hint-text');
+
+    if (!section || !tabsContainer || !viewport) return;
+
+    let screens = [];
+
+    if (project.id === 'auth-screens-project') {
+      screens = [
+        {
+          id: 'welcome',
+          name: '1. Welcome Gateway',
+          shortName: 'Welcome =)',
+          badge: 'ONBOARDING',
+          badgeColor: 'bg-blue-500/20 text-blue-300',
+          title: 'Welcome Screen (Gateway Entry)',
+          subtitle: 'Concentric pastel wave gradients with geometric badge and dual action buttons.',
+          html: `
+            <div class="w-full max-w-sm mx-auto bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-3xl p-4 sm:p-5 shadow-2xl border border-white/20 relative overflow-hidden text-white flex flex-col justify-between min-h-[380px]">
+              <!-- Concentric bubbles background -->
+              <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-white/15 blur-[1px]"></div>
+              <div class="absolute top-12 right-6 w-16 h-16 rounded-full bg-white/20"></div>
+              <div class="absolute top-4 left-4 w-20 h-20 rounded-full bg-blue-900/30"></div>
+              <div class="absolute -bottom-10 -left-6 w-36 h-36 rounded-full bg-white/10"></div>
+
+              <!-- Top Bar -->
+              <div class="flex items-center justify-between text-[9px] font-mono text-white/80 relative z-10 px-1">
+                <span class="font-bold flex items-center gap-1"><i data-lucide="shield-check" class="w-3 h-3 text-amber-300"></i> AUTH GATEWAY</span>
+                <span class="px-2 py-0.5 rounded-full bg-white/20 font-bold">SCREEN 1 OF 5</span>
+              </div>
+
+              <!-- Title & Greeting -->
+              <div class="text-center my-auto py-3 relative z-10">
+                <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md mx-auto flex items-center justify-center text-xl text-amber-300 shadow-lg border border-white/30 mb-2.5">
+                  ✦
+                </div>
+                <h3 class="text-2xl font-black text-white font-display tracking-tight">Welcome =)</h3>
+                <p class="text-[11px] text-blue-100 mt-1 max-w-xs mx-auto leading-relaxed">
+                  Hi there! We're here to help you learn new skills.<br>
+                  The choice is yours: <strong class="text-white">Log in</strong> or <strong class="text-white">create an account</strong>.
+                </p>
+              </div>
+
+              <!-- Bottom Action Card -->
+              <div class="bg-white rounded-2xl p-3.5 space-y-2 shadow-xl relative z-10 text-stone-900">
+                <button onclick="window.switchProjectModalScreen(1)" class="w-full py-2.5 bg-gradient-to-r from-[#e17055] to-[#f0932b] hover:from-[#d65d40] hover:to-[#e0831b] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm transform active:scale-98 cursor-pointer">
+                  <span>Log In</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </button>
+                <button onclick="window.switchProjectModalScreen(2)" class="w-full py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 cursor-pointer">
+                  <span>Create an Account</span>
+                </button>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: 'login',
+          name: '2. Sign In (Social)',
+          shortName: 'Sign In',
+          badge: 'OAUTH & REVEAL',
+          badgeColor: 'bg-emerald-500/20 text-emerald-300',
+          title: 'Sign In Screen (Welcome Back)',
+          subtitle: 'Clean email input, password field with live show/hide toggle, and OAuth social sign-in row.',
+          html: `
+            <div class="w-full max-w-sm mx-auto bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-3xl p-4 sm:p-5 shadow-2xl border border-white/20 relative overflow-hidden text-white flex flex-col justify-between min-h-[380px]">
+              <!-- Concentric bubbles background -->
+              <div class="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-white/15"></div>
+              
+              <div class="flex items-center justify-between text-[9px] font-mono text-white/80 relative z-10 px-1 mb-2">
+                <button onclick="window.switchProjectModalScreen(0)" class="text-white hover:text-amber-300 flex items-center gap-1 cursor-pointer font-bold">
+                  ‹ Back
+                </button>
+                <span class="px-2 py-0.5 rounded-full bg-white/20 font-bold">SCREEN 2 OF 5</span>
+              </div>
+
+              <!-- Header -->
+              <div class="text-center mb-2 relative z-10">
+                <h3 class="text-xl font-black text-white font-display">Welcome Back</h3>
+                <p class="text-[10px] text-blue-100">Enter your credentials to access your account</p>
+              </div>
+
+              <!-- Form Card -->
+              <div class="bg-white rounded-2xl p-3.5 space-y-2.5 shadow-xl relative z-10 text-stone-800 text-xs">
+                <div>
+                  <label class="block text-[10px] font-bold text-stone-500 uppercase font-mono mb-1">Email Address</label>
+                  <div class="flex items-center gap-2 px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl">
+                    <i data-lucide="mail" class="w-3.5 h-3.5 text-stone-400"></i>
+                    <input type="email" readonly value="alex.morgan@company.com" class="w-full bg-transparent text-xs text-stone-800 font-semibold focus:outline-none" />
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <label class="text-[10px] font-bold text-stone-500 uppercase font-mono">Password</label>
+                    <button onclick="window.switchProjectModalScreen(4)" class="text-[10px] text-[#e17055] font-bold hover:underline cursor-pointer">Forgot?</button>
+                  </div>
+                  <div class="flex items-center justify-between px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl">
+                    <div class="flex items-center gap-2">
+                      <i data-lucide="lock" class="w-3.5 h-3.5 text-stone-400"></i>
+                      <span class="font-mono text-xs text-stone-800">••••••••••••</span>
+                    </div>
+                    <span class="text-[10px] text-stone-400 font-bold cursor-pointer">👁 Toggle</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between text-[10px] text-stone-500">
+                  <label class="flex items-center gap-1.5 cursor-pointer font-medium">
+                    <input type="checkbox" checked class="accent-[#e17055]" />
+                    <span>Remember me</span>
+                  </label>
+                </div>
+
+                <button onclick="window.switchProjectModalScreen(3)" class="w-full py-2.5 bg-gradient-to-r from-[#e17055] to-[#f0932b] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
+                  <span>Log In</span>
+                </button>
+
+                <!-- Social Icons -->
+                <div class="flex items-center justify-center gap-3 pt-1 border-t border-stone-100 text-[10px]">
+                  <span class="w-6 h-6 rounded-full bg-stone-100 flex items-center justify-center font-bold text-blue-600">G</span>
+                  <span class="w-6 h-6 rounded-full bg-stone-100 flex items-center justify-center font-bold text-stone-800"><i data-lucide="github" class="w-3 h-3"></i></span>
+                  <span class="w-6 h-6 rounded-full bg-stone-100 flex items-center justify-center font-bold text-stone-900"></span>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: 'signup',
+          name: '3. Sign Up & Strength',
+          shortName: 'Sign Up',
+          badge: 'STRENGTH METER',
+          badgeColor: 'bg-amber-500/20 text-amber-300',
+          title: 'Sign Up & Live Password Strength Meter',
+          subtitle: 'Name, email, password fields with dynamic entropy progress bar and terms checkbox.',
+          html: `
+            <div class="w-full max-w-sm mx-auto bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-3xl p-4 sm:p-5 shadow-2xl border border-white/20 relative overflow-hidden text-white flex flex-col justify-between min-h-[380px]">
+              <div class="flex items-center justify-between text-[9px] font-mono text-white/80 relative z-10 px-1 mb-2">
+                <button onclick="window.switchProjectModalScreen(0)" class="text-white hover:text-amber-300 flex items-center gap-1 cursor-pointer font-bold">
+                  ‹ Back
+                </button>
+                <span class="px-2 py-0.5 rounded-full bg-white/20 font-bold">SCREEN 3 OF 5</span>
+              </div>
+
+              <!-- Header -->
+              <div class="text-center mb-2 relative z-10">
+                <h3 class="text-xl font-black text-white font-display">Create Account</h3>
+                <p class="text-[10px] text-blue-100">Join in seconds to build your digital products</p>
+              </div>
+
+              <!-- Form Card -->
+              <div class="bg-white rounded-2xl p-3.5 space-y-2 shadow-xl relative z-10 text-stone-800 text-xs">
+                <div>
+                  <label class="block text-[10px] font-bold text-stone-500 uppercase font-mono mb-1">Full Name</label>
+                  <div class="flex items-center gap-2 px-3 py-1.5 bg-stone-50 border border-stone-200 rounded-xl">
+                    <i data-lucide="user" class="w-3.5 h-3.5 text-stone-400"></i>
+                    <input type="text" readonly value="Isaac Dev" class="w-full bg-transparent text-xs text-stone-800 font-semibold focus:outline-none" />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-[10px] font-bold text-stone-500 uppercase font-mono mb-1">Email Address</label>
+                  <div class="flex items-center gap-2 px-3 py-1.5 bg-stone-50 border border-stone-200 rounded-xl">
+                    <i data-lucide="mail" class="w-3.5 h-3.5 text-stone-400"></i>
+                    <input type="email" readonly value="isaac@codertech.dev" class="w-full bg-transparent text-xs text-stone-800 font-semibold focus:outline-none" />
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <label class="text-[10px] font-bold text-stone-500 uppercase font-mono">Password</label>
+                    <span class="text-[10px] text-emerald-600 font-bold font-mono">STRONG 100%</span>
+                  </div>
+                  <div class="flex items-center justify-between px-3 py-1.5 bg-stone-50 border border-stone-200 rounded-xl">
+                    <div class="flex items-center gap-2">
+                      <i data-lucide="lock" class="w-3.5 h-3.5 text-stone-400"></i>
+                      <span class="font-mono text-xs text-stone-800">CoderTech#2026!</span>
+                    </div>
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i>
+                  </div>
+                  <!-- Dynamic Strength Bar Preview -->
+                  <div class="w-full h-1.5 bg-stone-100 rounded-full mt-1 overflow-hidden">
+                    <div class="h-full w-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"></div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-1.5 text-[10px] text-stone-500">
+                  <input type="checkbox" checked class="accent-[#e17055]" />
+                  <span>I agree to Terms & Privacy Policy</span>
+                </div>
+
+                <button onclick="window.switchProjectModalScreen(3)" class="w-full py-2.5 bg-gradient-to-r from-[#e17055] to-[#f0932b] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
+                  <span>Get Started (Continue to 2FA)</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: 'otp',
+          name: '4. 2FA (OTP) Verification',
+          shortName: '2FA OTP',
+          badge: 'AUTO-FOCUS 6-DIGIT',
+          badgeColor: 'bg-purple-500/20 text-purple-300',
+          title: '2FA Verification Screen (Auto-Advancing OTP)',
+          subtitle: '6-digit isolated input slots with auto-advance, backspace handling, and resend timer.',
+          html: `
+            <div class="w-full max-w-sm mx-auto bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-3xl p-4 sm:p-5 shadow-2xl border border-white/20 relative overflow-hidden text-white flex flex-col justify-between min-h-[380px]">
+              <div class="flex items-center justify-between text-[9px] font-mono text-white/80 relative z-10 px-1 mb-2">
+                <button onclick="window.switchProjectModalScreen(2)" class="text-white hover:text-amber-300 flex items-center gap-1 cursor-pointer font-bold">
+                  ‹ Back
+                </button>
+                <span class="px-2 py-0.5 rounded-full bg-white/20 font-bold">SCREEN 4 OF 5</span>
+              </div>
+
+              <!-- Header -->
+              <div class="text-center mb-2 relative z-10">
+                <h3 class="text-xl font-black text-white font-display">Verify Code</h3>
+                <p class="text-[10px] text-blue-100">Enter the 6-digit code sent to your email</p>
+              </div>
+
+              <!-- OTP Form Card -->
+              <div class="bg-white rounded-2xl p-4 space-y-3 shadow-xl relative z-10 text-stone-800 text-xs">
+                <!-- 6-digit slot grid -->
+                <div class="grid grid-cols-6 gap-1.5 py-1">
+                  <div class="h-10 rounded-xl bg-stone-50 border-2 border-[#6C5CE7] flex items-center justify-center font-extrabold text-base font-mono text-stone-900 shadow-inner">2</div>
+                  <div class="h-10 rounded-xl bg-stone-50 border-2 border-[#6C5CE7] flex items-center justify-center font-extrabold text-base font-mono text-stone-900 shadow-inner">0</div>
+                  <div class="h-10 rounded-xl bg-stone-50 border-2 border-[#6C5CE7] flex items-center justify-center font-extrabold text-base font-mono text-stone-900 shadow-inner">2</div>
+                  <div class="h-10 rounded-xl bg-stone-50 border-2 border-[#6C5CE7] flex items-center justify-center font-extrabold text-base font-mono text-stone-900 shadow-inner">6</div>
+                  <div class="h-10 rounded-xl bg-stone-50 border-2 border-stone-200 flex items-center justify-center font-extrabold text-base font-mono text-stone-400">8</div>
+                  <div class="h-10 rounded-xl bg-stone-50 border-2 border-stone-200 flex items-center justify-center font-extrabold text-base font-mono text-stone-400">9</div>
+                </div>
+
+                <div class="p-2 bg-purple-50 rounded-xl border border-purple-100 text-center text-[10px] text-[#6C5CE7] font-semibold">
+                  <span>✨ Auto-Focus Next • Backspace Jumps • Paste All 6</span>
+                </div>
+
+                <div class="text-center text-[10px] text-stone-500">
+                  <span>Didn't receive OTP?</span>
+                  <span class="text-[#e17055] font-bold ml-1 cursor-pointer">Resend code</span>
+                  <span class="text-stone-400 ml-1 font-mono">(45s)</span>
+                </div>
+
+                <button onclick="window.switchProjectModalScreen(0)" class="w-full py-2.5 bg-gradient-to-r from-[#e17055] to-[#f0932b] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  <span>Verify & Unlock Dashboard</span>
+                </button>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: 'forgot',
+          name: '5. Password Recovery',
+          shortName: 'Recovery',
+          badge: 'RESET FLOW',
+          badgeColor: 'bg-rose-500/20 text-rose-300',
+          title: 'Password Recovery Screen (Reset Dispatcher)',
+          subtitle: 'Single-field recovery email input with feedback notice and shortcut back to login.',
+          html: `
+            <div class="w-full max-w-sm mx-auto bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-3xl p-4 sm:p-5 shadow-2xl border border-white/20 relative overflow-hidden text-white flex flex-col justify-between min-h-[380px]">
+              <div class="flex items-center justify-between text-[9px] font-mono text-white/80 relative z-10 px-1 mb-2">
+                <button onclick="window.switchProjectModalScreen(1)" class="text-white hover:text-amber-300 flex items-center gap-1 cursor-pointer font-bold">
+                  ‹ Back to Login
+                </button>
+                <span class="px-2 py-0.5 rounded-full bg-white/20 font-bold">SCREEN 5 OF 5</span>
+              </div>
+
+              <!-- Header -->
+              <div class="text-center mb-2 relative z-10">
+                <h3 class="text-xl font-black text-white font-display">Reset Password</h3>
+                <p class="text-[10px] text-blue-100">Enter your email to receive a recovery token</p>
+              </div>
+
+              <!-- Form Card -->
+              <div class="bg-white rounded-2xl p-4 space-y-3 shadow-xl relative z-10 text-stone-800 text-xs">
+                <div>
+                  <label class="block text-[10px] font-bold text-stone-500 uppercase font-mono mb-1">Account Email</label>
+                  <div class="flex items-center gap-2 px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl">
+                    <i data-lucide="mail" class="w-3.5 h-3.5 text-stone-400"></i>
+                    <input type="email" readonly value="your.name@example.com" class="w-full bg-transparent text-xs text-stone-800 font-semibold focus:outline-none" />
+                  </div>
+                </div>
+
+                <div class="p-2.5 bg-stone-50 rounded-xl border border-stone-200/60 text-[10px] text-stone-500 leading-relaxed">
+                  We will send a secure verification token and password reset link to your registered email.
+                </div>
+
+                <button onclick="window.switchProjectModalScreen(1)" class="w-full py-2.5 bg-gradient-to-r from-[#e17055] to-[#f0932b] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
+                  <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                  <span>Send Reset Link</span>
+                </button>
+
+                <div class="text-center pt-1 border-t border-stone-100">
+                  <button onclick="window.switchProjectModalScreen(1)" class="text-[10px] text-[#6C5CE7] font-extrabold hover:underline">
+                    Return to Log In
+                  </button>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: 'backend',
+          name: '6. Node.js JWT REST API',
+          shortName: 'Backend API',
+          badge: '$1.99 CODEBASE',
+          badgeColor: 'bg-emerald-500/20 text-emerald-300',
+          title: 'Full-Stack Node.js Express REST API ($1.99)',
+          subtitle: 'Production bcrypt password hashing, token issuance, secure cookies, and auth middleware.',
+          html: `
+            <div class="w-full max-w-sm mx-auto bg-stone-950 rounded-3xl p-4 sm:p-5 shadow-2xl border border-stone-800 text-stone-100 flex flex-col justify-between min-h-[380px]">
+              <div class="flex items-center justify-between text-[9px] font-mono text-stone-400 mb-2">
+                <span class="font-bold text-emerald-400 flex items-center gap-1"><i data-lucide="server" class="w-3 h-3"></i> NODE.JS REST SERVER</span>
+                <span class="px-2 py-0.5 rounded-full bg-stone-800 text-stone-300 font-bold">$1.99 COMMERCIAL</span>
+              </div>
+
+              <!-- Endpoint List -->
+              <div class="space-y-1.5 font-mono text-[10px] my-auto">
+                <div class="p-2 bg-stone-900/90 rounded-xl border border-stone-800 flex items-center justify-between">
+                  <span class="text-emerald-400 font-bold">POST</span>
+                  <span class="text-stone-300">/api/auth/register</span>
+                  <span class="text-[8px] text-stone-500">bcrypt hash</span>
+                </div>
+                <div class="p-2 bg-stone-900/90 rounded-xl border border-stone-800 flex items-center justify-between">
+                  <span class="text-emerald-400 font-bold">POST</span>
+                  <span class="text-stone-300">/api/auth/login</span>
+                  <span class="text-[8px] text-stone-500">JWT token</span>
+                </div>
+                <div class="p-2 bg-stone-900/90 rounded-xl border border-stone-800 flex items-center justify-between">
+                  <span class="text-emerald-400 font-bold">POST</span>
+                  <span class="text-stone-300">/api/auth/verify-2fa</span>
+                  <span class="text-[8px] text-stone-500">OTP logic</span>
+                </div>
+                <div class="p-2 bg-stone-900/90 rounded-xl border border-stone-800 flex items-center justify-between">
+                  <span class="text-blue-400 font-bold">GET</span>
+                  <span class="text-stone-300">/api/auth/me</span>
+                  <span class="text-[8px] text-stone-500">Bearer check</span>
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-stone-800">
+                <button onclick="window.openModalBackendCheckout()" class="w-full py-2.5 bg-[#e17055] hover:bg-[#d65d40] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
+                  <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-300"></i>
+                  <span>Unlock Backend Source ($1.99)</span>
+                </button>
+              </div>
+            </div>
+          `
+        }
+      ];
+    } else if (project.id === 'luxe-salon-website') {
+      screens = [
+        {
+          id: 'home',
+          name: '1. Luxury Homepage',
+          shortName: 'Hero & Home',
+          badge: 'LUXURY AESTHETIC',
+          badgeColor: 'bg-amber-500/20 text-amber-300',
+          title: 'Luxe Salon Luxury Homepage',
+          subtitle: 'High-converting gold & obsidian aesthetic with instant booking CTAs.',
+          html: `
+            <div class="w-full max-w-sm mx-auto bg-gradient-to-br from-[#1a1a1a] via-[#2d241e] to-[#4a3928] rounded-3xl p-4 sm:p-5 shadow-2xl border border-amber-500/30 text-stone-100 flex flex-col justify-between min-h-[380px]">
+              <div class="flex items-center justify-between text-[9px] font-mono text-amber-400">
+                <span class="font-extrabold font-serif tracking-wider">LUXE SALON</span>
+                <span class="bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/30">100/100 SPEED</span>
+              </div>
+              <div class="text-center my-auto py-3">
+                <div class="text-lg font-serif font-bold text-amber-200">Artistry in Every Strand</div>
+                <p class="text-[10px] text-stone-300 mt-1 max-w-xs mx-auto">Elevated beauty, precision haircutting, and rejuvenating spa treatments.</p>
+              </div>
+              <div class="space-y-2">
+                <button onclick="window.switchProjectModalScreen(3)" class="w-full py-2 bg-gradient-to-r from-amber-600 to-amber-500 text-stone-950 rounded-xl text-xs font-extrabold">Book Appointment</button>
+                <button onclick="window.switchProjectModalScreen(1)" class="w-full py-2 bg-stone-900/90 text-amber-300 border border-amber-500/30 rounded-xl text-xs font-bold">View Service Menu</button>
+              </div>
+            </div>
+          `
+        },
+        {
+          id: 'services',
+          name: '2. Dynamic Services',
+          shortName: 'Service Menu',
+          badge: 'FILTER TABS',
+          badgeColor: 'bg-blue-500/20 text-blue-300',
+          title: 'Interactive Service Menu & Pricing',
+          subtitle: 'Category filter tabs across Haircut, Coloring, Spa, and Bridal treatments.',
+          html: `
+            <div class="w-full max-w-sm mx-auto bg-stone-900 rounded-3xl p-4 shadow-2xl border border-amber-500/30 text-stone-100 flex flex-col justify-between min-h-[380px]">
+              <div class="text-center mb-2">
+                <span class="text-[9px] font-mono text-amber-400">TREATMENTS & RATES</span>
+                <h4 class="text-base font-serif font-bold text-stone-100">Service Catalog</h4>
+              </div>
+              <div class="space-y-1.5 text-xs font-medium">
+                <div class="p-2 bg-stone-800/80 rounded-xl border border-stone-700 flex justify-between">
+                  <span>Couture Haircut & Style</span>
+                  <span class="text-amber-400 font-bold">$120</span>
+                </div>
+                <div class="p-2 bg-stone-800/80 rounded-xl border border-stone-700 flex justify-between">
+                  <span>Balayage & Gloss Finish</span>
+                  <span class="text-amber-400 font-bold">$240</span>
+                </div>
+                <div class="p-2 bg-stone-800/80 rounded-xl border border-stone-700 flex justify-between">
+                  <span>Rejuvenating Scalp Spa</span>
+                  <span class="text-amber-400 font-bold">$95</span>
+                </div>
+              </div>
+              <button onclick="window.switchProjectModalScreen(3)" class="w-full py-2 bg-amber-500 text-stone-950 rounded-xl text-xs font-bold mt-2">Book This Service</button>
+            </div>
+          `
+        },
+        {
+          id: 'booking',
+          name: '3. Booking Modal & API',
+          shortName: 'Booking & API',
+          badge: 'EXPRESS REST API',
+          badgeColor: 'bg-emerald-500/20 text-emerald-300',
+          title: 'Stylist Booking Modal & Express API',
+          subtitle: 'Interactive appointment scheduling with form validation and Node.js REST server.',
+          html: `
+            <div class="w-full max-w-sm mx-auto bg-stone-950 rounded-3xl p-4 shadow-2xl border border-stone-800 text-stone-100 flex flex-col justify-between min-h-[380px]">
+              <div class="text-center mb-2">
+                <span class="text-[9px] font-mono text-emerald-400">APPOINTMENT SCHEDULER</span>
+                <h4 class="text-base font-serif font-bold text-stone-100">Instant Online Booking</h4>
+              </div>
+              <div class="space-y-2 text-xs">
+                <input type="text" readonly value="Client: Jane Doe" class="w-full p-2 bg-stone-900 rounded-lg border border-stone-700 text-xs text-stone-300" />
+                <input type="text" readonly value="Stylist: Elena Rostova (Master Colorist)" class="w-full p-2 bg-stone-900 rounded-lg border border-stone-700 text-xs text-stone-300" />
+                <div class="p-2 bg-stone-900 rounded-lg border border-stone-700 text-[10px] text-emerald-400 font-mono">POST /api/appointments -> 201 Created</div>
+              </div>
+              <button onclick="window.openModalBackendCheckout()" class="w-full py-2.5 bg-[#e17055] text-white rounded-xl text-xs font-extrabold mt-2">Unlock Full Backend ($2.99)</button>
+            </div>
+          `
+        }
+      ];
+    } else {
+      screens = [
+        {
+          id: 'overview',
+          name: '1. Architecture View',
+          shortName: 'Overview',
+          badge: project.tag,
+          badgeColor: 'bg-purple-500/20 text-purple-300',
+          title: project.title,
+          subtitle: project.shortDescription,
+          html: `
+            <div class="w-full max-w-sm mx-auto bg-stone-950 rounded-3xl p-5 shadow-2xl border border-stone-800 text-stone-100 flex flex-col justify-between min-h-[300px]">
+              <div class="flex items-center justify-between text-[10px] font-mono text-stone-400">
+                <span class="text-purple-400 font-bold">${project.tag}</span>
+                <span>DEVICE: ${project.deviceType.toUpperCase()}</span>
+              </div>
+              <div class="text-center my-4">
+                <h4 class="text-lg font-bold text-white">${project.title}</h4>
+                <p class="text-xs text-stone-400 mt-1">${project.shortDescription}</p>
+              </div>
+              <a href="${project.liveUrl}" target="_blank" class="w-full py-2.5 bg-stone-800 hover:bg-stone-700 text-white rounded-xl text-xs font-bold text-center block">
+                Open External Preview
+              </a>
+            </div>
+          `
+        }
+      ];
+    }
+
+    state.currentProjectScreensData = screens;
+    state.activeProjectScreenIdx = 0;
+
+    countBadge.textContent = `${screens.length} SCREEN${screens.length > 1 ? 'S' : ''}`;
+    hintText.textContent = `Click any screen tab above to preview the ${project.title} interface flow.`;
+
+    // Render Tabs
+    tabsContainer.innerHTML = screens.map((s, idx) => `
+      <button onclick="window.switchProjectModalScreen(${idx})" class="pm-screen-pill px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer flex items-center gap-1.5 ${idx === 0 ? 'bg-purple-600 text-white shadow-sm' : 'bg-stone-800 text-stone-400 hover:text-white'}">
+        <span>${s.name}</span>
+      </button>
+    `).join('');
+
+    // Render Viewport
+    window.switchProjectModalScreen(0);
+  };
+
+  window.switchProjectModalScreen = function (screenIdx) {
+    const screens = state.currentProjectScreensData || [];
+    if (!screens[screenIdx]) return;
+
+    state.activeProjectScreenIdx = screenIdx;
+    const s = screens[screenIdx];
+
+    // Update tab styling
+    const pills = document.querySelectorAll('.pm-screen-pill');
+    pills.forEach((p, i) => {
+      if (i === screenIdx) {
+        p.className = 'pm-screen-pill px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer flex items-center gap-1.5 bg-purple-600 text-white shadow-sm';
+      } else {
+        p.className = 'pm-screen-pill px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer flex items-center gap-1.5 bg-stone-800 text-stone-400 hover:text-white';
+      }
+    });
+
+    // Update viewport
+    const viewport = document.getElementById('pm-screen-viewport');
+    if (viewport) {
+      viewport.innerHTML = s.html;
+      refreshIcons();
+    }
   };
 
   // Service Modal
@@ -1313,13 +2061,21 @@
     e.target.reset();
   };
 
+  // --- DIGITAL PRODUCTS & TEMPLATES STORE (ZIP DOWNLOADS & LIVE PREVIEWS) ---
+  state.currentInspectedProduct = null;
+  state.currentInspectedFile = null;
+  state.activeCheckoutProductId = null;
+  state.activeTemplateDemoId = null;
+
   // Checkout Modal
   window.openCheckoutModal = function (productId) {
     const prod = (data.monetizationProducts || []).find(p => p.id === productId);
     if (!prod) return;
 
+    state.activeCheckoutProductId = productId;
+
     document.getElementById('cm-prod-title').textContent = prod.title;
-    document.getElementById('cm-prod-price').textContent = prod.price;
+    document.getElementById('cm-prod-price').textContent = prod.backendPrice || prod.price;
     document.getElementById('cm-prod-type').textContent = prod.type;
     document.getElementById('cm-prod-delivery').textContent = prod.deliveryTime;
 
@@ -1340,8 +2096,291 @@
     document.getElementById('checkout-form').classList.add('hidden');
     document.getElementById('cm-license-box').classList.remove('hidden');
 
-    showToast(`License generated and simulated email sent to ${email}!`);
+    showToast(`License key generated! Your backend access is unlocked.`);
   };
+
+  window.downloadCurrentBackendZip = function () {
+    const prodId = state.activeCheckoutProductId || 'prod-luxe-salon';
+    window.downloadProjectZip(prodId, true);
+  };
+
+  // --- INTERACTIVE TEMPLATE LIVE PREVIEW MODAL ---
+  window.openTemplateDemoModal = function (templateUrl, title, techTag, downloadId) {
+    const iframe = document.getElementById('tdm-iframe');
+    const titleEl = document.getElementById('tdm-title');
+    const tagEl = document.getElementById('tdm-tech-tag');
+    const newTabLink = document.getElementById('tdm-newtab-link');
+
+    state.activeTemplateDemoId = downloadId || (templateUrl.includes('luxe') ? 'prod-luxe-salon' : 'prod-auth-screens');
+
+    if (titleEl) titleEl.textContent = title || 'Template Live Preview';
+    if (tagEl) tagEl.textContent = techTag || 'HTML5 • CSS3 • Vanilla JS';
+    if (newTabLink) newTabLink.href = templateUrl;
+
+    if (iframe) {
+      iframe.src = templateUrl;
+    }
+
+    window.setTemplateDemoViewport('desktop');
+    window.openModal('template-demo-modal');
+  };
+
+  window.setTemplateDemoViewport = function (size) {
+    const frame = document.getElementById('tdm-viewport-frame');
+    if (!frame) return;
+
+    const btnDesktop = document.getElementById('btn-vp-desktop');
+    const btnTablet = document.getElementById('btn-vp-tablet');
+    const btnMobile = document.getElementById('btn-vp-mobile');
+
+    [btnDesktop, btnTablet, btnMobile].forEach(b => {
+      if (b) {
+        b.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold text-stone-400 hover:text-white flex items-center gap-1 transition';
+      }
+    });
+
+    if (size === 'mobile') {
+      frame.style.maxWidth = '390px';
+      frame.style.height = '680px';
+      if (btnMobile) btnMobile.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-stone-800 text-white flex items-center gap-1 transition';
+    } else if (size === 'tablet') {
+      frame.style.maxWidth = '768px';
+      frame.style.height = '100%';
+      if (btnTablet) btnTablet.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-stone-800 text-white flex items-center gap-1 transition';
+    } else {
+      frame.style.maxWidth = '100%';
+      frame.style.height = '100%';
+      if (btnDesktop) btnDesktop.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-stone-800 text-white flex items-center gap-1 transition';
+    }
+  };
+
+  window.downloadCurrentTemplateZip = function () {
+    const prodId = state.activeTemplateDemoId || 'prod-luxe-salon';
+    window.downloadProjectZip(prodId, false);
+  };
+
+  // --- SOURCE CODE INSPECTOR MODAL ---
+  window.openProjectCodeModal = function (productId) {
+    const prod = (data.monetizationProducts || []).find(p => p.id === productId) || data.monetizationProducts[0];
+    state.currentInspectedProduct = prod;
+
+    const titleEl = document.getElementById('cim-title');
+    if (titleEl) titleEl.textContent = `${prod.title} — Source Inspector`;
+
+    const tabsContainer = document.getElementById('cim-tabs-container');
+    let files = [];
+
+    if (prod.id === 'prod-luxe-salon') {
+      files = [
+        { name: 'index.html', path: 'templates/luxe-salon/index.html', lang: 'html' },
+        { name: 'style.css', path: 'templates/luxe-salon/style.css', lang: 'css' },
+        { name: 'script.js', path: 'templates/luxe-salon/script.js', lang: 'javascript' },
+        { name: 'README.md', path: 'templates/luxe-salon/README.md', lang: 'markdown' }
+      ];
+    } else if (prod.id === 'prod-auth-screens') {
+      files = [
+        { name: 'index.html', path: 'templates/web-auth-screens/index.html', lang: 'html' },
+        { name: 'styles.css', path: 'templates/web-auth-screens/assets/css/styles.css', lang: 'css' },
+        { name: 'app.js', path: 'templates/web-auth-screens/assets/js/app.js', lang: 'javascript' },
+        { name: 'README.md', path: 'templates/web-auth-screens/README.md', lang: 'markdown' }
+      ];
+    } else {
+      files = [
+        { name: 'Luxe-index.html', path: 'templates/luxe-salon/index.html', lang: 'html' },
+        { name: 'Auth-index.html', path: 'templates/web-auth-screens/index.html', lang: 'html' },
+        { name: 'Luxe-style.css', path: 'templates/luxe-salon/style.css', lang: 'css' },
+        { name: 'Auth-styles.css', path: 'templates/web-auth-screens/assets/css/styles.css', lang: 'css' }
+      ];
+    }
+
+    state.currentInspectedFiles = files;
+
+    if (tabsContainer) {
+      tabsContainer.innerHTML = files.map((f, idx) => `
+        <button onclick="window.switchInspectTab('${f.name}')" id="cim-tab-${idx}" class="cim-tab-btn px-2.5 py-1 rounded-lg text-xs font-mono font-bold ${idx === 0 ? 'bg-stone-800 text-white' : 'text-stone-400 hover:text-white'} transition">
+          ${f.name}
+        </button>
+      `).join('');
+    }
+
+    window.switchInspectTab(files[0].name);
+    window.openModal('code-inspector-modal');
+  };
+
+  window.switchInspectTab = function (fileName) {
+    const file = (state.currentInspectedFiles || []).find(f => f.name === fileName) || (state.currentInspectedFiles && state.currentInspectedFiles[0]);
+    if (!file) return;
+
+    state.currentInspectedFile = file;
+
+    document.querySelectorAll('.cim-tab-btn').forEach(btn => {
+      if (btn.textContent.trim() === fileName) {
+        btn.className = 'cim-tab-btn px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-stone-800 text-white transition';
+      } else {
+        btn.className = 'cim-tab-btn px-2.5 py-1 rounded-lg text-xs font-mono font-bold text-stone-400 hover:text-white transition';
+      }
+    });
+
+    const codeEl = document.getElementById('cim-code-content');
+    if (!codeEl) return;
+
+    codeEl.textContent = `// Loading ${file.name}...`;
+
+    fetch(file.path)
+      .then(res => {
+        if (!res.ok) throw new Error('File not fetched');
+        return res.text();
+      })
+      .then(text => {
+        codeEl.textContent = text;
+        state._lastLoadedCode = text;
+      })
+      .catch(err => {
+        // High fidelity fallback snippet if fetch is blocked
+        const fallbackText = `<!-- Source File: ${file.name} -->\n<!-- Zero-Build HTML5 / CSS3 / Vanilla JavaScript -->\n\n/* Loaded from codertech template library */\nconsole.log('Project: ${file.name} ready for production deployment');`;
+        codeEl.textContent = fallbackText;
+        state._lastLoadedCode = fallbackText;
+      });
+  };
+
+  window.copyCurrentInspectCode = function () {
+    const code = state._lastLoadedCode || document.getElementById('cim-code-content')?.textContent;
+    if (code) {
+      window.copyText(code, `${state.currentInspectedFile?.name || 'File'} Code`);
+    }
+  };
+
+  // --- PURE CLIENT-SIDE JSZIP PACKAGER & DOWNLOADER ---
+  window.downloadProjectZip = async function (productId, includeBackend = false) {
+    if (typeof JSZip === 'undefined') {
+      showToast('Downloading package...');
+      window.open(`https://github.com/codertech`, '_blank');
+      return;
+    }
+
+    showToast(`📦 Preparing ZIP archive for ${productId.replace('prod-', '')}...`);
+
+    try {
+      const zip = new JSZip();
+
+      if (productId === 'prod-luxe-salon') {
+        const rootFolder = zip.folder('luxe-salon-website');
+        
+        // Fetch files
+        const [html, css, js, readme] = await Promise.all([
+          fetch('templates/luxe-salon/index.html').then(r => r.text()).catch(() => '<!DOCTYPE html><html><body>Luxe Salon</body></html>'),
+          fetch('templates/luxe-salon/style.css').then(r => r.text()).catch(() => '/* Luxe Salon CSS */'),
+          fetch('templates/luxe-salon/script.js').then(r => r.text()).catch(() => '// Luxe Salon JS'),
+          fetch('templates/luxe-salon/README.md').then(r => r.text()).catch(() => '# Luxe Salon')
+        ]);
+
+        rootFolder.file('index.html', html);
+        rootFolder.file('style.css', css);
+        rootFolder.file('script.js', js);
+        rootFolder.file('README.md', readme);
+
+        if (includeBackend) {
+          const backendFolder = rootFolder.folder('backend');
+          const [pkg, srv, env] = await Promise.all([
+            fetch('templates/luxe-salon/backend/package.json').then(r => r.text()).catch(() => '{}'),
+            fetch('templates/luxe-salon/backend/server.js').then(r => r.text()).catch(() => '// Node.js Server'),
+            fetch('templates/luxe-salon/backend/.env').then(r => r.text()).catch(() => 'PORT=5000')
+          ]);
+          backendFolder.file('package.json', pkg);
+          backendFolder.file('server.js', srv);
+          backendFolder.file('.env', env);
+        }
+
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        triggerBlobDownload(zipBlob, includeBackend ? 'luxe-salon-fullstack-suite.zip' : 'luxe-salon-website-frontend.zip');
+        showToast('✅ Luxe Salon ZIP package downloaded successfully!');
+
+      } else if (productId === 'prod-auth-screens') {
+        const rootFolder = zip.folder('web-authentication-screens');
+
+        const [html, css, js, readme] = await Promise.all([
+          fetch('templates/web-auth-screens/index.html').then(r => r.text()).catch(() => '<!DOCTYPE html><html><body>Auth Screens</body></html>'),
+          fetch('templates/web-auth-screens/assets/css/styles.css').then(r => r.text()).catch(() => '/* Auth CSS */'),
+          fetch('templates/web-auth-screens/assets/js/app.js').then(r => r.text()).catch(() => '// Auth JS'),
+          fetch('templates/web-auth-screens/README.md').then(r => r.text()).catch(() => '# Auth Screens')
+        ]);
+
+        rootFolder.file('index.html', html);
+        rootFolder.file('README.md', readme);
+
+        const assetsFolder = rootFolder.folder('assets');
+        assetsFolder.folder('css').file('styles.css', css);
+        assetsFolder.folder('js').file('app.js', js);
+
+        if (includeBackend) {
+          const backendFolder = rootFolder.folder('backend');
+          const [pkg, srv, env] = await Promise.all([
+            fetch('templates/web-auth-screens/backend/package.json').then(r => r.text()).catch(() => '{}'),
+            fetch('templates/web-auth-screens/backend/server.js').then(r => r.text()).catch(() => '// JWT Server'),
+            fetch('templates/web-auth-screens/backend/.env').then(r => r.text()).catch(() => 'PORT=5000')
+          ]);
+          backendFolder.file('package.json', pkg);
+          backendFolder.file('server.js', srv);
+          backendFolder.file('.env', env);
+        }
+
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        triggerBlobDownload(zipBlob, includeBackend ? 'web-auth-screens-fullstack-jwt.zip' : 'web-authentication-screens-frontend.zip');
+        showToast('✅ Auth Screens ZIP package downloaded successfully!');
+
+      } else {
+        // Super Bundle (Both projects)
+        const luxeFolder = zip.folder('luxe-salon-website');
+        const authFolder = zip.folder('web-authentication-screens');
+
+        const [luxeHtml, luxeCss, luxeJs, luxeReadme, authHtml, authCss, authJs, authReadme] = await Promise.all([
+          fetch('templates/luxe-salon/index.html').then(r => r.text()).catch(() => ''),
+          fetch('templates/luxe-salon/style.css').then(r => r.text()).catch(() => ''),
+          fetch('templates/luxe-salon/script.js').then(r => r.text()).catch(() => ''),
+          fetch('templates/luxe-salon/README.md').then(r => r.text()).catch(() => ''),
+          fetch('templates/web-auth-screens/index.html').then(r => r.text()).catch(() => ''),
+          fetch('templates/web-auth-screens/assets/css/styles.css').then(r => r.text()).catch(() => ''),
+          fetch('templates/web-auth-screens/assets/js/app.js').then(r => r.text()).catch(() => ''),
+          fetch('templates/web-auth-screens/README.md').then(r => r.text()).catch(() => '')
+        ]);
+
+        luxeFolder.file('index.html', luxeHtml);
+        luxeFolder.file('style.css', luxeCss);
+        luxeFolder.file('script.js', luxeJs);
+        luxeFolder.file('README.md', luxeReadme);
+
+        authFolder.file('index.html', authHtml);
+        authFolder.file('README.md', authReadme);
+        const authAssets = authFolder.folder('assets');
+        authAssets.folder('css').file('styles.css', authCss);
+        authAssets.folder('js').file('app.js', authJs);
+
+        zip.file('SUPER_BUNDLE_README.md', `# Codertech Full-Stack Web Development Super Bundle\n\nIncludes:\n1. Luxe Salon Luxury Web Platform\n2. Modern Web Authentication Gateway Suite\n\nCrafted with zero-build HTML5, CSS3, and Vanilla JavaScript by Isaac (@codertech).\n`);
+
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        triggerBlobDownload(zipBlob, 'codertech-web-developer-super-bundle.zip');
+        showToast('✅ Super Bundle ZIP downloaded successfully!');
+      }
+
+    } catch (err) {
+      console.error('ZIP generation error:', err);
+      showToast('Error packaging files. Redirecting to source...');
+      window.open('https://github.com/codertech', '_blank');
+    }
+  };
+
+  function triggerBlobDownload(blob, fileName) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 200);
+  }
 
   // Photo Customizer Modal
   window.openPhotoSettingsModal = function () {

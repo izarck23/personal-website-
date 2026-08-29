@@ -56,6 +56,62 @@ window.PORTFOLIO_DATA = {
 
   projects: [
     {
+      id: 'luxe-salon-project',
+      title: 'Luxe Salon — Luxury Hair & Beauty Salon Web Platform',
+      tag: 'HTML • CSS • JS (FREE ZIP) + NODE API',
+      category: 'web',
+      shortDescription: 'Complete luxury hair and beauty salon website with dynamic service catalog, photo gallery filters, stylist booking, and Node.js backend.',
+      fullDescription: 'Luxe Salon is a production-grade, zero-build salon and spa web platform built in pure semantic HTML5, modern CSS3, and vanilla JavaScript. Features an interactive service menu with live search & filters, visual transformation gallery tabs, master stylist profiles, and an appointment booking modal. Includes a Node.js Express booking REST API.',
+      accentColor: '#D4AF37',
+      badgeBg: 'bg-amber-50',
+      badgeText: 'text-amber-700',
+      techStack: ['HTML5', 'Modern CSS3', 'Vanilla JavaScript (ES6+)', 'Node.js Express', 'Appointment Modal', 'Photo Filter Gallery'],
+      metrics: [
+        { label: 'Frontend Code', value: 'Free .ZIP' },
+        { label: 'Backend Server', value: '$2.99' },
+        { label: 'Lighthouse Score', value: '100/100' }
+      ],
+      liveUrl: 'templates/luxe-salon/index.html',
+      githubUrl: 'https://github.com/codertech/luxe-salon-website',
+      deviceType: 'laptop',
+      isFreeFrontend: true,
+      downloadZipId: 'prod-luxe-salon',
+      highlights: [
+        'Pure HTML5, CSS3, and JavaScript with zero build steps or npm baggage',
+        'Interactive appointment booking modal with form validation & date/time pickers',
+        'Dynamic visual transformation gallery with category filter tabs',
+        'Full-stack Node.js Express booking API endpoint with JSON file storage'
+      ]
+    },
+    {
+      id: 'auth-screens-project',
+      title: 'Modern Web Authentication Screens & Gateway Suite',
+      tag: 'HTML • CSS • JS (FREE ZIP) + JWT AUTH',
+      category: 'web',
+      shortDescription: 'Modern multi-screen authentication gateway with concentric pastel gradients, 5 interactive screens, and Node.js JWT REST API.',
+      fullDescription: 'A production-ready, zero-build authentication flow built with clean HTML5, CSS3, and vanilla JavaScript. Includes Welcome Gateway, Sign In (with social buttons), Sign Up (with dynamic password strength bar), 6-digit auto-advancing 2FA OTP verification, and Password Recovery. Paired with a Node.js Express JWT authentication backend.',
+      accentColor: '#FF7675',
+      badgeBg: 'bg-rose-50',
+      badgeText: 'text-rose-600',
+      techStack: ['HTML5', 'Modern CSS3', 'Vanilla JavaScript', 'Node.js Express', 'JWT Auth Tokens', '2FA OTP Flow'],
+      metrics: [
+        { label: 'Frontend Code', value: 'Free .ZIP' },
+        { label: 'Backend Server', value: '$1.99' },
+        { label: 'Screens Flow', value: '5 Screens' }
+      ],
+      liveUrl: 'templates/web-auth-screens/index.html',
+      githubUrl: 'https://github.com/codertech/web-authentication-screens',
+      deviceType: 'mobile',
+      isFreeFrontend: true,
+      downloadZipId: 'prod-auth-screens',
+      highlights: [
+        'Concentric circular wave background with modern pastel gradients',
+        '5 interactive screens: Welcome, Sign In, Sign Up, 2FA OTP & Forgot Password',
+        'Interactive live password strength meter & 6-digit OTP auto-focus inputs',
+        'Includes production-ready Node.js Express REST API with JWT tokens and bcrypt'
+      ]
+    },
+    {
       id: 'pulsefit-kotlin-app',
       title: 'PulseFit — Kotlin Android Fitness & Health Tracker',
       tag: 'KOTLIN ANDROID',
@@ -79,32 +135,6 @@ window.PORTFOLIO_DATA = {
         'Offline-first architecture powered by Room SQLite & Kotlin Flow',
         'Asynchronous background sensor sync with WorkManager & Coroutines',
         'Targeting Android 15 with Material You dynamic color theming'
-      ]
-    },
-    {
-      id: 'fiora-plant-care',
-      title: 'Fiora — Kotlin IoT Smart Plant Companion',
-      tag: 'KOTLIN & BLE',
-      category: 'mobile',
-      shortDescription: 'A calming Kotlin Android plant companion featuring Bluetooth Low Energy (BLE) sensor telemetry and care routines.',
-      fullDescription: 'Fiora connects directly to Bluetooth IoT soil moisture probes using Android BLE APIs and Kotlin Coroutines. Features visual diagnostic timelines, customized hydration schedules, and micro-animations with Jetpack Compose.',
-      accentColor: '#00B894',
-      badgeBg: 'bg-emerald-50',
-      badgeText: 'text-emerald-600',
-      techStack: ['Kotlin', 'Android BLE', 'Jetpack Compose', 'SQLite / Room', 'CameraX Diagnostics', 'Material 3'],
-      metrics: [
-        { label: 'Plants Monitored', value: '120K+' },
-        { label: 'BLE Sync Latency', value: '<50ms' },
-        { label: 'Crash Rate', value: '<0.01%' }
-      ],
-      liveUrl: 'https://example.com/fiora',
-      githubUrl: 'https://github.com/codertech/fiora-kotlin-plant-care',
-      deviceType: 'mobile',
-      highlights: [
-        'Robust Android Bluetooth LE GATT connection manager with auto-reconnect',
-        'CameraX vision integration for leaf health diagnostic capture',
-        'Reactive UI updates powered by StateFlow and Compose ViewModels',
-        'Zero battery drain background sync via scheduled Android WorkManager'
       ]
     },
     {
@@ -134,32 +164,6 @@ window.PORTFOLIO_DATA = {
       ]
     },
     {
-      id: 'wanderly-travel',
-      title: 'Wanderly — AI Travel & Exploration Web Platform',
-      tag: 'WEBSITE & API',
-      category: 'saas',
-      shortDescription: 'Inspiring travel web application with bold visual styling, smart itinerary generators, and responsive UX.',
-      fullDescription: 'Wanderly redefines trip planning by generating personalized travel itineraries. Features responsive HTML/CSS layout grids, interactive map plotting via JavaScript, budget calculation engines, and offline itinerary caching.',
-      accentColor: '#E17055',
-      badgeBg: 'bg-orange-50',
-      badgeText: 'text-orange-600',
-      techStack: ['HTML5', 'CSS3 Animations', 'JavaScript (ES6+)', 'Maps Web API', 'LocalStorage', 'REST API'],
-      metrics: [
-        { label: 'Trips Generated', value: '95,000+' },
-        { label: 'Mobile Conversion', value: '+38%' },
-        { label: 'Avg Session', value: '7.8m' }
-      ],
-      liveUrl: 'https://example.com/wanderly',
-      githubUrl: 'https://github.com/codertech/wanderly-travel-web',
-      deviceType: 'laptop',
-      highlights: [
-        'Seamless responsive design adapting across mobile phones, tablets, and ultra-wide desktops',
-        'Interactive interactive itinerary cards with drag-and-drop sequencing in pure JavaScript',
-        'Client-side LocalStorage persistence allowing travelers to view offline itineraries',
-        'Fast REST API integration with real-time currency conversion widgets'
-      ]
-    },
-    {
       id: 'devpulse-analytics',
       title: 'DevPulse — Developer Income & Growth Suite',
       tag: 'MONETIZATION TOOL',
@@ -186,29 +190,29 @@ window.PORTFOLIO_DATA = {
       ]
     },
     {
-      id: 'syntaxforge-boilerplate',
-      title: 'SyntaxForge — Kotlin Mobile & HTML/CSS/JS Starter Kits',
-      tag: 'DEV BOILERPLATE',
-      category: 'devtool',
-      shortDescription: 'Production starter kits featuring Kotlin Android architecture templates and clean HTML/CSS/JS web boilerplates.',
-      fullDescription: 'SyntaxForge eliminates 50+ hours of repetitive boilerplate setup. Includes clean Kotlin Jetpack Compose MVVM project skeletons and modern, zero-build HTML5/CSS3/JavaScript responsive web templates ready for immediate editing in Acode or VS Code.',
+      id: 'fiora-plant-care',
+      title: 'Fiora — Kotlin IoT Smart Plant Companion',
+      tag: 'KOTLIN & BLE',
+      category: 'mobile',
+      shortDescription: 'A calming Kotlin Android plant companion featuring Bluetooth Low Energy (BLE) sensor telemetry and care routines.',
+      fullDescription: 'Fiora connects directly to Bluetooth IoT soil moisture probes using Android BLE APIs and Kotlin Coroutines. Features visual diagnostic timelines, customized hydration schedules, and micro-animations with Jetpack Compose.',
       accentColor: '#00B894',
       badgeBg: 'bg-emerald-50',
       badgeText: 'text-emerald-600',
-      techStack: ['Kotlin (Android)', 'HTML5', 'CSS3', 'JavaScript', 'Jetpack Compose', 'Room DB'],
+      techStack: ['Kotlin', 'Android BLE', 'Jetpack Compose', 'SQLite / Room', 'CameraX Diagnostics', 'Material 3'],
       metrics: [
-        { label: 'GitHub Stars', value: '3.8K' },
-        { label: 'Devs Using Kits', value: '950+' },
-        { label: 'Apps Shipped', value: '140+' }
+        { label: 'Plants Monitored', value: '120K+' },
+        { label: 'BLE Sync Latency', value: '<50ms' },
+        { label: 'Crash Rate', value: '<0.01%' }
       ],
-      liveUrl: 'https://example.com/syntaxforge',
-      githubUrl: 'https://github.com/codertech/syntaxforge-starter-kits',
-      deviceType: 'laptop',
+      liveUrl: 'https://example.com/fiora',
+      githubUrl: 'https://github.com/codertech/fiora-kotlin-plant-care',
+      deviceType: 'mobile',
       highlights: [
-        'Includes full Kotlin Android MVVM starter with Room DB, Coroutines, and navigation',
-        'Includes clean zero-build HTML/CSS/JS responsive web templates ready for Acode & VS Code',
-        'Pre-configured dark/light theme switching and accessible typography',
-        'Comprehensive documentation and step-by-step setup guides'
+        'Robust Android Bluetooth LE GATT connection manager with auto-reconnect',
+        'CameraX vision integration for leaf health diagnostic capture',
+        'Reactive UI updates powered by StateFlow and Compose ViewModels',
+        'Zero battery drain background sync via scheduled Android WorkManager'
       ]
     }
   ],
@@ -254,71 +258,71 @@ window.PORTFOLIO_DATA = {
 
   services: [
     {
-      id: 'kotlin-android',
-      title: 'Native Kotlin Android App Development',
-      description: 'High-performance, modern Android applications built with Kotlin, Jetpack Compose, Room database, Coroutines, and smooth 60fps native animations.',
-      iconName: 'smartphone',
-      accentColor: '#FF7675',
-      badgeColor: 'bg-rose-100 text-rose-700',
-      startingPrice: '$1,400',
-      estimatedTimeline: '2-4 weeks',
-      idealFor: 'Startups, businesses, and creators needing a fast, native Android mobile application.',
+      id: 'luxe-salon-service',
+      title: 'Luxe Salon & Spa Web Platform Development',
+      description: 'Tailored, high-converting luxury salon & beauty spa web platforms. Includes interactive service pricing catalogs, visual transformation galleries, and appointment booking flows.',
+      iconName: 'scissors',
+      accentColor: '#D4AF37',
+      badgeColor: 'bg-amber-100 text-amber-800',
+      startingPrice: '$450',
+      estimatedTimeline: '1-2 weeks',
+      idealFor: 'Hair salons, spas, aesthetic clinics, and beauty professionals wanting an upscale web presence & online bookings.',
       features: [
-        'Kotlin & Jetpack Compose declarative UI',
-        'MVVM / MVI clean architecture & Room DB',
-        'Kotlin Coroutines, StateFlow & offline sync',
-        'Google Play Store release & Material 3 styling'
+        'Custom luxury brand aesthetic & responsive mobile UX',
+        'Interactive service menu with category filtering & pricing',
+        'Visual before-and-after photo transformation gallery',
+        'Appointment booking modal & optional Node.js database backend'
       ]
     },
     {
-      id: 'web-development',
-      title: 'Modern Web Development (HTML • CSS • JS)',
-      description: 'Clean, lightning-fast, and responsive websites and single-page applications engineered with semantic HTML5, modern CSS3, and modern JavaScript.',
+      id: 'auth-screens-service',
+      title: 'Modern Authentication & Gateway Suite Engineering',
+      description: 'Custom multi-screen authentication and user onboarding gateways. Featuring modern pastel wave gradients, 5 interactive screens, password strength meters, and Node.js JWT REST APIs.',
+      iconName: 'shield-check',
+      accentColor: '#FF7675',
+      badgeColor: 'bg-rose-100 text-rose-700',
+      startingPrice: '$350',
+      estimatedTimeline: '3-7 days',
+      idealFor: 'SaaS founders, mobile apps, and developer portals needing a secure, polished login and signup flow.',
+      features: [
+        '5 tailored auth screens: Welcome, Sign In, Sign Up, 2FA OTP, Reset',
+        'Interactive live password validation bar & auto-advancing 6-digit OTP',
+        'Node.js Express JWT authentication REST API integration',
+        'Zero build dependencies — 100% pure HTML5, CSS3 & JavaScript'
+      ]
+    },
+    {
+      id: 'frontend-engineering',
+      title: 'Custom Frontend Web Engineering (HTML5 • CSS3 • JS)',
+      description: 'Clean, lightning-fast, zero-build websites and single-page applications engineered with semantic HTML5, modern CSS3 (Flexbox/Grid), and vanilla JavaScript.',
       iconName: 'globe',
       accentColor: '#6C5CE7',
       badgeColor: 'bg-purple-100 text-purple-700',
-      startingPrice: '$950',
-      estimatedTimeline: '1-3 weeks',
-      idealFor: 'Businesses and creators wanting ultra-fast, accessible web platforms without heavy bloat.',
+      startingPrice: '$650',
+      estimatedTimeline: '1-2 weeks',
+      idealFor: 'Businesses and creators seeking ultra-fast, accessible web platforms with 99+ Lighthouse performance.',
       features: [
-        'Semantic HTML5 & accessible structure',
-        'Modern CSS3 (Flexbox, Grid, CSS animations)',
-        'Vanilla & Modern JavaScript (ES6+) SPAs',
-        'Lighthouse 95+ score & sub-second page loads'
+        'Semantic HTML5 & accessible responsive DOM structure',
+        'Modern CSS3 custom properties & hardware-accelerated animations',
+        'Pure JavaScript (ES6+) state persistence & modal dialogs',
+        'Instant editing in VS Code, Acode, or any web browser'
       ]
     },
     {
-      id: 'api-monetization',
-      title: 'API Integration & Monetization',
-      description: 'Connecting Android apps and web platforms with RESTful APIs, Google Play In-App Billing, Stripe checkout, and real-time backend synchronization.',
-      iconName: 'zap',
+      id: 'backend-node-api',
+      title: 'Full-Stack Node.js Backend & REST API Integration',
+      description: 'Robust server-side architecture with Node.js, Express, JSON/SQLite databases, Stripe payment checkout, and secure authentication tokens.',
+      iconName: 'server',
       accentColor: '#0984E3',
       badgeColor: 'bg-blue-100 text-blue-700',
-      startingPrice: '$750',
+      startingPrice: '$500',
       estimatedTimeline: '1-2 weeks',
-      idealFor: 'Apps and sites requiring secure monetization, payment gateways, or custom REST APIs.',
+      idealFor: 'Platforms requiring server-side appointment storage, user accounts, and payment monetization.',
       features: [
-        'Google Play Billing & In-App Purchases',
-        'Stripe payment gateway & subscription webhooks',
-        'RESTful JSON API integrations & error handling',
-        'Offline-first cache & local state persistence'
-      ]
-    },
-    {
-      id: 'mentorship-code-review',
-      title: 'Code Review, Optimization & Mentorship',
-      description: '1-on-1 technical mentorship and deep-dive code reviews to optimize your Kotlin Android apps, polish web performance, and monetize your software skills.',
-      iconName: 'award',
-      accentColor: '#F39C12',
-      badgeColor: 'bg-amber-100 text-amber-800',
-      startingPrice: '$120 / session',
-      estimatedTimeline: 'Flexible / Ongoing',
-      idealFor: 'Developers seeking to level up their Kotlin or Web skills and build profitable digital products.',
-      features: [
-        'Kotlin Android architecture & memory leak audit',
-        'HTML/CSS/JS performance & DOM optimization',
-        'Freelance client proposals & pricing strategy',
-        'Personal tech brand & digital product roadmap'
+        'Node.js Express REST API endpoints with robust error handling',
+        'JWT token authentication & bcrypt password hashing',
+        'Stripe Checkout & payment webhook verification',
+        'Deployment on Render, Railway, Vercel, or custom VPS'
       ]
     }
   ],
@@ -879,55 +883,100 @@ Keep styling declarative and hardware accelerated for silky smooth web responsiv
 
   monetizationProducts: [
     {
-      id: 'prod-kotlin-compose-starter',
-      title: 'Kotlin Android + Jetpack Compose Production Boilerplate',
-      type: 'Mobile Starter Kit',
-      price: '$59',
-      description: 'Production-ready Android project with Jetpack Compose UI, Room SQLite database, Coroutines Flow, Material 3 theming, and Play Store CI/CD.',
-      badge: 'KOTLIN BESTSELLER ⚡',
-      features: [
-        'Complete Kotlin MVVM / MVI architecture',
-        'Offline-first Room database & repository layer',
-        'Pre-configured dark/light dynamic theme & animations',
-        'Google Play Billing integration skeleton'
+      id: 'prod-luxe-salon',
+      title: 'Luxe Salon — Luxury Hair & Beauty Salon Web Platform',
+      type: 'Complete Web Template (HTML/CSS/JS + Node.js Backend)',
+      price: '$2.99',
+      frontendPrice: 'FREE',
+      backendPrice: '$2.99',
+      rawPrice: 2.99,
+      description: 'Production-ready luxury hair & beauty salon web platform. Visitors can download the complete pure HTML5, CSS3, and JavaScript frontend for free, or get the full-stack appointment booking Node.js backend for $2.99.',
+      badge: 'NEW RELEASE 💇',
+      badgeBg: 'bg-amber-100',
+      badgeText: 'text-amber-800',
+      templateDir: 'templates/luxe-salon',
+      previewUrl: 'templates/luxe-salon/index.html',
+      zipFileName: 'luxe-salon-website-frontend.zip',
+      githubUrl: 'https://github.com/codertech/luxe-salon-website',
+      projectScreens: [
+        { name: 'Hero Showcase', desc: 'Luxury typography, aesthetic imagery & dual booking CTAs' },
+        { name: 'Services Menu', desc: 'Live pricing catalog with category search & filter pills' },
+        { name: 'Transformations Gallery', desc: 'Interactive photo grid with dynamic category tabs' },
+        { name: 'Master Stylists', desc: 'Stylist bio cards with direct individual booking triggers' },
+        { name: 'Booking Modal', desc: 'Multi-step reservation modal with service, stylist, date & time' }
       ],
-      popularityRating: 4.9,
-      salesCount: 280,
-      deliveryTime: 'Instant GitHub Repo & ZIP'
+      features: [
+        'Pure HTML5, CSS3 & Vanilla JavaScript (0 dependencies)',
+        'Interactive online appointment booking modal with validation',
+        'Dynamic filterable photo transformations gallery',
+        'Responsive mobile hamburger menu & navigation drawer',
+        'Optional Node.js Express booking REST API ($2.99 premium)'
+      ],
+      popularityRating: 4.98,
+      salesCount: 520,
+      deliveryTime: 'Instant Free .ZIP (Frontend) + Instant Backend Repo'
     },
     {
-      id: 'prod-html-css-js-starter',
-      title: 'Zero-Build HTML5, CSS3 & JavaScript SPA Starter Kit',
-      type: 'Web Template Kit',
-      price: '$39',
-      description: 'Super-fast, zero-build single page application template. Designed for immediate editing in Acode, VS Code, or any IDE with 100 Lighthouse score.',
-      badge: 'POPULAR ⭐',
-      features: [
-        'Pure HTML5, CSS3 & JavaScript architecture',
-        'Hash-based SPA router & modular data store',
-        'Responsive mobile-first layout with smooth modals',
-        'Instant live preview in Acode & all browsers'
+      id: 'prod-auth-screens',
+      title: 'Modern Web Authentication Screens & Gateway Suite',
+      type: 'Complete Auth Suite (HTML/CSS/JS + Express JWT Backend)',
+      price: '$1.99',
+      frontendPrice: 'FREE',
+      backendPrice: '$1.99',
+      rawPrice: 1.99,
+      description: 'Modern multi-screen authentication gateway with concentric pastel gradients, 5 interactive screens, and Node.js JWT REST API. Download the complete HTML/CSS/JS frontend for free, or unlock the JWT backend for $1.99.',
+      badge: 'POPULAR 🔐',
+      badgeBg: 'bg-rose-100',
+      badgeText: 'text-rose-800',
+      templateDir: 'templates/web-auth-screens',
+      previewUrl: 'templates/web-auth-screens/index.html',
+      zipFileName: 'web-authentication-screens-frontend.zip',
+      githubUrl: 'https://github.com/codertech/web-authentication-screens',
+      projectScreens: [
+        { name: 'Welcome Gateway', desc: 'Inviting entry gateway with dual Log In / Create Account buttons' },
+        { name: 'Sign In Screen', desc: 'Email/password inputs, eye toggle, remember me & social auth' },
+        { name: 'Sign Up Screen', desc: 'Full name, email, password strength meter & terms checkbox' },
+        { name: '2FA OTP Verification', desc: '6-digit auto-advancing verification boxes with countdown timer' },
+        { name: 'Password Recovery', desc: 'Reset link dispatch with instant email simulation feedback' }
       ],
-      popularityRating: 4.9,
-      salesCount: 410,
-      deliveryTime: 'Instant ZIP & Codebase'
+      features: [
+        'Concentric circular wave background with modern pastel gradients',
+        '5 interactive screens: Welcome, Sign In, Sign Up, 2FA OTP & Reset',
+        'Interactive live password validation bar (4 security tiers)',
+        '6-digit OTP code auto-focus & keyboard navigation',
+        'Optional Node.js Express REST API with JWT tokens ($1.99 premium)'
+      ],
+      popularityRating: 4.95,
+      salesCount: 640,
+      deliveryTime: 'Instant Free .ZIP (Frontend) + Instant JWT Backend Repo'
     },
     {
-      id: 'prod-1on1-mentorship',
-      title: '1-on-1 Kotlin Android & Web Architecture Strategy Session',
-      type: '1-on-1 Mentorship',
-      price: '$120',
-      description: 'A focused 60-minute video call to audit your Kotlin Android app, optimize your HTML/CSS/JS website, or design your next software product.',
-      badge: 'LIMITED SLOTS 🔥',
+      id: 'prod-fullstack-bundle',
+      title: 'Full-Stack Developer Super Bundle (Both Projects + Backend)',
+      type: 'Complete Projects Super-Bundle',
+      price: '$3.99',
+      frontendPrice: 'FREE',
+      backendPrice: '$3.99',
+      rawPrice: 3.99,
+      description: 'Get both complete web projects: Luxe Salon Luxury Web Platform AND Modern Web Authentication Screens, including both complete frontend codebases and full Node.js Express backend servers with priority guides.',
+      badge: 'BEST VALUE BUNDLE 🚀',
+      badgeBg: 'bg-purple-100',
+      badgeText: 'text-purple-800',
+      projectScreens: [
+        { name: 'Luxe Salon Suite', desc: '5 complete salon screens + booking modal + gallery' },
+        { name: 'Auth Gateway Suite', desc: '5 interactive auth screens + 2FA OTP + recovery' },
+        { name: 'Node.js Booking API', desc: 'Express REST server for appointments & database' },
+        { name: 'Node.js JWT Auth API', desc: 'Express REST server for user tokens & security' }
+      ],
       features: [
-        '60-minute recorded 1-on-1 video call',
-        'Line-by-line Kotlin or Web codebase audit',
-        'Personalized 30-day technical growth plan',
-        'Follow-up Q&A support on Discord/Email'
+        'Both complete frontend codebases (Luxe Salon + Auth Screens)',
+        'Both Node.js Express backend servers (Booking API + JWT Auth API)',
+        'Direct instant .ZIP download for both projects + setup guides',
+        'Full commercial usage license & lifetime update access'
       ],
       popularityRating: 5.0,
-      salesCount: 95,
-      deliveryTime: 'Booked via Calendar'
+      salesCount: 310,
+      deliveryTime: 'Instant Multi-Project ZIP & Full Repositories'
     }
   ],
 
