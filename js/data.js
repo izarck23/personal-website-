@@ -58,9 +58,9 @@ window.PORTFOLIO_DATA = {
     {
       id: 'luxe-salon-project',
       title: 'Luxe Salon — Luxury Hair & Beauty Salon Web Platform',
-      tag: 'HTML • CSS • JS (FREE ZIP) + NODE API',
+      tag: 'HTML5 • CSS3 • JS (FREE ZIP) + NODE API',
       category: 'web',
-      shortDescription: 'Complete luxury hair and beauty salon website with dynamic service catalog, photo gallery filters, stylist booking, and Node.js backend.',
+      shortDescription: 'Luxury salon & beauty spa platform with interactive service catalog, photo gallery filters, stylist booking modal, and Node.js backend.',
       fullDescription: 'Luxe Salon is a production-grade, zero-build salon and spa web platform built in pure semantic HTML5, modern CSS3, and vanilla JavaScript. Features an interactive service menu with live search & filters, visual transformation gallery tabs, master stylist profiles, and an appointment booking modal. Includes a Node.js Express booking REST API.',
       accentColor: '#D4AF37',
       badgeBg: 'bg-amber-50',
@@ -86,133 +86,109 @@ window.PORTFOLIO_DATA = {
     {
       id: 'auth-screens-project',
       title: 'Modern Web Authentication Screens & Gateway Suite',
-      tag: 'HTML • CSS • JS (FREE ZIP) + JWT AUTH',
+      tag: '7 SCREENS (FREE ZIP) + NODE JWT',
       category: 'web',
-      shortDescription: 'Modern multi-screen authentication gateway with concentric pastel gradients, 5 interactive screens, and Node.js JWT REST API.',
-      fullDescription: 'A production-ready, zero-build authentication flow built with clean HTML5, CSS3, and vanilla JavaScript. Includes Welcome Gateway, Sign In (with social buttons), Sign Up (with dynamic password strength bar), 6-digit auto-advancing 2FA OTP verification, and Password Recovery. Paired with a Node.js Express JWT authentication backend.',
+      shortDescription: 'Production 7-screen authentication gateway with concentric pastel gradients, real-time password entropy, 6-digit OTP verification, and JWT backend API.',
+      fullDescription: 'A complete, zero-build authentication gateway engineered in semantic HTML5, modern CSS3, and vanilla JavaScript. Features 7 tailored screens: Welcome Gateway, Sign In, Sign Up with 4-tier live password strength, 2FA OTP verification, Password Reset, Verification Success, and Security Settings. Paired with a production Node.js Express REST API with JWT tokens and bcrypt hashing.',
       accentColor: '#FF7675',
       badgeBg: 'bg-rose-50',
       badgeText: 'text-rose-600',
-      techStack: ['HTML5', 'Modern CSS3', 'Vanilla JavaScript', 'Node.js Express', 'JWT Auth Tokens', '2FA OTP Flow'],
+      techStack: ['HTML5', 'Modern CSS3', 'Vanilla JavaScript', 'Node.js Express', 'JWT Auth Tokens', '2FA OTP Flow', 'bcrypt Security'],
       metrics: [
         { label: 'Frontend Code', value: 'Free .ZIP' },
         { label: 'Backend Server', value: '$1.99' },
-        { label: 'Screens Flow', value: '5 Screens' }
+        { label: 'Screens Flow', value: '7 Screens' }
       ],
       liveUrl: 'templates/web-auth-screens/index.html',
       githubUrl: 'https://github.com/codertech/web-authentication-screens',
       deviceType: 'mobile',
       isFreeFrontend: true,
       downloadZipId: 'prod-auth-screens',
-      highlights: [
-        'Concentric circular wave background with modern pastel gradients',
-        '5 interactive screens: Welcome, Sign In, Sign Up, 2FA OTP & Forgot Password',
-        'Interactive live password strength meter & 6-digit OTP auto-focus inputs',
-        'Includes production-ready Node.js Express REST API with JWT tokens and bcrypt'
-      ]
-    },
-    {
-      id: 'pulsefit-kotlin-app',
-      title: 'PulseFit — Kotlin Android Fitness & Health Tracker',
-      tag: 'KOTLIN ANDROID',
-      category: 'mobile',
-      shortDescription: 'Native Android fitness tracker built with Kotlin, Jetpack Compose, Room database, and real-time step telemetry.',
-      fullDescription: 'PulseFit delivers a fluid, 60fps native Android health experience. Features custom workout builders, local biometric telemetry, offline-first Room database synchronization, and modern Material 3 dark/light dynamic theming.',
-      accentColor: '#FF7675',
-      badgeBg: 'bg-rose-50',
-      badgeText: 'text-rose-600',
-      techStack: ['Kotlin', 'Jetpack Compose', 'Room Database', 'Coroutines / Flow', 'Material 3', 'Android SDK'],
-      metrics: [
-        { label: 'Active Users', value: '50K+' },
-        { label: 'Play Store Rating', value: '4.9 ★' },
-        { label: 'Frame Rate', value: '60 FPS' }
+      screenImages: [
+        {
+          id: 'screen-1',
+          name: '1. Welcome Gateway',
+          shortName: 'Welcome',
+          badge: 'ONBOARDING',
+          localImage: 'assets/images/auth-screens/screen1.png',
+          remoteUrl: 'https://hotimg.com/f/7ab1fCl1.png',
+          viewerUrl: 'https://hotimg.com/i/7ab1fCl1',
+          title: 'Welcome & Onboarding Gateway',
+          desc: 'Clean introductory gateway with concentric pastel gradient background and dual entry actions.'
+        },
+        {
+          id: 'screen-2',
+          name: '2. User Sign In',
+          shortName: 'Sign In',
+          badge: 'CREDENTIALS',
+          localImage: 'assets/images/auth-screens/screen2.png',
+          remoteUrl: 'https://hotimg.com/f/hg7qcv1m.png',
+          viewerUrl: 'https://hotimg.com/i/hg7qcv1m',
+          title: 'User Sign In & Credentials',
+          desc: 'Email address, password visibility toggle, remember-me state, and social OAuth providers.'
+        },
+        {
+          id: 'screen-3',
+          name: '3. Create Account',
+          shortName: 'Sign Up',
+          badge: 'ENTROPY VALIDATOR',
+          localImage: 'assets/images/auth-screens/screen3.png',
+          remoteUrl: 'https://hotimg.com/f/YW3GneD2.png',
+          viewerUrl: 'https://hotimg.com/i/YW3GneD2',
+          title: 'Create Account & Password Strength',
+          desc: 'Full registration with 4-tier live password entropy calculation and terms acceptance.'
+        },
+        {
+          id: 'screen-4',
+          name: '4. 2FA Verification',
+          shortName: '2FA OTP',
+          badge: 'SECURITY OTP',
+          localImage: 'assets/images/auth-screens/screen4.png',
+          remoteUrl: 'https://hotimg.com/f/VAUvbrsR.png',
+          viewerUrl: 'https://hotimg.com/i/VAUvbrsR',
+          title: 'Two-Factor Authentication (OTP)',
+          desc: '6-digit isolated input slots with auto-advance, backspace navigation, and resend countdown.'
+        },
+        {
+          id: 'screen-5',
+          name: '5. Password Reset',
+          shortName: 'Recovery',
+          badge: 'RESET FLOW',
+          localImage: 'assets/images/auth-screens/screen5.png',
+          remoteUrl: 'https://hotimg.com/f/uDQBNu2p.png',
+          viewerUrl: 'https://hotimg.com/i/uDQBNu2p',
+          title: 'Password Recovery & Dispatcher',
+          desc: 'Streamlined account recovery email input with immediate feedback and login shortcut.'
+        },
+        {
+          id: 'screen-6',
+          name: '6. Verification Success',
+          shortName: 'Success',
+          badge: 'CONFIRMATION',
+          localImage: 'assets/images/auth-screens/screen6.png',
+          remoteUrl: 'https://hotimg.com/f/hg7qcv1m.png',
+          viewerUrl: 'https://hotimg.com/i/hg7qcv1m',
+          title: 'Authentication & Account Confirmation',
+          desc: 'Verified status confirmation with direct route to user dashboard.'
+        },
+        {
+          id: 'screen-7',
+          name: '7. Security Settings',
+          shortName: 'Settings',
+          badge: 'GATEWAY ACCESS',
+          localImage: 'assets/images/auth-screens/screen7.png',
+          remoteUrl: 'https://hotimg.com/f/RoBbnsNE.png',
+          viewerUrl: 'https://hotimg.com/i/RoBbnsNE',
+          title: 'Security Settings & Session Management',
+          desc: 'Multi-device session oversight, biometric options, and credential management.'
+        }
       ],
-      liveUrl: 'https://example.com/pulsefit',
-      githubUrl: 'https://github.com/codertech/pulsefit-kotlin-android',
-      deviceType: 'mobile',
       highlights: [
-        'Pure Kotlin implementation with Jetpack Compose declarative UI',
-        'Offline-first architecture powered by Room SQLite & Kotlin Flow',
-        'Asynchronous background sensor sync with WorkManager & Coroutines',
-        'Targeting Android 15 with Material You dynamic color theming'
-      ]
-    },
-    {
-      id: 'finova-dashboard',
-      title: 'Finova — Web Finance & Cloud Dashboard (HTML • CSS • JS)',
-      tag: 'HTML • CSS • JS',
-      category: 'web',
-      shortDescription: 'High-performance web dashboard built with clean HTML5, modern CSS3 Grid/Flexbox, and vanilla JavaScript.',
-      fullDescription: 'Finova delivers instant financial clarity for startups and fintech teams. Aggregates multi-currency payment streams, MRR analytics, automated invoicing, and interactive charting with sub-second page loads and zero runtime framework bloat.',
-      accentColor: '#6C5CE7',
-      badgeBg: 'bg-purple-50',
-      badgeText: 'text-purple-600',
-      techStack: ['HTML5', 'CSS3 (Grid/Flexbox)', 'JavaScript (ES6+)', 'Web APIs', 'Chart.js', 'REST API'],
-      metrics: [
-        { label: 'Lighthouse Score', value: '99/100' },
-        { label: 'Page Load Time', value: '0.4s' },
-        { label: 'Active Teams', value: '240+' }
-      ],
-      liveUrl: 'https://example.com/finova',
-      githubUrl: 'https://github.com/codertech/finova-web-dashboard',
-      deviceType: 'dashboard',
-      highlights: [
-        'Zero-build architecture runnable instantly in VS Code, Acode, and standard web servers',
-        'Responsive CSS3 custom property theming supporting system dark and light modes',
-        'Optimized DOM rendering with minimal memory footprint and fast repaint cycles',
-        'Interactive financial forecasting charts with client-side CSV export'
-      ]
-    },
-    {
-      id: 'devpulse-analytics',
-      title: 'DevPulse — Developer Income & Growth Suite',
-      tag: 'MONETIZATION TOOL',
-      category: 'monetization',
-      shortDescription: 'All-in-one revenue analytics, digital downloads, and sponsorship tracker for modern tech creators.',
-      fullDescription: 'DevPulse is a specialized web toolkit built with HTML, CSS, and JavaScript for software engineers and creators to track multiple income streams: digital products, mobile app ad earnings, freelance invoices, and sponsorship packages.',
-      accentColor: '#0984E3',
-      badgeBg: 'bg-blue-50',
-      badgeText: 'text-blue-600',
-      techStack: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'Stripe Connect', 'Local Cache', 'Chart Engine'],
-      metrics: [
-        { label: 'Revenue Tracked', value: '$4.2M+' },
-        { label: 'Monetized Devs', value: '1,800+' },
-        { label: 'Monthly Growth', value: '+28%' }
-      ],
-      liveUrl: 'https://example.com/devpulse',
-      githubUrl: 'https://github.com/codertech/devpulse-monetization',
-      deviceType: 'dashboard',
-      highlights: [
-        'Unified Stripe, Google Play, and digital product revenue calculation pipelines',
-        'Instant client proposal and freelance invoice generator with printable HTML/CSS styles',
-        'Audience funnel metrics and digital product conversion analytics',
-        'Secure client-side license key generation algorithm'
-      ]
-    },
-    {
-      id: 'fiora-plant-care',
-      title: 'Fiora — Kotlin IoT Smart Plant Companion',
-      tag: 'KOTLIN & BLE',
-      category: 'mobile',
-      shortDescription: 'A calming Kotlin Android plant companion featuring Bluetooth Low Energy (BLE) sensor telemetry and care routines.',
-      fullDescription: 'Fiora connects directly to Bluetooth IoT soil moisture probes using Android BLE APIs and Kotlin Coroutines. Features visual diagnostic timelines, customized hydration schedules, and micro-animations with Jetpack Compose.',
-      accentColor: '#00B894',
-      badgeBg: 'bg-emerald-50',
-      badgeText: 'text-emerald-600',
-      techStack: ['Kotlin', 'Android BLE', 'Jetpack Compose', 'SQLite / Room', 'CameraX Diagnostics', 'Material 3'],
-      metrics: [
-        { label: 'Plants Monitored', value: '120K+' },
-        { label: 'BLE Sync Latency', value: '<50ms' },
-        { label: 'Crash Rate', value: '<0.01%' }
-      ],
-      liveUrl: 'https://example.com/fiora',
-      githubUrl: 'https://github.com/codertech/fiora-kotlin-plant-care',
-      deviceType: 'mobile',
-      highlights: [
-        'Robust Android Bluetooth LE GATT connection manager with auto-reconnect',
-        'CameraX vision integration for leaf health diagnostic capture',
-        'Reactive UI updates powered by StateFlow and Compose ViewModels',
-        'Zero battery drain background sync via scheduled Android WorkManager'
+        '7 production screens with concentric pastel wave gradients',
+        'Dynamic 4-tier entropy password strength calculations',
+        'Auto-advancing 6-digit OTP verification inputs with auto-focus',
+        'Production Node.js Express REST API with JWT tokens & bcrypt',
+        'Zero build dependencies — 100% pure semantic HTML5, CSS3, and JavaScript'
       ]
     }
   ],
@@ -884,13 +860,13 @@ Keep styling declarative and hardware accelerated for silky smooth web responsiv
   monetizationProducts: [
     {
       id: 'prod-luxe-salon',
-      title: 'Luxe Salon — Luxury Hair & Beauty Salon Web Platform',
-      type: 'Complete Web Template (HTML/CSS/JS + Node.js Backend)',
+      title: 'Luxe Salon & Spa Web Platform',
+      type: 'Complete Website + Node.js Booking API',
       price: '$2.99',
       frontendPrice: 'FREE',
       backendPrice: '$2.99',
       rawPrice: 2.99,
-      description: 'Production-ready luxury hair & beauty salon web platform. Visitors can download the complete pure HTML5, CSS3, and JavaScript frontend for free, or get the full-stack appointment booking Node.js backend for $2.99.',
+      description: 'Luxury hair salon and beauty spa platform with interactive service catalog, photo gallery filters, stylist booking modal, and Node.js API.',
       badge: 'NEW RELEASE 💇',
       badgeBg: 'bg-amber-100',
       badgeText: 'text-amber-800',
@@ -899,18 +875,18 @@ Keep styling declarative and hardware accelerated for silky smooth web responsiv
       zipFileName: 'luxe-salon-website-frontend.zip',
       githubUrl: 'https://github.com/codertech/luxe-salon-website',
       projectScreens: [
-        { name: 'Hero Showcase', desc: 'Luxury typography, aesthetic imagery & dual booking CTAs' },
-        { name: 'Services Menu', desc: 'Live pricing catalog with category search & filter pills' },
-        { name: 'Transformations Gallery', desc: 'Interactive photo grid with dynamic category tabs' },
-        { name: 'Master Stylists', desc: 'Stylist bio cards with direct individual booking triggers' },
-        { name: 'Booking Modal', desc: 'Multi-step reservation modal with service, stylist, date & time' }
+        { name: 'Hero Showcase', desc: 'Editorial typography & dual booking CTAs' },
+        { name: 'Services Catalog', desc: 'Pricing menu with live category filters' },
+        { name: 'Photo Gallery', desc: 'Interactive transformations grid' },
+        { name: 'Master Stylists', desc: 'Stylist profiles with direct booking' },
+        { name: 'Booking Modal', desc: 'Multi-step reservation with validation' }
       ],
       features: [
-        'Pure HTML5, CSS3 & Vanilla JavaScript (0 dependencies)',
-        'Interactive online appointment booking modal with validation',
-        'Dynamic filterable photo transformations gallery',
-        'Responsive mobile hamburger menu & navigation drawer',
-        'Optional Node.js Express booking REST API ($2.99 premium)'
+        'Pure HTML5, CSS3 & JavaScript (0 dependencies)',
+        'Interactive reservation modal with date/time pickers',
+        'Filterable before-and-after photo gallery',
+        'Responsive mobile drawer & smooth navigation',
+        'Node.js Express appointment REST API ($2.99)'
       ],
       popularityRating: 4.98,
       salesCount: 520,
@@ -918,13 +894,13 @@ Keep styling declarative and hardware accelerated for silky smooth web responsiv
     },
     {
       id: 'prod-auth-screens',
-      title: 'Modern Web Authentication Screens & Gateway Suite',
-      type: 'Complete Auth Suite (HTML/CSS/JS + Express JWT Backend)',
+      title: 'Modern Authentication & Gateway Suite',
+      type: '7 Client Screens + Node.js Express JWT Backend',
       price: '$1.99',
       frontendPrice: 'FREE',
       backendPrice: '$1.99',
       rawPrice: 1.99,
-      description: 'Modern multi-screen authentication gateway with concentric pastel gradients, 5 interactive screens, and Node.js JWT REST API. Download the complete HTML/CSS/JS frontend for free, or unlock the JWT backend for $1.99.',
+      description: 'Production authentication gateway featuring 7 modern screens, dynamic password entropy validator, 6-digit auto-advancing OTP, and Express JWT API.',
       badge: 'POPULAR 🔐',
       badgeBg: 'bg-rose-100',
       badgeText: 'text-rose-800',
@@ -933,18 +909,20 @@ Keep styling declarative and hardware accelerated for silky smooth web responsiv
       zipFileName: 'web-authentication-screens-frontend.zip',
       githubUrl: 'https://github.com/codertech/web-authentication-screens',
       projectScreens: [
-        { name: 'Welcome Gateway', desc: 'Inviting entry gateway with dual Log In / Create Account buttons' },
-        { name: 'Sign In Screen', desc: 'Email/password inputs, eye toggle, remember me & social auth' },
-        { name: 'Sign Up Screen', desc: 'Full name, email, password strength meter & terms checkbox' },
-        { name: '2FA OTP Verification', desc: '6-digit auto-advancing verification boxes with countdown timer' },
-        { name: 'Password Recovery', desc: 'Reset link dispatch with instant email simulation feedback' }
+        { name: '1. Welcome Gateway', desc: 'Onboarding hero with dual CTAs', img: 'assets/images/auth-screens/screen1.png', url: 'https://hotimg.com/f/7ab1fCl1.png' },
+        { name: '2. Sign In', desc: 'Credential inputs & social authentication', img: 'assets/images/auth-screens/screen2.png', url: 'https://hotimg.com/f/hg7qcv1m.png' },
+        { name: '3. Sign Up & Strength', desc: '4-tier live password entropy validator', img: 'assets/images/auth-screens/screen3.png', url: 'https://hotimg.com/f/YW3GneD2.png' },
+        { name: '4. 2FA Verification', desc: '6-digit auto-advancing OTP inputs', img: 'assets/images/auth-screens/screen4.png', url: 'https://hotimg.com/f/VAUvbrsR.png' },
+        { name: '5. Password Recovery', desc: 'Secure email reset dispatcher', img: 'assets/images/auth-screens/screen5.png', url: 'https://hotimg.com/f/uDQBNu2p.png' },
+        { name: '6. Verification Success', desc: 'Authenticated state confirmation', img: 'assets/images/auth-screens/screen6.png', url: 'https://hotimg.com/f/hg7qcv1m.png' },
+        { name: '7. Security Settings', desc: 'Access controls & session manager', img: 'assets/images/auth-screens/screen7.png', url: 'https://hotimg.com/f/RoBbnsNE.png' }
       ],
       features: [
-        'Concentric circular wave background with modern pastel gradients',
-        '5 interactive screens: Welcome, Sign In, Sign Up, 2FA OTP & Reset',
-        'Interactive live password validation bar (4 security tiers)',
-        '6-digit OTP code auto-focus & keyboard navigation',
-        'Optional Node.js Express REST API with JWT tokens ($1.99 premium)'
+        '7 responsive screens: Welcome, Sign In, Sign Up, 2FA OTP, Reset, Success & Security',
+        'Real-time 4-tier password entropy validator',
+        'Auto-advancing 6-digit OTP verification slots',
+        'Production Node.js Express JWT backend with bcrypt security',
+        'Zero build dependencies — pure HTML5, CSS3 & JavaScript'
       ],
       popularityRating: 4.95,
       salesCount: 640,
@@ -952,27 +930,27 @@ Keep styling declarative and hardware accelerated for silky smooth web responsiv
     },
     {
       id: 'prod-fullstack-bundle',
-      title: 'Full-Stack Developer Super Bundle (Both Projects + Backend)',
-      type: 'Complete Projects Super-Bundle',
+      title: 'Full-Stack Developer Super Bundle',
+      type: 'Both Web Projects + Backend APIs',
       price: '$3.99',
       frontendPrice: 'FREE',
       backendPrice: '$3.99',
       rawPrice: 3.99,
-      description: 'Get both complete web projects: Luxe Salon Luxury Web Platform AND Modern Web Authentication Screens, including both complete frontend codebases and full Node.js Express backend servers with priority guides.',
+      description: 'Get both complete frontend codebases (Luxe Salon + Auth Gateway) and both full Node.js Express backend servers with instant .ZIP downloads.',
       badge: 'BEST VALUE BUNDLE 🚀',
       badgeBg: 'bg-purple-100',
       badgeText: 'text-purple-800',
       projectScreens: [
         { name: 'Luxe Salon Suite', desc: '5 complete salon screens + booking modal + gallery' },
-        { name: 'Auth Gateway Suite', desc: '5 interactive auth screens + 2FA OTP + recovery' },
+        { name: 'Auth Gateway Suite', desc: '7 interactive auth screens + 2FA OTP + security flow' },
         { name: 'Node.js Booking API', desc: 'Express REST server for appointments & database' },
         { name: 'Node.js JWT Auth API', desc: 'Express REST server for user tokens & security' }
       ],
       features: [
-        'Both complete frontend codebases (Luxe Salon + Auth Screens)',
-        'Both Node.js Express backend servers (Booking API + JWT Auth API)',
-        'Direct instant .ZIP download for both projects + setup guides',
-        'Full commercial usage license & lifetime update access'
+        'Both complete client codebases (Luxe Salon + Auth Suite)',
+        'Both Node.js Express backend APIs (Booking + JWT Auth)',
+        'Instant direct .ZIP downloads with setup documentation',
+        'Full commercial license & lifetime updates'
       ],
       popularityRating: 5.0,
       salesCount: 310,

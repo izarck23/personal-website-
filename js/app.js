@@ -434,43 +434,38 @@
 
       if (p.id === 'auth-screens-project') {
         mockupHtml = `
-          <div class="h-48 bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-2xl p-3 flex items-center justify-center relative overflow-hidden border border-blue-300/40 mb-5 shadow-inner select-none">
+          <div class="h-48 bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-2xl p-3 flex items-center justify-between relative overflow-hidden border border-blue-300/40 mb-5 shadow-inner select-none group">
             <!-- Concentric bubble circles in background matching screenshots -->
             <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/20 blur-[1px]"></div>
             <div class="absolute top-8 right-8 w-14 h-14 rounded-full bg-white/30"></div>
             <div class="absolute top-2 left-6 w-16 h-16 rounded-full bg-blue-900/30"></div>
             <div class="absolute -bottom-8 -left-4 w-28 h-28 rounded-full bg-white/15"></div>
 
-            <!-- Mobile phone shell preview -->
-            <div class="w-44 h-42 bg-stone-900/90 rounded-2xl p-2.5 shadow-2xl border border-white/20 flex flex-col justify-between relative z-10 backdrop-blur-sm transform hover:scale-[1.02] transition-transform">
-              <div class="flex items-center justify-between text-[8px] text-white/80 font-mono px-1">
-                <span>‹ Back</span>
-                <span class="font-bold text-amber-300 font-mono text-[7px] bg-amber-400/20 px-1.5 py-0.5 rounded">5 SCREENS</span>
+            <!-- Left Info Column -->
+            <div class="relative z-10 flex flex-col justify-between h-full py-1 text-white pr-2">
+              <div>
+                <span class="px-2 py-0.5 rounded-full bg-amber-400 text-stone-950 text-[9px] font-extrabold font-mono shadow-sm">7 REAL SCREENS</span>
+                <h4 class="text-sm font-black mt-2 font-display leading-tight text-white drop-shadow-sm">Auth Gateway & 2FA Flow</h4>
+                <p class="text-[10px] text-blue-100 mt-1 line-clamp-2">Complete responsive onboarding, password entropy, OTP, & recovery.</p>
               </div>
-              <div class="text-center py-1">
-                <div class="text-xs font-black text-white tracking-tight font-display">Welcome Back!</div>
-                <div class="text-[8px] text-blue-200 font-medium">Enter details to the account</div>
+              <div class="flex items-center gap-1.5 text-[9px] font-mono text-blue-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>Zero Build • Free ZIP</span>
               </div>
-              <!-- Interactive pill buttons preview -->
-              <div class="space-y-1">
-                <div class="flex items-center justify-center gap-1.5 py-1 px-2 bg-white/10 rounded-lg text-[8px] font-bold text-white">
-                  <span>Sign in</span>
-                </div>
-                <div class="flex items-center justify-center gap-1.5 py-1 px-2 bg-white rounded-lg text-[8px] font-extrabold text-blue-900 shadow-sm">
-                  <span>Sign up</span>
-                </div>
-              </div>
-              <!-- Social auth mini dots -->
-              <div class="flex items-center justify-center gap-2 pt-0.5 text-[8px] text-white/70 font-mono">
-                <span class="text-[7px]">f</span>
-                <span class="text-[7px]">𝕏</span>
-                <span class="text-[7px]">G</span>
-                <span class="text-[7px]"></span>
-              </div>
+            </div>
+
+            <!-- Right Phone Mockup Thumbnail -->
+            <div class="relative z-10 w-28 h-40 bg-stone-900/90 rounded-xl p-1 shadow-2xl border border-white/30 flex items-center justify-center shrink-0 overflow-hidden transform group-hover:scale-105 transition-transform">
+              <img 
+                src="assets/images/auth-screens/screen1.png" 
+                onerror="this.onerror=null; this.src='https://hotimg.com/f/7ab1fCl1.png';" 
+                alt="Auth Screens Preview" 
+                class="w-full h-full object-contain rounded-lg" 
+              />
             </div>
           </div>
         `;
-      } else if (p.id === 'luxe-salon-website') {
+      } else if (p.id === 'luxe-salon-website' || p.id === 'luxe-salon-project') {
         mockupHtml = `
           <div class="h-48 bg-gradient-to-br from-[#1a1a1a] via-[#2d241e] to-[#4a3928] rounded-2xl p-3 flex flex-col justify-between relative overflow-hidden border border-amber-500/30 mb-5 shadow-inner">
             <div class="flex items-center justify-between bg-stone-900/80 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-amber-500/20">
@@ -1117,130 +1112,191 @@
     refreshIcons();
   }
 
-  // --- MONETIZATION HUB TABS ---
+  // --- MONETIZATION HUB STORE & FILTERS ---
+  state.activeStoreFilter = 'all';
+
+  window.filterMonetizationProducts = function (filterType) {
+    state.activeStoreFilter = filterType;
+
+    const btnAll = document.getElementById('mf-all');
+    const btnFree = document.getElementById('mf-free');
+    const btnBackend = document.getElementById('mf-backend');
+
+    [btnAll, btnFree, btnBackend].forEach(b => {
+      if (b) b.className = 'mf-btn px-3 py-1.5 rounded-lg text-xs font-bold text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition';
+    });
+
+    if (filterType === 'free' && btnFree) {
+      btnFree.className = 'mf-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-stone-900 text-white transition';
+    } else if (filterType === 'backend' && btnBackend) {
+      btnBackend.className = 'mf-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-stone-900 text-white transition';
+    } else if (btnAll) {
+      btnAll.className = 'mf-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-stone-900 text-white transition';
+    }
+
+    renderMonetizationStore();
+  };
+
   function renderMonetizationStore() {
     const grid = document.getElementById('monetization-products-grid');
     if (!grid || !data.monetizationProducts) return;
 
-    grid.innerHTML = data.monetizationProducts.map(prod => {
-      const isBundle = prod.id === 'prod-fullstack-bundle';
-      const screensHtml = (prod.projectScreens || []).map((s, idx) => `
-        <div class="flex items-center gap-2 p-2 bg-stone-50 rounded-xl border border-stone-100 text-stone-700">
-          <span class="w-5 h-5 rounded-lg bg-stone-200 text-stone-700 font-mono font-bold text-[10px] flex items-center justify-center shrink-0">${idx + 1}</span>
-          <div class="overflow-hidden">
-            <div class="text-[11px] font-bold text-stone-900 truncate">${s.name}</div>
-            <div class="text-[10px] text-stone-500 truncate">${s.desc}</div>
-          </div>
-        </div>
-      `).join('');
+    let products = data.monetizationProducts;
+    if (state.activeStoreFilter === 'free') {
+      products = products.filter(p => p.frontendPrice === 'FREE');
+    } else if (state.activeStoreFilter === 'backend') {
+      products = products.filter(p => p.backendPrice && p.backendPrice !== 'FREE');
+    }
 
-      const featuresHtml = (prod.features || []).map(f => `
-        <li class="flex items-start gap-2 text-xs text-stone-600">
-          <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-500 mt-0.5 shrink-0"></i>
+    if (products.length === 0) {
+      grid.innerHTML = `
+        <div class="col-span-full text-center py-12 bg-white rounded-3xl border border-stone-200">
+          <p class="text-stone-500 text-sm">No items found matching this filter.</p>
+        </div>
+      `;
+      return;
+    }
+
+    grid.innerHTML = products.map(prod => {
+      const isBundle = prod.id === 'prod-fullstack-bundle';
+      const isAuth = prod.id === 'prod-auth-screens';
+      
+      let screensHtml = '';
+
+      if (isAuth && prod.projectScreens) {
+        screensHtml = `
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 mb-2">
+            ${prod.projectScreens.map((s, idx) => `
+              <button 
+                type="button"
+                onclick="window.openScreenLightbox('${s.img || 'assets/images/auth-screens/screen' + (idx+1) + '.png'}', '${s.url || ''}', '${s.name.replace(/'/g, "\\'")}', ${idx})" 
+                class="flex items-center gap-1.5 p-1.5 bg-stone-50 hover:bg-purple-50 hover:border-purple-200 rounded-xl border border-stone-200/70 text-left transition cursor-pointer group"
+                title="Click to view screen ${idx+1} in high-resolution"
+              >
+                <span class="w-4 h-4 rounded-md bg-stone-200 group-hover:bg-purple-600 group-hover:text-white text-stone-700 font-mono font-bold text-[9px] flex items-center justify-center shrink-0 transition-colors">${idx + 1}</span>
+                <span class="text-[10px] font-bold text-stone-800 truncate group-hover:text-purple-700 transition">${s.name.replace(/^\d+\.\s*/, '')}</span>
+              </button>
+            `).join('')}
+            <button 
+              type="button"
+              onclick="window.openScreenLightbox('assets/images/auth-screens/screen1.png', 'https://hotimg.com/f/7ab1fCl1.png', 'Authentication Screen 1', 0)" 
+              class="flex items-center justify-center gap-1 p-1.5 bg-purple-50 hover:bg-purple-100 rounded-xl border border-purple-200 text-purple-700 font-bold text-[10px] cursor-pointer"
+            >
+              <i data-lucide="zoom-in" class="w-3 h-3"></i>
+              <span>Zoom 7</span>
+            </button>
+          </div>
+        `;
+      } else {
+        screensHtml = `
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-2">
+            ${(prod.projectScreens || []).map((s, idx) => `
+              <div class="flex items-center gap-2 p-2 bg-stone-50 rounded-xl border border-stone-200/60">
+                <span class="w-5 h-5 rounded-lg bg-stone-200 text-stone-800 font-mono font-bold text-[10px] flex items-center justify-center shrink-0">${idx + 1}</span>
+                <div class="overflow-hidden">
+                  <div class="text-[11px] font-bold text-stone-900 truncate">${s.name}</div>
+                  <div class="text-[10px] text-stone-500 truncate">${s.desc}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      const featuresHtml = (prod.features || []).slice(0, 4).map(f => `
+        <li class="flex items-start gap-1.5 text-xs text-stone-600">
+          <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500 mt-0.5 shrink-0"></i>
           <span>${f}</span>
         </li>
       `).join('');
 
       return `
-        <div class="bg-white rounded-3xl border ${isBundle ? 'border-purple-300 shadow-md ring-2 ring-purple-100' : 'border-stone-200/90 shadow-sm'} p-6 sm:p-7 hover-lift flex flex-col justify-between relative overflow-hidden">
+        <div class="bg-white rounded-3xl border ${isBundle ? 'border-purple-300 shadow-md ring-2 ring-purple-100' : 'border-stone-200/90 shadow-sm'} p-5 sm:p-6 hover-lift flex flex-col justify-between relative overflow-hidden">
           
           <div>
             <!-- Top Badges & Rating -->
-            <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-xs font-extrabold font-mono ${prod.badgeBg || 'bg-orange-100'} ${prod.badgeText || 'text-[#e17055]'}">
+            <div class="flex items-center justify-between gap-2 mb-2.5">
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold font-mono ${prod.badgeBg || 'bg-orange-100'} ${prod.badgeText || 'text-[#e17055]'}">
                 ${prod.badge}
               </span>
-              <div class="flex items-center gap-1 text-xs font-bold text-amber-500 font-mono bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">
+              <div class="flex items-center gap-1 text-[11px] font-bold text-amber-500 font-mono bg-amber-50 px-2 py-0.5 rounded-full border border-amber-100">
                 <span>★</span>
                 <span>${prod.popularityRating}</span>
-                <span class="text-stone-400 text-[10px]">(${prod.salesCount}+ downloads)</span>
+                <span class="text-stone-400 text-[9px]">(${prod.salesCount}+)</span>
               </div>
             </div>
 
             <!-- Title & Type -->
-            <h3 class="text-xl font-extrabold text-stone-900 font-display mb-1.5 leading-snug">${prod.title}</h3>
-            <p class="text-[11px] font-mono text-stone-500 uppercase tracking-wider mb-3">${prod.type}</p>
+            <h3 class="text-lg font-extrabold text-stone-900 font-display mb-1 leading-snug">${prod.title}</h3>
+            <p class="text-[10px] font-mono text-stone-500 uppercase tracking-wider mb-3">${prod.type}</p>
 
-            <!-- Dual Pricing Badges (Free Frontend vs Premium Backend) -->
-            <div class="grid grid-cols-2 gap-2.5 p-3 bg-stone-50 rounded-2xl border border-stone-200/60 mb-4">
-              <div class="bg-white p-2.5 rounded-xl border border-emerald-100 text-center shadow-2xs">
-                <div class="text-[10px] font-bold uppercase font-mono text-emerald-700">Frontend (HTML/CSS/JS)</div>
-                <div class="text-lg font-black text-emerald-600 font-display">FREE</div>
-                <div class="text-[9px] text-stone-500">Zero-build client code</div>
+            <!-- Dual Pricing Badges -->
+            <div class="grid grid-cols-2 gap-2 p-2.5 bg-stone-50 rounded-2xl border border-stone-200/60 mb-3">
+              <div class="bg-white p-2 rounded-xl border border-emerald-100 text-center shadow-2xs">
+                <div class="text-[9px] font-bold uppercase font-mono text-emerald-700">Frontend (.ZIP)</div>
+                <div class="text-base font-black text-emerald-600 font-display">FREE</div>
+                <div class="text-[8px] text-stone-500">Zero build steps</div>
               </div>
-              <div class="bg-white p-2.5 rounded-xl border border-amber-100 text-center shadow-2xs">
-                <div class="text-[10px] font-bold uppercase font-mono text-[#e17055]">Backend Server</div>
-                <div class="text-lg font-black text-stone-900 font-display">${prod.backendPrice}</div>
-                <div class="text-[9px] text-stone-500">Node.js Express API</div>
+              <div class="bg-white p-2 rounded-xl border border-amber-100 text-center shadow-2xs">
+                <div class="text-[9px] font-bold uppercase font-mono text-[#e17055]">Backend Server</div>
+                <div class="text-base font-black text-stone-900 font-display">${prod.backendPrice}</div>
+                <div class="text-[8px] text-stone-500">Node.js Express API</div>
               </div>
             </div>
 
-            <p class="text-xs text-stone-600 leading-relaxed mb-4">${prod.description}</p>
+            <p class="text-xs text-stone-600 leading-relaxed mb-3">${prod.description}</p>
 
-            <!-- Project Screens Review Section -->
-            <div class="mb-5">
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-[11px] font-bold text-stone-700 uppercase font-mono flex items-center gap-1.5">
-                  <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-stone-500"></i>
-                  <span>Included Project Screens (${prod.projectScreens?.length || 0})</span>
+            <!-- Project Screens Preview Section -->
+            <div class="mb-3">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10px] font-bold text-stone-700 uppercase font-mono flex items-center gap-1">
+                  <i data-lucide="layout-grid" class="w-3 h-3 text-stone-500"></i>
+                  <span>Included Screens (${prod.projectScreens?.length || 0})</span>
                 </span>
-                ${prod.previewUrl ? `
-                  <button onclick="window.openTemplateDemoModal('${prod.previewUrl}', '${prod.title.replace(/'/g, "\\'")}', '${prod.type.replace(/'/g, "\\'")}', '${prod.id}')" class="text-[11px] font-bold text-[#6C5CE7] hover:underline flex items-center gap-1 cursor-pointer">
-                    <span>Live Interactive Demo</span>
-                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                ${isAuth ? `
+                  <button onclick="window.openScreenLightbox('assets/images/auth-screens/screen1.png', 'https://hotimg.com/f/7ab1fCl1.png', 'Authentication Screens', 0)" class="text-[10px] font-bold text-purple-600 hover:underline flex items-center gap-0.5 cursor-pointer">
+                    <span>High-Res Lightbox</span>
+                    <i data-lucide="maximize-2" class="w-2.5 h-2.5"></i>
                   </button>
                 ` : ''}
               </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                ${screensHtml}
-              </div>
+              ${screensHtml}
             </div>
 
-            <!-- Features Review Checklist -->
-            <div class="mb-6">
-              <div class="text-[11px] font-bold text-stone-700 uppercase font-mono mb-2 flex items-center gap-1.5">
-                <i data-lucide="check-square" class="w-3.5 h-3.5 text-emerald-500"></i>
-                <span>Technical Specifications & Features</span>
-              </div>
-              <ul class="space-y-2">
+            <!-- Features Checklist -->
+            <div class="mb-4">
+              <ul class="space-y-1.5">
                 ${featuresHtml}
               </ul>
             </div>
 
           </div>
 
-          <!-- Bottom Action Buttons Group -->
-          <div class="space-y-2.5 pt-4 border-t border-stone-100">
+          <!-- Bottom Action Buttons -->
+          <div class="space-y-2 pt-3 border-t border-stone-100">
             
-            <!-- Download Free Frontend Code (.ZIP) Button -->
-            <button onclick="window.downloadProjectZip('${prod.id}')" class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl text-xs font-extrabold transition flex items-center justify-center gap-2 shadow-sm transform active:scale-[0.99] cursor-pointer" title="Download Free Frontend Code">
-              <i data-lucide="download" class="w-4 h-4"></i>
-              <span>Download Frontend Code (.ZIP) — FREE</span>
-            </button>
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="window.downloadProjectZip('${prod.id}')" class="py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-[11px] font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer" title="Download Free Frontend Code">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                <span>Free .ZIP</span>
+              </button>
 
-            <!-- Unlock Full-Stack Backend Button -->
-            <button onclick="window.openCheckoutModal('${prod.id}')" class="w-full py-3 px-4 ${isBundle ? 'btn-sunset-gradient' : 'bg-stone-900 hover:bg-stone-800'} text-white rounded-2xl text-xs font-extrabold transition flex items-center justify-center gap-2 shadow-sm transform active:scale-[0.99] cursor-pointer" title="Unlock Backend API">
-              <i data-lucide="zap" class="w-4 h-4 text-amber-300"></i>
-              <span>Get Full-Stack Backend (${prod.backendPrice})</span>
-            </button>
+              <button onclick="window.openCheckoutModal('${prod.id}')" class="py-2.5 px-3 ${isBundle ? 'btn-sunset-gradient' : 'bg-stone-900 hover:bg-stone-800'} text-white rounded-xl text-[11px] font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer" title="Unlock Backend API">
+                <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-300"></i>
+                <span>Backend (${prod.backendPrice})</span>
+              </button>
+            </div>
 
-            <!-- Interactive Live Preview & Code Viewer Row -->
-            <div class="flex items-center gap-2 pt-1">
-              ${prod.previewUrl ? `
-                <button onclick="window.openTemplateDemoModal('${prod.previewUrl}', '${prod.title.replace(/'/g, "\\'")}', '${prod.type.replace(/'/g, "\\'")}', '${prod.id}')" class="flex-1 py-2 px-3 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-[11px] font-bold transition flex items-center justify-center gap-1.5 cursor-pointer">
-                  <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                  <span>Live Sandbox Demo</span>
-                </button>
-              ` : `
-                <button onclick="window.openTemplateDemoModal('templates/luxe-salon/index.html', 'Luxe Salon Suite', 'Web Platform', 'prod-luxe-salon')" class="flex-1 py-2 px-3 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-[11px] font-bold transition flex items-center justify-center gap-1.5 cursor-pointer">
-                  <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                  <span>Preview Suite</span>
-                </button>
-              `}
+            <!-- Preview and Source -->
+            <div class="flex items-center gap-2">
+              <button onclick="window.openTemplateDemoModal('${prod.previewUrl || 'templates/web-auth-screens/index.html'}', '${prod.title.replace(/'/g, "\\'")}', '${prod.type.replace(/'/g, "\\'")}', '${prod.id}')" class="flex-1 py-1.5 px-2.5 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-lg text-[10px] font-bold transition flex items-center justify-center gap-1 cursor-pointer">
+                <i data-lucide="play" class="w-3 h-3 text-amber-500"></i>
+                <span>Live Sandbox</span>
+              </button>
               
-              <button onclick="window.openProjectCodeModal('${prod.id}')" class="flex-1 py-2 px-3 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-[11px] font-bold transition flex items-center justify-center gap-1.5 cursor-pointer">
-                <i data-lucide="code-2" class="w-3.5 h-3.5"></i>
-                <span>Inspect Source</span>
+              <button onclick="window.openProjectCodeModal('${prod.id}')" class="flex-1 py-1.5 px-2.5 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-lg text-[10px] font-bold transition flex items-center justify-center gap-1 cursor-pointer">
+                <i data-lucide="code-2" class="w-3 h-3"></i>
+                <span>Source Code</span>
               </button>
             </div>
 
@@ -1507,6 +1563,7 @@
   // --------------------------------------------------------------------------
   state.currentProjectScreensData = [];
   state.activeProjectScreenIdx = 0;
+  state.activeLightboxScreenIdx = 0;
 
   window.renderProjectModalScreens = function (project) {
     const section = document.getElementById('pm-screen-preview-section');
@@ -1519,352 +1576,153 @@
 
     let screens = [];
 
-    if (project.id === 'auth-screens-project') {
-      screens = [
-        {
-          id: 'welcome',
-          name: '1. Welcome Gateway',
-          shortName: 'Welcome =)',
-          badge: 'ONBOARDING',
-          badgeColor: 'bg-blue-500/20 text-blue-300',
-          title: 'Welcome Screen (Gateway Entry)',
-          subtitle: 'Concentric pastel wave gradients with geometric badge and dual action buttons.',
-          html: `
-            <div class="w-full max-w-sm mx-auto bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-3xl p-4 sm:p-5 shadow-2xl border border-white/20 relative overflow-hidden text-white flex flex-col justify-between min-h-[380px]">
-              <!-- Concentric bubbles background -->
-              <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-white/15 blur-[1px]"></div>
-              <div class="absolute top-12 right-6 w-16 h-16 rounded-full bg-white/20"></div>
-              <div class="absolute top-4 left-4 w-20 h-20 rounded-full bg-blue-900/30"></div>
-              <div class="absolute -bottom-10 -left-6 w-36 h-36 rounded-full bg-white/10"></div>
+    if (project.id === 'auth-screens-project' || (project.screenImages && project.screenImages.length > 0)) {
+      const sourceScreens = project.screenImages || [];
+      screens = sourceScreens.map((s, idx) => {
+        const titleSafe = (s.title || `Screen ${idx + 1}`).replace(/'/g, "\\'");
+        const localImg = s.localImage || `assets/images/auth-screens/screen${idx + 1}.png`;
+        const remoteImg = s.remoteUrl || `https://hotimg.com/f/7ab1fCl1.png`;
 
-              <!-- Top Bar -->
-              <div class="flex items-center justify-between text-[9px] font-mono text-white/80 relative z-10 px-1">
-                <span class="font-bold flex items-center gap-1"><i data-lucide="shield-check" class="w-3 h-3 text-amber-300"></i> AUTH GATEWAY</span>
-                <span class="px-2 py-0.5 rounded-full bg-white/20 font-bold">SCREEN 1 OF 5</span>
-              </div>
-
-              <!-- Title & Greeting -->
-              <div class="text-center my-auto py-3 relative z-10">
-                <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md mx-auto flex items-center justify-center text-xl text-amber-300 shadow-lg border border-white/30 mb-2.5">
-                  ✦
-                </div>
-                <h3 class="text-2xl font-black text-white font-display tracking-tight">Welcome =)</h3>
-                <p class="text-[11px] text-blue-100 mt-1 max-w-xs mx-auto leading-relaxed">
-                  Hi there! We're here to help you learn new skills.<br>
-                  The choice is yours: <strong class="text-white">Log in</strong> or <strong class="text-white">create an account</strong>.
-                </p>
-              </div>
-
-              <!-- Bottom Action Card -->
-              <div class="bg-white rounded-2xl p-3.5 space-y-2 shadow-xl relative z-10 text-stone-900">
-                <button onclick="window.switchProjectModalScreen(1)" class="w-full py-2.5 bg-gradient-to-r from-[#e17055] to-[#f0932b] hover:from-[#d65d40] hover:to-[#e0831b] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm transform active:scale-98 cursor-pointer">
-                  <span>Log In</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </button>
-                <button onclick="window.switchProjectModalScreen(2)" class="w-full py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 cursor-pointer">
-                  <span>Create an Account</span>
-                </button>
-              </div>
-            </div>
-          `
-        },
-        {
-          id: 'login',
-          name: '2. Sign In (Social)',
-          shortName: 'Sign In',
-          badge: 'OAUTH & REVEAL',
-          badgeColor: 'bg-emerald-500/20 text-emerald-300',
-          title: 'Sign In Screen (Welcome Back)',
-          subtitle: 'Clean email input, password field with live show/hide toggle, and OAuth social sign-in row.',
-          html: `
-            <div class="w-full max-w-sm mx-auto bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-3xl p-4 sm:p-5 shadow-2xl border border-white/20 relative overflow-hidden text-white flex flex-col justify-between min-h-[380px]">
-              <!-- Concentric bubbles background -->
-              <div class="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-white/15"></div>
-              
-              <div class="flex items-center justify-between text-[9px] font-mono text-white/80 relative z-10 px-1 mb-2">
-                <button onclick="window.switchProjectModalScreen(0)" class="text-white hover:text-amber-300 flex items-center gap-1 cursor-pointer font-bold">
-                  ‹ Back
-                </button>
-                <span class="px-2 py-0.5 rounded-full bg-white/20 font-bold">SCREEN 2 OF 5</span>
-              </div>
-
-              <!-- Header -->
-              <div class="text-center mb-2 relative z-10">
-                <h3 class="text-xl font-black text-white font-display">Welcome Back</h3>
-                <p class="text-[10px] text-blue-100">Enter your credentials to access your account</p>
-              </div>
-
-              <!-- Form Card -->
-              <div class="bg-white rounded-2xl p-3.5 space-y-2.5 shadow-xl relative z-10 text-stone-800 text-xs">
-                <div>
-                  <label class="block text-[10px] font-bold text-stone-500 uppercase font-mono mb-1">Email Address</label>
-                  <div class="flex items-center gap-2 px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl">
-                    <i data-lucide="mail" class="w-3.5 h-3.5 text-stone-400"></i>
-                    <input type="email" readonly value="alex.morgan@company.com" class="w-full bg-transparent text-xs text-stone-800 font-semibold focus:outline-none" />
-                  </div>
-                </div>
-
-                <div>
-                  <div class="flex items-center justify-between mb-1">
-                    <label class="text-[10px] font-bold text-stone-500 uppercase font-mono">Password</label>
-                    <button onclick="window.switchProjectModalScreen(4)" class="text-[10px] text-[#e17055] font-bold hover:underline cursor-pointer">Forgot?</button>
-                  </div>
-                  <div class="flex items-center justify-between px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl">
-                    <div class="flex items-center gap-2">
-                      <i data-lucide="lock" class="w-3.5 h-3.5 text-stone-400"></i>
-                      <span class="font-mono text-xs text-stone-800">••••••••••••</span>
-                    </div>
-                    <span class="text-[10px] text-stone-400 font-bold cursor-pointer">👁 Toggle</span>
-                  </div>
-                </div>
-
-                <div class="flex items-center justify-between text-[10px] text-stone-500">
-                  <label class="flex items-center gap-1.5 cursor-pointer font-medium">
-                    <input type="checkbox" checked class="accent-[#e17055]" />
-                    <span>Remember me</span>
-                  </label>
-                </div>
-
-                <button onclick="window.switchProjectModalScreen(3)" class="w-full py-2.5 bg-gradient-to-r from-[#e17055] to-[#f0932b] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
-                  <span>Log In</span>
-                </button>
-
-                <!-- Social Icons -->
-                <div class="flex items-center justify-center gap-3 pt-1 border-t border-stone-100 text-[10px]">
-                  <span class="w-6 h-6 rounded-full bg-stone-100 flex items-center justify-center font-bold text-blue-600">G</span>
-                  <span class="w-6 h-6 rounded-full bg-stone-100 flex items-center justify-center font-bold text-stone-800"><i data-lucide="github" class="w-3 h-3"></i></span>
-                  <span class="w-6 h-6 rounded-full bg-stone-100 flex items-center justify-center font-bold text-stone-900"></span>
-                </div>
-              </div>
-            </div>
-          `
-        },
-        {
-          id: 'signup',
-          name: '3. Sign Up & Strength',
-          shortName: 'Sign Up',
-          badge: 'STRENGTH METER',
-          badgeColor: 'bg-amber-500/20 text-amber-300',
-          title: 'Sign Up & Live Password Strength Meter',
-          subtitle: 'Name, email, password fields with dynamic entropy progress bar and terms checkbox.',
-          html: `
-            <div class="w-full max-w-sm mx-auto bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-3xl p-4 sm:p-5 shadow-2xl border border-white/20 relative overflow-hidden text-white flex flex-col justify-between min-h-[380px]">
-              <div class="flex items-center justify-between text-[9px] font-mono text-white/80 relative z-10 px-1 mb-2">
-                <button onclick="window.switchProjectModalScreen(0)" class="text-white hover:text-amber-300 flex items-center gap-1 cursor-pointer font-bold">
-                  ‹ Back
-                </button>
-                <span class="px-2 py-0.5 rounded-full bg-white/20 font-bold">SCREEN 3 OF 5</span>
-              </div>
-
-              <!-- Header -->
-              <div class="text-center mb-2 relative z-10">
-                <h3 class="text-xl font-black text-white font-display">Create Account</h3>
-                <p class="text-[10px] text-blue-100">Join in seconds to build your digital products</p>
-              </div>
-
-              <!-- Form Card -->
-              <div class="bg-white rounded-2xl p-3.5 space-y-2 shadow-xl relative z-10 text-stone-800 text-xs">
-                <div>
-                  <label class="block text-[10px] font-bold text-stone-500 uppercase font-mono mb-1">Full Name</label>
-                  <div class="flex items-center gap-2 px-3 py-1.5 bg-stone-50 border border-stone-200 rounded-xl">
-                    <i data-lucide="user" class="w-3.5 h-3.5 text-stone-400"></i>
-                    <input type="text" readonly value="Isaac Dev" class="w-full bg-transparent text-xs text-stone-800 font-semibold focus:outline-none" />
-                  </div>
-                </div>
-
-                <div>
-                  <label class="block text-[10px] font-bold text-stone-500 uppercase font-mono mb-1">Email Address</label>
-                  <div class="flex items-center gap-2 px-3 py-1.5 bg-stone-50 border border-stone-200 rounded-xl">
-                    <i data-lucide="mail" class="w-3.5 h-3.5 text-stone-400"></i>
-                    <input type="email" readonly value="isaac@codertech.dev" class="w-full bg-transparent text-xs text-stone-800 font-semibold focus:outline-none" />
-                  </div>
-                </div>
-
-                <div>
-                  <div class="flex items-center justify-between mb-1">
-                    <label class="text-[10px] font-bold text-stone-500 uppercase font-mono">Password</label>
-                    <span class="text-[10px] text-emerald-600 font-bold font-mono">STRONG 100%</span>
-                  </div>
-                  <div class="flex items-center justify-between px-3 py-1.5 bg-stone-50 border border-stone-200 rounded-xl">
-                    <div class="flex items-center gap-2">
-                      <i data-lucide="lock" class="w-3.5 h-3.5 text-stone-400"></i>
-                      <span class="font-mono text-xs text-stone-800">CoderTech#2026!</span>
-                    </div>
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i>
-                  </div>
-                  <!-- Dynamic Strength Bar Preview -->
-                  <div class="w-full h-1.5 bg-stone-100 rounded-full mt-1 overflow-hidden">
-                    <div class="h-full w-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"></div>
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-1.5 text-[10px] text-stone-500">
-                  <input type="checkbox" checked class="accent-[#e17055]" />
-                  <span>I agree to Terms & Privacy Policy</span>
-                </div>
-
-                <button onclick="window.switchProjectModalScreen(3)" class="w-full py-2.5 bg-gradient-to-r from-[#e17055] to-[#f0932b] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
-                  <span>Get Started (Continue to 2FA)</span>
-                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                </button>
-              </div>
-            </div>
-          `
-        },
-        {
-          id: 'otp',
-          name: '4. 2FA (OTP) Verification',
-          shortName: '2FA OTP',
-          badge: 'AUTO-FOCUS 6-DIGIT',
+        return {
+          id: s.id || `screen-${idx + 1}`,
+          name: `${idx + 1}. ${s.name || 'Screen ' + (idx + 1)}`,
+          shortName: s.name || `Screen ${idx + 1}`,
+          badge: s.badge || 'PROD SCREEN',
           badgeColor: 'bg-purple-500/20 text-purple-300',
-          title: '2FA Verification Screen (Auto-Advancing OTP)',
-          subtitle: '6-digit isolated input slots with auto-advance, backspace handling, and resend timer.',
+          title: s.title || `Authentication Screen ${idx + 1}`,
+          subtitle: s.desc || 'High-fidelity zero-build responsive authentication interface.',
+          localImage: localImg,
+          remoteUrl: remoteImg,
+          viewerUrl: s.viewerUrl || remoteImg,
           html: `
-            <div class="w-full max-w-sm mx-auto bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-3xl p-4 sm:p-5 shadow-2xl border border-white/20 relative overflow-hidden text-white flex flex-col justify-between min-h-[380px]">
-              <div class="flex items-center justify-between text-[9px] font-mono text-white/80 relative z-10 px-1 mb-2">
-                <button onclick="window.switchProjectModalScreen(2)" class="text-white hover:text-amber-300 flex items-center gap-1 cursor-pointer font-bold">
-                  ‹ Back
-                </button>
-                <span class="px-2 py-0.5 rounded-full bg-white/20 font-bold">SCREEN 4 OF 5</span>
+            <div class="w-full max-w-sm mx-auto bg-stone-950 rounded-3xl p-3.5 shadow-2xl border border-stone-800 text-stone-100 flex flex-col justify-between min-h-[410px]">
+              
+              <!-- Screen Top Bar -->
+              <div class="flex items-center justify-between text-[10px] font-mono text-stone-400 mb-2 px-1">
+                <span class="font-bold text-purple-400 flex items-center gap-1">
+                  <i data-lucide="layout" class="w-3 h-3"></i> ${s.badge || 'AUTH SCREEN'}
+                </span>
+                <span class="px-2 py-0.5 rounded-full bg-stone-800 text-stone-300 font-bold">SCREEN ${idx + 1} OF ${sourceScreens.length}</span>
               </div>
 
-              <!-- Header -->
-              <div class="text-center mb-2 relative z-10">
-                <h3 class="text-xl font-black text-white font-display">Verify Code</h3>
-                <p class="text-[10px] text-blue-100">Enter the 6-digit code sent to your email</p>
-              </div>
-
-              <!-- OTP Form Card -->
-              <div class="bg-white rounded-2xl p-4 space-y-3 shadow-xl relative z-10 text-stone-800 text-xs">
-                <!-- 6-digit slot grid -->
-                <div class="grid grid-cols-6 gap-1.5 py-1">
-                  <div class="h-10 rounded-xl bg-stone-50 border-2 border-[#6C5CE7] flex items-center justify-center font-extrabold text-base font-mono text-stone-900 shadow-inner">2</div>
-                  <div class="h-10 rounded-xl bg-stone-50 border-2 border-[#6C5CE7] flex items-center justify-center font-extrabold text-base font-mono text-stone-900 shadow-inner">0</div>
-                  <div class="h-10 rounded-xl bg-stone-50 border-2 border-[#6C5CE7] flex items-center justify-center font-extrabold text-base font-mono text-stone-900 shadow-inner">2</div>
-                  <div class="h-10 rounded-xl bg-stone-50 border-2 border-[#6C5CE7] flex items-center justify-center font-extrabold text-base font-mono text-stone-900 shadow-inner">6</div>
-                  <div class="h-10 rounded-xl bg-stone-50 border-2 border-stone-200 flex items-center justify-center font-extrabold text-base font-mono text-stone-400">8</div>
-                  <div class="h-10 rounded-xl bg-stone-50 border-2 border-stone-200 flex items-center justify-center font-extrabold text-base font-mono text-stone-400">9</div>
-                </div>
-
-                <div class="p-2 bg-purple-50 rounded-xl border border-purple-100 text-center text-[10px] text-[#6C5CE7] font-semibold">
-                  <span>✨ Auto-Focus Next • Backspace Jumps • Paste All 6</span>
-                </div>
-
-                <div class="text-center text-[10px] text-stone-500">
-                  <span>Didn't receive OTP?</span>
-                  <span class="text-[#e17055] font-bold ml-1 cursor-pointer">Resend code</span>
-                  <span class="text-stone-400 ml-1 font-mono">(45s)</span>
-                </div>
-
-                <button onclick="window.switchProjectModalScreen(0)" class="w-full py-2.5 bg-gradient-to-r from-[#e17055] to-[#f0932b] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
-                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                  <span>Verify & Unlock Dashboard</span>
+              <!-- Phone Frame Container with Real Screenshot & Zoom -->
+              <div class="relative w-full bg-stone-900/80 rounded-2xl overflow-hidden p-2 border border-stone-800 flex items-center justify-center group shadow-inner">
+                <img 
+                  src="${localImg}" 
+                  onerror="this.onerror=null; this.src='${remoteImg}';" 
+                  alt="${titleSafe}" 
+                  class="w-full h-auto max-h-[290px] object-contain rounded-xl cursor-pointer transform group-hover:scale-[1.02] transition duration-200" 
+                  onclick="window.openScreenLightbox('${localImg}', '${remoteImg}', '${titleSafe}', ${idx})" 
+                />
+                
+                <button 
+                  onclick="window.openScreenLightbox('${localImg}', '${remoteImg}', '${titleSafe}', ${idx})" 
+                  class="absolute bottom-3 right-3 px-3 py-1.5 bg-black/80 hover:bg-black text-white rounded-xl text-[10px] font-bold backdrop-blur-md transition flex items-center gap-1.5 shadow-md cursor-pointer"
+                  title="Enlarge High-Definition Image"
+                >
+                  <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-amber-300"></i>
+                  <span>Full View</span>
                 </button>
               </div>
-            </div>
-          `
-        },
-        {
-          id: 'forgot',
-          name: '5. Password Recovery',
-          shortName: 'Recovery',
-          badge: 'RESET FLOW',
-          badgeColor: 'bg-rose-500/20 text-rose-300',
-          title: 'Password Recovery Screen (Reset Dispatcher)',
-          subtitle: 'Single-field recovery email input with feedback notice and shortcut back to login.',
-          html: `
-            <div class="w-full max-w-sm mx-auto bg-gradient-to-br from-[#1e3c72] via-[#2a5298] to-[#5c7aea] rounded-3xl p-4 sm:p-5 shadow-2xl border border-white/20 relative overflow-hidden text-white flex flex-col justify-between min-h-[380px]">
-              <div class="flex items-center justify-between text-[9px] font-mono text-white/80 relative z-10 px-1 mb-2">
-                <button onclick="window.switchProjectModalScreen(1)" class="text-white hover:text-amber-300 flex items-center gap-1 cursor-pointer font-bold">
-                  ‹ Back to Login
-                </button>
-                <span class="px-2 py-0.5 rounded-full bg-white/20 font-bold">SCREEN 5 OF 5</span>
-              </div>
 
-              <!-- Header -->
-              <div class="text-center mb-2 relative z-10">
-                <h3 class="text-xl font-black text-white font-display">Reset Password</h3>
-                <p class="text-[10px] text-blue-100">Enter your email to receive a recovery token</p>
-              </div>
+              <!-- Metadata & Quick Navigation -->
+              <div class="w-full mt-2.5 p-2.5 bg-stone-900/90 rounded-2xl border border-stone-800/80">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h4 class="text-xs font-bold text-white truncate">${s.title}</h4>
+                  <span class="text-[9px] font-mono text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-500/30 shrink-0">HTML5/CSS3</span>
+                </div>
+                <p class="text-[10px] text-stone-400 leading-relaxed mb-2 line-clamp-2">${s.desc}</p>
+                
+                <div class="flex items-center justify-between gap-2 pt-2 border-t border-stone-800">
+                  <button 
+                    onclick="window.switchProjectModalScreen(${Math.max(0, idx - 1)})" 
+                    ${idx === 0 ? 'disabled class="opacity-30 cursor-not-allowed text-[10px] text-stone-500 font-bold flex items-center gap-0.5"' : 'class="text-[10px] text-stone-300 hover:text-white font-bold flex items-center gap-0.5 cursor-pointer"'}
+                  >
+                    ‹ Prev
+                  </button>
 
-              <!-- Form Card -->
-              <div class="bg-white rounded-2xl p-4 space-y-3 shadow-xl relative z-10 text-stone-800 text-xs">
-                <div>
-                  <label class="block text-[10px] font-bold text-stone-500 uppercase font-mono mb-1">Account Email</label>
-                  <div class="flex items-center gap-2 px-3 py-2 bg-stone-50 border border-stone-200 rounded-xl">
-                    <i data-lucide="mail" class="w-3.5 h-3.5 text-stone-400"></i>
-                    <input type="email" readonly value="your.name@example.com" class="w-full bg-transparent text-xs text-stone-800 font-semibold focus:outline-none" />
+                  <div class="flex items-center gap-1">
+                    <button onclick="window.openCurrentProjectSandbox()" class="px-2 py-1 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-lg text-[9px] font-bold flex items-center gap-1 cursor-pointer">
+                      <i data-lucide="play" class="w-2.5 h-2.5 text-amber-300"></i>
+                      <span>Sandbox</span>
+                    </button>
+                    <button onclick="window.openScreenLightbox('${localImg}', '${remoteImg}', '${titleSafe}', ${idx})" class="px-2 py-1 bg-purple-900/50 hover:bg-purple-800/70 text-purple-200 rounded-lg text-[9px] font-bold flex items-center gap-1 cursor-pointer">
+                      <i data-lucide="maximize-2" class="w-2.5 h-2.5 text-purple-300"></i>
+                      <span>Zoom</span>
+                    </button>
                   </div>
-                </div>
 
-                <div class="p-2.5 bg-stone-50 rounded-xl border border-stone-200/60 text-[10px] text-stone-500 leading-relaxed">
-                  We will send a secure verification token and password reset link to your registered email.
-                </div>
-
-                <button onclick="window.switchProjectModalScreen(1)" class="w-full py-2.5 bg-gradient-to-r from-[#e17055] to-[#f0932b] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
-                  <i data-lucide="send" class="w-3.5 h-3.5"></i>
-                  <span>Send Reset Link</span>
-                </button>
-
-                <div class="text-center pt-1 border-t border-stone-100">
-                  <button onclick="window.switchProjectModalScreen(1)" class="text-[10px] text-[#6C5CE7] font-extrabold hover:underline">
-                    Return to Log In
+                  <button 
+                    onclick="window.switchProjectModalScreen(${Math.min(sourceScreens.length - 1, idx + 1)})" 
+                    ${idx === sourceScreens.length - 1 ? 'disabled class="opacity-30 cursor-not-allowed text-[10px] text-stone-500 font-bold flex items-center gap-0.5"' : 'class="text-[10px] text-stone-300 hover:text-white font-bold flex items-center gap-0.5 cursor-pointer"'}
+                  >
+                    Next ›
                   </button>
                 </div>
               </div>
+
             </div>
           `
-        },
-        {
-          id: 'backend',
-          name: '6. Node.js JWT REST API',
-          shortName: 'Backend API',
-          badge: '$1.99 CODEBASE',
-          badgeColor: 'bg-emerald-500/20 text-emerald-300',
-          title: 'Full-Stack Node.js Express REST API ($1.99)',
-          subtitle: 'Production bcrypt password hashing, token issuance, secure cookies, and auth middleware.',
-          html: `
-            <div class="w-full max-w-sm mx-auto bg-stone-950 rounded-3xl p-4 sm:p-5 shadow-2xl border border-stone-800 text-stone-100 flex flex-col justify-between min-h-[380px]">
-              <div class="flex items-center justify-between text-[9px] font-mono text-stone-400 mb-2">
-                <span class="font-bold text-emerald-400 flex items-center gap-1"><i data-lucide="server" class="w-3 h-3"></i> NODE.JS REST SERVER</span>
-                <span class="px-2 py-0.5 rounded-full bg-stone-800 text-stone-300 font-bold">$1.99 COMMERCIAL</span>
-              </div>
+        };
+      });
 
-              <!-- Endpoint List -->
-              <div class="space-y-1.5 font-mono text-[10px] my-auto">
-                <div class="p-2 bg-stone-900/90 rounded-xl border border-stone-800 flex items-center justify-between">
-                  <span class="text-emerald-400 font-bold">POST</span>
-                  <span class="text-stone-300">/api/auth/register</span>
-                  <span class="text-[8px] text-stone-500">bcrypt hash</span>
-                </div>
-                <div class="p-2 bg-stone-900/90 rounded-xl border border-stone-800 flex items-center justify-between">
-                  <span class="text-emerald-400 font-bold">POST</span>
-                  <span class="text-stone-300">/api/auth/login</span>
-                  <span class="text-[8px] text-stone-500">JWT token</span>
-                </div>
-                <div class="p-2 bg-stone-900/90 rounded-xl border border-stone-800 flex items-center justify-between">
-                  <span class="text-emerald-400 font-bold">POST</span>
-                  <span class="text-stone-300">/api/auth/verify-2fa</span>
-                  <span class="text-[8px] text-stone-500">OTP logic</span>
-                </div>
-                <div class="p-2 bg-stone-900/90 rounded-xl border border-stone-800 flex items-center justify-between">
-                  <span class="text-blue-400 font-bold">GET</span>
-                  <span class="text-stone-300">/api/auth/me</span>
-                  <span class="text-[8px] text-stone-500">Bearer check</span>
-                </div>
-              </div>
+      // Add backend endpoint overview screen
+      screens.push({
+        id: 'backend',
+        name: `${screens.length + 1}. Express REST Server`,
+        shortName: 'Backend API',
+        badge: '$1.99 CODEBASE',
+        badgeColor: 'bg-emerald-500/20 text-emerald-300',
+        title: 'Full-Stack Node.js Express REST Server ($1.99)',
+        subtitle: 'Production bcrypt password hashing, token issuance, secure cookies, and auth middleware.',
+        localImage: 'assets/images/auth-screens/screen1.png',
+        remoteUrl: 'https://hotimg.com/f/7ab1fCl1.png',
+        viewerUrl: 'https://hotimg.com/i/7ab1fCl1',
+        html: `
+          <div class="w-full max-w-sm mx-auto bg-stone-950 rounded-3xl p-4 sm:p-5 shadow-2xl border border-stone-800 text-stone-100 flex flex-col justify-between min-h-[410px]">
+            <div class="flex items-center justify-between text-[9px] font-mono text-stone-400 mb-2">
+              <span class="font-bold text-emerald-400 flex items-center gap-1"><i data-lucide="server" class="w-3 h-3"></i> NODE.JS REST SERVER</span>
+              <span class="px-2 py-0.5 rounded-full bg-stone-800 text-stone-300 font-bold">$1.99 COMMERCIAL</span>
+            </div>
 
-              <div class="pt-2 border-t border-stone-800">
-                <button onclick="window.openModalBackendCheckout()" class="w-full py-2.5 bg-[#e17055] hover:bg-[#d65d40] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
-                  <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-300"></i>
-                  <span>Unlock Backend Source ($1.99)</span>
-                </button>
+            <div class="space-y-1.5 font-mono text-[10px] my-auto">
+              <div class="p-2 bg-stone-900/90 rounded-xl border border-stone-800 flex items-center justify-between">
+                <span class="text-emerald-400 font-bold">POST</span>
+                <span class="text-stone-300">/api/auth/register</span>
+                <span class="text-[8px] text-stone-500">bcrypt hash</span>
+              </div>
+              <div class="p-2 bg-stone-900/90 rounded-xl border border-stone-800 flex items-center justify-between">
+                <span class="text-emerald-400 font-bold">POST</span>
+                <span class="text-stone-300">/api/auth/login</span>
+                <span class="text-[8px] text-stone-500">JWT token</span>
+              </div>
+              <div class="p-2 bg-stone-900/90 rounded-xl border border-stone-800 flex items-center justify-between">
+                <span class="text-emerald-400 font-bold">POST</span>
+                <span class="text-stone-300">/api/auth/verify-2fa</span>
+                <span class="text-[8px] text-stone-500">OTP logic</span>
+              </div>
+              <div class="p-2 bg-stone-900/90 rounded-xl border border-stone-800 flex items-center justify-between">
+                <span class="text-blue-400 font-bold">GET</span>
+                <span class="text-stone-300">/api/auth/me</span>
+                <span class="text-[8px] text-stone-500">Bearer check</span>
               </div>
             </div>
-          `
-        }
-      ];
-    } else if (project.id === 'luxe-salon-website') {
+
+            <div class="pt-2 border-t border-stone-800 space-y-2">
+              <button onclick="window.openModalBackendCheckout()" class="w-full py-2.5 bg-[#e17055] hover:bg-[#d65d40] text-white rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5 shadow-sm cursor-pointer">
+                <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-300"></i>
+                <span>Unlock Backend Source ($1.99)</span>
+              </button>
+              <button onclick="window.downloadCurrentProjectModalZip()" class="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                <span>Download Free Frontend Code (.ZIP)</span>
+              </button>
+            </div>
+          </div>
+        `
+      });
+
+    } else if (project.id === 'luxe-salon-website' || project.id === 'luxe-salon-project') {
       screens = [
         {
           id: 'home',
@@ -1885,8 +1743,8 @@
                 <p class="text-[10px] text-stone-300 mt-1 max-w-xs mx-auto">Elevated beauty, precision haircutting, and rejuvenating spa treatments.</p>
               </div>
               <div class="space-y-2">
-                <button onclick="window.switchProjectModalScreen(3)" class="w-full py-2 bg-gradient-to-r from-amber-600 to-amber-500 text-stone-950 rounded-xl text-xs font-extrabold">Book Appointment</button>
-                <button onclick="window.switchProjectModalScreen(1)" class="w-full py-2 bg-stone-900/90 text-amber-300 border border-amber-500/30 rounded-xl text-xs font-bold">View Service Menu</button>
+                <button onclick="window.switchProjectModalScreen(2)" class="w-full py-2 bg-gradient-to-r from-amber-600 to-amber-500 text-stone-950 rounded-xl text-xs font-extrabold cursor-pointer">Book Appointment</button>
+                <button onclick="window.switchProjectModalScreen(1)" class="w-full py-2 bg-stone-900/90 text-amber-300 border border-amber-500/30 rounded-xl text-xs font-bold cursor-pointer">View Service Menu</button>
               </div>
             </div>
           `
@@ -1919,7 +1777,7 @@
                   <span class="text-amber-400 font-bold">$95</span>
                 </div>
               </div>
-              <button onclick="window.switchProjectModalScreen(3)" class="w-full py-2 bg-amber-500 text-stone-950 rounded-xl text-xs font-bold mt-2">Book This Service</button>
+              <button onclick="window.switchProjectModalScreen(2)" class="w-full py-2 bg-amber-500 text-stone-950 rounded-xl text-xs font-bold mt-2 cursor-pointer">Book This Service</button>
             </div>
           `
         },
@@ -1942,7 +1800,7 @@
                 <input type="text" readonly value="Stylist: Elena Rostova (Master Colorist)" class="w-full p-2 bg-stone-900 rounded-lg border border-stone-700 text-xs text-stone-300" />
                 <div class="p-2 bg-stone-900 rounded-lg border border-stone-700 text-[10px] text-emerald-400 font-mono">POST /api/appointments -> 201 Created</div>
               </div>
-              <button onclick="window.openModalBackendCheckout()" class="w-full py-2.5 bg-[#e17055] text-white rounded-xl text-xs font-extrabold mt-2">Unlock Full Backend ($2.99)</button>
+              <button onclick="window.openModalBackendCheckout()" class="w-full py-2.5 bg-[#e17055] text-white rounded-xl text-xs font-extrabold mt-2 cursor-pointer">Unlock Full Backend ($2.99)</button>
             </div>
           `
         }
@@ -1961,7 +1819,7 @@
             <div class="w-full max-w-sm mx-auto bg-stone-950 rounded-3xl p-5 shadow-2xl border border-stone-800 text-stone-100 flex flex-col justify-between min-h-[300px]">
               <div class="flex items-center justify-between text-[10px] font-mono text-stone-400">
                 <span class="text-purple-400 font-bold">${project.tag}</span>
-                <span>DEVICE: ${project.deviceType.toUpperCase()}</span>
+                <span>DEVICE: ${(project.deviceType || 'WEB').toUpperCase()}</span>
               </div>
               <div class="text-center my-4">
                 <h4 class="text-lg font-bold text-white">${project.title}</h4>
@@ -1980,7 +1838,7 @@
     state.activeProjectScreenIdx = 0;
 
     countBadge.textContent = `${screens.length} SCREEN${screens.length > 1 ? 'S' : ''}`;
-    hintText.textContent = `Click any screen tab above to preview the ${project.title} interface flow.`;
+    hintText.textContent = `Click any screen tab above or use Prev/Next buttons to inspect the ${project.title} interface.`;
 
     // Render Tabs
     tabsContainer.innerHTML = screens.map((s, idx) => `
@@ -2016,6 +1874,89 @@
       viewport.innerHTML = s.html;
       refreshIcons();
     }
+  };
+
+  // --------------------------------------------------------------------------
+  // HIGH-DEFINITION SCREEN ZOOM LIGHTBOX VIEWER
+  // --------------------------------------------------------------------------
+  window.openScreenLightbox = function (localImg, remoteImg, title, screenIdx) {
+    const authProject = (data.projects || []).find(p => p.id === 'auth-screens-project');
+    const screens = authProject?.screenImages || [];
+    const idx = (typeof screenIdx === 'number' && screenIdx >= 0) ? screenIdx : 0;
+    
+    state.activeLightboxScreenIdx = idx;
+
+    window.switchLightboxScreen(idx);
+    window.openModal('screen-lightbox-modal');
+    refreshIcons();
+  };
+
+  window.switchLightboxScreen = function (idx) {
+    const authProject = (data.projects || []).find(p => p.id === 'auth-screens-project');
+    const screens = authProject?.screenImages || [];
+    if (!screens.length) return;
+
+    if (idx < 0) idx = screens.length - 1;
+    if (idx >= screens.length) idx = 0;
+
+    state.activeLightboxScreenIdx = idx;
+    const s = screens[idx];
+
+    const imgEl = document.getElementById('slm-image');
+    const titleEl = document.getElementById('slm-title');
+    const subtitleEl = document.getElementById('slm-subtitle');
+    const counterEl = document.getElementById('slm-counter');
+    const dotsContainer = document.getElementById('slm-dots');
+
+    if (imgEl) {
+      imgEl.src = s.localImage || s.remoteUrl;
+      imgEl.onerror = function () {
+        this.onerror = null;
+        this.src = s.remoteUrl;
+      };
+      imgEl.alt = s.title || `Screen ${idx + 1}`;
+    }
+
+    if (titleEl) titleEl.textContent = s.title || `Screen ${idx + 1}`;
+    if (subtitleEl) subtitleEl.textContent = `${s.desc || ''} • Zero-Build HTML5/CSS3`;
+    if (counterEl) counterEl.textContent = `SCREEN ${idx + 1} OF ${screens.length}`;
+
+    if (dotsContainer) {
+      dotsContainer.innerHTML = screens.map((dotScreen, dotIdx) => `
+        <button 
+          onclick="window.switchLightboxScreen(${dotIdx})" 
+          class="px-2.5 py-1 rounded-lg text-[11px] font-bold font-mono transition cursor-pointer ${dotIdx === idx ? 'bg-purple-600 text-white' : 'bg-stone-800 text-stone-400 hover:text-white'}"
+        >
+          ${dotIdx + 1}. ${dotScreen.name}
+        </button>
+      `).join('');
+    }
+
+    refreshIcons();
+  };
+
+  window.nextLightboxScreen = function () {
+    window.switchLightboxScreen(state.activeLightboxScreenIdx + 1);
+  };
+
+  window.prevLightboxScreen = function () {
+    window.switchLightboxScreen(state.activeLightboxScreenIdx - 1);
+  };
+
+  window.downloadCurrentScreenImage = function () {
+    const authProject = (data.projects || []).find(p => p.id === 'auth-screens-project');
+    const screens = authProject?.screenImages || [];
+    const s = screens[state.activeLightboxScreenIdx] || screens[0];
+    if (!s) return;
+
+    const link = document.createElement('a');
+    link.href = s.localImage || s.remoteUrl;
+    link.download = `codertech-auth-screen-${state.activeLightboxScreenIdx + 1}.png`;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showToast(`Downloading Screen ${state.activeLightboxScreenIdx + 1} image...`);
   };
 
   // Service Modal
@@ -2175,6 +2116,7 @@
         { name: 'index.html', path: 'templates/luxe-salon/index.html', lang: 'html' },
         { name: 'style.css', path: 'templates/luxe-salon/style.css', lang: 'css' },
         { name: 'script.js', path: 'templates/luxe-salon/script.js', lang: 'javascript' },
+        { name: 'server.js', path: 'templates/luxe-salon/backend/server.js', lang: 'javascript' },
         { name: 'README.md', path: 'templates/luxe-salon/README.md', lang: 'markdown' }
       ];
     } else if (prod.id === 'prod-auth-screens') {
@@ -2182,14 +2124,18 @@
         { name: 'index.html', path: 'templates/web-auth-screens/index.html', lang: 'html' },
         { name: 'styles.css', path: 'templates/web-auth-screens/assets/css/styles.css', lang: 'css' },
         { name: 'app.js', path: 'templates/web-auth-screens/assets/js/app.js', lang: 'javascript' },
+        { name: 'server.js', path: 'templates/web-auth-screens/backend/server.js', lang: 'javascript' },
+        { name: 'package.json', path: 'templates/web-auth-screens/backend/package.json', lang: 'json' },
         { name: 'README.md', path: 'templates/web-auth-screens/README.md', lang: 'markdown' }
       ];
     } else {
       files = [
-        { name: 'Luxe-index.html', path: 'templates/luxe-salon/index.html', lang: 'html' },
         { name: 'Auth-index.html', path: 'templates/web-auth-screens/index.html', lang: 'html' },
-        { name: 'Luxe-style.css', path: 'templates/luxe-salon/style.css', lang: 'css' },
-        { name: 'Auth-styles.css', path: 'templates/web-auth-screens/assets/css/styles.css', lang: 'css' }
+        { name: 'Auth-styles.css', path: 'templates/web-auth-screens/assets/css/styles.css', lang: 'css' },
+        { name: 'Auth-app.js', path: 'templates/web-auth-screens/assets/js/app.js', lang: 'javascript' },
+        { name: 'Auth-server.js', path: 'templates/web-auth-screens/backend/server.js', lang: 'javascript' },
+        { name: 'Luxe-index.html', path: 'templates/luxe-salon/index.html', lang: 'html' },
+        { name: 'Luxe-style.css', path: 'templates/luxe-salon/style.css', lang: 'css' }
       ];
     }
 
